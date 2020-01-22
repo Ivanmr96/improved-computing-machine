@@ -11,7 +11,7 @@ namespace Pinturillo_Angela
     {
         #region"Atributos privados"
         private ObservableCollection<clsPartida> _listadoPartidas;
-        private clsJugador usuarioPropio;
+        private clsJugador _usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
 
@@ -20,7 +20,7 @@ namespace Pinturillo_Angela
         #region"Propiedades públicas"
         public DelegateCommand JoinGroupCommand { get;  }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
-        public clsJugador UsuarioPropio { get => usuarioPropio; set => usuarioPropio = value; }
+        public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
         #endregion
 
 
@@ -40,7 +40,7 @@ namespace Pinturillo_Angela
         #region"Constructor"
         public VMListadoSalas()
         {
-            this.usuarioPropio = new clsJugador();
+            this._usuarioPropio = new clsJugador();
 
             //TODO todas las cosas de SignalR
 
