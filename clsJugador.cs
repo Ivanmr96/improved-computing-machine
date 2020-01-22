@@ -9,6 +9,8 @@
         private bool _haTerminadoTimer;
         private bool _isUltimaPalabraAcertada;
         private bool _isLider;
+
+        
         #endregion
 
 
@@ -21,6 +23,16 @@
             HaTerminadoTimer = haTerminadoTimer;
             IsUltimaPalabraAcertada = isUltimaPalabraAcertada;
             IsLider = isLider;
+        }
+
+        public clsJugador()
+        {
+            ConnectionID = "";
+            Puntuacion = 0;
+            Nickname = "";
+            HaTerminadoTimer = false;
+            IsUltimaPalabraAcertada = false;
+            IsLider = false;
         }
         #endregion
 
