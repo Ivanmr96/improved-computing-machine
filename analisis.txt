@@ -1,0 +1,31 @@
+pantalla salas:
+	-metodo para pedir el listado de salas disponibles
+	-metodo para recibir el listado de salas disponibles
+
+	-si el usuario se quiere meter en una sala, el servidor notifica al grupo de dicha sala
+que se ha unido un jugador.
+	-El usuario que se ha metido en la sala va a la pantalla de espera
+
+Pantalla de espera
+	-chat
+	-cuando el lider le de a start, avisa al servidor de que la partida empieza y el servidor
+	informa a los clientes del grupo que comenzará la partida
+	-si sale que saque al usuario 
+	-se van a la pantalla de juego
+
+Pantalla de partida de juego
+	-canvas (añadir lo del color y el grosor)
+		-enviar canvas
+		-recibir canvas
+	-el timer
+	-el chat
+	-si sale que saque al usuario 
+	-notificar cuando el usuario acierte una palabra y que el servidor notifique 
+	-al resto de usuarios del grupo
+	-metodo para modificar puntuaciones de todos
+
+
+
+dialog con puntuaciones
+
+

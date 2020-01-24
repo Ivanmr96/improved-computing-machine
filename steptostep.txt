@@ -1,0 +1,39 @@
+
+	Paso a paso
+
+-El usuario abre la aplicación y escribe su nick en la primera pantalla del juego, el nombre se guarda en el viewmodel a través del binding 
+y el usuario clicka en entrar y se cambia la pantalla 1 por la pantalla que muestra el listado de salas. En el constructor del viewmodel de la pantalla del
+listado de salas, se le pide al servidor el listado de las salas disponibles.
+
+El usuario ve el listado de salas disponibles y :
+
+	-Clicka en una sala existente
+		el cliente notifica al servidor de que se ha unido dicho usuario a esa sala. El servidor notifica a todos los
+		integrantes del grupo de que se ha unido un jugador más.
+		El cliente cambia de la pantalla de crear partida a la pantalla de espera 
+		y NO tendría habilitado el boton de start partida porque no ha sido el que la ha creado.
+
+
+
+	-Crea una partida
+		el cliente manda la partida creada al servidor y el servidor crea el grupo a partir del nombre de la sala, 
+		la añade a la lista de salas disponibles, envía la nueva partida creada a todos los clientes
+		y estos la añaden a su listado de salas disponibles.
+		Y el servidor le envía la partida creada al usuario que la acaba de crear.
+		El cliente cambia de la pantalla de crear partida a la pantalla de espera y se le habilita el boton de start partida cuando haya más de una persona.
+
+Cuando el usuario lider clicke en Start partida, se notifica al servidor de que la partida cambia su atributo isJugandose a true, y entonces el servidor
+envía la orden de que todos los clientes del grupo empiecen a contar (timer) y se le envía la palabra random. 
+También envía a todos los clientes que hay una sala menos disponible.
+
+
+-Los usuarios del grupo están en la pantalla de juego, el primer jugador de la lista de jugadores es el primero en dibujar. 
+Si el connection ID del jugador es igual al nickname, envías ese nickname a todos los del grupo y así saben quién está pintando.
+Si ese nickname es el tuyo, tienes el canvas activado y puedes pintar y ves la palabra, todos los demás no pueden pintar
+y además verán la palabra con asteriscos o guiones bajos _ .
+
+El cliente que pinta tendrá el input del chat desactivado para que no pueda dar pistas, los demás del grupo sí deberán escribir en el chat
+y cada vez que envíen un mensaje, se deberá analizar para comprobar si se ha acertado y si un usuario acierta la palabra, el usuario notificará al
+servidor que este usuario ha acertado la palabra, y el servidor envía a los clientes del grupo que cambien las puntuaciones de este usuario.
+La puntuación depende del tiempo restante.
+El turno se acaba cuando finalice el tiempo.
