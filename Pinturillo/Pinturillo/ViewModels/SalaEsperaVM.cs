@@ -1,4 +1,5 @@
-﻿using Pinturillo;
+﻿using GalaSoft.MvvmLight.Views;
+using Pinturillo;
 using Pinturillo.Models;
 using System;
 using System.Collections.Generic;
@@ -14,19 +15,21 @@ namespace Pinturillo.ViewModels
 
         private clsPartida partida;
         private clsMensaje mensaje;
+        private readonly INavigationService navigationService;
 
         #endregion
 
         #region constructor
 
-        public SalaEsperaVM()
+        public SalaEsperaVM(INavigationService navigationService)
         {
             // Aquí obtendría la partida enviada desde la otra ventana
 
             partida = new clsPartida();
+            this.navigationService = navigationService;
 
-            partida.ListadoJugadores.Add(new clsJugador("id", 0, "Ivan", false, false, false));
-            partida.ListadoJugadores.Add(new clsJugador("id", 0, "Pepe", false, false, false));
+            //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Ivan", false, false, false));
+            //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Pepe", false, false, false));
         }
 
         #endregion
@@ -75,6 +78,8 @@ namespace Pinturillo.ViewModels
         public void comenzarPartida_execute()
         {
             //Indica al servidro que la partida va a comenzar.
+
+            navigationService.NavigateTo(ViewModelLocator.PantallaJuego);
         }
 
         #endregion

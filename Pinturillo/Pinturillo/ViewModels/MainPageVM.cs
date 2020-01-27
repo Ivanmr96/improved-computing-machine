@@ -42,7 +42,7 @@ namespace Pinturillo.ViewModels
 
         private void EntrarAlJuego_Executed()
         {
-            _navigationService.NavigateTo("CrearSalaPage",_nick);
+            _navigationService.NavigateTo(ViewModelLocator.ListadoSalas,_nick);
         }
 
         private bool EntrarAlJuego_CanExecuted()

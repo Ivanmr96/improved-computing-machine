@@ -8,7 +8,8 @@
     mc:Ignorable="d"
     xmlns:vm ="using:Pinturillo.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding FirstPageInstance, Source={StaticResource Locator}}">
+    DataContext="{Binding MainPageInstance, 
+    Source={StaticResource Locator}}">
    
     <!--->
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS

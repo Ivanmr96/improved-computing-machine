@@ -22,6 +22,12 @@
             IsUltimaPalabraAcertada = isUltimaPalabraAcertada;
             IsLider = isLider;
         }
+
+        public clsJugador()
+        {
+        }
+
+
         #endregion
 
 

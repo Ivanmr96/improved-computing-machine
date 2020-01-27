@@ -1,4 +1,5 @@
 ﻿using Pinturillo;
+using Pinturillo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,25 +24,34 @@ namespace Pinturillo
     /// </summary>
     public sealed partial class ListadoSalas : Page
     {
+
+        private VMListadoSalas viewModel { get; }
+
         public ListadoSalas()
         {
             this.InitializeComponent();
-            List<User> items = new List<User>();
-            items.Add(new User() { Name = "Sala Los Mejores", Age = 42 });
-            items.Add(new User() { Name = "Depression Developers", Age = 39 });
-            items.Add(new User() { Name = "Sala 0", Age = 13 });
-            listadoSalas.ItemsSource = items;
-        }
-        public class User
-        {
-            public string Name { get; set; }
+            viewModel = (VMListadoSalas)this.DataContext;
 
-            public int Age { get; set; }
+            //List<User> items = new List<User>();
+            //items.Add(new User() { Name = "Sala Los Mejores", Age = 42 });
+            //items.Add(new User() { Name = "Depression Developers", Age = 39 });
+            //items.Add(new User() { Name = "Sala 0", Age = 13 });
+            //listadoSalas.ItemsSource = items;
         }
+
 
         private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            viewModel.UsuarioPropio.Nickname = e.Parameter.ToString();
+            base.OnNavigatedTo(e);
+            
         }
     }
 }

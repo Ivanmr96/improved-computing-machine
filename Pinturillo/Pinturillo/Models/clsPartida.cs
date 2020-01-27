@@ -44,6 +44,13 @@ namespace Pinturillo.Models
             RondaActual = rondaActual;
             ConnectionIDJugadorActual = connectionIDJugadorActual;
         }
+
+        public clsPartida()
+        {
+        }
+
+
+
         #endregion
 
         #region"Propiedades públicas"

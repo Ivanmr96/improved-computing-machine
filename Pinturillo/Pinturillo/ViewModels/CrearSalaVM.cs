@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,12 @@ namespace Pinturillo.ViewModels
         private String _lblErrorNombreSala; //Si la sala ya existe muestra este label
         private String _lblErrorContrasena; //Si se marca el checkbox de sala privada y no se escribe contrasena
         private DelegateCommand _crearPartida;
+        private readonly INavigationService navigationService;
 
-        public CrearSalaVM()
+        public CrearSalaVM(INavigationService navigationService)
         {
             //_partida = new clsPartida();
+            this.navigationService = navigationService;
         }
 
         public String NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
@@ -35,7 +38,7 @@ namespace Pinturillo.ViewModels
 
         private async void CrearCommand_Executed()
         {
-            
+            this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
         }
 
 

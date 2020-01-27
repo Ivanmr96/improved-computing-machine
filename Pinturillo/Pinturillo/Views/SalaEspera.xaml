@@ -8,11 +8,8 @@
     xmlns:vm="using:Pinturillo.ViewModels"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
+    DataContext="{Binding SalaEsperaInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.DataContext>
-        <vm:SalaEsperaVM/>
-    </Page.DataContext>
 
     <RelativePanel
         Background="#4f98ca">

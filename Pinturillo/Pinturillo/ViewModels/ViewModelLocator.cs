@@ -12,8 +12,11 @@ namespace Pinturillo.ViewModels
 {
     public class ViewModelLocator
     {
-        public const string FirstPageKey = "MainPage";
-        public const string SecondPageKey = "CrearSalaPage";
+        public static string MainPage = "MainPage";
+        public static string CrearSala = "CrearSalaPage";
+        public static string ListadoSalas = "ListadoSalas";
+        public static string PantallaJuego = "PantallaJuego";
+        public static string SalaEspera = "SalaEspera";
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -21,25 +24,32 @@ namespace Pinturillo.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             var nav = new NavigationService();
-            nav.Configure(FirstPageKey, typeof(MainPage));
-            nav.Configure(SecondPageKey, typeof(CrearSalaPage));
+            nav.Configure(MainPage, typeof(MainPage));
+            nav.Configure(CrearSala, typeof(CrearSalaPage));
+            nav.Configure(ListadoSalas, typeof(ListadoSalas));
+            nav.Configure(PantallaJuego, typeof(PantallaJuego));
+            nav.Configure(SalaEspera, typeof(SalaEspera));
+            
 
             //Register your services used here
             SimpleIoc.Default.Register<INavigationService>(() => nav);
             SimpleIoc.Default.Register<MainPageVM>();
             SimpleIoc.Default.Register<CrearSalaVM>();
+            SimpleIoc.Default.Register<VMListadoSalas>();
+            SimpleIoc.Default.Register<VMPantallaJuego>();
+            SimpleIoc.Default.Register<SalaEsperaVM>();
 
 
         }
 
 
         // <summary>
-        // Gets the FirstPage view model.
+        // Gets the MainPage view model.
         // </summary>
         // <value>
-        // The FirstPage view model.
+        // The MainPage view model.
         // </value>
-        public MainPageVM FirstPageInstance
+        public MainPageVM MainPageInstance
         {
             get
             {
@@ -53,11 +63,42 @@ namespace Pinturillo.ViewModels
         // <value>
         // The SecondPage view model.
         // </value>
-        public CrearSalaVM SecondPageInstance
+        public CrearSalaVM CrearSalaInstance
         {
             get
             {
                 return ServiceLocator.Current.GetInstance<CrearSalaVM>();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public VMListadoSalas ListadoSalasInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<VMListadoSalas>();
+            }
+        }
+
+        ///
+        public VMPantallaJuego PantallaJuegoInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<VMPantallaJuego>();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SalaEsperaVM SalaEsperaInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SalaEsperaVM>();
             }
         }
     }
