@@ -1,0 +1,191 @@
+﻿<Page
+    x:Class="Pinturillo.SalaEspera"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pinturillo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Pinturillo.ViewModels"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:SalaEsperaVM/>
+    </Page.DataContext>
+
+    <RelativePanel
+        Background="#4f98ca">
+
+        <RelativePanel 
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.Below="txtTituloSala"
+            RelativePanel.AlignBottomWithPanel="True"
+            >
+
+            <ListView
+            Name="listaJugadores"
+            Windows10version1809:CornerRadius="30"
+            Background="#effffb"
+            Opacity="0.75"
+            Margin="30"
+            RelativePanel.Above="stkBotones"
+            RelativePanel.AlignRightWith="stkBotones"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            ItemsSource="{Binding Partida.ListadoJugadores}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock 
+                            Foreground="#4f98ca"
+                            FontSize="25">
+                            <Run Text="{Binding Nickname}" />
+                        </TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel
+            Width="300"
+            Name="stkBotones"
+            Orientation="Horizontal"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            >
+
+                <!-- <Button
+            FontSize="18"
+            Margin="30"
+            >
+                Salir
+            </Button>
+            <Button
+            FontSize="18"
+            Margin="30"
+            >
+                Comenzar
+            </Button> -->
+
+            </StackPanel>
+
+
+
+            <Grid
+            RelativePanel.AlignBottomWith="listaJugadores"
+            RelativePanel.AlignLeftWith="listaJugadores"
+            RelativePanel.AlignRightWith="listaJugadores"
+            Margin="30,0,30,30">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                Background="Coral"
+                Grid.Column="0"
+            Windows10version1809:CornerRadius="0,0,0,28"
+            FontSize="18"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            >
+                    Salir
+                </Button>
+
+                <Button
+                Background="LightGreen"
+                Grid.Column="1"
+            Windows10version1809:CornerRadius="0,0,28,0"
+            FontSize="18"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            >
+                    Comenzar
+                </Button>
+
+            </Grid>
+
+            <Border
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.RightOf="stkBotones"
+            RelativePanel.Above="txtMensaje"
+            Margin="30"
+            Background="#effffb"
+            Opacity="0.75"
+            CornerRadius="30"
+            >
+
+                <ListView
+                    Margin="25"
+                    ItemsSource="{Binding Partida.ListadoMensajes}"
+                    >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding JugadorQueLoEnvia}" />
+                                <Run Text=": " />
+                                <Run Text="{Binding Mensaje}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+
+            </Border>
+
+            <RelativePanel
+            Name="txtMensaje"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.RightOf="listaJugadores"
+            RelativePanel.AlignRightWithPanel="True"
+            
+            >
+
+                <TextBox
+                PlaceholderText="Escribe un mensaje"
+                Windows10version1809:CornerRadius="15,0,0,15"
+                FontSize="18"
+                RelativePanel.LeftOf="btnEnviarMensaje"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignTopWithPanel="True"
+                RelativePanel.AlignBottomWithPanel="True"
+                Name="txtBoxMensaje"
+                Margin="30,0,0,30"
+                Text="{Binding Mensaje.Mensaje}"
+                    />
+
+                <Button
+                Windows10version1809:CornerRadius="0,15,15,0"
+                FontSize="18"
+                Name="btnEnviarMensaje"
+                RelativePanel.AlignTopWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                Margin="0,0,35,0"
+                >
+                    Enviar
+
+                </Button>
+
+            </RelativePanel>
+
+
+
+        </RelativePanel>
+
+        <TextBlock
+            Name="txtTituloSala"
+            HorizontalAlignment="Center"
+            Text="Sala de espera"
+            Margin="0,25,0,0"
+            FontSize="30"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            />
+
+    </RelativePanel>
+</Page>

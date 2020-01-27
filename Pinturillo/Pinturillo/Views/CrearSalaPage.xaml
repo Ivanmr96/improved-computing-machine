@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="Pinturillo.CrearSalaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pinturillo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--->
+    ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
+    <-->
+    <RelativePanel Background="#4f98ca">
+        <Button Name="btnVolver" RelativePanel.AlignLeftWithPanel="True" Click="Button_Click"
+        Background="#FF46B0CF">
+            <StackPanel>
+                <Image Source="Assets/photo.png" Height="62"/>
+            </StackPanel>
+        </Button>
+        <Image Source="Assets/2.png" RelativePanel.AlignVerticalCenterWith="border" RelativePanel.RightOf="border" Margin="-144,-7,111,-7"/>
+        <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver"  Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
+
+        <Border Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+            <RelativePanel  Background="#EFFFFB">
+                <TextBox Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
+
+                <CheckBox Name="checkbox" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                <PasswordBox Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
+                <ComboBox Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                </ComboBox>
+            </RelativePanel>
+        </Border>
+        <Button Content="Crear" RelativePanel.Below="border" CornerRadius="20" FontSize="40" Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
+    
+        
+    </RelativePanel>
+</Page>

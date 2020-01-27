@@ -1,0 +1,138 @@
+﻿<Page
+    x:Class="Pinturillo.ListadoSalas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pinturillo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    mc:Ignorable="d"
+    
+    >
+    <RelativePanel
+        Background="#4f98ca"
+        
+        >
+        <TextBlock Text="Salas" 
+                   Foreground="#effffb"
+                   Name="txtSalas"
+                   FontSize="50"
+                   Margin="50,20,0,0"
+                   TextWrapping="Wrap" 
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                   RelativePanel.AlignTopWithPanel="True"
+                   />
+
+        <!--<Button
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True"
+            Content="Atrás"
+            CornerRadius="10"
+            Margin="5"
+            >
+            
+        </Button>-->
+        <Path Stretch="Fill" 
+              RightTapped="BackArrow_RightTapped"
+              Name="backArrow"
+              RelativePanel.AlignVerticalCenterWith="txtSalas"
+              RelativePanel.AlignLeftWithPanel="True"
+              Fill="#effffb" 
+              Margin="50,20,0,0"
+          Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"  
+              Width="40" Height="40"
+          RenderTransformOrigin=".5,.5" UseLayoutRounding="False" 
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+            <Path.RenderTransform>
+                <RotateTransform Angle="180" />
+            </Path.RenderTransform>
+        </Path>
+
+        <RelativePanel
+            RelativePanel.Below="txtSalas"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            
+            >
+            <Border 
+            Name="borderStackPanel"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            Margin="30,30,160,30"
+            
+                CornerRadius="30" 
+                >
+                <StackPanel
+            
+                Opacity="0.75"
+                
+            Background="#effffb"
+            Name="stkpanelListados"
+            >
+                    <ListView
+                Name="listadoSalas"
+                ItemsSource="{Binding listadoSalas}"
+                >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <RelativePanel
+                        
+                        >
+
+                                    <AppBarButton
+                                        Name="icon"
+                                        Margin="0,10,5,0"
+                                Icon="Permissions"
+                                        RelativePanel.AlignLeftWithPanel="True"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        Foreground="#272727"
+                                >
+
+                                    </AppBarButton>
+                                    <TextBlock  
+                                Foreground="#272727"
+                                FontSize="20"
+                                        Name="txtSala"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="icon"
+                                Margin="0,10,5,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock
+                                        RelativePanel.RightOf="txtSala"
+                                        RelativePanel.AlignBottomWith="txtSala"
+                                Margin="100,10,5,0"
+                                Foreground="#272727"
+                                FontSize="10"
+                                >3/5</TextBlock>
+
+                                </RelativePanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+
+            <Button
+                FontSize="25"
+                Windows10version1809:CornerRadius="15"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignTopWith="borderStackPanel"
+                Margin="20,40,20,30"
+                Foreground="#effffb"
+         
+                >
+                Crear sala
+            </Button>
+
+        </RelativePanel>
+
+
+
+
+    </RelativePanel>
+
+</Page>
