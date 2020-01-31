@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
+  <Roots.Interfaces>
+    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
+  </Roots.Interfaces>
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="ListadoSalasInstance" />
-    <RootPropertyPathName Name="ListadoPartidas" />
+    <RootPropertyPathName Name="CrearSalaInstance" />
+    <RootPropertyPathName Name="crearPartida" />
+    <RootPropertyPathName Name="NumJugadores" />
+    <RootPropertyPathName Name="Partida" />
+    <RootPropertyPathName Name="NumeroMaximoJugadores" />
+    <RootPropertyPathName Name="Password" />
     <RootPropertyPathName Name="NombreSala" />
+    <RootPropertyPathName Name="ListadoSalasInstance" />
+    <RootPropertyPathName Name="CreateGroupCommand" />
+    <RootPropertyPathName Name="ListadoPartidas" />
     <RootPropertyPathName Name="MainPageInstance" />
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
@@ -11,7 +21,6 @@
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="SalaEsperaInstance" />
     <RootPropertyPathName Name="Mensaje" />
-    <RootPropertyPathName Name="Partida" />
     <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="ListadoJugadores" />
@@ -23,11 +32,19 @@
     </RootType>
     <RootType FullName="Pinturillo.ViewModels.ViewModelLocator" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
-      <RootProperty Name="Background" />
-      <RootProperty Name="Content" />
       <RootProperty Name="DataContext" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="Content" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Pinturillo.Utils.StringToIntConverter" />
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
       <RootProperty Name="Background" />
       <RootProperty Name="Children" />
@@ -67,11 +84,11 @@
       <RootProperty Name="Name" />
       <RootProperty Name="Background" />
       <RootProperty Name="Content" />
+      <RootProperty Name="Command" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Foreground" />
-      <RootProperty Name="Command" />
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="BorderThickness" />
@@ -111,6 +128,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Name" />
+      <RootProperty Name="Text" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
@@ -118,7 +136,6 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Text" />
       <RootProperty Name="CornerRadius" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
@@ -132,6 +149,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="Name" />
+      <RootProperty Name="Password" />
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="Width" />
@@ -140,11 +158,11 @@
       <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="SelectedItem" />
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Items" />
     </RootType>
-    <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
       <RootProperty Name="Name" />
@@ -154,12 +172,6 @@
       <RootProperty Name="Orientation" />
     </RootType>
     <RootType FullName="Pinturillo.CrearSalaPage" />
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="Source" />
-      <RootProperty Name="UpdateSourceTrigger" />
-      <RootProperty Name="Mode" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Shapes.Path">
       <RootProperty Name="Name" />
       <RootProperty Name="Stretch" />

@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.AspNet.SignalR.Client;
+using Pinturillo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +12,38 @@ namespace Pinturillo.ViewModels
     public class CrearSalaVM : clsVMBase
     {
         private String _nombreUsuario;
-        //private clsPartida _partida;
+        private clsPartida _partida;
         private String _lblErrorNombreSala; //Si la sala ya existe muestra este label
         private String _lblErrorContrasena; //Si se marca el checkbox de sala privada y no se escribe contrasena
         private DelegateCommand _crearPartida;
+        private HubConnection conn;
+        private IHubProxy proxy;
         private readonly INavigationService navigationService;
+
+        private const int NUM_MAX_JUGADORES = 5;
+
+        public List<int> NumJugadores 
+        { 
+            get 
+            {
+                List<int> numeros = new List<int>();
+
+                for(int i = 2; i <= NUM_MAX_JUGADORES; i++)
+                {
+                    numeros.Add(i);
+                }
+
+                return numeros;
+            }
+        }
+
 
         public CrearSalaVM(INavigationService navigationService)
         {
-            //_partida = new clsPartida();
+            _partida = new clsPartida();
             this.navigationService = navigationService;
+
+            SignalR();
         }
 
         public String NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
@@ -36,19 +60,40 @@ namespace Pinturillo.ViewModels
             }
         }
 
-        private async void CrearCommand_Executed()
+        public async void SignalR()
         {
-            this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
+            conn = new HubConnection("http://localhost:11111/");
+            proxy = conn.CreateHubProxy("PictionaryHub");
+            await conn.Start();
+
+
+            //proxy.On<List<clsPartida>>("recibirSalas", pedirListaAsync);
+            //proxy.Invoke("sendSalas");
+        }
+
+        public clsPartida Partida
+        {
+            get
+            {
+                return _partida;
+            }
+            set
+            {
+                _partida = value;
+            }
+        }
+
+        private void CrearCommand_Executed()
+        {
+            //this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
+            proxy.Invoke("añadirPartida", _partida);
+            //var hola = "hola";
         }
 
 
         private bool CrearCommand_CanExecuted()
         {
-            bool creable = false;
-
-            //Si la sala no tiene nombre no se puede crear
-
-            return creable;
+            return true;
         }
     }
 }

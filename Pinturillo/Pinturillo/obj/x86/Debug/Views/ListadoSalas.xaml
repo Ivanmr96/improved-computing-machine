@@ -186,7 +186,7 @@
                 FontSize="25"
                 Windows10version1809:CornerRadius="15"
                 RelativePanel.AlignRightWithPanel="True"
-                
+                Command="{Binding CreateGroupCommand}"
                 Margin="20,40,20,30"
                 Foreground="#effffb"
          

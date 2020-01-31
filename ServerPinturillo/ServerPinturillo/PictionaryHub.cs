@@ -31,17 +31,21 @@ namespace ServerPinturillo
 
         public void sendSalas()
         {
-            List<clsPartida> listadoSalas = new List<clsPartida>();
+            //List<clsPartida> listadoSalas = new List<clsPartida>();
             //listadoSalas.Add(new clsPartida(false, null, null, "Sala1", null, null, "Palabra1", 5, 0, 4, 0, null));
-            for (int i = 0; i < 50; i++)
-            {
-                listadoSalas.Add(new clsPartida(false, null, null, "Sala " + i, null, null, "Palabra1", 5, 0, 4, 0, null));
-            }
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    listadoSalas.Add(new clsPartida(false, null, null, "Sala " + i, null, null, "Palabra1", 5, 0, 4, 0, null));
+            //}
 
-            Clients.Caller.recibirSalas(listadoSalas);
+            Clients.Caller.recibirSalas(listadoSalas.ListadoPartidas);
         }
 
+        public void añadirPartida(clsPartida partida)
+        {
+            listadoSalas.ListadoPartidas.Add(partida);
 
-
+            Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
+        }
     }
 }

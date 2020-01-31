@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>ANGELAASUS</Machine>
-    <WindowsUser>Angela</WindowsUser>
+    <Machine>107-13</Machine>
+    <WindowsUser>imoreno</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>21dd45e7-4d68-4768-823b-bbe6c6a2d856</PackageIdentityName>
     <PackageIdentityPublisher>CN=Victor</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>52233EA8E24309275B890C4107C4BB0D3DDD29F546E5D4F5461BE9431AE154FF</RegisteredManifestChecksum>
+    <LayoutDir>D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>BF1084FB3BB3BC112605E23C18D3C728774FD11DCF91A22FA8F5580651052CD5</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>21dd45e7-4d68-4768-823b-bbe6c6a2d856_1.0.0.0_x86__mj2y49482qz0c</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>21dd45e7-4d68-4768-823b-bbe6c6a2d856_mj2y49482qz0c!App</RegisteredUserModeAppID>
     <RegisteredPackageID>21dd45e7-4d68-4768-823b-bbe6c6a2d856</RegisteredPackageID>
@@ -27,86 +27,86 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T19:09:04.607</Modified>
+      <Modified>2020-01-31T13:00:33.277</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-01-27T19:09:03.290</Modified>
+      <Modified>2020-01-31T13:00:32.457</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
       <Modified>2018-01-03T11:27:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnet.signalr.client\2.4.1\lib\netstandard2.0\Microsoft.AspNet.SignalR.Client.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.aspnet.signalr.client\2.4.1\lib\netstandard2.0\Microsoft.AspNet.SignalR.Client.dll">
       <PackagePath>Microsoft.AspNet.SignalR.Client.dll</PackagePath>
       <Modified>2019-04-02T22:30:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.connections.abstractions\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.aspnetcore.connections.abstractions\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll">
       <PackagePath>Microsoft.AspNetCore.Connections.Abstractions.dll</PackagePath>
       <Modified>2019-12-16T01:11:18.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.http.features\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.aspnetcore.http.features\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll">
       <PackagePath>Microsoft.AspNetCore.Http.Features.dll</PackagePath>
       <Modified>2019-12-16T01:04:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.signalr.common\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.SignalR.Common.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.aspnetcore.signalr.common\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.SignalR.Common.dll">
       <PackagePath>Microsoft.AspNetCore.SignalR.Common.dll</PackagePath>
       <Modified>2019-12-16T01:11:40.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
       <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
       <Modified>2019-11-15T07:36:44.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\3.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\3.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
       <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
       <Modified>2019-12-14T17:39:34.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.options\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.extensions.options\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll">
       <PackagePath>Microsoft.Extensions.Options.dll</PackagePath>
       <Modified>2019-12-14T17:39:12.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.primitives\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\microsoft.extensions.primitives\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
       <PackagePath>Microsoft.Extensions.Primitives.dll</PackagePath>
       <Modified>2019-12-14T17:39:30.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Extras.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Extras.dll">
       <PackagePath>GalaSoft.MvvmLight.Extras.dll</PackagePath>
       <Modified>2018-02-04T22:10:46.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Platform.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Platform.dll">
       <PackagePath>GalaSoft.MvvmLight.Platform.dll</PackagePath>
       <Modified>2018-02-04T22:10:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.dll">
       <PackagePath>GalaSoft.MvvmLight.dll</PackagePath>
       <Modified>2018-02-04T22:10:46.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
       <Modified>2019-11-08T23:56:44.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.9\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.9\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
-      <Modified>2019-07-22T13:01:14.000</Modified>
+      <Modified>2019-07-22T12:01:14.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.io.pipelines\4.7.0\lib\netstandard2.0\System.IO.Pipelines.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\system.io.pipelines\4.7.0\lib\netstandard2.0\System.IO.Pipelines.dll">
       <PackagePath>System.IO.Pipelines.dll</PackagePath>
       <Modified>2019-11-15T07:37:20.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.runtime.compilerservices.unsafe\4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\system.runtime.compilerservices.unsafe\4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
       <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
       <Modified>2019-11-15T07:37:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.text.encodings.web\4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\system.text.encodings.web\4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll">
       <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
       <Modified>2019-11-15T07:37:52.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.text.json\4.7.0\lib\netstandard2.0\System.Text.Json.dll">
+    <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\system.text.json\4.7.0\lib\netstandard2.0\System.Text.Json.dll">
       <PackagePath>System.Text.Json.dll</PackagePath>
       <Modified>2019-11-15T07:37:56.000</Modified>
     </AppxPackagedFile>
@@ -114,184 +114,184 @@
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2018-10-23T00:33:40.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\2.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\2.png">
       <PackagePath>Assets\2.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.732</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\mancha.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\mancha.png">
       <PackagePath>Assets\mancha.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.735</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\photo.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\photo.png">
       <PackagePath>Assets\photo.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.737</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.734</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.740</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.745</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.746</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.747</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.748</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.749</Modified>
+      <Modified>2020-01-31T11:51:19.006</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2020-01-27T16:46:04.923</Modified>
+      <Modified>2020-01-31T11:51:19.021</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml">
       <PackagePath>Pinturillo.xr.xml</PackagePath>
-      <Modified>2020-01-27T19:09:02.862</Modified>
+      <Modified>2020-01-31T12:50:30.347</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-01-27T18:58:32.620</Modified>
+      <Modified>2020-01-31T12:58:35.234</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
       <PackagePath>Views\CrearSalaPage.xbf</PackagePath>
-      <Modified>2020-01-27T18:58:32.620</Modified>
+      <Modified>2020-01-31T12:58:35.235</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
       <PackagePath>Views\ListadoSalas.xbf</PackagePath>
-      <Modified>2020-01-27T19:09:02.870</Modified>
+      <Modified>2020-01-31T12:58:35.236</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2020-01-27T18:58:32.621</Modified>
+      <Modified>2020-01-31T12:58:35.236</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
       <PackagePath>Views\PantallaJuego.xbf</PackagePath>
-      <Modified>2020-01-27T18:58:32.621</Modified>
+      <Modified>2020-01-31T12:58:35.237</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
       <PackagePath>Views\SalaEspera.xbf</PackagePath>
-      <Modified>2020-01-27T18:58:32.621</Modified>
+      <Modified>2020-01-31T12:58:35.238</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2018-10-22T23:44:28.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-01-27T17:23:20.635</Modified>
+      <Modified>2020-01-31T12:41:40.125</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
+    <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-01-27T19:09:04.598</Modified>
+      <Modified>2020-01-31T13:00:33.265</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27909.0</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27909.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27909.0</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27909.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\imoreno\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.27909.0</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.27909.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\imoreno\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.9\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.27323.0</Version>
+      <Version>14.0.27023.1</Version>
       <Architecture>ARM</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27323.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27023.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM\Microsoft.VCLibs.ARM.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.27323.0</Version>
+      <Version>14.0.27023.1</Version>
       <Architecture>ARM64</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27323.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27023.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM64\Microsoft.VCLibs.ARM64.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.27323.0</Version>
+      <Version>14.0.27023.1</Version>
       <Architecture>x64</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27323.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27023.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
       <Name>Microsoft.VCLibs.140.00.Debug</Name>
-      <Version>14.0.27323.0</Version>
+      <Version>14.0.27023.1</Version>
       <Architecture>x86</Architecture>
-      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27323.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.27023.1, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
       <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x86\Microsoft.VCLibs.x86.Debug.14.00.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>

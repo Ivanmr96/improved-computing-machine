@@ -63,10 +63,9 @@ namespace Pinturillo.ViewModels
 
         }
 
-
         public async void SignalR()
         {
-            conn = new HubConnection("http://localhost:54032/");
+            conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
             await conn.Start();
 

@@ -4,10 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pinturillo"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:vm="using:Pinturillo.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:conv="using:Pinturillo.Utils"
     mc:Ignorable="d"
+    DataContext="{Binding CrearSalaInstance, 
+    Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <conv:StringToIntConverter x:Key="convertStringInt" />
+    </Page.Resources>
+    
     <!--->
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
     <-->
@@ -23,19 +31,22 @@
 
         <Border x:ConnectionId='3' Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <RelativePanel  Background="#EFFFFB">
-                <TextBox x:ConnectionId='4' Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
+                <TextBox x:ConnectionId='4' 
+                    Text="{Binding Partida.NombreSala, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
 
                 <CheckBox x:ConnectionId='5' Name="checkbox"                                                         Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
-                <PasswordBox x:ConnectionId='6' Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
-                <ComboBox Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                </ComboBox>
+                <PasswordBox x:ConnectionId='6' 
+                    Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
+                    <ComboBox ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
+                        
+                    </ComboBox>
             </RelativePanel>
         </Border>
-        <Button Content="Crear" RelativePanel.Below="border" CornerRadius="20" FontSize="40" Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
+        <Button
+            Command="{Binding crearPartida}"
+            Content="Crear" RelativePanel.Below="border" CornerRadius="20" FontSize="40" Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
     
         
     </RelativePanel>

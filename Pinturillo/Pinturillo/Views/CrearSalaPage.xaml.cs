@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pinturillo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,14 +23,17 @@ namespace Pinturillo
     /// </summary>
     public sealed partial class CrearSalaPage : Page
     {
+        CrearSalaVM vm { get; set; }
         public CrearSalaPage()
         {
             this.InitializeComponent();
             passwordbox.Visibility = Visibility.Collapsed;
+
+            vm = (CrearSalaVM)DataContext;
         }       
             private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(ListadoSalas), vm.NombreUsuario);
         }
 
         private void CheckBox_Changed(object sender, RoutedEventArgs e)
@@ -41,23 +45,10 @@ namespace Pinturillo
         }
 
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentDialog confirmadoCorrectamente = new ContentDialog();
-            if (e.Parameter is string && !string.IsNullOrWhiteSpace((string)e.Parameter))
-            {
-                confirmadoCorrectamente.Title = "Bienvenido";
-                confirmadoCorrectamente.Content = $"Hola, {e.Parameter.ToString()}";
-                confirmadoCorrectamente.PrimaryButtonText = "Aceptar";
-                ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
-            }
-            else
-            {
-                confirmadoCorrectamente.Title = "Bienvenido";
-                confirmadoCorrectamente.Content = "Hola";
-                confirmadoCorrectamente.PrimaryButtonText = "Aceptar";
-                ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
-            }
+            vm.NombreUsuario = (String)e.Parameter;
+
             base.OnNavigatedTo(e);
         }
     }
