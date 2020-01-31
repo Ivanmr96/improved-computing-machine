@@ -44,6 +44,13 @@ namespace ServerPinturillo.Clases
             RondaActual = rondaActual;
             ConnectionIDJugadorActual = connectionIDJugadorActual;
         }
+
+        public clsPartida()
+        {
+            ListadoJugadores = new ObservableCollection<clsJugador>(new List<clsJugador>());
+        }
+
+
         #endregion
 
         #region"Propiedades públicas"

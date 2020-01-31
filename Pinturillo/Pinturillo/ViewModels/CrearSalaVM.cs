@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace Pinturillo.ViewModels
 {
@@ -67,8 +68,16 @@ namespace Pinturillo.ViewModels
             await conn.Start();
 
 
-            //proxy.On<List<clsPartida>>("recibirSalas", pedirListaAsync);
+            proxy.On<clsPartida>("salaCreada", salaCreada);
             //proxy.Invoke("sendSalas");
+        }
+
+        private async void salaCreada(clsPartida partida)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);
+            });
         }
 
         public clsPartida Partida
@@ -86,7 +95,7 @@ namespace Pinturillo.ViewModels
         private void CrearCommand_Executed()
         {
             //this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
-            proxy.Invoke("añadirPartida", _partida);
+            proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
             //var hola = "hola";
         }
 

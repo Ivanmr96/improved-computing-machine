@@ -50,6 +50,7 @@ namespace Pinturillo.Models
 
         public clsPartida()
         {
+            ListadoJugadores = new ObservableCollection<clsJugador>(new List<clsJugador>());
         }
 
 

@@ -41,11 +41,18 @@ namespace ServerPinturillo
             Clients.Caller.recibirSalas(listadoSalas.ListadoPartidas);
         }
 
-        public void añadirPartida(clsPartida partida)
+        public void añadirPartida(clsPartida partida, String nickLider)
         {
+            //clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.ConnectionID == Context.ConnectionId);
+
+            clsJugador lider = new clsJugador(Context.ConnectionId, 0, nickLider, false, false, true);
+
+            partida.ListadoJugadores.Add(lider);
+
             listadoSalas.ListadoPartidas.Add(partida);
 
             Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
+            Clients.Caller.salaCreada(partida);
         }
     }
 }
