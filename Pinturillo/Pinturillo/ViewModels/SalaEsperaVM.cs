@@ -16,7 +16,7 @@ namespace Pinturillo.ViewModels
         private clsPartida partida;
         private clsMensaje mensaje;
         private readonly INavigationService navigationService;
-
+        private string usuarioPropio;
         #endregion
 
         #region constructor
@@ -27,6 +27,7 @@ namespace Pinturillo.ViewModels
 
             partida = new clsPartida();
             this.navigationService = navigationService;
+            this.salir = new DelegateCommand(salir_execute);
 
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Ivan", false, false, false));
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Pepe", false, false, false));
@@ -65,6 +66,9 @@ namespace Pinturillo.ViewModels
         private void salir_execute()
         {
             //Indica al serivdor que sale.
+
+            //para probar
+            //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
         }
 
         public DelegateCommand comenzarPartida { get; set; }

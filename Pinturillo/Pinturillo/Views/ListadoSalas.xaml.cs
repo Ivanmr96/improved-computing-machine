@@ -49,7 +49,11 @@ namespace Pinturillo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            viewModel.UsuarioPropio.Nickname = e.Parameter.ToString();
+            if (e.Parameter != null)
+            {
+                viewModel.UsuarioPropio.Nickname = e.Parameter.ToString();
+            }
+            
             base.OnNavigatedTo(e);
             
         }

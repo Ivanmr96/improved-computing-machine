@@ -83,10 +83,11 @@
                 <Button
                 Background="Coral"
                 Grid.Column="0"
+                    Command="{Binding salir}"
             Windows10version1809:CornerRadius="0,0,0,28"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Stretch" Click="Button_Click"
             >
                     Salir
                 </Button>
@@ -97,7 +98,7 @@
             Windows10version1809:CornerRadius="0,0,28,0"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Stretch" Click="Button_Click_1"
             >
                     Comenzar
                 </Button>

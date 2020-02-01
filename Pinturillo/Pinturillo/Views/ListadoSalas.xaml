@@ -6,10 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:local1="using:Pinturillo.Utils"
     mc:Ignorable="d"
+
+    
     DataContext="{Binding ListadoSalasInstance, 
     Source={StaticResource Locator}}"
     >
+
+    <Page.Resources>
+        <local1:PasswordToVisibilityConverter x:Key="PasswordConverter" ></local1:PasswordToVisibilityConverter>
+    </Page.Resources>
+    
     <RelativePanel
         Background="#4f98ca"
         
@@ -76,6 +84,7 @@
                                         Name="icon"
                                         Margin="0,10,5,0"
                                 Icon="Permissions"
+                                IsEnabled="{Binding Password, Mode=OneWay, Converter={StaticResource PasswordConverter}}"
                                         RelativePanel.AlignLeftWithPanel="True"
                                         RelativePanel.AlignTopWithPanel="True"
                                         Foreground="#272727"
@@ -90,13 +99,37 @@
                                         RelativePanel.RightOf="icon"
                                 Margin="0,10,5,0" Text="{Binding NombreSala, UpdateSourceTrigger=PropertyChanged}" />
 
-                            <TextBlock
-                                        RelativePanel.RightOf="txtSala"
+
+
+                            <StackPanel
+                                Orientation="Horizontal"
+                                RelativePanel.RightOf="txtSala"
                                         RelativePanel.AlignBottomWith="txtSala"
+                                >
+                                <TextBlock
+                                        
                                 Margin="100,10,5,0"
                                 Foreground="#272727"
                                 FontSize="10"
-                                >3/5</TextBlock>
+                                    Text="{Binding ListadoJugadores.Count}"
+                                ></TextBlock>
+                                <TextBlock
+                                        
+                                Margin="0,10,5,0"
+                                Foreground="#272727"
+                                FontSize="10"
+                                >/</TextBlock>
+                                <TextBlock
+                                        
+                                Margin="0,10,5,0"
+                                Foreground="#272727"
+                                FontSize="10"
+                                    Text="{Binding NumeroMaximoJugadores}"
+                                ></TextBlock>
+
+                            </StackPanel>
+
+                           
 
                         </RelativePanel>
                     </DataTemplate>

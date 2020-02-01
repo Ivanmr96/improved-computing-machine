@@ -80,24 +80,25 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button
+                <Button x:ConnectionId='9'
                 Background="Coral"
                 Grid.Column="0"
+                    Command="{Binding salir}"
             Windows10version1809:CornerRadius="0,0,0,28"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Stretch"                     
             >
                     Salir
                 </Button>
 
-                <Button
+                <Button x:ConnectionId='10'
                 Background="LightGreen"
                 Grid.Column="1"
             Windows10version1809:CornerRadius="0,0,28,0"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Stretch"                       
             >
                     Comenzar
                 </Button>
