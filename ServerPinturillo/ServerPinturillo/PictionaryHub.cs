@@ -60,7 +60,7 @@ namespace ServerPinturillo
         public void sendMensaje (clsMensaje mensaje, string nombreGrupo)
         {
 
-            clsPartida partida = listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
+            clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
 
             if(partida != null)
             {
@@ -76,7 +76,7 @@ namespace ServerPinturillo
 
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
         {
-            clsPartida partida = listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
+            clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
             if(partida != null)
             {
 
@@ -88,6 +88,38 @@ namespace ServerPinturillo
                    
             }
             
+        }
+
+        private clsPartida obtenerPartidaPorNombreSala(String nombreGrupo)
+        {
+            return listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
+        }
+
+        public void jugadorHaSalido(string usuario, string nombreSala)
+        {
+            clsPartida partida = obtenerPartidaPorNombreSala(nombreSala);
+
+            clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+
+            if(jugador != null)
+            {
+                partida.ListadoJugadores.Remove(jugador);
+
+                if(partida.ListadoJugadores.Count == 0)
+                {
+                    listadoSalas.ListadoPartidas.Remove(partida);
+                    Clients.All.eliminarPartidaVacia(partida.NombreSala);
+                }
+                else
+                {
+                    Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
+                }
+
+
+                
+               
+            }
+
         }
 
     }

@@ -76,7 +76,7 @@ namespace Pinturillo.ViewModels
 
             SignalR();
             
-
+        
         }
 
         public async void SignalR()
@@ -84,12 +84,52 @@ namespace Pinturillo.ViewModels
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
             conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
+            Connection.Connection.conn = conn;
+            Connection.Connection.proxy = proxy;
+
             await conn.Start();
 
 
             proxy.On<List<clsPartida>>("recibirSalas",pedirListaAsync);
+            proxy.On<string>("eliminarPartidaVacia", eliminarPartidaVacia);
             proxy.On<clsJugador, string>("jugadorAdded", jugadorAdded);
+            proxy.On<string, string>("jugadorDeletedSala", jugadorDeleted);
             proxy.Invoke("sendSalas");
+
+            
+        }
+
+        private async void eliminarPartidaVacia(string nombreSala)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+                if (partida != null)
+                {
+                    ListadoPartidas.Remove(partida);
+                    NotifyPropertyChanged("partidasAMostrar");
+                }
+            });
+        }
+
+        public async void jugadorDeleted(string usuario, string nombreSala)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+
+                if (partida != null)
+                {
+                    clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+
+                    if (jugador != null)
+                    {
+                        partida.ListadoJugadores.Remove(jugador);
+                        partida.NotifyPropertyChanged("ListadoPartidas");
+                        NotifyPropertyChanged("partidasAMostrar");
+                    }
+                }
+            });
         }
 
         private async void pedirListaAsync(List<clsPartida> listado)
@@ -100,7 +140,7 @@ namespace Pinturillo.ViewModels
                 
                 this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
                 NotifyPropertyChanged("ListadoPartidas");
-
+                NotifyPropertyChanged("partidasAMostrar");
             }
 
             );
@@ -111,7 +151,11 @@ namespace Pinturillo.ViewModels
         public void ListadoSalas_Tapped(clsPartida partida)
         {
             proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
+
         }
+
+
+
 
 
         public async void jugadorAdded( clsJugador jugador, string nombrePartida)
@@ -127,12 +171,7 @@ namespace Pinturillo.ViewModels
                     NotifyPropertyChanged("partidasAMostrar");
 
                 }
-               
-
-            }
-
-            );
-
+            });
         }
 
 

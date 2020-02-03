@@ -85,6 +85,7 @@ namespace Pinturillo.ViewModels
         private void salir_execute()
         {
             //Indica al serivdor que sale.
+            proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
 
             //para probar
             //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
@@ -111,17 +112,33 @@ namespace Pinturillo.ViewModels
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            //conn = Connection.Connection.conn;
+            //proxy = Connection.Connection.proxy;
             conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
             await conn.Start();
 
 
-            proxy.On<clsMensaje>("addMensajeToChat", addMensajeToChat);
+            proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
+            proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
             
         }
 
+        public async void OnjugadorDeleted(string usuario, string nombreSala)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
 
-        public async void  addMensajeToChat (clsMensaje mensaje)
+                if (jugador != null)
+                {
+                    partida.ListadoJugadores.Remove(jugador);
+                    partida.NotifyPropertyChanged("ListadoJugadores");
+                }
+            });
+        }
+
+        public async void  OnaddMensajeToChat (clsMensaje mensaje)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -129,8 +146,7 @@ namespace Pinturillo.ViewModels
                 partida.NotifyPropertyChanged("ListadoMensajes");
 
             });
-
-            
+            //jugadorDeleted("", "");
         }
     }
 }
