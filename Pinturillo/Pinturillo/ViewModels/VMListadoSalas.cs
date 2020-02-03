@@ -81,8 +81,8 @@ namespace Pinturillo.ViewModels
 
         public async void SignalR()
         {
-            //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
-            conn = new HubConnection("http://localhost:11111/");
+            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            //conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
             Connection.Connection.conn = conn;
             Connection.Connection.proxy = proxy;
@@ -150,8 +150,9 @@ namespace Pinturillo.ViewModels
 
         public void ListadoSalas_Tapped(clsPartida partida)
         {
-            proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
 
+            proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
+            navigationService.NavigateTo(ViewModelLocator.SalaEspera,_usuarioPropio);
         }
 
 

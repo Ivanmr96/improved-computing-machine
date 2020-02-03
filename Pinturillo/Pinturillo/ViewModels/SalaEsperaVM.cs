@@ -51,7 +51,11 @@ namespace Pinturillo.ViewModels
         public clsPartida Partida
         {
             get => partida;
-            set => partida = value;
+            set
+            {
+                partida = value;
+                partida.NotifyPropertyChanged("ListadoJugadores");
+            }
         }
         public clsMensaje Mensaje
         {
@@ -112,16 +116,33 @@ namespace Pinturillo.ViewModels
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
-            //conn = Connection.Connection.conn;
-            //proxy = Connection.Connection.proxy;
-            conn = new HubConnection("http://localhost:11111/");
-            proxy = conn.CreateHubProxy("PictionaryHub");
-            await conn.Start();
+            conn = Connection.Connection.conn;
+            proxy = Connection.Connection.proxy;
+            //conn = new HubConnection("http://localhost:11111/");
+            //proxy = conn.CreateHubProxy("PictionaryHub");
+            //await conn.Start();
 
 
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
+            proxy.On<clsJugador, string>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
             
+        }
+
+        private async void jugadorAdded(clsJugador jugador, string arg2)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+
+                //clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombrePartida);
+                if (partida != null)
+                {
+                    partida.ListadoJugadores.Add(jugador);
+                    partida.NotifyPropertyChanged("ListadoJugadores");
+                    //NotifyPropertyChanged("partidasAMostrar");
+
+                }
+            });
         }
 
         public async void OnjugadorDeleted(string usuario, string nombreSala)
@@ -146,7 +167,6 @@ namespace Pinturillo.ViewModels
                 partida.NotifyPropertyChanged("ListadoMensajes");
 
             });
-            //jugadorDeleted("", "");
         }
     }
 }

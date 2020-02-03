@@ -45,22 +45,30 @@ namespace Pinturillo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null)
+            if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
             {
-                viewModel.Partida = (clsPartida)e.Parameter;
+                if (e.Parameter != null)
+                {
+                    viewModel.Partida = (clsPartida)e.Parameter;
 
-                clsJugador  jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+                    clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
 
-                //viewModel.Partida.ListadoJugadores.
+                    //viewModel.Partida.ListadoJugadores.
 
-                viewModel.UsuarioPropio = jugadorLider.Nickname;
-                viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
+                    viewModel.UsuarioPropio = jugadorLider.Nickname;
+                    viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
+                }
+            }else
+            {
+                if(e.Parameter != null)
+                {
+                    viewModel.UsuarioPropio = (string)e.Parameter;
+                   
+                }
             }
-
             base.OnNavigatedTo(e);
 
-
-
         }
+
     }
 }
