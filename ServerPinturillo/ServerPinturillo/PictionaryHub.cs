@@ -72,5 +72,18 @@ namespace ServerPinturillo
             
         }
 
+
+
+        public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
+        {
+            clsPartida partida = listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
+            if(partida != null)
+            {
+                partida.ListadoJugadores.Add(jugador);
+                Clients.All.jugadorAdded(jugador, nombreGrupo);
+            }
+            
+        }
+
     }
 }

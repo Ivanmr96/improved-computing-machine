@@ -124,7 +124,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Run Text="{Binding JugadorQueLoEnvia}" />
+                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
                                 <Run Text=": " />
                                 <Run Text="{Binding Mensaje}" />
                             </TextBlock>

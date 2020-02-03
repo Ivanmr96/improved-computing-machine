@@ -1,4 +1,5 @@
 ﻿using Pinturillo;
+using Pinturillo.Models;
 using Pinturillo.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,13 @@ namespace Pinturillo
             
             base.OnNavigatedTo(e);
             
+        }
+
+        private void ListadoSalas_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            clsPartida partida = (clsPartida)((FrameworkElement)e.OriginalSource).DataContext;
+
+            viewModel.ListadoSalas_Tapped(partida);
         }
     }
 }

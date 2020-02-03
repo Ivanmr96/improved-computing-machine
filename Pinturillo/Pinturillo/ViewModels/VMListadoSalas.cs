@@ -55,7 +55,7 @@ namespace Pinturillo.ViewModels
             this.navigationService = navigationService;
             //TODO todas las cosas de SignalR
             //Command
-            this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand);
+            this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand); //TODO borrar command
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
 
             SignalR();
@@ -71,6 +71,7 @@ namespace Pinturillo.ViewModels
 
 
             proxy.On<List<clsPartida>>("recibirSalas",pedirListaAsync);
+            proxy.On<clsJugador, string>("jugadorAdded", jugadorAdded);
             proxy.Invoke("sendSalas");
         }
 
@@ -86,6 +87,33 @@ namespace Pinturillo.ViewModels
             }
 
             );
+        }
+
+
+
+        public void ListadoSalas_Tapped(clsPartida partida)
+        {
+            proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
+        }
+
+
+        public async void jugadorAdded( clsJugador jugador, string nombrePartida)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+
+                clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombrePartida);
+                if(partida != null)
+                {
+                    partida.ListadoJugadores.Add(jugador);
+                    NotifyPropertyChanged("ListadoPartidas");
+                }
+               
+
+            }
+
+            );
+
         }
 
 
