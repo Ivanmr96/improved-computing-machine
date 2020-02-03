@@ -63,7 +63,7 @@ namespace Pinturillo.ViewModels
 
         public async void SignalR()
         {
-            conn = new HubConnection("http://localhost:11111/");
+            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
             proxy = conn.CreateHubProxy("PictionaryHub");
             await conn.Start();
 
@@ -76,7 +76,7 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);
+                this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, partida);
             });
         }
 

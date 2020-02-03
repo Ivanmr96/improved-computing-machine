@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pinturillo.Models;
+using Pinturillo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,13 @@ namespace Pinturillo
     /// </summary>
     public sealed partial class SalaEspera : Page
     {
+
+
+        private SalaEsperaVM viewModel { get; }
         public SalaEspera()
         {
             this.InitializeComponent();
+            viewModel = (SalaEsperaVM)DataContext;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,6 +41,26 @@ namespace Pinturillo
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(PantallaJuego));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                viewModel.Partida = (clsPartida)e.Parameter;
+
+                clsJugador  jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+
+                //viewModel.Partida.ListadoJugadores.
+
+                viewModel.UsuarioPropio = jugadorLider.Nickname;
+                viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
+            }
+
+            base.OnNavigatedTo(e);
+
+
+
         }
     }
 }

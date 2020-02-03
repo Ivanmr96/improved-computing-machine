@@ -124,7 +124,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Run Text="{Binding JugadorQueLoEnvia}" />
+                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
                                 <Run Text=": " />
                                 <Run Text="{Binding Mensaje}" />
                             </TextBlock>
@@ -137,6 +137,7 @@
 
             <RelativePanel
             Name="txtMensaje"
+                
             RelativePanel.AlignBottomWithPanel="True"
             RelativePanel.RightOf="listaJugadores"
             RelativePanel.AlignRightWithPanel="True"
@@ -153,13 +154,14 @@
                 RelativePanel.AlignBottomWithPanel="True"
                 Name="txtBoxMensaje"
                 Margin="30,0,0,30"
-                Text="{Binding Mensaje.Mensaje}"
+                Text="{Binding Mensaje.Mensaje, Mode=TwoWay}"
                     />
 
                 <Button
                 Windows10version1809:CornerRadius="0,15,15,0"
                 FontSize="18"
                 Name="btnEnviarMensaje"
+                    Command="{Binding enviarMensaje}"
                 RelativePanel.AlignTopWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
                 Margin="0,0,35,0"

@@ -11,9 +11,16 @@ namespace Pinturillo.Models
         #region"Atributos privados"
         private string _mensaje;
         private clsJugador _jugadorQueLoEnvia;
+
+
         #endregion
 
         #region"Constructor"
+
+        public clsMensaje()
+        {
+        }
+
         public clsMensaje(string mensaje, clsJugador jugadorQueLoEnvia)
         {
             Mensaje = mensaje;

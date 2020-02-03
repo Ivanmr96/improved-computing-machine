@@ -54,5 +54,23 @@ namespace ServerPinturillo
             Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
             Clients.Caller.salaCreada(partida);
         }
+
+
+
+        public void sendMensaje (clsMensaje mensaje, string nombreGrupo)
+        {
+
+            clsPartida partida = listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
+
+            if(partida != null)
+            {
+                partida.ListadoMensajes.Add(mensaje);
+                //Clients.Group(nombreGrupo).addMensajeToChat(mensaje);
+                Clients.All.addMensajeToChat(mensaje);
+            }
+
+            
+        }
+
     }
 }

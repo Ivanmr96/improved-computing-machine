@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.AspNet.SignalR.Client;
 using Pinturillo;
 using Pinturillo.Models;
 using System;
@@ -6,10 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace Pinturillo.ViewModels
 {
-    public class SalaEsperaVM
+    public class SalaEsperaVM : clsVMBase
     {
         #region atributos privados
 
@@ -17,6 +19,8 @@ namespace Pinturillo.ViewModels
         private clsMensaje mensaje;
         private readonly INavigationService navigationService;
         private string usuarioPropio;
+        private HubConnection conn;
+        private IHubProxy proxy;
         #endregion
 
         #region constructor
@@ -28,6 +32,13 @@ namespace Pinturillo.ViewModels
             partida = new clsPartida();
             this.navigationService = navigationService;
             this.salir = new DelegateCommand(salir_execute);
+
+            SignalR();
+        
+            this.enviarMensaje = new DelegateCommand(enviarMensaje_execute, enviarMensaje_canExecute);
+            this.mensaje = new clsMensaje();
+            mensaje.JugadorQueLoEnvia = new clsJugador();
+            mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
 
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Ivan", false, false, false));
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Pepe", false, false, false));
@@ -48,6 +59,12 @@ namespace Pinturillo.ViewModels
             set => mensaje = value;
         }
 
+        public string UsuarioPropio
+        {
+            get { return this.usuarioPropio;  }
+            set { this.usuarioPropio = value; }
+        }
+
         #endregion
 
         #region commands
@@ -59,6 +76,8 @@ namespace Pinturillo.ViewModels
         private void enviarMensaje_execute()
         {
             //Mandar el mensaje al servidor
+
+            proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
         }
 
         public DelegateCommand salir { get; set; }
@@ -87,5 +106,30 @@ namespace Pinturillo.ViewModels
         }
 
         #endregion
+
+
+        public async void SignalR()
+        {
+            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            proxy = conn.CreateHubProxy("PictionaryHub");
+            await conn.Start();
+
+
+            proxy.On<clsMensaje>("addMensajeToChat", addMensajeToChat);
+            
+        }
+
+
+        public async void  addMensajeToChat (clsMensaje mensaje)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                partida.ListadoMensajes.Add(mensaje);
+                partida.NotifyPropertyChanged("ListadoMensajes");
+
+            });
+
+            
+        }
     }
 }
