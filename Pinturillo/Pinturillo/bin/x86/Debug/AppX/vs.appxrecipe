@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-03T13:20:38.244</Modified>
+      <Modified>2020-02-03T13:24:05.682</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-02-03T13:20:37.206</Modified>
+      <Modified>2020-02-03T13:24:05.049</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\imoreno\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -202,7 +202,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\github\furry-couscous\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-02-03T13:20:38.234</Modified>
+      <Modified>2020-02-03T13:24:05.665</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
