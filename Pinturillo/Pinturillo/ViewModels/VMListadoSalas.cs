@@ -152,7 +152,7 @@ namespace Pinturillo.ViewModels
         {
 
             proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            navigationService.NavigateTo(ViewModelLocator.SalaEspera,_usuarioPropio);
+            navigationService.NavigateTo(ViewModelLocator.SalaEspera,_usuarioPropio.Nickname);
         }
 
 
