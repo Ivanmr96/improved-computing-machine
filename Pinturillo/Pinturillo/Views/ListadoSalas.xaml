@@ -71,7 +71,7 @@
             <ListView
                 Tapped="ListadoSalas_Tapped"
                 Name="listadoSalas"
-                ItemsSource="{Binding ListadoPartidas}"
+                ItemsSource="{Binding partidasAMostrar}"
                         
                 >
                 <ListView.ItemTemplate>

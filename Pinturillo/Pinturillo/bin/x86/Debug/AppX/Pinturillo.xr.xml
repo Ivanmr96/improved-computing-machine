@@ -13,7 +13,7 @@
     <RootPropertyPathName Name="NombreSala" />
     <RootPropertyPathName Name="ListadoSalasInstance" />
     <RootPropertyPathName Name="CreateGroupCommand" />
-    <RootPropertyPathName Name="ListadoPartidas" />
+    <RootPropertyPathName Name="partidasAMostrar" />
     <RootPropertyPathName Name="ListadoJugadores" />
     <RootPropertyPathName Name="Count" />
     <RootPropertyPathName Name="MainPageInstance" />

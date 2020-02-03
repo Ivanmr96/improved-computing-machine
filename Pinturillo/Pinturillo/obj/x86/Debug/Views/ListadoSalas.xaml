@@ -71,7 +71,7 @@
             <ListView x:ConnectionId='5'
                                             
                 Name="listadoSalas"
-                ItemsSource="{Binding ListadoPartidas}"
+                ItemsSource="{Binding partidasAMostrar}"
                         
                 >
                 <ListView.ItemTemplate>

@@ -27,6 +27,22 @@ namespace Pinturillo.ViewModels
         public DelegateCommand CreateGroupCommand { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
+
+        public ObservableCollection<clsPartida> partidasAMostrar
+        {
+            get
+
+            {
+                ObservableCollection<clsPartida> partidas = new ObservableCollection<clsPartida>();
+                if (ListadoPartidas != null)
+                partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
+                       where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
+                       select p);
+
+                return partidas;
+                       
+            } 
+        }
         #endregion
 
 
@@ -65,7 +81,8 @@ namespace Pinturillo.ViewModels
 
         public async void SignalR()
         {
-            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
             await conn.Start();
 
@@ -107,6 +124,8 @@ namespace Pinturillo.ViewModels
                 {
                     partida.ListadoJugadores.Add(jugador);
                     NotifyPropertyChanged("ListadoPartidas");
+                    NotifyPropertyChanged("partidasAMostrar");
+
                 }
                
 
