@@ -1,0 +1,11 @@
+﻿<Application
+    x:Class="PinturilloParaPruebas.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PinturilloParaPruebas" 
+    xmlns:vm1="using:PinturilloParaPruebas.ViewModels">
+
+    <Application.Resources>
+        <vm1:ViewModelLocator xmlns:vm="PinturilloParaPruebas.ViewModels" x:Key="Locator" />
+    </Application.Resources>
+</Application>

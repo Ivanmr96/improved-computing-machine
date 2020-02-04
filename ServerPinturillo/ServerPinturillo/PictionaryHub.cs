@@ -81,7 +81,12 @@ namespace ServerPinturillo
             clsJugador jugadorBuscado;
             if (partida != null)
             {
-                jugadorBuscado = partida.ListadoJugadores.First<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
+                try {
+                    jugadorBuscado = partida.ListadoJugadores.First<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
+                } catch (Exception e) {
+                    jugadorBuscado = null;
+                }
+                
                 if (jugadorBuscado == null)
                 {
                     if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
