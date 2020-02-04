@@ -78,17 +78,20 @@ namespace ServerPinturillo
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
-            if(partida != null)
+            clsJugador jugadorBuscado;
+            if (partida != null)
             {
-
-                if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
+                jugadorBuscado = partida.ListadoJugadores.First<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
+                if (jugadorBuscado == null)
                 {
-                    jugador.ConnectionID = Context.ConnectionId;    //añadido
-                    partida.ListadoJugadores.Add(jugador);
-                    
-                    Clients.All.jugadorAdded(jugador, nombreGrupo);
+                    if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
+                    {
+                        jugador.ConnectionID = Context.ConnectionId;    //añadido
+                        partida.ListadoJugadores.Add(jugador);
+
+                        Clients.All.jugadorAdded(jugador, nombreGrupo);
+                    }
                 }
-                   
             }
             
         }
