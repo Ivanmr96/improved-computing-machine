@@ -45,7 +45,11 @@ namespace Pinturillo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
+
+            var lastPage = Frame.BackStack.Last().SourcePageType;
+
+            //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
+            if (lastPage.FullName.Equals("Pinturillo.CrearSalaPage"))
             {
                 if (e.Parameter != null)
                 {

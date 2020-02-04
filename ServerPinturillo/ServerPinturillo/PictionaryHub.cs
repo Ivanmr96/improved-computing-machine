@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using ServerPinturillo.Clases;
@@ -82,7 +83,9 @@ namespace ServerPinturillo
 
                 if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
                 {
+                    jugador.ConnectionID = Context.ConnectionId;    //añadido
                     partida.ListadoJugadores.Add(jugador);
+                    
                     Clients.All.jugadorAdded(jugador, nombreGrupo);
                 }
                    
@@ -122,5 +125,45 @@ namespace ServerPinturillo
 
         }
 
+
+
+        //Si algo falla esto es lo que hay que quitar
+        //TODO falta asignarle el connection id a cada usuario  //añadido
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            //Obtener el ID de conexion del usuario que ha salido
+            clsJugador jugadorQueSeDesconecta = null;
+            string nombreGrupo = "";
+            bool encontrado = false;
+
+                for(int i = 0; i < listadoSalas.ListadoPartidas.Count && !encontrado; i++)
+                {
+                    for (int j = 0; j < listadoSalas.ListadoPartidas[i].ListadoJugadores.Count && !encontrado; j++)
+                    {
+                    if(listadoSalas.ListadoPartidas[i].ListadoJugadores[j].ConnectionID == Context.ConnectionId)
+                    {
+                        jugadorQueSeDesconecta = listadoSalas.ListadoPartidas[i].ListadoJugadores[j];
+                        nombreGrupo = listadoSalas.ListadoPartidas[i].NombreSala;
+                        encontrado = true;
+
+                    }
+
+                    }
+
+                }
+            //Comprobar si estaba en algun grupo 
+
+            if(encontrado) //Si estaba en un grupo, sacarlo 
+            {
+                jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);
+            }
+            else //no esta en ningun grupo
+            {
+                //Resto de lógica de cuando un usuario de grupo sale
+                //TODO
+            }
+
+            return base.OnDisconnected(stopCalled);
+        }
     }
 }

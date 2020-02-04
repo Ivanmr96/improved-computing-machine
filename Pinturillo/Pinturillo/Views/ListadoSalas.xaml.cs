@@ -65,5 +65,8 @@ namespace Pinturillo
 
             viewModel.ListadoSalas_Tapped(partida);
         }
+
+
+
     }
 }

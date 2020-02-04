@@ -18,6 +18,10 @@ namespace ServerPinturillo
             GlobalHost.DependencyResolver.Register(typeof(PictionaryHub), () => new PictionaryHub(SingletonSalas.Instance));
 
             app.MapSignalR();
+
+            //Para que se desconecte rapido
+            
+            GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(6);
         }
     }
 }
