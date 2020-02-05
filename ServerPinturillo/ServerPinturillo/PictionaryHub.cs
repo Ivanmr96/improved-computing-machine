@@ -94,7 +94,7 @@ namespace ServerPinturillo
                         jugador.ConnectionID = Context.ConnectionId;    //añadido
                         partida.ListadoJugadores.Add(jugador);
 
-                        Clients.All.jugadorAdded(jugador, nombreGrupo);
+                        Clients.All.jugadorAdded(jugador, partida);
                     }
                 }
             }
@@ -109,8 +109,14 @@ namespace ServerPinturillo
         public void jugadorHaSalido(string usuario, string nombreSala)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreSala);
-
-            clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+            clsJugador jugador;
+            try
+            {
+                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+            }catch (Exception e)
+            {
+                jugador = null;
+            }
 
             if(jugador != null)
             {
@@ -124,11 +130,7 @@ namespace ServerPinturillo
                 else
                 {
                     Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
-                }
-
-
-                
-               
+                }              
             }
 
         }

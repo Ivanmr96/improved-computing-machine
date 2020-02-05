@@ -49,7 +49,7 @@ namespace PinturilloParaPruebas
             var lastPage = Frame.BackStack.Last().SourcePageType;
 
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
-            if (lastPage.FullName.Equals("Pinturillo.CrearSalaPage"))
+            if (lastPage.FullName.Equals("PinturilloParaPruebas.CrearSalaPage"))
             {
                 if (e.Parameter != null)
                 {

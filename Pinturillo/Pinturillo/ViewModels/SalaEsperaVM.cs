@@ -124,21 +124,21 @@ namespace Pinturillo.ViewModels
 
 
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
-            proxy.On<clsJugador, string>("jugadorAdded", jugadorAdded);
+            proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
             
         }
 
-        private async void jugadorAdded(clsJugador jugador, string arg2)
+        private async void jugadorAdded(clsJugador jugador, clsPartida game)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
 
-                //clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombrePartida);
                 if (partida != null)
                 {
-                    partida.ListadoJugadores.Add(jugador);
+                    partida.ListadoJugadores = game.ListadoJugadores;
                     partida.NotifyPropertyChanged("ListadoJugadores");
+                    
                     //NotifyPropertyChanged("partidasAMostrar");
 
                 }
@@ -149,7 +149,15 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+                clsJugador jugador;
+                try
+                {
+                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+                }
+                catch (Exception e)
+                {
+                    jugador = null;
+                }
 
                 if (jugador != null)
                 {

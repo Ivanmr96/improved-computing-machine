@@ -92,7 +92,7 @@ namespace PinturilloParaPruebas.ViewModels
 
             proxy.On<List<clsPartida>>("recibirSalas",pedirListaAsync);
             proxy.On<string>("eliminarPartidaVacia", eliminarPartidaVacia);
-            proxy.On<clsJugador, string>("jugadorAdded", jugadorAdded);
+            proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", jugadorDeleted);
             proxy.Invoke("sendSalas");
 
@@ -116,12 +116,26 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-
+                clsPartida partida;
+                try
+                {
+                    partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+                }
+                catch (Exception e)
+                {
+                    partida = null;
+                }
                 if (partida != null)
                 {
-                    clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-
+                    clsJugador jugador;
+                    try
+                    {
+                        jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+                    }
+                    catch (Exception e)
+                    {
+                        jugador = null;
+                    }
                     if (jugador != null)
                     {
                         partida.ListadoJugadores.Remove(jugador);
@@ -136,7 +150,6 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-
                 
                 this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
                 NotifyPropertyChanged("ListadoPartidas");
@@ -159,12 +172,12 @@ namespace PinturilloParaPruebas.ViewModels
 
 
 
-        public async void jugadorAdded( clsJugador jugador, string nombrePartida)
+        public async void jugadorAdded( clsJugador jugador, clsPartida game)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
 
-                clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombrePartida);
+                clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
                 if(partida != null)
                 {
                     partida.ListadoJugadores.Add(jugador);
