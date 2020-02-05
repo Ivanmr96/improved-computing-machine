@@ -136,6 +136,9 @@ namespace Pinturillo.ViewModels
 
                 if (partida != null)
                 {
+                    mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
+                    NotifyPropertyChanged("Mensaje");
+                    partida.NombreSala = game.NombreSala;
                     partida.ListadoJugadores = game.ListadoJugadores;
                     partida.NotifyPropertyChanged("ListadoJugadores");
                     
