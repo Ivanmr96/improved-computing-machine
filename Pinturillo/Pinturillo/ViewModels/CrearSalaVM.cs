@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Pinturillo.ViewModels
 {
@@ -20,6 +22,7 @@ namespace Pinturillo.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         private readonly INavigationService navigationService;
+        private String _visible;
 
         private const int NUM_MAX_JUGADORES = 5;
 
@@ -38,11 +41,19 @@ namespace Pinturillo.ViewModels
             }
         }
 
-
+        public String visible {
+            get {
+                return _visible;
+            }
+            set {
+                _visible = value;
+            }
+        }
         public CrearSalaVM(INavigationService navigationService)
         {
             _partida = new clsPartida();
             this.navigationService = navigationService;
+            _visible = "Collapsed";
 
             SignalR();
         }
@@ -96,7 +107,10 @@ namespace Pinturillo.ViewModels
         private void CrearCommand_Executed()
         {
             //this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
-            proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+            //if (validarFormulario())
+            //{
+                proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+            //}
             //var hola = "hola";
         }
 
@@ -105,5 +119,49 @@ namespace Pinturillo.ViewModels
         {
             return true;
         }
+
+        public bool validarFormulario() {
+
+            bool valido = false;
+
+            if (String.IsNullOrEmpty(_nombreUsuario))
+            {
+                valido = true;
+                _lblErrorNombreSala = "Debes introducir un nombre";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+            else {
+                _lblErrorNombreSala = "";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+
+            if (String.IsNullOrEmpty(_partida.Password)) {
+                valido = true;
+                _lblErrorContrasena = "Debes introducirla";
+                NotifyPropertyChanged("LblErrorContrasena");
+            }
+            else
+            {
+                _lblErrorContrasena = "";
+                NotifyPropertyChanged("LblErrorContrasena");
+            }
+
+            return valido;
+
+        }
+
+        public void CheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = (CheckBox)sender;
+            if (checkbox.IsChecked == true)
+            {
+                _visible = "Visible";
+                NotifyPropertyChanged("visible");
+            }
+            else
+                _visible = "Collapsed";
+                NotifyPropertyChanged("visible");
+        }
+
     }
 }

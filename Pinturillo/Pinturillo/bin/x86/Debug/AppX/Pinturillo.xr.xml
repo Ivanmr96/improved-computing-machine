@@ -6,10 +6,13 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="CrearSalaInstance" />
     <RootPropertyPathName Name="crearPartida" />
+    <RootPropertyPathName Name="LblErrorContrasena" />
     <RootPropertyPathName Name="NumJugadores" />
     <RootPropertyPathName Name="Partida" />
     <RootPropertyPathName Name="NumeroMaximoJugadores" />
+    <RootPropertyPathName Name="visible" />
     <RootPropertyPathName Name="Password" />
+    <RootPropertyPathName Name="LblErrorNombreSala" />
     <RootPropertyPathName Name="NombreSala" />
     <RootPropertyPathName Name="ListadoSalasInstance" />
     <RootPropertyPathName Name="CreateGroupCommand" />
@@ -153,6 +156,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="Name" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="Password" />
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
@@ -167,6 +171,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
       <RootProperty Name="Orientation" />
@@ -250,7 +255,6 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="TargetInkCanvas" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension" />
     <RootType FullName="Pinturillo.PantallaJuego" />
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
       <RootProperty Name="Text" />

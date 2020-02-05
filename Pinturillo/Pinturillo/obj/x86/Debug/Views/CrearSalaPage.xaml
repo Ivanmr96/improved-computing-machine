@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:ConnectionId='1'
     x:Class="Pinturillo.CrearSalaPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -35,13 +35,22 @@
                     Text="{Binding Partida.NombreSala, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
 
-                <CheckBox x:ConnectionId='5' Name="checkbox"                                                         Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
-                <PasswordBox x:ConnectionId='6' 
+                    <TextBlock RelativePanel.RightOf="txtboxNombreSala" 
+                               RelativePanel.AlignVerticalCenterWith="txtboxNombreSala" 
+                               Text="{Binding LblErrorNombreSala,Mode=OneWay}"
+                               Margin="12,30,0,0"></TextBlock>
+
+                    <CheckBox x:ConnectionId='5' Name="checkbox"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                <PasswordBox x:ConnectionId='6' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                     Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
                     <ComboBox ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
                         
                     </ComboBox>
+                    <TextBlock RelativePanel.RightOf="passwordbox" 
+                               RelativePanel.AlignVerticalCenterWith="passwordbox" 
+                               Text="{Binding LblErrorContrasena,Mode=OneWay}"
+                               Margin="12,15,0,0"></TextBlock>
             </RelativePanel>
         </Border>
         <Button

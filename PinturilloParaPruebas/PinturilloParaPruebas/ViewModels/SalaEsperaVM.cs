@@ -34,7 +34,7 @@ namespace PinturilloParaPruebas.ViewModels
             this.salir = new DelegateCommand(salir_execute);
 
             SignalR();
-        
+
             this.enviarMensaje = new DelegateCommand(enviarMensaje_execute, enviarMensaje_canExecute);
             this.mensaje = new clsMensaje();
             mensaje.JugadorQueLoEnvia = new clsJugador();
@@ -65,7 +65,7 @@ namespace PinturilloParaPruebas.ViewModels
 
         public string UsuarioPropio
         {
-            get { return this.usuarioPropio;  }
+            get { return this.usuarioPropio; }
             set { this.usuarioPropio = value; }
         }
 
@@ -81,7 +81,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             //Mandar el mensaje al servidor
 
-             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
+            proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
         }
 
         public DelegateCommand salir { get; set; }
@@ -126,7 +126,7 @@ namespace PinturilloParaPruebas.ViewModels
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-            
+
         }
 
         private async void jugadorAdded(clsJugador jugador, clsPartida game)
@@ -136,9 +136,12 @@ namespace PinturilloParaPruebas.ViewModels
 
                 if (partida != null)
                 {
+                    mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
+                    NotifyPropertyChanged("Mensaje");
                     partida.NombreSala = game.NombreSala;
                     partida.ListadoJugadores = game.ListadoJugadores;
                     partida.NotifyPropertyChanged("ListadoJugadores");
+
                     //NotifyPropertyChanged("partidasAMostrar");
 
                 }
@@ -166,7 +169,8 @@ namespace PinturilloParaPruebas.ViewModels
                 }
             });
         }
-        public async void  OnaddMensajeToChat (clsMensaje mensaje)
+
+        public async void OnaddMensajeToChat(clsMensaje mensaje)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
