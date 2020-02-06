@@ -49,7 +49,7 @@ namespace ServerPinturillo
             clsJugador lider = new clsJugador(Context.ConnectionId, 0, nickLider, false, false, true);
 
             partida.ListadoJugadores.Add(lider);
-
+            Groups.Add(Context.ConnectionId, partida.NombreSala);
             listadoSalas.ListadoPartidas.Add(partida);
 
             Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
@@ -66,14 +66,15 @@ namespace ServerPinturillo
             if(partida != null)
             {
                 partida.ListadoMensajes.Add(mensaje);
-                //Clients.Group(nombreGrupo).addMensajeToChat(mensaje);
-                Clients.All.addMensajeToChat(mensaje);
+                Clients.Group(nombreGrupo).addMensajeToChat(mensaje);
+                //Clients.All.addMensajeToChat(mensaje);
             }
-
             
         }
 
-
+        public void empezarPartida(String nombreGrupo) {
+            Clients.Group(nombreGrupo).empezarPartida();
+        }
 
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
         {
@@ -91,7 +92,9 @@ namespace ServerPinturillo
                 {
                     if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
                     {
-                        jugador.ConnectionID = Context.ConnectionId;    //añadido
+
+                        jugador.ConnectionID = Context.ConnectionId;
+                        Groups.Add(Context.ConnectionId, partida.NombreSala);
                         partida.ListadoJugadores.Add(jugador);
 
                         Clients.All.jugadorAdded(jugador, partida);
@@ -121,8 +124,8 @@ namespace ServerPinturillo
             if(jugador != null)
             {
                 partida.ListadoJugadores.Remove(jugador);
-
-                if(partida.ListadoJugadores.Count == 0)
+                Groups.Remove(Context.ConnectionId, partida.NombreSala);
+                if (partida.ListadoJugadores.Count == 0)
                 {
                     listadoSalas.ListadoPartidas.Remove(partida);
                     Clients.All.eliminarPartidaVacia(partida.NombreSala);

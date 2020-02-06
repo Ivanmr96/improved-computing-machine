@@ -123,9 +123,10 @@ namespace PinturilloParaPruebas.ViewModels
 
         public void comenzarPartida_execute()
         {
-            //Indica al servidro que la partida va a comenzar.
+            //Indica al servidor que la partida va a comenzar.
 
             navigationService.NavigateTo(ViewModelLocator.PantallaJuego);
+            proxy.Invoke("empezarPartida", partida.NombreSala);
         }
 
         #endregion
@@ -140,11 +141,19 @@ namespace PinturilloParaPruebas.ViewModels
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
 
-
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
+            proxy.On("empezarPartida", OnempezarPartida);
 
+        }
+
+        private async void OnempezarPartida()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                navigationService.NavigateTo(ViewModelLocator.PantallaJuego);
+            });
         }
 
         private async void jugadorAdded(clsJugador jugador, clsPartida game)
@@ -156,9 +165,16 @@ namespace PinturilloParaPruebas.ViewModels
                 {
                     mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
                     NotifyPropertyChanged("Mensaje");
-                    partida.NombreSala = game.NombreSala;
+                    /*partida.NombreSala = game.NombreSala;
+                    partida.ListadoMensajes = game.ListadoMensajes;
+                    partida.NotifyPropertyChanged("ListadoMensajes");
                     partida.ListadoJugadores = game.ListadoJugadores;
                     partida.NotifyPropertyChanged("ListadoJugadores");
+                    comenzarPartida.RaiseCanExecuteChanged();*/
+                    partida = game;
+                    NotifyPropertyChanged("Partida");
+                    partida.NotifyPropertyChanged("ListadoJugadores");
+                    partida.NotifyPropertyChanged("ListadoMensajes");
                     comenzarPartida.RaiseCanExecuteChanged();
                     //NotifyPropertyChanged("partidasAMostrar");
 
