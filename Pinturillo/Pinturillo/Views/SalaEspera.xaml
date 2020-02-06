@@ -98,7 +98,8 @@
             Windows10version1809:CornerRadius="0,0,28,0"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch" Click="Button_Click_1"
+            HorizontalAlignment="Stretch"
+                    Command="{Binding comenzarPartida}"
             >
                     Comenzar
                 </Button>
@@ -164,7 +165,7 @@
                     Command="{Binding enviarMensaje}"
                 RelativePanel.AlignTopWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
-                Margin="0,0,35,0"
+                Margin="0,0,35,0" TabIndex="0"
                 >
                     Enviar
 

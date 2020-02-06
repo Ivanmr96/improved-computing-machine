@@ -92,13 +92,14 @@
                     Salir
                 </Button>
 
-                <Button x:ConnectionId='10'
+                <Button
                 Background="LightGreen"
                 Grid.Column="1"
             Windows10version1809:CornerRadius="0,0,28,0"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"                       
+            HorizontalAlignment="Stretch"
+                    Command="{Binding comenzarPartida}"
             >
                     Comenzar
                 </Button>
@@ -164,7 +165,7 @@
                     Command="{Binding enviarMensaje}"
                 RelativePanel.AlignTopWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
-                Margin="0,0,35,0"
+                Margin="0,0,35,0" TabIndex="0"
                 >
                     Enviar
 

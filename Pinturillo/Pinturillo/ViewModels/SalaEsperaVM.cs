@@ -36,9 +36,9 @@ namespace Pinturillo.ViewModels
             SignalR();
         
             this.enviarMensaje = new DelegateCommand(enviarMensaje_execute, enviarMensaje_canExecute);
+            this.comenzarPartida = new DelegateCommand(comenzarPartida_execute, comenzarPartida_canExecute);
             this.mensaje = new clsMensaje();
             mensaje.JugadorQueLoEnvia = new clsJugador();
-            mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
 
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Ivan", false, false, false));
             //partida.ListadoJugadores.Add(new clsJugador("id", 0, "Pepe", false, false, false));
@@ -55,6 +55,7 @@ namespace Pinturillo.ViewModels
             {
                 partida = value;
                 partida.NotifyPropertyChanged("ListadoJugadores");
+                
             }
         }
         public clsMensaje Mensaje
@@ -99,8 +100,24 @@ namespace Pinturillo.ViewModels
 
         public bool comenzarPartida_canExecute()
         {
+            bool puedeComenzar = false;
+            clsJugador jugador;
+            try
+            {
+                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
+            }
+            catch (Exception e)
+            {
+                jugador = null;
+            }
+            if (jugador != null){
+                if (jugador.IsLider && partida.ListadoJugadores.Count >= 2)
+                {
+                    puedeComenzar = true;
+                }
+            }
             //Puede ejecutar si es el lider
-            return true;
+            return puedeComenzar;
         }
 
         public void comenzarPartida_execute()
@@ -141,7 +158,7 @@ namespace Pinturillo.ViewModels
                     partida.NombreSala = game.NombreSala;
                     partida.ListadoJugadores = game.ListadoJugadores;
                     partida.NotifyPropertyChanged("ListadoJugadores");
-                    
+                    comenzarPartida.RaiseCanExecuteChanged();
                     //NotifyPropertyChanged("partidasAMostrar");
 
                 }
@@ -166,6 +183,7 @@ namespace Pinturillo.ViewModels
                 {
                     partida.ListadoJugadores.Remove(jugador);
                     partida.NotifyPropertyChanged("ListadoJugadores");
+                    comenzarPartida.RaiseCanExecuteChanged();
                 }
             });
         }

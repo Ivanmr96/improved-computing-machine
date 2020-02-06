@@ -23,6 +23,7 @@ namespace Pinturillo.ViewModels
         private IHubProxy proxy;
         private readonly INavigationService navigationService;
         private String _visible;
+        private bool _checkboxChecked;
 
         private const int NUM_MAX_JUGADORES = 5;
 
@@ -54,7 +55,7 @@ namespace Pinturillo.ViewModels
             _partida = new clsPartida();
             this.navigationService = navigationService;
             _visible = "Collapsed";
-
+            _checkboxChecked = false;
             SignalR();
         }
 
@@ -104,29 +105,56 @@ namespace Pinturillo.ViewModels
             }
         }
 
+        public bool CheckboxChecked { get => _checkboxChecked; set => _checkboxChecked = value; }
+
         private void CrearCommand_Executed()
-        {
-            //this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
-            //if (validarFormulario())
-            //{
-                proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
-            //}
+        {           
+            if (_checkboxChecked)
+            {
+                if (validarFormulario())
+                {
+                    proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                }
+            }
+            else {
+                if (validarFormularioSoloNombreSala()) {
+                    proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                }
+            }
             //var hola = "hola";
         }
 
+        //Metodo para validar el formulario si el checkbox no esta marcado
+        private bool validarFormularioSoloNombreSala()
+        {
+            bool valido = true;
+            if (String.IsNullOrEmpty(Partida.NombreSala))
+            {
+                valido = false;
+                _lblErrorNombreSala = "Debes introducir un nombre";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+            else
+            {
+                _lblErrorNombreSala = "";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+            return valido;
+        }
 
         private bool CrearCommand_CanExecuted()
         {
             return true;
         }
 
+        //Metodo para validar el formulario si el checkbox esta marcado
         public bool validarFormulario() {
 
-            bool valido = false;
+            bool valido = true;
 
-            if (String.IsNullOrEmpty(_nombreUsuario))
+            if (String.IsNullOrEmpty(Partida.NombreSala))
             {
-                valido = true;
+                valido = false;
                 _lblErrorNombreSala = "Debes introducir un nombre";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
@@ -136,7 +164,7 @@ namespace Pinturillo.ViewModels
             }
 
             if (String.IsNullOrEmpty(_partida.Password)) {
-                valido = true;
+                valido = false;
                 _lblErrorContrasena = "Debes introducirla";
                 NotifyPropertyChanged("LblErrorContrasena");
             }
@@ -157,10 +185,14 @@ namespace Pinturillo.ViewModels
             {
                 _visible = "Visible";
                 NotifyPropertyChanged("visible");
+                _checkboxChecked = true;
             }
             else
+            {
                 _visible = "Collapsed";
                 NotifyPropertyChanged("visible");
+                _checkboxChecked = false;
+            }
         }
 
     }

@@ -63,8 +63,8 @@ namespace PinturilloParaPruebas.ViewModels
 
         public async void SignalR()
         {
-            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
-            //conn = Connection.Connection.conn;
+            //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            conn = Connection.Connection.conn;
             proxy = Connection.Connection.proxy;
             //await conn.Start();
 
