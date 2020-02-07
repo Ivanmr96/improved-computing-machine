@@ -144,29 +144,8 @@ namespace PinturilloParaPruebas.ViewModels
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-            proxy.On("nombrarComoLider", OnnombrarComoLider);
             proxy.On("empezarPartida", OnempezarPartida);
 
-        }
-
-        //nombra como lider al jugador actual
-        private void OnnombrarComoLider()
-        {
-            clsJugador jugador;
-            try
-            {
-                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
-            }
-            catch (Exception e)
-            {
-                jugador = null;
-            }
-
-            if (jugador != null)
-            {
-                jugador.IsLider = true;
-                comenzarPartida.RaiseCanExecuteChanged();
-            }
         }
 
         private async void OnempezarPartida()

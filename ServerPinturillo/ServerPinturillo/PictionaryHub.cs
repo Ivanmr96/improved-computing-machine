@@ -127,7 +127,7 @@ namespace ServerPinturillo
 
             if(jugador != null)
             {
-                partida.ListadoJugadores.Remove(jugador); //primero se elimina el jugador del listado de jugadores
+                partida.ListadoJugadores.Remove(jugador);
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
                 if (partida.ListadoJugadores.Count == 0)
                 {
@@ -136,19 +136,17 @@ namespace ServerPinturillo
                 }
                 else
                 {
-                    Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);   
-
+                    Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
                     if (jugador.IsLider)
                     {
                         llamarConvertirEnLider(nombreSala);    //luego (si era el lider) se pone de lider al primero de la lista
                     }
 
-                }              
+                }
             }
 
         }
 
-        
         //Metodo que llama al metodo de un cliente en concreto y lo pone como lider
         //A este metodo se le llamara cuando salga de la partida o se desconecte un
         //jugador que sea el actual lider del grupo.
@@ -165,12 +163,9 @@ namespace ServerPinturillo
                     Clients.Client(conexionIDSiguienteJugador).nombrarComoLider();  //nombramos como lider a ese jugador
                 }
             }
-            
-            
+
+
         }
-
-
-
 
         //Si algo falla esto es lo que hay que quitar
         //TODO falta asignarle el connection id a cada usuario  //añadido
@@ -200,9 +195,7 @@ namespace ServerPinturillo
 
             if(encontrado) //Si estaba en un grupo, sacarlo 
             {
-
-                jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);  
-                
+                jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);
             }
             else //no esta en ningun grupo
             {
