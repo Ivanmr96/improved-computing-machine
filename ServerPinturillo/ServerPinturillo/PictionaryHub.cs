@@ -127,7 +127,7 @@ namespace ServerPinturillo
 
             if(jugador != null)
             {
-                partida.ListadoJugadores.Remove(jugador);
+                partida.ListadoJugadores.Remove(jugador); //primero se elimina el jugador del listado de jugadores
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
                 if (partida.ListadoJugadores.Count == 0)
                 {
@@ -136,11 +136,39 @@ namespace ServerPinturillo
                 }
                 else
                 {
-                    Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
+                    Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);   
+
+                    if (jugador.IsLider)
+                    {
+                        llamarConvertirEnLider(nombreSala);    //luego (si era el lider) se pone de lider al primero de la lista
+                    }
+
                 }              
             }
 
         }
+
+        
+        //Metodo que llama al metodo de un cliente en concreto y lo pone como lider
+        //A este metodo se le llamara cuando salga de la partida o se desconecte un
+        //jugador que sea el actual lider del grupo.
+        public void llamarConvertirEnLider(string nombreGrupo)
+        {
+            clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
+            string conexionIDSiguienteJugador = "";
+
+            if (partida.ListadoJugadores.Count > 0)
+            {
+                conexionIDSiguienteJugador = partida.ListadoJugadores[0].ConnectionID;    //el primer jugador que haya (el jugador lider ya debe haber salido del grupo)
+                if (!String.IsNullOrEmpty(conexionIDSiguienteJugador))
+                {
+                    Clients.Client(conexionIDSiguienteJugador).nombrarComoLider();  //nombramos como lider a ese jugador
+                }
+            }
+            
+            
+        }
+
 
 
 
@@ -172,7 +200,9 @@ namespace ServerPinturillo
 
             if(encontrado) //Si estaba en un grupo, sacarlo 
             {
-                jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);
+
+                jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);  
+                
             }
             else //no esta en ningun grupo
             {

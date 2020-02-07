@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+<<<<<<< Updated upstream
     <Machine>107-04</Machine>
     <WindowsUser>vmperez</WindowsUser>
+=======
+    <Machine>ANGELAASUS</Machine>
+    <WindowsUser>Angela</WindowsUser>
+>>>>>>> Stashed changes
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +15,11 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>21dd45e7-4d68-4768-823b-bbe6c6a2d856</PackageIdentityName>
     <PackageIdentityPublisher>CN=Victor</PackageIdentityPublisher>
+<<<<<<< Updated upstream
     <IntermediateOutputPath>C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\</IntermediateOutputPath>
+=======
+    <IntermediateOutputPath>D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\</IntermediateOutputPath>
+>>>>>>> Stashed changes
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +27,13 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
+<<<<<<< Updated upstream
     <LayoutDir>C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppX</LayoutDir>
     <RegisteredManifestChecksum>BF1084FB3BB3BC112605E23C18D3C728774FD11DCF91A22FA8F5580651052CD5</RegisteredManifestChecksum>
+=======
+    <LayoutDir>D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>38C91A5B65BE823B0DD93DAED2650A2EC4EAE9ED41107B69630DF61B3CF63ED8</RegisteredManifestChecksum>
+>>>>>>> Stashed changes
     <RegisteredPackageMoniker>21dd45e7-4d68-4768-823b-bbe6c6a2d856_1.0.0.0_x86__mj2y49482qz0c</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>21dd45e7-4d68-4768-823b-bbe6c6a2d856_mj2y49482qz0c!App</RegisteredUserModeAppID>
     <RegisteredPackageID>21dd45e7-4d68-4768-823b-bbe6c6a2d856</RegisteredPackageID>
@@ -27,6 +41,7 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <AppXManifest Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -87,6 +102,68 @@
       <Modified>2018-02-04T22:10:46.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll">
+=======
+    <AppXManifest Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-07T09:15:28.781</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
+      <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
+      <Modified>2020-02-07T09:15:27.825</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
+      <PackagePath>CommonServiceLocator.dll</PackagePath>
+      <Modified>2018-01-03T11:27:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnet.signalr.client\2.4.1\lib\netstandard2.0\Microsoft.AspNet.SignalR.Client.dll">
+      <PackagePath>Microsoft.AspNet.SignalR.Client.dll</PackagePath>
+      <Modified>2019-04-02T22:30:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.connections.abstractions\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Connections.Abstractions.dll">
+      <PackagePath>Microsoft.AspNetCore.Connections.Abstractions.dll</PackagePath>
+      <Modified>2019-12-16T01:11:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.http.features\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll">
+      <PackagePath>Microsoft.AspNetCore.Http.Features.dll</PackagePath>
+      <Modified>2019-12-16T01:04:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.aspnetcore.signalr.common\3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.SignalR.Common.dll">
+      <PackagePath>Microsoft.AspNetCore.SignalR.Common.dll</PackagePath>
+      <Modified>2019-12-16T01:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.bcl.asyncinterfaces\1.1.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll">
+      <PackagePath>Microsoft.Bcl.AsyncInterfaces.dll</PackagePath>
+      <Modified>2019-11-15T07:36:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\3.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
+      <Modified>2019-12-14T17:39:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.options\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll">
+      <PackagePath>Microsoft.Extensions.Options.dll</PackagePath>
+      <Modified>2019-12-14T17:39:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\microsoft.extensions.primitives\3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll">
+      <PackagePath>Microsoft.Extensions.Primitives.dll</PackagePath>
+      <Modified>2019-12-14T17:39:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Extras.dll">
+      <PackagePath>GalaSoft.MvvmLight.Extras.dll</PackagePath>
+      <Modified>2018-02-04T22:10:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Platform.dll">
+      <PackagePath>GalaSoft.MvvmLight.Platform.dll</PackagePath>
+      <Modified>2018-02-04T22:10:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.dll">
+      <PackagePath>GalaSoft.MvvmLight.dll</PackagePath>
+      <Modified>2018-02-04T22:10:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\newtonsoft.json\12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll">
+>>>>>>> Stashed changes
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
       <Modified>2019-11-08T23:56:44.000</Modified>
     </AppxPackagedFile>
@@ -94,6 +171,7 @@
       <PackagePath>System.Runtime.dll</PackagePath>
       <Modified>2019-07-22T12:01:14.000</Modified>
     </AppxPackagedFile>
+<<<<<<< Updated upstream
     <AppxPackagedFile Include="C:\Users\vmperez\.nuget\packages\system.io.pipelines\4.7.0\lib\netstandard2.0\System.IO.Pipelines.dll">
       <PackagePath>System.IO.Pipelines.dll</PackagePath>
       <Modified>2019-11-15T07:37:20.000</Modified>
@@ -107,6 +185,21 @@
       <Modified>2019-11-15T07:37:52.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\.nuget\packages\system.text.json\4.7.0\lib\netstandard2.0\System.Text.Json.dll">
+=======
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.io.pipelines\4.7.0\lib\netstandard2.0\System.IO.Pipelines.dll">
+      <PackagePath>System.IO.Pipelines.dll</PackagePath>
+      <Modified>2019-11-15T07:37:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.runtime.compilerservices.unsafe\4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+      <Modified>2019-11-15T07:37:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.text.encodings.web\4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll">
+      <PackagePath>System.Text.Encodings.Web.dll</PackagePath>
+      <Modified>2019-11-15T07:37:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\system.text.json\4.7.0\lib\netstandard2.0\System.Text.Json.dll">
+>>>>>>> Stashed changes
       <PackagePath>System.Text.Json.dll</PackagePath>
       <Modified>2019-11-15T07:37:56.000</Modified>
     </AppxPackagedFile>
@@ -114,6 +207,7 @@
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2018-10-22T23:33:40.000</Modified>
     </AppxPackagedFile>
+<<<<<<< Updated upstream
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\Assets\2.png">
       <PackagePath>Assets\2.png</PackagePath>
       <Modified>2020-01-22T12:19:00.327</Modified>
@@ -191,11 +285,91 @@
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
       <PackagePath>Views\SalaEspera.xbf</PackagePath>
       <Modified>2020-02-07T08:57:17.539</Modified>
+=======
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\2.png">
+      <PackagePath>Assets\2.png</PackagePath>
+      <Modified>2020-01-27T16:46:04.732</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\mancha.png">
+      <PackagePath>Assets\mancha.png</PackagePath>
+      <Modified>2020-01-27T16:46:04.735</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\photo.png">
+      <PackagePath>Assets\photo.png</PackagePath>
+      <Modified>2020-01-27T16:46:04.737</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LockScreenLogo.scale-200.png">
+      <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2020-01-27T16:46:04.734</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-200.png">
+      <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.740</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-200.png">
+      <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.745</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-200.png">
+      <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.746</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.747</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.748</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-200.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-01-27T16:46:04.749</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
+      <Modified>2020-01-27T16:46:04.923</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml">
+      <PackagePath>Pinturillo.xr.xml</PackagePath>
+      <Modified>2020-02-06T20:13:27.965</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.404</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
+      <PackagePath>Views\CrearSalaPage.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.405</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
+      <PackagePath>Views\ListadoSalas.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.405</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
+      <PackagePath>Views\MainPage.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.405</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
+      <PackagePath>Views\PantallaJuego.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.406</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
+      <PackagePath>Views\SalaEspera.xbf</PackagePath>
+      <Modified>2020-02-07T09:15:27.409</Modified>
+>>>>>>> Stashed changes
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2018-10-22T22:44:28.000</Modified>
     </AppxPackagedFile>
+<<<<<<< Updated upstream
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <Modified>2020-02-07T08:23:40.933</Modified>
@@ -203,6 +377,15 @@
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
       <Modified>2020-02-07T09:01:47.834</Modified>
+=======
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2020-02-07T08:49:27.039</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
+      <PackagePath>Pinturillo.exe</PackagePath>
+      <Modified>2020-02-07T09:15:28.772</Modified>
+>>>>>>> Stashed changes
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

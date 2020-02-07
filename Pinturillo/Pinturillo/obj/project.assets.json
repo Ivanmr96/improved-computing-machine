@@ -10441,25 +10441,44 @@
     ]
   },
   "packageFolders": {
+<<<<<<< Updated upstream
     "C:\\Users\\vmperez\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\Angela\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+>>>>>>> Stashed changes
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< Updated upstream
       "projectUniqueName": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
       "projectName": "Pinturillo",
       "projectPath": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
       "packagesPath": "C:\\Users\\vmperez\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
+=======
+      "projectUniqueName": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "projectName": "Pinturillo",
+      "projectPath": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "packagesPath": "C:\\Users\\Angela\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
+>>>>>>> Stashed changes
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
+<<<<<<< Updated upstream
         "C:\\Users\\vmperez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\Angela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+>>>>>>> Stashed changes
       ],
       "originalTargetFrameworks": [
         "uap10.0.17763"
