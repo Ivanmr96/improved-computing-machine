@@ -125,8 +125,9 @@ namespace PinturilloParaPruebas.ViewModels
         {
             //Indica al servidor que la partida va a comenzar.
 
-            navigationService.NavigateTo(ViewModelLocator.PantallaJuego,partida);
+            
             proxy.Invoke("empezarPartida", partida.NombreSala);
+            navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partida);
         }
 
         #endregion
@@ -144,15 +145,37 @@ namespace PinturilloParaPruebas.ViewModels
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-            proxy.On("empezarPartida", OnempezarPartida);
-
+            proxy.On("empezarPartida", OnempezarPartidaAsync);
+            proxy.On("nombrarComoLider", OnnombrarComoLider);
         }
 
-        private async void OnempezarPartida()
+        private async void OnempezarPartidaAsync()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 navigationService.NavigateTo(ViewModelLocator.PantallaJuego,partida);
+            });
+        }
+        //se nombra como lider al jugador actual
+        private async void OnnombrarComoLider()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                clsJugador jugador;
+                try
+                {
+                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
+                }
+                catch (Exception e)
+                {
+                    jugador = null;
+                }
+
+                if (jugador != null)
+                {
+                    jugador.IsLider = true;
+                    comenzarPartida.RaiseCanExecuteChanged();
+                }
             });
         }
 
