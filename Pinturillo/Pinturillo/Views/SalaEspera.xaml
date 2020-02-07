@@ -22,6 +22,7 @@
             >
 
             <ListView
+            SelectionMode="None"
             Name="listaJugadores"
             Windows10version1809:CornerRadius="30"
             Background="#effffb"
@@ -120,12 +121,13 @@
                 <ListView
                     Margin="25"
                     ItemsSource="{Binding Partida.ListadoMensajes}"
+                    SelectionMode="None"
                     >
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run FontWeight="Bold" Text="{Binding JugadorQueLoEnvia.Nickname}" />
                                 <Run Text=": " />
                                 <Run Text="{Binding Mensaje}" />
                             </TextBlock>

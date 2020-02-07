@@ -34,9 +34,17 @@ namespace Pinturillo
             btnEnviarMensaje.Focus(FocusState.Keyboard);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ListadoSalas));
+            ContentDialog confirmadoCorrectamente = new ContentDialog();
+            confirmadoCorrectamente.Title = "Confirmación";
+            confirmadoCorrectamente.Content = "¿Seguro que quieres salir?";
+            confirmadoCorrectamente.PrimaryButtonText = "Aceptar";
+            ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
+            if (resultado == ContentDialogResult.Primary)
+            {
+                this.Frame.Navigate(typeof(ListadoSalas));
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -69,6 +77,5 @@ namespace Pinturillo
             base.OnNavigatedTo(e);
 
         }
-
     }
 }

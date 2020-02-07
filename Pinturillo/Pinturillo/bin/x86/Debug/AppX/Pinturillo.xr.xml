@@ -210,6 +210,7 @@
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="Width" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="SelectionMode" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
@@ -261,6 +262,7 @@
     </RootType>
     <RootType FullName="Pinturillo.PantallaJuego" />
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
+      <RootProperty Name="FontWeight" />
       <RootProperty Name="Text" />
     </RootType>
     <RootType FullName="Pinturillo.SalaEspera" />

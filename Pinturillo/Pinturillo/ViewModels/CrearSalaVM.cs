@@ -121,6 +121,12 @@ namespace Pinturillo.ViewModels
                     proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
                 }
             }
+
+            _partida = new clsPartida();
+            _partida.NotifyPropertyChanged("NombreSala");
+            _partida.NotifyPropertyChanged("Password");
+            _partida.NotifyPropertyChanged("NumeroMaximoJugadores");
+            _visible = "Collapsed";
             //var hola = "hola";
         }
 
@@ -131,7 +137,7 @@ namespace Pinturillo.ViewModels
             if (String.IsNullOrEmpty(Partida.NombreSala))
             {
                 valido = false;
-                _lblErrorNombreSala = "Debes introducir un nombre";
+                _lblErrorNombreSala = "Debes introducir uno";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
             else
@@ -155,7 +161,7 @@ namespace Pinturillo.ViewModels
             if (String.IsNullOrEmpty(Partida.NombreSala))
             {
                 valido = false;
-                _lblErrorNombreSala = "Debes introducir un nombre";
+                _lblErrorNombreSala = "Debes introducir uno";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
             else {

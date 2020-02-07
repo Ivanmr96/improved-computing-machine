@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 namespace Pinturillo.ViewModels
 {
@@ -83,15 +84,18 @@ namespace Pinturillo.ViewModels
             //Mandar el mensaje al servidor
 
             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
+            mensaje.Mensaje = "";
+            NotifyPropertyChanged("Mensaje");
         }
 
         public DelegateCommand salir { get; set; }
 
-        private void salir_execute()
+        private async void salir_execute()
         {
             //Indica al serivdor que sale.
-            proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
-
+            
+            await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+            
             //para probar
             //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
         }
