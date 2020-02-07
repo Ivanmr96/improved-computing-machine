@@ -31,14 +31,14 @@
             RelativePanel.AlignRightWith="stkBotones"
             RelativePanel.AlignTopWithPanel="True"
             RelativePanel.AlignLeftWithPanel="True"
-            ItemsSource="{Binding Partida.ListadoJugadores}">
+            ItemsSource="{Binding Partida.ListadoJugadores, UpdateSourceTrigger=PropertyChanged}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock 
                             Foreground="#4f98ca"
                             FontSize="25">
-                            <Run Text="{Binding Nickname}" />
+                            <Run Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace Pinturillo.ViewModels
@@ -17,7 +18,7 @@ namespace Pinturillo.ViewModels
         private ObservableCollection<clsMensaje> _listadoMensajesChat;
         private clsJugador _usuarioPropio;
         private clsMensaje _mensaje;
-        private int _timeMax;
+        private int _timeMax = 60;
         private DispatcherTimer _dispatcherTimer;
         private clsPartida _partida;
         private string _lblTemporizador;
@@ -31,7 +32,64 @@ namespace Pinturillo.ViewModels
             _partida = new clsPartida();
             this._mensaje = new clsMensaje();
             _mensaje.JugadorQueLoEnvia = new clsJugador();
+
+
+            this._dispatcherTimer = new DispatcherTimer();
+            this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            this._dispatcherTimer.Tick += Timer_Tik;
+            this._dispatcherTimer.Start();
+            this.LblTemporizador = "60";
+
+            SignalR();
         }
+
+
+        private void Timer_Tik(object sender, object e)
+        {
+            if (_timeMax > 0 )
+            {
+
+                if (_timeMax <= 10)
+                {
+                    _timeMax--;
+                    LblTemporizador = string.Format("0{1}", _timeMax / 60, _timeMax % 60);
+                    NotifyPropertyChanged("LblTemporizador");
+                }
+                else
+                {
+                    _timeMax--;
+                    LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
+                    NotifyPropertyChanged("LblTemporizador");
+                }
+
+
+
+            }
+            else
+            {
+                this._dispatcherTimer.Stop();
+               
+
+                if (_timeMax == 0)
+                {
+                    //TODO 
+                }
+            }
+        }
+
+        public async void SignalR()
+        {
+            //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            conn = Connection.Connection.conn;
+            proxy = Connection.Connection.proxy;
+            //conn = new HubConnection("http://localhost:11111/");
+            //proxy = conn.CreateHubProxy("PictionaryHub");
+            //await conn.Start();
+
+
+
+        }
+
 
         #region"Propiedades públicas"
         public DelegateCommand GoBackCommand { get; }

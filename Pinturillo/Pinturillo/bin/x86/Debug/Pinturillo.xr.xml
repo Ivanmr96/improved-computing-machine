@@ -23,14 +23,15 @@
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
     <RootPropertyPathName Name="PantallaJuegoInstance" />
-    <RootPropertyPathName Name="listadoSalas" />
-    <RootPropertyPathName Name="Name" />
-    <RootPropertyPathName Name="SalaEsperaInstance" />
-    <RootPropertyPathName Name="enviarMensaje" />
-    <RootPropertyPathName Name="Mensaje" />
     <RootPropertyPathName Name="ListadoMensajes" />
+    <RootPropertyPathName Name="Mensaje" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="Nickname" />
+    <RootPropertyPathName Name="LblTemporizador" />
+    <RootPropertyPathName Name="Puntuacion" />
+    <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
+    <RootPropertyPathName Name="SalaEsperaInstance" />
+    <RootPropertyPathName Name="enviarMensaje" />
     <RootPropertyPathName Name="comenzarPartida" />
     <RootPropertyPathName Name="salir" />
   </Roots.PropertyPathNames>

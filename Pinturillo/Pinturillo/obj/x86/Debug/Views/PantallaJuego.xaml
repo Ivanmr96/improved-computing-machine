@@ -33,17 +33,15 @@
             >
                 <ListView x:ConnectionId='13'
                 Name="listadoSalas"
-                ItemsSource="{Binding listadoSalas}"
+                ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <RelativePanel
-                        
                         >
-
                                 <AppBarButton
                                         Name="icon"
-                                       
+                                       IsEnabled="{Binding IsUltimaPalabraAcertada}"
                                 Icon="Accept"
                                     Foreground="#50d890"
                                         RelativePanel.AlignLeftWithPanel="True"
@@ -57,7 +55,7 @@
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                         RelativePanel.Below="txtNombre"
@@ -67,7 +65,8 @@
                                 
                                 Foreground="#272727"
                                 FontSize="10"
-                                >100 puntos</TextBlock>
+                                    Text="{Binding Puntuacion, Mode=TwoWay}"
+                                ></TextBlock>
 
                             </RelativePanel>
                         </DataTemplate>
@@ -96,7 +95,7 @@
                     >
                     <TextBlock
                         FontSize="50"
-                        Text="60"
+                        Text="{Binding LblTemporizador, Mode=TwoWay}"
                         Foreground="#272727"
                         >
                         
@@ -182,7 +181,7 @@
             RelativePanel.Above="inputMensajes"
             Width="200"
             Margin="15"
-                ItemsSource="{Binding listadoSalas}"
+                ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -190,7 +189,7 @@
                         
                         >
 
-                        <AppBarButton
+                        <!--<AppBarButton
                                         Name="icon"
                                         Margin="0,10,5,0"
                                 Icon="Permissions"
@@ -198,14 +197,14 @@
                                         RelativePanel.AlignTopWithPanel="True"
                                 >
 
-                        </AppBarButton>
+                        </AppBarButton>-->
                         <TextBlock  
                                 Foreground="Black"
                                 FontSize="30"
                                         Name="txtSala"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding JugadorQueLoEnvia.Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                         <TextBlock
                                         RelativePanel.RightOf="txtSala"
@@ -213,7 +212,8 @@
                                 Margin="100,10,5,0"
                                 Foreground="Black"
                                 FontSize="20"
-                                >3/5</TextBlock>
+                                Text="{Binding Mensaje }"
+                                ></TextBlock>
 
                     </RelativePanel>
                 </DataTemplate>

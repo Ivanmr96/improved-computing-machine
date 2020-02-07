@@ -79,6 +79,9 @@ namespace ServerPinturillo
         public void empezarPartida(String nombreGrupo) {
 
             Clients.Group(nombreGrupo).empezarPartida();
+
+    
+
         }
 
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
