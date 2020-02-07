@@ -123,6 +123,7 @@
     <Compile Include="Models\clsJugador.cs" />
     <Compile Include="Models\clsMensaje.cs" />
     <Compile Include="Models\clsPartida.cs" />
+    <Compile Include="Models\clsPunto.cs" />
     <Compile Include="Utils\PasswordToVisibilityConverter.cs" />
     <Compile Include="Utils\StringToIntConverter.cs" />
     <Compile Include="ViewModels\clsVMBase.cs" />

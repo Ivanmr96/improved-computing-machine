@@ -30,6 +30,10 @@ namespace ServerPinturillo
          -
          */
 
+        public void strokeDraw(List<clsPunto> puntos,string nombreGrupo) {
+            Clients.OthersInGroup(nombreGrupo).mandarStroke(puntos);
+        }
+
         public void sendSalas()
         {
             //List<clsPartida> listadoSalas = new List<clsPartida>();

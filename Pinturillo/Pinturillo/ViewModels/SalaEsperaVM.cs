@@ -124,7 +124,7 @@ namespace Pinturillo.ViewModels
         {
             //Indica al servidor que la partida va a comenzar.
 
-            navigationService.NavigateTo(ViewModelLocator.PantallaJuego);
+            navigationService.NavigateTo(ViewModelLocator.PantallaJuego,partida);
             proxy.Invoke("empezarPartida",partida.NombreSala);
         }
 
@@ -151,7 +151,7 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                navigationService.NavigateTo(ViewModelLocator.PantallaJuego);
+                navigationService.NavigateTo(ViewModelLocator.PantallaJuego,partida);
             });
         }
 

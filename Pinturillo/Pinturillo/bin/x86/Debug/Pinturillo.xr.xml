@@ -22,6 +22,7 @@
     <RootPropertyPathName Name="MainPageInstance" />
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
+    <RootPropertyPathName Name="PantallaJuegoInstance" />
     <RootPropertyPathName Name="listadoSalas" />
     <RootPropertyPathName Name="Name" />
     <RootPropertyPathName Name="SalaEsperaInstance" />

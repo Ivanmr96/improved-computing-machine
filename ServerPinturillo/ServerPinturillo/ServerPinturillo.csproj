@@ -227,6 +227,7 @@
     <Compile Include="Clases\clsJugador.cs" />
     <Compile Include="Clases\clsMensaje.cs" />
     <Compile Include="Clases\clsPartida.cs" />
+    <Compile Include="Clases\clsPunto.cs" />
     <Compile Include="Clases\SingletonSalas.cs" />
     <Compile Include="PictionaryHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

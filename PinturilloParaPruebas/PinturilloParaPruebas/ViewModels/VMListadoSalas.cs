@@ -35,13 +35,13 @@ namespace PinturilloParaPruebas.ViewModels
             {
                 ObservableCollection<clsPartida> partidas = new ObservableCollection<clsPartida>();
                 if (ListadoPartidas != null)
-                partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
-                       where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
-                       select p);
+                    partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
+                                                                    where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
+                                                                    select p);
 
                 return partidas;
-                       
-            } 
+
+            }
         }
         #endregion
 
@@ -75,8 +75,8 @@ namespace PinturilloParaPruebas.ViewModels
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
 
             SignalR();
-            
-        
+
+
         }
 
         public async void SignalR()
@@ -90,13 +90,13 @@ namespace PinturilloParaPruebas.ViewModels
             await conn.Start();
 
 
-            proxy.On<List<clsPartida>>("recibirSalas",pedirListaAsync);
+            proxy.On<List<clsPartida>>("recibirSalas", pedirListaAsync);
             proxy.On<string>("eliminarPartidaVacia", eliminarPartidaVacia);
             proxy.On<clsJugador, clsPartida>("jugadorAdded", jugadorAdded);
             proxy.On<string, string>("jugadorDeletedSala", jugadorDeleted);
             proxy.Invoke("sendSalas");
 
-            
+
         }
 
         private async void eliminarPartidaVacia(string nombreSala)
@@ -150,7 +150,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                
+
                 this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
                 NotifyPropertyChanged("ListadoPartidas");
                 NotifyPropertyChanged("partidasAMostrar");
@@ -165,20 +165,29 @@ namespace PinturilloParaPruebas.ViewModels
         {
 
             proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            navigationService.NavigateTo(ViewModelLocator.SalaEspera,_usuarioPropio.Nickname);
+            navigationService.NavigateTo(ViewModelLocator.SalaEspera, _usuarioPropio.Nickname);
         }
 
 
 
 
 
-        public async void jugadorAdded( clsJugador jugador, clsPartida game)
+        public async void jugadorAdded(clsJugador jugador, clsPartida game)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
 
-                clsPartida partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
-                if(partida != null)
+                clsPartida partida;
+                try
+                {
+                    partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
+                }
+                catch (Exception e)
+                {
+                    partida = null;
+                }
+
+                if (partida != null)
                 {
                     partida.ListadoJugadores.Add(jugador);
                     NotifyPropertyChanged("ListadoPartidas");

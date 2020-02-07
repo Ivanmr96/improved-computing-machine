@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR.Client;
+﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.AspNet.SignalR.Client;
 using PinturilloParaPruebas.Models;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,15 @@ namespace PinturilloParaPruebas.ViewModels
         private string _lblTemporizador;
         private HubConnection conn;
         private IHubProxy proxy;
-
+        private readonly INavigationService navigationService;
         #endregion
+
+        public VMPantallaJuego(INavigationService navigationService)
+        {
+            _partida = new clsPartida();
+            this._mensaje = new clsMensaje();
+            _mensaje.JugadorQueLoEnvia = new clsJugador();
+        }
 
         #region"Propiedades públicas"
         public DelegateCommand GoBackCommand { get; }
