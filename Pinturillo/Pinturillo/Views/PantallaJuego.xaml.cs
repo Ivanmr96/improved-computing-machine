@@ -184,9 +184,9 @@ namespace Pinturillo
             public int Age { get; set; }
         }*/
 
-        private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void BackArrow_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(ListadoSalas));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -212,6 +212,7 @@ namespace Pinturillo
             base.OnNavigatedTo(e);
 
         }
+
 
 
         //// Update ink stroke color for new strokes.

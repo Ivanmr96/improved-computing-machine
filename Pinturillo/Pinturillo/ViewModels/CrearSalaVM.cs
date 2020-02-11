@@ -18,6 +18,7 @@ namespace Pinturillo.ViewModels
         private clsPartida _partida;
         private String _lblErrorNombreSala; //Si la sala ya existe muestra este label
         private String _lblErrorContrasena; //Si se marca el checkbox de sala privada y no se escribe contrasena
+        private String _lblErrorNumJugadores; //Si no se selecciona un numero de jugadores máximos
         private DelegateCommand _crearPartida;
         private HubConnection conn;
         private IHubProxy proxy;
@@ -55,6 +56,9 @@ namespace Pinturillo.ViewModels
             _partida = new clsPartida();
             this.navigationService = navigationService;
             _visible = "Collapsed";
+            _lblErrorNombreSala = "*";
+            
+            _lblErrorNumJugadores = "*";
             _checkboxChecked = false;
             SignalR();
         }
@@ -106,6 +110,7 @@ namespace Pinturillo.ViewModels
         }
 
         public bool CheckboxChecked { get => _checkboxChecked; set => _checkboxChecked = value; }
+        public String LblErrorNumJugadores { get => _lblErrorNumJugadores; set => _lblErrorNumJugadores = value; }
 
         private void CrearCommand_Executed()
         {           
@@ -114,20 +119,26 @@ namespace Pinturillo.ViewModels
                 if (validarFormulario())
                 {
                     proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    limpiarCampos();
                 }
             }
             else {
                 if (validarFormularioSoloNombreSala()) {
                     proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    limpiarCampos();
                 }
             }
 
+            
+            //var hola = "hola";
+        }
+
+        public void limpiarCampos() {
             _partida = new clsPartida();
             _partida.NotifyPropertyChanged("NombreSala");
             _partida.NotifyPropertyChanged("Password");
             _partida.NotifyPropertyChanged("NumeroMaximoJugadores");
             _visible = "Collapsed";
-            //var hola = "hola";
         }
 
         //Metodo para validar el formulario si el checkbox no esta marcado
@@ -137,13 +148,25 @@ namespace Pinturillo.ViewModels
             if (String.IsNullOrEmpty(Partida.NombreSala))
             {
                 valido = false;
-                _lblErrorNombreSala = "Debes introducir uno";
+                _lblErrorNombreSala = "*Nombre requerido";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
             else
             {
-                _lblErrorNombreSala = "";
+                _lblErrorNombreSala = "*";
                 NotifyPropertyChanged("LblErrorNombreSala");
+            }
+
+            if (_partida.NumeroMaximoJugadores == 0)
+            {
+                valido = false;
+                LblErrorNumJugadores = "*Debes seleccionar un numero";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+            else
+            {
+                LblErrorNumJugadores = "*";
+                NotifyPropertyChanged("LblErrorNumJugadores");
             }
             return valido;
         }
@@ -161,27 +184,50 @@ namespace Pinturillo.ViewModels
             if (String.IsNullOrEmpty(Partida.NombreSala))
             {
                 valido = false;
-                _lblErrorNombreSala = "Debes introducir uno";
+                _lblErrorNombreSala = "*Nombre requerido";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
             else {
-                _lblErrorNombreSala = "";
+                _lblErrorNombreSala = "*";
                 NotifyPropertyChanged("LblErrorNombreSala");
             }
 
             if (String.IsNullOrEmpty(_partida.Password)) {
                 valido = false;
-                _lblErrorContrasena = "Debes introducirla";
+                _lblErrorContrasena = "*Constraseña requerida";
                 NotifyPropertyChanged("LblErrorContrasena");
             }
             else
             {
-                _lblErrorContrasena = "";
+                _lblErrorContrasena = "*";
                 NotifyPropertyChanged("LblErrorContrasena");
+            }
+
+            if (_partida.NumeroMaximoJugadores == 0)
+            {
+                valido = false;
+                LblErrorNumJugadores = "*Debes seleccionar un numero";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+            else
+            {
+                LblErrorNumJugadores = "*";
+                NotifyPropertyChanged("LblErrorNumJugadores");
             }
 
             return valido;
 
+        }
+
+        public void limpiarFormulario() {
+            _lblErrorNombreSala = "*";
+            NotifyPropertyChanged("LblErrorNombreSala");
+            LblErrorNumJugadores = "*";
+            NotifyPropertyChanged("LblErrorNumJugadores");
+            _lblErrorContrasena = "";
+            NotifyPropertyChanged("LblErrorContrasena");
+            _visible = "Collapsed";
+            NotifyPropertyChanged("visible");
         }
 
         public void CheckBox_Changed(object sender, RoutedEventArgs e)
@@ -191,12 +237,16 @@ namespace Pinturillo.ViewModels
             {
                 _visible = "Visible";
                 NotifyPropertyChanged("visible");
+                _lblErrorContrasena = "*";
+                NotifyPropertyChanged("LblErrorContrasena");
                 _checkboxChecked = true;
             }
             else
             {
                 _visible = "Collapsed";
                 NotifyPropertyChanged("visible");
+                _lblErrorContrasena = "";
+                NotifyPropertyChanged("LblErrorContrasena");
                 _checkboxChecked = false;
             }
         }

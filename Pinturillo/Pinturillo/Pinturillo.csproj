@@ -159,7 +159,9 @@
   <ItemGroup>
     <Content Include="Assets\2.png" />
     <Content Include="Assets\mancha.png" />
-    <Content Include="Assets\photo.png" />
+    <Content Include="Assets\photo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

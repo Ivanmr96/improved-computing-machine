@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace PinturilloParaPruebas.ViewModels
 {
@@ -16,20 +18,23 @@ namespace PinturilloParaPruebas.ViewModels
         private clsPartida _partida;
         private String _lblErrorNombreSala; //Si la sala ya existe muestra este label
         private String _lblErrorContrasena; //Si se marca el checkbox de sala privada y no se escribe contrasena
+        private String _lblErrorNumJugadores; //Si no se selecciona un numero de jugadores máximos
         private DelegateCommand _crearPartida;
         private HubConnection conn;
         private IHubProxy proxy;
         private readonly INavigationService navigationService;
+        private String _visible;
+        private bool _checkboxChecked;
 
         private const int NUM_MAX_JUGADORES = 5;
 
-        public List<int> NumJugadores 
-        { 
-            get 
+        public List<int> NumJugadores
+        {
+            get
             {
                 List<int> numeros = new List<int>();
 
-                for(int i = 2; i <= NUM_MAX_JUGADORES; i++)
+                for (int i = 2; i <= NUM_MAX_JUGADORES; i++)
                 {
                     numeros.Add(i);
                 }
@@ -38,12 +43,26 @@ namespace PinturilloParaPruebas.ViewModels
             }
         }
 
-
+        public String visible
+        {
+            get
+            {
+                return _visible;
+            }
+            set
+            {
+                _visible = value;
+            }
+        }
         public CrearSalaVM(INavigationService navigationService)
         {
             _partida = new clsPartida();
             this.navigationService = navigationService;
+            _visible = "Collapsed";
+            _lblErrorNombreSala = "*";
 
+            _lblErrorNumJugadores = "*";
+            _checkboxChecked = false;
             SignalR();
         }
 
@@ -93,17 +112,153 @@ namespace PinturilloParaPruebas.ViewModels
             }
         }
 
+        public bool CheckboxChecked { get => _checkboxChecked; set => _checkboxChecked = value; }
+        public String LblErrorNumJugadores { get => _lblErrorNumJugadores; set => _lblErrorNumJugadores = value; }
+
         private void CrearCommand_Executed()
         {
-            //this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, NombreUsuario);   
-            proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+            if (_checkboxChecked)
+            {
+                if (validarFormulario())
+                {
+                    proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    limpiarCampos();
+                }
+            }
+            else
+            {
+                if (validarFormularioSoloNombreSala())
+                {
+                    proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    limpiarCampos();
+                }
+            }
+
+
             //var hola = "hola";
         }
 
+        public void limpiarCampos()
+        {
+            _partida = new clsPartida();
+            _partida.NotifyPropertyChanged("NombreSala");
+            _partida.NotifyPropertyChanged("Password");
+            _partida.NotifyPropertyChanged("NumeroMaximoJugadores");
+            _visible = "Collapsed";
+        }
+
+        //Metodo para validar el formulario si el checkbox no esta marcado
+        private bool validarFormularioSoloNombreSala()
+        {
+            bool valido = true;
+            if (String.IsNullOrEmpty(Partida.NombreSala))
+            {
+                valido = false;
+                _lblErrorNombreSala = "*Nombre requerido";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+            else
+            {
+                _lblErrorNombreSala = "*";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+
+            if (_partida.NumeroMaximoJugadores == 0)
+            {
+                valido = false;
+                LblErrorNumJugadores = "*Debes seleccionar un numero";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+            else
+            {
+                LblErrorNumJugadores = "*";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+            return valido;
+        }
 
         private bool CrearCommand_CanExecuted()
         {
             return true;
+        }
+
+        //Metodo para validar el formulario si el checkbox esta marcado
+        public bool validarFormulario()
+        {
+
+            bool valido = true;
+
+            if (String.IsNullOrEmpty(Partida.NombreSala))
+            {
+                valido = false;
+                _lblErrorNombreSala = "*Nombre requerido";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+            else
+            {
+                _lblErrorNombreSala = "*";
+                NotifyPropertyChanged("LblErrorNombreSala");
+            }
+
+            if (String.IsNullOrEmpty(_partida.Password))
+            {
+                valido = false;
+                _lblErrorContrasena = "*Constraseña requerida";
+                NotifyPropertyChanged("LblErrorContrasena");
+            }
+            else
+            {
+                _lblErrorContrasena = "*";
+                NotifyPropertyChanged("LblErrorContrasena");
+            }
+
+            if (_partida.NumeroMaximoJugadores == 0)
+            {
+                valido = false;
+                LblErrorNumJugadores = "*Debes seleccionar un numero";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+            else
+            {
+                LblErrorNumJugadores = "*";
+                NotifyPropertyChanged("LblErrorNumJugadores");
+            }
+
+            return valido;
+
+        }
+
+        public void limpiarFormulario()
+        {
+            _lblErrorNombreSala = "*";
+            NotifyPropertyChanged("LblErrorNombreSala");
+            LblErrorNumJugadores = "*";
+            NotifyPropertyChanged("LblErrorNumJugadores");
+            _lblErrorContrasena = "";
+            NotifyPropertyChanged("LblErrorContrasena");
+            _visible = "Collapsed";
+            NotifyPropertyChanged("visible");
+        }
+
+        public void CheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = (CheckBox)sender;
+            if (checkbox.IsChecked == true)
+            {
+                _visible = "Visible";
+                NotifyPropertyChanged("visible");
+                _lblErrorContrasena = "*";
+                NotifyPropertyChanged("LblErrorContrasena");
+                _checkboxChecked = true;
+            }
+            else
+            {
+                _visible = "Collapsed";
+                NotifyPropertyChanged("visible");
+                _lblErrorContrasena = "";
+                NotifyPropertyChanged("LblErrorContrasena");
+                _checkboxChecked = false;
+            }
         }
     }
 }

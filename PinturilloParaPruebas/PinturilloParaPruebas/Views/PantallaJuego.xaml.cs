@@ -187,7 +187,7 @@ namespace PinturilloParaPruebas
 
         private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(ListadoSalas));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

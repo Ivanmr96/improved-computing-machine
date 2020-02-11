@@ -32,6 +32,8 @@ namespace Pinturillo
         }       
             private void Button_Click(object sender, RoutedEventArgs e)
         {
+            vm.limpiarCampos();
+            vm.limpiarFormulario();
             this.Frame.Navigate(typeof(ListadoSalas), vm.NombreUsuario);
         }        
 

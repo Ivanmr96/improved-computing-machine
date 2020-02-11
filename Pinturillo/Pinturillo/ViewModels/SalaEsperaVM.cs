@@ -94,10 +94,23 @@ namespace Pinturillo.ViewModels
         {
             //Indica al serivdor que sale.
             
-            await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
-            
+            //await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+
             //para probar
             //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+
+            ContentDialog confirmadoCorrectamente = new ContentDialog();
+            confirmadoCorrectamente.Title = "Confirmación";
+            confirmadoCorrectamente.Content = "¿Seguro que quieres salir?";
+            confirmadoCorrectamente.PrimaryButtonText = "Si";
+            confirmadoCorrectamente.SecondaryButtonText = "No";
+            ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
+            if (resultado == ContentDialogResult.Primary)
+            {
+                //this.Frame.Navigate(typeof(ListadoSalas));
+                navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+                await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+            }
         }
 
         public DelegateCommand comenzarPartida { get; set; }

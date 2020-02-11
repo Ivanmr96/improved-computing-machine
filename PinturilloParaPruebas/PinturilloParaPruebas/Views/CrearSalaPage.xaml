@@ -19,35 +19,51 @@
     <!--->
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
     <-->
-    <RelativePanel Background="#4f98ca">
-        <Button Name="btnVolver" RelativePanel.AlignLeftWithPanel="True" Click="Button_Click"
+        <RelativePanel Background="#4f98ca">
+            <Button Name="btnVolver" RelativePanel.AlignLeftWithPanel="True" Click="Button_Click"
         Background="#FF46B0CF">
-            <StackPanel>
-                <Image Source="Assets/photo.png" Height="62"/>
-            </StackPanel>
-        </Button>
-        <Image Source="Assets/2.png" RelativePanel.AlignVerticalCenterWith="border" RelativePanel.RightOf="border" Margin="-144,-7,111,-7"/>
-        <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver"  Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
+                <StackPanel>
+                    <Image Source="Assets/photo.png" Height="62"/>
+                </StackPanel>
+            </Button>
+            <Image Source="Assets/2.png" RelativePanel.AlignVerticalCenterWith="border" RelativePanel.RightOf="border" Margin="-144,-7,111,-7"/>
+            <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver"  Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
 
-        <Border Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
-            <RelativePanel  Background="#EFFFFB">
-                <TextBox 
+            <Border Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                <RelativePanel  Background="#EFFFFB">
+                    <TextBox 
                     Text="{Binding Partida.NombreSala, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
 
-                <CheckBox Name="checkbox" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
-                <PasswordBox 
+                    <TextBlock Name="txtErrorNombreSala"
+                               RelativePanel.RightOf="txtboxNombreSala" 
+                               RelativePanel.AlignVerticalCenterWith="txtboxNombreSala" 
+                               Text="{Binding LblErrorNombreSala,Mode=OneWay}"
+                               Margin="8,30,0,0" Foreground="Red"></TextBlock>
+
+                    <CheckBox Name="checkbox" Checked="{x:Bind vm.CheckBox_Changed}" Unchecked="{x:Bind vm.CheckBox_Changed}" Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                    <PasswordBox Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                     Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
-                    <ComboBox ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
-                        
+                    <ComboBox Name="combobox" ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
+
                     </ComboBox>
-            </RelativePanel>
-        </Border>
-        <Button
+                    <TextBlock Name="txtErrorContrasena"
+                               RelativePanel.RightOf="passwordbox" 
+                               RelativePanel.AlignVerticalCenterWith="passwordbox" 
+                               Text="{Binding LblErrorContrasena,Mode=OneWay}"
+                               Margin="8,15,0,0" Foreground="Red"></TextBlock>
+                    <TextBlock Name="txtErrorNumJugadores"
+                               RelativePanel.RightOf="combobox" 
+                               RelativePanel.AlignVerticalCenterWith="combobox" 
+                               Text="{Binding LblErrorNumJugadores,Mode=OneWay}"
+                               Margin="8,15,0,0" Foreground="Red"></TextBlock>
+                </RelativePanel>
+            </Border>
+            <Button
             Command="{Binding crearPartida}"
             Content="Crear" RelativePanel.Below="border" CornerRadius="20" FontSize="40" Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
-    
-        
-    </RelativePanel>
+
+
+        </RelativePanel>
 </Page>

@@ -35,23 +35,30 @@
                     Text="{Binding Partida.NombreSala, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
 
-                    <TextBlock RelativePanel.RightOf="txtboxNombreSala" 
+                    <TextBlock x:ConnectionId='5' Name="txtErrorNombreSala"
+                               RelativePanel.RightOf="txtboxNombreSala" 
                                RelativePanel.AlignVerticalCenterWith="txtboxNombreSala" 
                                Text="{Binding LblErrorNombreSala,Mode=OneWay}"
-                               Margin="12,30,0,0" Foreground="Red"></TextBlock>
+                               Margin="8,30,0,0" Foreground="Red"></TextBlock>
 
-                    <CheckBox x:ConnectionId='5' Name="checkbox"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
-                    <PasswordBox x:ConnectionId='6' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                    <CheckBox x:ConnectionId='6' Name="checkbox"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                    <PasswordBox x:ConnectionId='7' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                     Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
-                    <ComboBox ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
+                    <ComboBox x:ConnectionId='8' Name="combobox" ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
                         
                     </ComboBox>
-                    <TextBlock RelativePanel.RightOf="passwordbox" 
+                    <TextBlock x:ConnectionId='9' Name="txtErrorContrasena"
+                               RelativePanel.RightOf="passwordbox" 
                                RelativePanel.AlignVerticalCenterWith="passwordbox" 
                                Text="{Binding LblErrorContrasena,Mode=OneWay}"
-                               Margin="12,15,0,0" Foreground="Red"></TextBlock>
-            </RelativePanel>
+                               Margin="8,15,0,0" Foreground="Red"></TextBlock>
+                    <TextBlock x:ConnectionId='10' Name="txtErrorNumJugadores"
+                               RelativePanel.RightOf="combobox" 
+                               RelativePanel.AlignVerticalCenterWith="combobox" 
+                               Text="{Binding LblErrorNumJugadores,Mode=OneWay}"
+                               Margin="8,15,0,0" Foreground="Red"></TextBlock>
+                </RelativePanel>
         </Border>
         <Button
             Command="{Binding crearPartida}"

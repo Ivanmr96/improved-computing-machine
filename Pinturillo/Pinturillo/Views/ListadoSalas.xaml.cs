@@ -41,7 +41,7 @@ namespace Pinturillo
         }
 
 
-        private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void BackArrow_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
@@ -65,8 +65,5 @@ namespace Pinturillo
 
             viewModel.ListadoSalas_Tapped(partida);
         }
-
-
-
     }
 }

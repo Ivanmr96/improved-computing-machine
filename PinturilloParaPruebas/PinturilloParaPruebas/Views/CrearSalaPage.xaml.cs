@@ -27,23 +27,15 @@ namespace PinturilloParaPruebas
         public CrearSalaPage()
         {
             this.InitializeComponent();
-            passwordbox.Visibility = Visibility.Collapsed;
 
             vm = (CrearSalaVM)DataContext;
-        }       
-            private void Button_Click(object sender, RoutedEventArgs e)
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            vm.limpiarCampos();
+            vm.limpiarFormulario();
             this.Frame.Navigate(typeof(ListadoSalas), vm.NombreUsuario);
         }
-
-        private void CheckBox_Changed(object sender, RoutedEventArgs e)
-        {
-            if (checkbox.IsChecked == true) {
-                passwordbox.Visibility = Visibility.Visible;
-            }else
-                passwordbox.Visibility = Visibility.Collapsed;
-        }
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

@@ -242,24 +242,14 @@
             >
             
         </Button>
-        
 
-        <Path x:ConnectionId='7' 
-                                               
-            Stretch="Fill" 
-              Name="backArrow"
-              RelativePanel.AlignLeftWithPanel="True"
+        <Button x:ConnectionId='7' Name="backArrow"  RelativePanel.AlignLeftWithPanel="True"
               RelativePanel.AlignTopWithPanel="True"
-              Fill="#effffb"
-              Margin="20,20,30,0"
-          Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"  
-            Width="40" Height="40"
-          RenderTransformOrigin=".5,.5" UseLayoutRounding="False">
-            <Path.RenderTransform>
-                <RotateTransform Angle="180" />
-            </Path.RenderTransform>
-        </Path>
-        
+        Background="#FF46B0CF" Margin="20,10,30,0"                        >
+            <StackPanel>
+                <Image Source="Assets/photo.png" Height="62"/>
+            </StackPanel>
+        </Button>
     </RelativePanel>
 </Page>
 
