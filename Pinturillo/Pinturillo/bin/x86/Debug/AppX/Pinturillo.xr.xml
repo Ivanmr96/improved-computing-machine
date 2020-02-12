@@ -24,8 +24,10 @@
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
     <RootPropertyPathName Name="PantallaJuegoInstance" />
-    <RootPropertyPathName Name="ListadoMensajes" />
+    <RootPropertyPathName Name="GoBackCommand" />
+    <RootPropertyPathName Name="SendMessageCommand" />
     <RootPropertyPathName Name="Mensaje" />
+    <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="Nickname" />
     <RootPropertyPathName Name="LblTemporizador" />

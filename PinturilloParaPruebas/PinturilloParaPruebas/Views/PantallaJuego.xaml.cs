@@ -45,11 +45,6 @@ namespace PinturilloParaPruebas
         {
             this.InitializeComponent();
             viewModel = (VMPantallaJuego)this.DataContext;
-            List<User> items = new List<User>();
-            items.Add(new User() { Name = "Angela", Age = 22 });
-            items.Add(new User() { Name = "Victor", Age = 20 });
-            items.Add(new User() { Name = "Ivan", Age = 23 });
-            listadoSalas.ItemsSource = items;
 
 
             inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
@@ -178,17 +173,7 @@ namespace PinturilloParaPruebas
                 points.Add(ultimo);
             }
         }
-        public class User
-        {
-            public string Name { get; set; }
 
-            public int Age { get; set; }
-        }
-
-        private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ListadoSalas));
-        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -200,14 +185,18 @@ namespace PinturilloParaPruebas
             {
                 if (e.Parameter != null)
                 {
-                    viewModel.Partida = (clsPartida)e.Parameter;
 
-                    clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+                    Tuple<String, clsPartida> partidaConNick = (Tuple<String, clsPartida>)e.Parameter;
+
+                    viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
+                    viewModel.Partida = partidaConNick.Item2;
+
+                    //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
 
                     //viewModel.Partida.ListadoJugadores.
 
-                    viewModel.UsuarioPropio = jugadorLider;
-                    viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
+                    //viewModel.UsuarioPropio = jugadorLider;
+                    viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
                 }
             }
             base.OnNavigatedTo(e);

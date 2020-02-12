@@ -50,7 +50,8 @@ namespace Pinturillo
             listadoSalas.ItemsSource = items;*/
 
 
-            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
+            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
+            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
 
             InkDrawingAttributes att = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
             att.Color = Color.FromArgb(100, 0, 220, 100);
@@ -184,11 +185,6 @@ namespace Pinturillo
             public int Age { get; set; }
         }*/
 
-        private void BackArrow_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ListadoSalas));
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -199,14 +195,17 @@ namespace Pinturillo
             {
                 if (e.Parameter != null)
                 {
-                    viewModel.Partida = (clsPartida)e.Parameter;
+                    Tuple<String,clsPartida> partidaConNick = (Tuple<String, clsPartida>)e.Parameter;
 
-                    clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+                    viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
+                    viewModel.Partida = partidaConNick.Item2;
+
+                    //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
 
                     //viewModel.Partida.ListadoJugadores.
 
-                    viewModel.UsuarioPropio = jugadorLider;
-                    viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
+                    //viewModel.UsuarioPropio = jugadorLider;
+                    viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
                 }
             }
             base.OnNavigatedTo(e);

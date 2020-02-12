@@ -32,17 +32,15 @@
             >
                 <ListView
                 Name="listadoSalas"
-                ItemsSource="{Binding listadoSalas}"
+                ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <RelativePanel
-                        
                         >
-
                                 <AppBarButton
                                         Name="icon"
-                                       
+                                       IsEnabled="{Binding IsUltimaPalabraAcertada}"
                                 Icon="Accept"
                                     Foreground="#50d890"
                                         RelativePanel.AlignLeftWithPanel="True"
@@ -56,7 +54,7 @@
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                         RelativePanel.Below="txtNombre"
@@ -66,7 +64,8 @@
                                 
                                 Foreground="#272727"
                                 FontSize="10"
-                                >100 puntos</TextBlock>
+                                    Text="{Binding Puntuacion, Mode=TwoWay}"
+                                ></TextBlock>
 
                             </RelativePanel>
                         </DataTemplate>
@@ -95,13 +94,13 @@
                     >
                     <TextBlock
                         FontSize="50"
-                        Text="60"
+                        Text="{Binding LblTemporizador, Mode=TwoWay}"
                         Foreground="#272727"
                         >
-                        
+
                     </TextBlock>
 
-                    </Border>
+                </Border>
 
                 <TextBlock
                     Name="palabra"
@@ -112,7 +111,7 @@
                     Foreground="#effffb"
                     Text="RATON"
                     >
-                    
+
                 </TextBlock>
 
                 <TextBlock
@@ -126,7 +125,7 @@
                     >
 
                 </TextBlock>
-<!--
+                <!--
                 <InkCanvas
             Name="inkCanvas"
                     RelativePanel.AlignTopWithPanel="True"
@@ -156,6 +155,7 @@
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
+                      
                            />
 
                 <InkToolbar x:Name="inkToolbar"
@@ -163,13 +163,13 @@
                            RelativePanel.AlignRightWithPanel="True"
           TargetInkCanvas="{x:Bind inkCanvas}" />
 
-                
+
             </RelativePanel>
-            
+
         </Border>
-        
-            
-    
+
+
+
 
         <ListView
             Name="chatMensajes"
@@ -181,7 +181,7 @@
             RelativePanel.Above="inputMensajes"
             Width="200"
             Margin="15"
-                ItemsSource="{Binding listadoSalas}"
+                ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -189,7 +189,7 @@
                         
                         >
 
-                        <AppBarButton
+                        <!--<AppBarButton
                                         Name="icon"
                                         Margin="0,10,5,0"
                                 Icon="Permissions"
@@ -197,14 +197,14 @@
                                         RelativePanel.AlignTopWithPanel="True"
                                 >
 
-                        </AppBarButton>
+                        </AppBarButton>-->
                         <TextBlock  
                                 Foreground="Black"
                                 FontSize="30"
                                         Name="txtSala"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding JugadorQueLoEnvia.Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                         <TextBlock
                                         RelativePanel.RightOf="txtSala"
@@ -212,7 +212,8 @@
                                 Margin="100,10,5,0"
                                 Foreground="Black"
                                 FontSize="20"
-                                >3/5</TextBlock>
+                                Text="{Binding Mensaje }"
+                                ></TextBlock>
 
                     </RelativePanel>
                 </DataTemplate>
@@ -227,7 +228,7 @@
             
             Margin="0,0,0,15"
             RelativePanel.AlignBottomWithPanel="True"
-            
+            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}"
             >
 
         </TextBox>
@@ -239,25 +240,15 @@
             Windows10version1809:CornerRadius="0,10,10,0"
             Content="Enviar"
             >
-            
-        </Button>
-        
 
-        <Path 
-            RightTapped="BackArrow_RightTapped"
-            Stretch="Fill" 
-              Name="backArrow"
-              RelativePanel.AlignLeftWithPanel="True"
+        </Button>
+
+        <Button Name="backArrow"  RelativePanel.AlignLeftWithPanel="True"
               RelativePanel.AlignTopWithPanel="True"
-              Fill="#effffb"
-              Margin="20,20,30,0"
-          Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"  
-            Width="40" Height="40"
-          RenderTransformOrigin=".5,.5" UseLayoutRounding="False">
-            <Path.RenderTransform>
-                <RotateTransform Angle="180" />
-            </Path.RenderTransform>
-        </Path>
-        
+        Background="#FF46B0CF" Margin="20,10,30,0" Command="{Binding GoBackCommand}">
+            <StackPanel>
+                <Image Source="Assets/photo.png" Height="62"/>
+            </StackPanel>
+        </Button>
     </RelativePanel>
 </Page>

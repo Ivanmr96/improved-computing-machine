@@ -143,7 +143,8 @@ namespace Pinturillo.ViewModels
 
             
             proxy.Invoke("empezarPartida",partida.NombreSala);
-            navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partida);
+            Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+            navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
         }
 
         #endregion
@@ -171,7 +172,8 @@ namespace Pinturillo.ViewModels
             //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partida);
+                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
             });
         }
 

@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-11T09:55:39.693</Modified>
+      <Modified>2020-02-12T11:58:53.861</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-02-11T09:55:38.252</Modified>
+      <Modified>2020-02-12T11:58:32.363</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -166,31 +166,31 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml">
       <PackagePath>Pinturillo.xr.xml</PackagePath>
-      <Modified>2020-02-11T09:34:47.856</Modified>
+      <Modified>2020-02-12T11:58:32.059</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.947</Modified>
+      <Modified>2020-02-12T11:58:52.412</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
       <PackagePath>Views\CrearSalaPage.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.947</Modified>
+      <Modified>2020-02-12T11:58:52.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
       <PackagePath>Views\ListadoSalas.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.947</Modified>
+      <Modified>2020-02-12T11:58:52.413</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.948</Modified>
+      <Modified>2020-02-12T11:58:52.414</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
       <PackagePath>Views\PantallaJuego.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.949</Modified>
+      <Modified>2020-02-12T11:58:52.414</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
       <PackagePath>Views\SalaEspera.xbf</PackagePath>
-      <Modified>2020-02-11T09:55:37.949</Modified>
+      <Modified>2020-02-12T11:58:52.414</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -198,11 +198,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-02-11T09:22:29.648</Modified>
+      <Modified>2020-02-12T11:58:32.918</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vmperez\Documents\GitHub\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-02-11T09:55:39.665</Modified>
+      <Modified>2020-02-12T11:58:53.845</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Pinturillo.ViewModels
 {
@@ -29,10 +30,13 @@ namespace Pinturillo.ViewModels
 
         public VMPantallaJuego(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
             _partida = new clsPartida();
+            _usuarioPropio = new clsJugador();
             this._mensaje = new clsMensaje();
             _mensaje.JugadorQueLoEnvia = new clsJugador();
-
+            this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
+            this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
 
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -61,11 +65,7 @@ namespace Pinturillo.ViewModels
                     LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
                     NotifyPropertyChanged("LblTemporizador");
                 }
-
-
-
-            }
-            else
+            } else
             {
                 this._dispatcherTimer.Stop();
                
@@ -85,8 +85,8 @@ namespace Pinturillo.ViewModels
             //conn = new HubConnection("http://localhost:11111/");
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
-
-
+            proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
+            proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
 
         }
 
@@ -105,27 +105,63 @@ namespace Pinturillo.ViewModels
 
 
         #region"Command"
-        private void ExecuteGoBackCommand()
+        private async void ExecuteGoBackCommand()
         {
-            //TODO
-        }
-
-        private bool CanExecuteGoBackCommand()
-        {
-            //TODO
-            return false;
+            ContentDialog confirmadoCorrectamente = new ContentDialog();
+            confirmadoCorrectamente.Title = "Confirmación";
+            confirmadoCorrectamente.Content = "¿Seguro que quieres salir?";
+            confirmadoCorrectamente.PrimaryButtonText = "Si";
+            confirmadoCorrectamente.SecondaryButtonText = "No";
+            ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
+            if (resultado == ContentDialogResult.Primary)
+            {
+                //this.Frame.Navigate(typeof(ListadoSalas));
+                navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+                await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
+            }
         }
 
         private void ExecuteSendMessageCommand()
         {
-            //TODO
+            proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
+            _mensaje.Mensaje = "";
+            NotifyPropertyChanged("Mensaje");
         }
 
-        private bool CanExecuteSendMessageCommand()
-        {
-            //TODO
-            return false;
-        }
+
+        private bool CanExecuteSendMessageCommand() => _mensaje != null || _mensaje.Mensaje != "";
         #endregion
+
+        public async void OnjugadorDeleted(string usuario, string nombreSala)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                clsJugador jugador;
+                try
+                {
+                    jugador = _partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+                }
+                catch (Exception e)
+                {
+                    jugador = null;
+                }
+
+                if (jugador != null)
+                {
+                    _partida.ListadoJugadores.Remove(jugador);
+                    _partida.NotifyPropertyChanged("ListadoJugadores");
+                }
+            });
+        }
+
+        public async void OnaddMensajeToChat(clsMensaje mensaje)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _partida.ListadoMensajes.Add(mensaje);
+                _partida.NotifyPropertyChanged("ListadoMensajes");
+
+            });
+        }
     }
 }
