@@ -54,7 +54,7 @@
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding UsuarioPropio.Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                         RelativePanel.Below="txtNombre"
@@ -64,7 +64,7 @@
                                 
                                 Foreground="#272727"
                                 FontSize="10"
-                                    Text="{Binding Puntuacion, Mode=TwoWay}"
+                                    Text="{Binding UsuarioPropio.Puntuacion, Mode=TwoWay}"
                                 ></TextBlock>
 
                             </RelativePanel>
@@ -125,15 +125,6 @@
                     >
 
                 </TextBlock>
-                <!--
-                <InkCanvas
-            Name="inkCanvas"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-            />
-                -->
 
 
                 <Rectangle
@@ -185,37 +176,11 @@
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <RelativePanel
-                        
-                        >
-
-                        <!--<AppBarButton
-                                        Name="icon"
-                                        Margin="0,10,5,0"
-                                Icon="Permissions"
-                                        RelativePanel.AlignLeftWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                >
-
-                        </AppBarButton>-->
-                        <TextBlock  
-                                Foreground="Black"
-                                FontSize="30"
-                                        Name="txtSala"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding JugadorQueLoEnvia.Nickname, UpdateSourceTrigger=PropertyChanged}" />
-
-                        <TextBlock
-                                        RelativePanel.RightOf="txtSala"
-                                        RelativePanel.AlignBottomWith="txtSala"
-                                Margin="100,10,5,0"
-                                Foreground="Black"
-                                FontSize="20"
-                                Text="{Binding Mensaje }"
-                                ></TextBlock>
-
-                    </RelativePanel>
+                    <TextBlock>
+                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run Text=": " />
+                                <Run Text="{Binding Mensaje}" />
+                    </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -238,7 +203,8 @@
             RelativePanel.AlignBottomWithPanel="True"
             Margin="0,10,15,15"
             Windows10version1809:CornerRadius="0,10,10,0"
-            Content="Enviar"
+            Content="Enviar" 
+            Command="{Binding SendMessageCommand}"
             >
 
         </Button>

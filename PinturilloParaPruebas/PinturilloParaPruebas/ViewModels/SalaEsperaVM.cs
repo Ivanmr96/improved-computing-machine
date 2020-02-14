@@ -125,7 +125,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             //Indica al servidor que la partida va a comenzar.
 
-            
+            partida.IsJugandose = true;
             proxy.Invoke("empezarPartida", partida.NombreSala);
             Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
             navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
@@ -154,8 +154,10 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                partida.IsJugandose = true;
                 Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
                 navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
+               
             });
         }
         //se nombra como lider al jugador actual
@@ -239,5 +241,6 @@ namespace PinturilloParaPruebas.ViewModels
 
             });
         }
+
     }
 }

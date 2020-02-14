@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Views;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.AspNet.SignalR.Client;
 using Pinturillo.Models;
 using System;
@@ -26,6 +27,7 @@ namespace Pinturillo.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         private readonly INavigationService navigationService;
+        private bool isUltimaPalabraAcertada;
         #endregion
 
         public VMPantallaJuego(INavigationService navigationService)
@@ -37,12 +39,14 @@ namespace Pinturillo.ViewModels
             _mensaje.JugadorQueLoEnvia = new clsJugador();
             this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
             this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
-
+            this.IsUltimaPalabraAcertada = false;
+            _timeMax = 60;
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             this._dispatcherTimer.Tick += Timer_Tik;
             this._dispatcherTimer.Start();
             this.LblTemporizador = "60";
+
 
             SignalR();
         }
@@ -100,6 +104,7 @@ namespace Pinturillo.ViewModels
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
         public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
+        public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
 
         #endregion
 
@@ -118,6 +123,7 @@ namespace Pinturillo.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
+                pararContador();
             }
         }
 
@@ -158,10 +164,23 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                _partida.ListadoMensajes.Add(mensaje);
-                _partida.NotifyPropertyChanged("ListadoMensajes");
-
+                if (ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null)
+                {
+                    _partida.ListadoMensajes.Add(mensaje);
+                    _partida.NotifyPropertyChanged("ListadoMensajes");
+                }
             });
+        }
+
+        public void reiniciarContador() {
+            pararContador();
+            this.LblTemporizador = "60";
+            NotifyPropertyChanged("LblTemporizador");
+            this._dispatcherTimer.Start();
+        }
+
+        public void pararContador() {
+            this._dispatcherTimer.Stop();
         }
     }
 }

@@ -206,10 +206,16 @@ namespace Pinturillo
 
                     //viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
+                    
                 }
             }
             base.OnNavigatedTo(e);
 
+        }
+
+        private void InkToolbar_EraseAllClicked(InkToolbar sender, object args)
+        {
+            //inkToolbar.Children.
         }
 
 

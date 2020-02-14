@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Views;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.AspNet.SignalR.Client;
 using PinturilloParaPruebas.Models;
 using System;
@@ -25,6 +26,7 @@ namespace PinturilloParaPruebas.ViewModels
         private string _lblTemporizador;
         private HubConnection conn;
         private IHubProxy proxy;
+        private bool isUltimaPalabraAcertada;
         private readonly INavigationService navigationService;
         #endregion
 
@@ -37,7 +39,7 @@ namespace PinturilloParaPruebas.ViewModels
             _mensaje.JugadorQueLoEnvia = new clsJugador();
             this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
             this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
-
+            this.isUltimaPalabraAcertada = false;
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             this._dispatcherTimer.Tick += Timer_Tik;
@@ -101,6 +103,7 @@ namespace PinturilloParaPruebas.ViewModels
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
         public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
+        public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
 
         #endregion
 
@@ -124,7 +127,20 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void ExecuteSendMessageCommand()
         {
-            proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
+            if(Mensaje.Mensaje.ToLower() == Partida.PalabraEnJuego.ToLower())
+            {
+                //Notifica al servidor que ha acertado la palabra
+
+
+
+                Partida.ListadoMensajes.Add(Mensaje);
+            }
+            else
+            {
+
+                proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
+            }
+
             _mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
         }
@@ -159,8 +175,10 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                _partida.ListadoMensajes.Add(mensaje);
-                _partida.NotifyPropertyChanged("ListadoMensajes");
+                if(ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null) {
+                     _partida.ListadoMensajes.Add(mensaje);
+                     _partida.NotifyPropertyChanged("ListadoMensajes");
+                }
 
             });
         }

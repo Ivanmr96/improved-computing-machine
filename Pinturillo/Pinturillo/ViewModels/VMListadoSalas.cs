@@ -37,6 +37,7 @@ namespace Pinturillo.ViewModels
                 if (ListadoPartidas != null)
                 partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
                        where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
+                       || p.IsJugandose == false
                        select p);
 
                 return partidas;

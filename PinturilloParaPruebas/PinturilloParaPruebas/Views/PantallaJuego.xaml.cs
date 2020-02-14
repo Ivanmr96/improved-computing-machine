@@ -33,6 +33,7 @@ namespace PinturilloParaPruebas
         InkStrokeBuilder builder;
         List<Point> points;
         IReadOnlyList<InkStroke> _added;
+        IReadOnlyList<InkStroke> _borrado;
         Line line;
         private HubConnection conn;
         private IHubProxy proxy;
@@ -57,11 +58,17 @@ namespace PinturilloParaPruebas
             inkCanvas.InkPresenter.StrokeInput.StrokeStarted += StrokeInput_StrokeStarted;
             inkCanvas.InkPresenter.StrokeInput.StrokeEnded += StrokeInput_StrokeEnded;
             inkCanvas.InkPresenter.StrokesCollected += InkPresenter_StrokesCollected;
+            inkCanvas.InkPresenter.StrokesErased += InkPresenter_StrokesErased;
 
             builder = new InkStrokeBuilder();
             points = new List<Point>();
 
             SignalR();
+        }
+
+        private void InkPresenter_StrokesErased(InkPresenter sender, InkStrokesErasedEventArgs args)
+        {
+            _borrado = args.Strokes;
         }
 
         public async void SignalR()
@@ -179,7 +186,7 @@ namespace PinturilloParaPruebas
         {
 
             var lastPage = Frame.BackStack.Last().SourcePageType;
-
+            
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
             if (lastPage.FullName.Equals("PinturilloParaPruebas.SalaEspera"))
             {
@@ -202,6 +209,9 @@ namespace PinturilloParaPruebas
             base.OnNavigatedTo(e);
 
         }
+        
+
+
 
 
         //// Update ink stroke color for new strokes.

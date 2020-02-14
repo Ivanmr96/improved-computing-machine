@@ -31,6 +31,7 @@
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="Nickname" />
     <RootPropertyPathName Name="LblTemporizador" />
+    <RootPropertyPathName Name="UsuarioPropio" />
     <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
     <RootPropertyPathName Name="SalaEsperaInstance" />
@@ -233,6 +234,10 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="Pinturillo.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.Documents.Run">
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontWeight" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
       <RootProperty Name="Fill" />
       <RootProperty Name="Margin" />
@@ -244,13 +249,13 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbar">
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="InitialControls" />
       <RootProperty Name="TargetInkCanvas" />
+      <RootProperty Name="Children" />
+      <RootEvent Name="EraseAllClicked" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarEraserButton" />
     <RootType FullName="Pinturillo.PantallaJuego" />
-    <RootType FullName="Windows.UI.Xaml.Documents.Run">
-      <RootProperty Name="FontWeight" />
-      <RootProperty Name="Text" />
-    </RootType>
     <RootType FullName="Pinturillo.SalaEspera" />
   </Roots.RootTypes>
 </Roots>

@@ -10,7 +10,7 @@
     DataContext="{Binding PantallaJuegoInstance, 
     Source={StaticResource Locator}}">
 
-    
+
     <RelativePanel>
         <Border x:ConnectionId='2' 
             Name="borderStackPanel"
@@ -36,24 +36,25 @@
                 >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <RelativePanel>
-                                 
-                                    <AppBarButton
+                            <RelativePanel
+                        >
+                                <AppBarButton
                                         Name="icon"
                                        IsEnabled="{Binding IsUltimaPalabraAcertada}"
                                 Icon="Accept"
                                     Foreground="#50d890"
                                         RelativePanel.AlignLeftWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True">
+                                        RelativePanel.AlignTopWithPanel="True"
+                                >
 
-                                    </AppBarButton>
+                                </AppBarButton>
                                 <TextBlock  
                                 Foreground="#272727"
                                 FontSize="15"
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding UsuarioPropio.Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                         RelativePanel.Below="txtNombre"
@@ -63,7 +64,7 @@
                                 
                                 Foreground="#272727"
                                 FontSize="10"
-                                    Text="{Binding Puntuacion, Mode=TwoWay}"
+                                    Text="{Binding UsuarioPropio.Puntuacion, Mode=TwoWay}"
                                 ></TextBlock>
 
                             </RelativePanel>
@@ -96,10 +97,10 @@
                         Text="{Binding LblTemporizador, Mode=TwoWay}"
                         Foreground="#272727"
                         >
-                        
+
                     </TextBlock>
 
-                    </Border>
+                </Border>
 
                 <TextBlock x:ConnectionId='9'
                     Name="palabra"
@@ -110,7 +111,7 @@
                     Foreground="#effffb"
                     Text="RATON"
                     >
-                    
+
                 </TextBlock>
 
                 <TextBlock
@@ -124,15 +125,6 @@
                     >
 
                 </TextBlock>
-<!--
-                <InkCanvas
-            Name="inkCanvas"
-                    RelativePanel.AlignTopWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-            />
-                -->
 
 
                 <Rectangle
@@ -154,20 +146,27 @@
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
+                      
                            />
 
                 <InkToolbar x:ConnectionId='11' x:Name="inkToolbar"
           VerticalAlignment="Top"
                            RelativePanel.AlignRightWithPanel="True"
-                                               />
+                                                                        
+                           InitialControls="PensOnly"
+                           
+                                               >
+                    
+                    <InkToolbarEraserButton ></InkToolbarEraserButton>
+                </InkToolbar>
 
-                
+
             </RelativePanel>
-            
+
         </Border>
-        
-            
-    
+
+
+
 
         <ListView x:ConnectionId='4'
             Name="chatMensajes"
@@ -183,37 +182,11 @@
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <RelativePanel
-                        
-                        >
-
-                        <!--<AppBarButton
-                                        Name="icon"
-                                        Margin="0,10,5,0"
-                                Icon="Permissions"
-                                        RelativePanel.AlignLeftWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                >
-
-                        </AppBarButton>-->
-                        <TextBlock  
-                                Foreground="Black"
-                                FontSize="30"
-                                        Name="txtSala"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding JugadorQueLoEnvia.Nickname, UpdateSourceTrigger=PropertyChanged}" />
-
-                        <TextBlock
-                                        RelativePanel.RightOf="txtSala"
-                                        RelativePanel.AlignBottomWith="txtSala"
-                                Margin="100,10,5,0"
-                                Foreground="Black"
-                                FontSize="20"
-                                Text="{Binding Mensaje }"
-                                ></TextBlock>
-
-                    </RelativePanel>
+                    <TextBlock>
+                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run Text=": " />
+                                <Run Text="{Binding Mensaje}" />
+                    </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -237,9 +210,9 @@
             Margin="0,10,15,15"
             Windows10version1809:CornerRadius="0,10,10,0"
             Content="Enviar"
-            Command="{Binding SendMessageCommand}"
+            Command="{Binding SendMessageCommand}"            
             >
-            
+
         </Button>
 
         <Button x:ConnectionId='7' Name="backArrow"  RelativePanel.AlignLeftWithPanel="True"
