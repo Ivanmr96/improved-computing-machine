@@ -61,6 +61,70 @@ namespace ServerPinturillo
         }
 
 
+        //Para cambiar el turno
+        public void avanzarTurno(clsPartida partida)
+        {
+            //El cliente que termine su turno, llama a este método
+            //este método avisa a los clientes de que el turno ha cambiado
+            //si el cliente detecta que el id del nuevo jugador es el propio
+            //hace cosas (habilita su canvas), los demas canvas de inhabilitan
+            //se debe cambiar la palabra en juego
+
+            //Obtengo el jugador actual
+            clsJugador jugadorJugando = partida.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
+
+            //Obtengo la posicion en la lista de jugadores del jugador actual
+            int posicion = -1;
+
+            for (int i = 0; i < partida.ListadoJugadores.Count || posicion == -1; i++)
+            {
+                if (partida.ListadoJugadores[i].ConnectionID == jugadorJugando.ConnectionID)
+                {
+                    posicion = i;
+                }
+
+            }
+            //Asigno una nueva palabra
+            partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+
+            //Cambio el jugador jugando
+            if (posicion < partida.ListadoJugadores.Count)
+            {
+                partida.ConnectionIDJugadorActual = partida.ListadoJugadores[(posicion + 1)].ConnectionID;
+
+            }
+            else
+            {
+                //Si ya han jugado todos los jugadores de la lista, se vuelve a empezar
+                partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
+            }
+
+
+            //Cambio el turno/ronda
+            if (partida.Turno <= partida.ListadoJugadores.Count)
+            {
+                partida.Turno++;
+
+            }
+            else
+            {
+                partida.Turno = 0;
+                if (partida.RondaActual < partida.NumeroRondasGlobales)
+                {
+                    partida.RondaActual++;
+                }
+                else
+                {
+                    //Terminaria la partida y se harian cosas
+                }
+
+            }
+
+            //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
+            Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
+        }
+
+
 
         public void sendMensaje (clsMensaje mensaje, string nombreGrupo)
         {
