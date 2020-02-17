@@ -42,6 +42,7 @@ namespace Pinturillo
         public PantallaJuego()
         {
             this.InitializeComponent();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             viewModel = (VMPantallaJuego)this.DataContext;
             /*List<User> items = new List<User>();
             items.Add(new User() { Name = "Angela", Age = 22 });

@@ -29,8 +29,9 @@ namespace PinturilloParaPruebas
         private SalaEsperaVM viewModel { get; }
         public SalaEspera()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
             viewModel = (SalaEsperaVM)DataContext;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

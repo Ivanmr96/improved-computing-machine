@@ -33,6 +33,7 @@ namespace PinturilloParaPruebas.ViewModels
         public VMPantallaJuego(INavigationService navigationService)
         {
             this.navigationService = navigationService;
+            
             _partida = new clsPartida();
             this._mensaje = new clsMensaje();
             _usuarioPropio = new clsJugador();
@@ -175,10 +176,10 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if(ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null) {
+                //if(ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null) {
                      _partida.ListadoMensajes.Add(mensaje);
                      _partida.NotifyPropertyChanged("ListadoMensajes");
-                }
+                //}
 
             });
         }

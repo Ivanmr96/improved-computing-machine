@@ -1217,7 +1217,6 @@ C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\Ser
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\bin\es\Microsoft.AspNet.SignalR.Core.resources.dll
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\bin\es\Microsoft.AspNet.SignalR.SystemWeb.resources.dll
-C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\obj\Debug\ServerPinturillo.csprojAssemblyReference.cache
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\obj\Debug\ServerPinturillo.csproj.CopyComplete
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\obj\Debug\ServerPinturillo.dll
 C:\Users\Victor\Documents\GitHub\improved-computing-machine\ServerPinturillo\ServerPinturillo\obj\Debug\ServerPinturillo.pdb

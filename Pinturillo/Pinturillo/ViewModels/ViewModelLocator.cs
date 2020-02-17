@@ -29,7 +29,7 @@ namespace Pinturillo.ViewModels
             nav.Configure(ListadoSalas, typeof(ListadoSalas));
             nav.Configure(PantallaJuego, typeof(PantallaJuego));
             nav.Configure(SalaEspera, typeof(SalaEspera));
-            
+
 
             //Register your services used here
             SimpleIoc.Default.Register<INavigationService>(() => nav);
@@ -38,7 +38,6 @@ namespace Pinturillo.ViewModels
             SimpleIoc.Default.Register<VMListadoSalas>();
             SimpleIoc.Default.Register<VMPantallaJuego>();
             SimpleIoc.Default.Register<SalaEsperaVM>();
-
 
         }
 

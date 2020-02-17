@@ -7,7 +7,7 @@ namespace ServerPinturillo
 {
     public class Utilidad
     {
-        private String[] listadoPalabras = {"Raton", "Teclado", "Monitor", "Profesor", "Movil" };
+        private static String[] listadoPalabras = {"Raton", "Teclado", "Monitor", "Profesor", "Movil" };
 
         public static String obtenerPalabraAleatoria()
         {

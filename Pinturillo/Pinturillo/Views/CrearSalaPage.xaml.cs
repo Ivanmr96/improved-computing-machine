@@ -27,7 +27,7 @@ namespace Pinturillo
         public CrearSalaPage()
         {
             this.InitializeComponent();
-
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             vm = (CrearSalaVM)DataContext;
         }       
             private void Button_Click(object sender, RoutedEventArgs e)

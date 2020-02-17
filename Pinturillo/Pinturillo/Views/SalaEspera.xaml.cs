@@ -30,6 +30,7 @@ namespace Pinturillo
         public SalaEspera()
         {
             this.InitializeComponent();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             viewModel = (SalaEsperaVM)DataContext;
             btnEnviarMensaje.Focus(FocusState.Keyboard);
         }

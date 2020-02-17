@@ -26,9 +26,9 @@ namespace PinturilloParaPruebas
         CrearSalaVM vm { get; set; }
         public CrearSalaPage()
         {
-            this.InitializeComponent();
-
+            this.InitializeComponent();            
             vm = (CrearSalaVM)DataContext;
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

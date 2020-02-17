@@ -46,7 +46,7 @@ namespace PinturilloParaPruebas
         {
             this.InitializeComponent();
             viewModel = (VMPantallaJuego)this.DataContext;
-
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
 
             inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
 
