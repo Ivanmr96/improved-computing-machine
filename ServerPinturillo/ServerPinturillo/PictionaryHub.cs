@@ -77,8 +77,11 @@ namespace ServerPinturillo
             partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
             partida.IsJugandose = true;
 
+
+
+           
             //Aqui haría falta guardar esta partida en la lista de partidas
-            
+
             Clients.Group(partida.NombreSala).onPartidaComenzada(partida);
 
 
@@ -135,6 +138,14 @@ namespace ServerPinturillo
             //Obtengo el jugador actual
             clsJugador jugadorJugando = partida.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
 
+
+            ////Se ponen todos los "isUltimaPalabraAcertada" a false
+            //for (int i = 0; i < partida.ListadoJugadores.Count; i++)
+            //{
+            //    partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
+            //}
+
+
             //Obtengo la posicion en la lista de jugadores del jugador actual
             int posicion = -1;
 
@@ -187,8 +198,22 @@ namespace ServerPinturillo
         }
 
 
-        //Contar cuantos clientes de una misma partida han terminado (su contador ha llegado a 0)
-        //y una vez todos hayan terminado, llamar al metodo que llame al de cambiar turno
+        //el cliente llama a este método cuando acierte la palabra
+        public void addPuntosToUser(string connectionIDUSer, int puntosToAdd,string nombreGrupo)
+        {
+            clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
+            clsJugador jugador = partidaActual.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == connectionIDUSer);
+
+            jugador.Puntuacion += puntosToAdd;
+            jugador.IsUltimaPalabraAcertada = true;
+
+            Clients.Group(nombreGrupo).puntosAdded(partidaActual);
+        }
+
+
+
+
+
 
 
 

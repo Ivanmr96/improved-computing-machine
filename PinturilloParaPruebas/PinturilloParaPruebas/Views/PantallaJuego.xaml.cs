@@ -38,6 +38,8 @@ namespace PinturilloParaPruebas
         private HubConnection conn;
         private IHubProxy proxy;
 
+        public static int TIME_MAX = 10;
+
         VMPantallaJuego viewModel
         {
             get; set;
@@ -104,9 +106,9 @@ namespace PinturilloParaPruebas
                 viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
-                viewModel.TimeMax = 10;
+                viewModel.TimeMax = TIME_MAX;
                 viewModel.NotifyPropertyChanged("TimeMax");
-                viewModel.LblTemporizador = "10";
+                viewModel.LblTemporizador = TIME_MAX.ToString();
                 viewModel.NotifyPropertyChanged("LblTemporizador");
 
                 viewModel.DispatcherTimer.Start();

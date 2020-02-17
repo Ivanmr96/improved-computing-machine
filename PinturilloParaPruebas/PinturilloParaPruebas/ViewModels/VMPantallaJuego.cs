@@ -32,6 +32,7 @@ namespace PinturilloParaPruebas.ViewModels
         private string _palabraAMostrar;
         #endregion
 
+        public static int TIME_MAX = 10;
         public VMPantallaJuego()
         {
 
@@ -42,12 +43,12 @@ namespace PinturilloParaPruebas.ViewModels
             this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
             this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
             this.IsUltimaPalabraAcertada = false;
-            _timeMax = 10;
+            _timeMax = TIME_MAX;
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             this._dispatcherTimer.Tick += Timer_Tik;
             //this._dispatcherTimer.Start();
-            this.LblTemporizador = "10";
+            this.LblTemporizador = TIME_MAX.ToString();
             this._palabraAMostrar = "";
             TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
 
@@ -100,8 +101,10 @@ namespace PinturilloParaPruebas.ViewModels
             //await conn.Start();
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
           //  proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
-            //proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
-          //  proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
+            proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
+            //  proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
+
+            proxy.On<clsPartida>("puntosAdded", OnPuntosAdded);
         }
 
 
@@ -142,14 +145,30 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void ExecuteSendMessageCommand()
         {
+            if (_mensaje.Mensaje.Contains(_partida.PalabraEnJuego))
+            {
+                _mensaje.Mensaje = "El usuario " + _usuarioPropio.Nickname + " ha acertado la palabra!";
+            }
             proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
+            
+
         }
 
 
         private bool CanExecuteSendMessageCommand() => _mensaje != null || _mensaje.Mensaje != "";
         #endregion
+
+        public async void OnPuntosAdded(clsPartida obj)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                this._partida.ListadoJugadores = obj.ListadoJugadores;
+                this._partida.NotifyPropertyChanged("ListadoJugadores");
+            });
+        }
+
 
         public async void OnjugadorDeleted(string usuario, string nombreSala)
         {
@@ -262,15 +281,15 @@ namespace PinturilloParaPruebas.ViewModels
         //    });
         //}
 
-        //public async void OnaddMensajeToChat(clsMensaje mensaje)
-        //{
-        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-        //    {
-        //        _partida.ListadoMensajes.Add(mensaje);
-        //        _partida.NotifyPropertyChanged("ListadoMensajes");
+        public async void OnaddMensajeToChat(clsMensaje mensaje)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _partida.ListadoMensajes.Add(mensaje);
+                _partida.NotifyPropertyChanged("ListadoMensajes");
 
-        //    });
-        //}
+            });
+        }
 
         public void reiniciarContador()
         {
