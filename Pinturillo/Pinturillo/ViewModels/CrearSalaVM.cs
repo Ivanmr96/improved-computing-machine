@@ -22,7 +22,7 @@ namespace Pinturillo.ViewModels
         private DelegateCommand _crearPartida;
         private HubConnection conn;
         private IHubProxy proxy;
-        private readonly INavigationService navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
         private String _visible;
         private bool _checkboxChecked;
 
@@ -51,10 +51,9 @@ namespace Pinturillo.ViewModels
                 _visible = value;
             }
         }
-        public CrearSalaVM(INavigationService navigationService)
+        public CrearSalaVM()
         {
             _partida = new clsPartida();
-            this.navigationService = navigationService;
             _visible = "Collapsed";
             _lblErrorNombreSala = "*";
             
@@ -93,7 +92,7 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                this.navigationService.NavigateTo(ViewModelLocator.SalaEspera, partida);
+                navigationFrame.Navigate(typeof(SalaEspera), partida);
             });
         }
 

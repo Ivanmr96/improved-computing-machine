@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pinturillo"
     xmlns:vm1="using:Pinturillo.ViewModels">
-    
-    <Application.Resources>
-        <vm1:ViewModelLocator xmlns:vm="Pinturillo.ViewModels" x:Key="Locator" />
-    </Application.Resources>
+
 </Application>
 

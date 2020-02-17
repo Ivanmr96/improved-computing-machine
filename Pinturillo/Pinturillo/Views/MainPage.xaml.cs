@@ -25,7 +25,6 @@ namespace Pinturillo
         public MainPage()
         {
             this.InitializeComponent();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
     }

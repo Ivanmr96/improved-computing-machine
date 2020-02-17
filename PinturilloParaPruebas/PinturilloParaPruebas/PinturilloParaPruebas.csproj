@@ -132,7 +132,6 @@
     <Compile Include="ViewModels\MainPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SalaEsperaVM.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\VMListadoSalas.cs" />
     <Compile Include="ViewModels\VMPantallaJuego.cs" />
     <Compile Include="Views\CrearSalaPage.xaml.cs">

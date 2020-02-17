@@ -5,7 +5,4 @@
     xmlns:local="using:PinturilloParaPruebas" 
     xmlns:vm1="using:PinturilloParaPruebas.ViewModels">
 
-    <Application.Resources>
-        <vm1:ViewModelLocator xmlns:vm="PinturilloParaPruebas.ViewModels" x:Key="Locator" />
-    </Application.Resources>
 </Application>

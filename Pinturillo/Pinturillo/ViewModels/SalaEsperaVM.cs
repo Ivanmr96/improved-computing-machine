@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Pinturillo.ViewModels
@@ -18,7 +19,7 @@ namespace Pinturillo.ViewModels
 
         private clsPartida partida;
         private clsMensaje mensaje;
-        private readonly INavigationService navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
         private string usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
@@ -26,12 +27,11 @@ namespace Pinturillo.ViewModels
 
         #region constructor
 
-        public SalaEsperaVM(INavigationService navigationService)
+        public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
 
             partida = new clsPartida();
-            this.navigationService = navigationService;
             this.salir = new DelegateCommand(salir_execute);
 
             SignalR();
@@ -108,7 +108,7 @@ namespace Pinturillo.ViewModels
             if (resultado == ContentDialogResult.Primary)
             {
                 //this.Frame.Navigate(typeof(ListadoSalas));
-                navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+                navigationFrame.Navigate(typeof(ListadoSalas),usuarioPropio);
                 await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
             }
         }
@@ -144,7 +144,7 @@ namespace Pinturillo.ViewModels
             partida.IsJugandose = true;
             proxy.Invoke("empezarPartida",partida.NombreSala);
             Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-            navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
+            navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
         }
 
         #endregion
@@ -174,7 +174,7 @@ namespace Pinturillo.ViewModels
             {
                 partida.IsJugandose = true;
                 Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
+                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
             });
         }
 

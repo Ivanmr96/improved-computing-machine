@@ -8,13 +8,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:Pinturillo.Utils"
     mc:Ignorable="d"
-    DataContext="{Binding CrearSalaInstance, 
-    Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <conv:StringToIntConverter x:Key="convertStringInt" />
     </Page.Resources>
+
+    <Page.DataContext>
+        <vm:CrearSalaVM></vm:CrearSalaVM>
+    </Page.DataContext>
     
     <!--->
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS

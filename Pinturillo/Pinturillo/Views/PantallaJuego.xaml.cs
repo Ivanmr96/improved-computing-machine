@@ -42,7 +42,6 @@ namespace Pinturillo
         public PantallaJuego()
         {
             this.InitializeComponent();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             viewModel = (VMPantallaJuego)this.DataContext;
             /*List<User> items = new List<User>();
             items.Add(new User() { Name = "Angela", Age = 22 });
@@ -200,6 +199,7 @@ namespace Pinturillo
 
                     viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
                     viewModel.Partida = partidaConNick.Item2;
+                    viewModel.NotifyPropertyChanged("Partida");
 
                     //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
 

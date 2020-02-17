@@ -34,15 +34,15 @@ namespace PinturilloParaPruebas
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ListadoSalas));
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof(ListadoSalas));
+        //}
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(PantallaJuego));
-        }
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof(PantallaJuego));
+        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

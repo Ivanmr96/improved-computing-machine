@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace PinturilloParaPruebas.ViewModels
@@ -12,16 +13,17 @@ namespace PinturilloParaPruebas.ViewModels
     {
         private String _nick;
         private DelegateCommand _entrarAlJuegoCommand;
-        private readonly INavigationService _navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
 
-
-        public MainPageVM(INavigationService navigationService) {
-            _navigationService = navigationService;
+        public MainPageVM()
+        {
         }
 
-        public String nick {
+        public String nick
+        {
             get { return _nick; }
-            set {
+            set
+            {
                 if (_nick != value)
                 {
                     _nick = value;
@@ -42,14 +44,15 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void EntrarAlJuego_Executed()
         {
-            _navigationService.NavigateTo(ViewModelLocator.ListadoSalas,_nick);
+            navigationFrame.Navigate(typeof(ListadoSalas),nick);
         }
 
         private bool EntrarAlJuego_CanExecuted()
         {
             bool puedeEntrar = false;
 
-            if (!String.IsNullOrEmpty(_nick)) {
+            if (!String.IsNullOrEmpty(_nick))
+            {
                 puedeEntrar = true;
             }
 

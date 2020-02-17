@@ -6,11 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:vm="using:PinturilloParaPruebas.ViewModels"
     mc:Ignorable="d"
-   Background="#4f98ca"
-    DataContext="{Binding PantallaJuegoInstance, 
-    Source={StaticResource Locator}}">
+   Background="#4f98ca">
 
+    <Page.DataContext>
+        <vm:VMPantallaJuego></vm:VMPantallaJuego>
+    </Page.DataContext>
+    
     <RelativePanel>
         <Border 
             Name="borderStackPanel"
@@ -54,7 +57,7 @@
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding UsuarioPropio.Nickname, UpdateSourceTrigger=PropertyChanged}" />
+                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                         RelativePanel.Below="txtNombre"

@@ -31,7 +31,6 @@ namespace Pinturillo
         public ListadoSalas()
         {
             this.InitializeComponent();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             viewModel = (VMListadoSalas)this.DataContext;
 
             //List<User> items = new List<User>();

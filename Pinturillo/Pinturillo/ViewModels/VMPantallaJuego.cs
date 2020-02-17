@@ -25,14 +25,13 @@ namespace Pinturillo.ViewModels
         private clsPartida _partida;
         private string _lblTemporizador;
         private HubConnection conn;
+        Frame navigationFrame = Window.Current.Content as Frame;
         private IHubProxy proxy;
-        private readonly INavigationService navigationService;
         private bool isUltimaPalabraAcertada;
         #endregion
 
-        public VMPantallaJuego(INavigationService navigationService)
+        public VMPantallaJuego()
         {
-            this.navigationService = navigationService;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
             this._mensaje = new clsMensaje();
@@ -90,7 +89,7 @@ namespace Pinturillo.ViewModels
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-            proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
+            //proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
 
         }
 
@@ -121,7 +120,7 @@ namespace Pinturillo.ViewModels
             if (resultado == ContentDialogResult.Primary)
             {
                 //this.Frame.Navigate(typeof(ListadoSalas));
-                navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+                navigationFrame.Navigate(typeof(ListadoSalas),_usuarioPropio.Nickname);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
                 pararContador();
             }
@@ -160,17 +159,15 @@ namespace Pinturillo.ViewModels
             });
         }
 
-        public async void OnaddMensajeToChat(clsMensaje mensaje)
-        {
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null)
-                {
-                    _partida.ListadoMensajes.Add(mensaje);
-                    _partida.NotifyPropertyChanged("ListadoMensajes");
-                }
-            });
-        }
+        //public async void OnaddMensajeToChat(clsMensaje mensaje)
+        //{
+        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        //    {
+        //        _partida.ListadoMensajes.Add(mensaje);
+        //        _partida.NotifyPropertyChanged("ListadoMensajes");
+                
+        //    });
+        //}
 
         public void reiniciarContador() {
             pararContador();

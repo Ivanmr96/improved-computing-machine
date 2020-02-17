@@ -4,7 +4,6 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="CrearSalaInstance" />
     <RootPropertyPathName Name="crearPartida" />
     <RootPropertyPathName Name="LblErrorNumJugadores" />
     <RootPropertyPathName Name="LblErrorContrasena" />
@@ -15,15 +14,12 @@
     <RootPropertyPathName Name="Password" />
     <RootPropertyPathName Name="LblErrorNombreSala" />
     <RootPropertyPathName Name="NombreSala" />
-    <RootPropertyPathName Name="ListadoSalasInstance" />
     <RootPropertyPathName Name="CreateGroupCommand" />
     <RootPropertyPathName Name="partidasAMostrar" />
     <RootPropertyPathName Name="ListadoJugadores" />
     <RootPropertyPathName Name="Count" />
-    <RootPropertyPathName Name="MainPageInstance" />
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
-    <RootPropertyPathName Name="PantallaJuegoInstance" />
     <RootPropertyPathName Name="GoBackCommand" />
     <RootPropertyPathName Name="SendMessageCommand" />
     <RootPropertyPathName Name="Mensaje" />
@@ -34,31 +30,21 @@
     <RootPropertyPathName Name="UsuarioPropio" />
     <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
-    <RootPropertyPathName Name="SalaEsperaInstance" />
     <RootPropertyPathName Name="enviarMensaje" />
     <RootPropertyPathName Name="comenzarPartida" />
     <RootPropertyPathName Name="salir" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
-    <RootType FullName="Windows.UI.Xaml.Application">
-      <RootProperty Name="Resources" />
-    </RootType>
-    <RootType FullName="Pinturillo.ViewModels.ViewModelLocator" />
+    <RootType FullName="Windows.UI.Xaml.Application" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
-      <RootProperty Name="DataContext" />
       <RootProperty Name="Background" />
       <RootProperty Name="Resources" />
+      <RootProperty Name="DataContext" />
       <RootProperty Name="Content" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="Source" />
-      <RootProperty Name="Mode" />
-      <RootProperty Name="UpdateSourceTrigger" />
-      <RootProperty Name="Converter" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Pinturillo.Utils.StringToIntConverter" />
+    <RootType FullName="Pinturillo.ViewModels.CrearSalaVM" />
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
       <RootProperty Name="Background" />
       <RootProperty Name="Children" />
@@ -141,6 +127,11 @@
       <RootProperty Name="Opacity" />
       <RootProperty Name="Padding" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="Converter" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Name" />
       <RootProperty Name="Text" />
@@ -190,6 +181,7 @@
       <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Pinturillo.CrearSalaPage" />
+    <RootType FullName="Pinturillo.ViewModels.VMListadoSalas" />
     <RootType FullName="Pinturillo.Utils.PasswordToVisibilityConverter" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Name" />
@@ -213,7 +205,9 @@
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Foreground" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Pinturillo.ListadoSalas" />
+    <RootType FullName="Pinturillo.ViewModels.MainPageVM" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Background" />
       <RootProperty Name="ColumnDefinitions" />
@@ -234,6 +228,7 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="Pinturillo.MainPage" />
+    <RootType FullName="Pinturillo.ViewModels.VMPantallaJuego" />
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
       <RootProperty Name="Text" />
       <RootProperty Name="FontWeight" />
@@ -256,6 +251,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarEraserButton" />
     <RootType FullName="Pinturillo.PantallaJuego" />
+    <RootType FullName="Pinturillo.ViewModels.SalaEsperaVM" />
     <RootType FullName="Pinturillo.SalaEspera" />
   </Roots.RootTypes>
 </Roots>

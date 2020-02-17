@@ -7,13 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:local1="using:Pinturillo.Utils"
-    mc:Ignorable="d"
+    xmlns:vm="using:Pinturillo.ViewModels"
+    mc:Ignorable="d">
 
+    <Page.DataContext>
+        <vm:VMListadoSalas></vm:VMListadoSalas>
+    </Page.DataContext>
     
-    DataContext="{Binding ListadoSalasInstance, 
-    Source={StaticResource Locator}}"
-    >
-
     <Page.Resources>
         <local1:PasswordToVisibilityConverter x:Key="PasswordConverter" ></local1:PasswordToVisibilityConverter>
     </Page.Resources>

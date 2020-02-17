@@ -8,9 +8,12 @@
     xmlns:vm="using:Pinturillo.ViewModels"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
-    DataContext="{Binding SalaEsperaInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <vm:SalaEsperaVM></vm:SalaEsperaVM>
+    </Page.DataContext>
+    
     <RelativePanel
         Background="#4f98ca">
 
@@ -81,14 +84,14 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:ConnectionId='9'
+                <Button
                 Background="Coral"
                 Grid.Column="0"
                     Command="{Binding salir}"
             Windows10version1809:CornerRadius="0,0,0,28"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch"                     
+            HorizontalAlignment="Stretch"
             >
                     Salir
                 </Button>

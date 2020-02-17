@@ -142,7 +142,7 @@ namespace ServerPinturillo
 
         public void empezarPartida(String nombreGrupo) {
 
-            Clients.Group(nombreGrupo).empezarPartida();
+            Clients.OthersInGroup(nombreGrupo).empezarPartida();
 
     
 

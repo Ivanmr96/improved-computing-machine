@@ -8,10 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:conv="using:PinturilloParaPruebas.Utils"
     mc:Ignorable="d"
-    DataContext="{Binding CrearSalaInstance, 
-    Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <vm:CrearSalaVM></vm:CrearSalaVM>
+    </Page.DataContext>
+    
     <Page.Resources>
         <conv:StringToIntConverter x:Key="convertStringInt" />
     </Page.Resources>

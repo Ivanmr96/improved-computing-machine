@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace PinturilloParaPruebas.ViewModels
 {
@@ -17,7 +19,7 @@ namespace PinturilloParaPruebas.ViewModels
 
         private clsPartida partida;
         private clsMensaje mensaje;
-        private readonly INavigationService navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
         private string usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
@@ -25,12 +27,11 @@ namespace PinturilloParaPruebas.ViewModels
 
         #region constructor
 
-        public SalaEsperaVM(INavigationService navigationService)
+        public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
 
             partida = new clsPartida();
-            this.navigationService = navigationService;
             this.salir = new DelegateCommand(salir_execute);
 
             SignalR();
@@ -87,13 +88,21 @@ namespace PinturilloParaPruebas.ViewModels
 
         public DelegateCommand salir { get; set; }
 
-        private void salir_execute()
+        private async void salir_execute()
         {
-            //Indica al serivdor que sale.
-            proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
 
-            //para probar
-            //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+            ContentDialog confirmadoCorrectamente = new ContentDialog();
+            confirmadoCorrectamente.Title = "Confirmación";
+            confirmadoCorrectamente.Content = "¿Seguro que quieres salir?";
+            confirmadoCorrectamente.PrimaryButtonText = "Si";
+            confirmadoCorrectamente.SecondaryButtonText = "No";
+            ContentDialogResult resultado = await confirmadoCorrectamente.ShowAsync();
+            if (resultado == ContentDialogResult.Primary)
+            {
+                //this.Frame.Navigate(typeof(ListadoSalas));
+                navigationFrame.Navigate(typeof(ListadoSalas), usuarioPropio);
+                await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+            }
         }
 
         public DelegateCommand comenzarPartida { get; set; }
@@ -128,7 +137,7 @@ namespace PinturilloParaPruebas.ViewModels
             partida.IsJugandose = true;
             proxy.Invoke("empezarPartida", partida.NombreSala);
             Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-            navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
+            navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
         }
 
         #endregion
@@ -156,7 +165,7 @@ namespace PinturilloParaPruebas.ViewModels
             {
                 partida.IsJugandose = true;
                 Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationService.NavigateTo(ViewModelLocator.PantallaJuego, partidaConNick);
+                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
                
             });
         }

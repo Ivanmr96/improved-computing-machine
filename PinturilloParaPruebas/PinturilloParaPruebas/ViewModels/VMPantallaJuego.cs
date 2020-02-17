@@ -27,12 +27,11 @@ namespace PinturilloParaPruebas.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         private bool isUltimaPalabraAcertada;
-        private readonly INavigationService navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
         #endregion
 
-        public VMPantallaJuego(INavigationService navigationService)
+        public VMPantallaJuego()
         {
-            this.navigationService = navigationService;
             
             _partida = new clsPartida();
             this._mensaje = new clsMensaje();
@@ -90,7 +89,7 @@ namespace PinturilloParaPruebas.ViewModels
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-            proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
+            //proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
 
         }
 
@@ -121,26 +120,26 @@ namespace PinturilloParaPruebas.ViewModels
             if (resultado == ContentDialogResult.Primary)
             {
                 //this.Frame.Navigate(typeof(ListadoSalas));
-                navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
+                navigationFrame.Navigate(typeof(ListadoSalas),_usuarioPropio.Nickname);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
             }
         }
 
         private void ExecuteSendMessageCommand()
         {
-            if(Mensaje.Mensaje.ToLower() == Partida.PalabraEnJuego.ToLower())
-            {
-                //Notifica al servidor que ha acertado la palabra
+            //if(Mensaje.Mensaje.ToLower() == Partida.PalabraEnJuego.ToLower())
+            //{
+            //    //Notifica al servidor que ha acertado la palabra
 
 
 
-                Partida.ListadoMensajes.Add(Mensaje);
-            }
-            else
-            {
+            //    Partida.ListadoMensajes.Add(Mensaje);
+            //}
+            //else
+            //{
 
-                proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
-            }
+            //    proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
+            //}
 
             _mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
@@ -172,16 +171,16 @@ namespace PinturilloParaPruebas.ViewModels
             });
         }
 
-        public async void OnaddMensajeToChat(clsMensaje mensaje)
-        {
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                //if(ServiceLocator.Current.GetInstance<SalaEsperaVM>() == null) {
-                     _partida.ListadoMensajes.Add(mensaje);
-                     _partida.NotifyPropertyChanged("ListadoMensajes");
-                //}
+        //public async void OnaddMensajeToChat(clsMensaje mensaje)
+        //{
+        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        //    {
 
-            });
-        }
+        //            _partida.ListadoMensajes.Add(mensaje);
+        //            _partida.NotifyPropertyChanged("ListadoMensajes");
+                
+
+        //    });
+        //}
     }
 }

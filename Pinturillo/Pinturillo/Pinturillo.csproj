@@ -143,7 +143,6 @@
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainPageVM.cs" />
     <Compile Include="ViewModels\SalaEsperaVM.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\PantallaJuego.xaml.cs">
       <DependentUpon>PantallaJuego.xaml</DependentUpon>
     </Compile>

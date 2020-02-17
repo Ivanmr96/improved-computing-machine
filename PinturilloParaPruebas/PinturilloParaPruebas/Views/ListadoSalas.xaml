@@ -8,11 +8,11 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:local1="using:PinturilloParaPruebas.Utils"
     mc:Ignorable="d"
-
-    
-    DataContext="{Binding ListadoSalasInstance, 
-    Source={StaticResource Locator}}"
+    xmlns:vm="using:PinturilloParaPruebas.ViewModels"
     >
+    <Page.DataContext>
+        <vm:VMListadoSalas></vm:VMListadoSalas>
+    </Page.DataContext>
 
     <Page.Resources>
         <local1:PasswordToVisibilityConverter x:Key="PasswordConverter" ></local1:PasswordToVisibilityConverter>

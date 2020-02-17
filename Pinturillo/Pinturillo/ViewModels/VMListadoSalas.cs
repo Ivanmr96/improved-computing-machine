@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Pinturillo.ViewModels
 {
@@ -18,7 +20,7 @@ namespace Pinturillo.ViewModels
         private clsJugador _usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
-        private readonly INavigationService navigationService;
+        Frame navigationFrame = Window.Current.Content as Frame;
 
         #endregion
 
@@ -61,15 +63,14 @@ namespace Pinturillo.ViewModels
 
         private void ExecuteCreateGroupCommand()
         {
-            navigationService.NavigateTo(ViewModelLocator.CrearSala, this._usuarioPropio.Nickname);
+            navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
         }
         #endregion
 
         #region"Constructor"
-        public VMListadoSalas(INavigationService navigationService)
+        public VMListadoSalas()
         {
             this._usuarioPropio = new clsJugador();
-            this.navigationService = navigationService;
             //TODO todas las cosas de SignalR
             //Command
             this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand); //TODO borrar command
@@ -162,7 +163,7 @@ namespace Pinturillo.ViewModels
         {
 
             proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            navigationService.NavigateTo(ViewModelLocator.SalaEspera,_usuarioPropio.Nickname);
+            navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
         }
 
 
