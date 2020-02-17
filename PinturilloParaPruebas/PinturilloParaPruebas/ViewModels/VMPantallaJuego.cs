@@ -42,12 +42,12 @@ namespace PinturilloParaPruebas.ViewModels
             this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
             this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
             this.IsUltimaPalabraAcertada = false;
-            _timeMax = 60;
+            _timeMax = 10;
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             this._dispatcherTimer.Tick += Timer_Tik;
             //this._dispatcherTimer.Start();
-            this.LblTemporizador = "60";
+            this.LblTemporizador = "10";
             this._palabraAMostrar = "";
             TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
 
@@ -82,6 +82,10 @@ namespace PinturilloParaPruebas.ViewModels
                 if (_timeMax == 0)
                 {
                     //TODO 
+                    //El contador llega a 0
+                    proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
+                    
+                    
                 }
             }
         }
@@ -108,6 +112,7 @@ namespace PinturilloParaPruebas.ViewModels
         public DispatcherTimer DispatcherTimer { get => _dispatcherTimer; set => _dispatcherTimer = value; }
         public clsPartida Partida { get => _partida; set => _partida = value; }
         public string LblTemporizador { get => _lblTemporizador; set => _lblTemporizador = value; }
+        public int TimeMax { get => _timeMax; set => _timeMax = value; }
         public string PalabraAMostrar { get => _palabraAMostrar; set => _palabraAMostrar = value; }
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }

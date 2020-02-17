@@ -13,7 +13,7 @@ namespace ServerPinturillo
 
         //Listado de salas que hay en el juego
         private SingletonSalas listadoSalas;
-
+       
         public PictionaryHub(SingletonSalas salas)
         {
             this.listadoSalas = salas;
@@ -63,20 +63,62 @@ namespace ServerPinturillo
 
         //Metodo para indicar que se comienza la partida
 
-        public void comenzarPartidaEnGrupo(clsPartida partida)
+        public void comenzarPartidaEnGrupo(clsPartida partida)  //TODO que aqui reciba el nombre de sala y ya
         {
+
+            partida = obtenerPartidaPorNombreSala(partida.NombreSala);
+
             //Se pone el primer turno de la primera ronda
             //el turno es el del primer jugador
             if(partida.ListadoJugadores.Count > 0)
             partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
-
             partida.Turno = 1;
             partida.RondaActual = 1;
             partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
             partida.IsJugandose = true;
 
+            //Aqui haría falta guardar esta partida en la lista de partidas
+            
             Clients.Group(partida.NombreSala).onPartidaComenzada(partida);
 
+
+        }
+
+
+        //Metodo que se llama cuando un contador de un cliente llega a 0
+        public void miContadorHaLlegadoACero(string connectionIDJugador, string nombreGrupo)
+        {
+            bool todosHanTerminado = true;
+
+            //Marcar ese jugador como que su timer ha terminado
+            clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
+
+            clsJugador jugadorQueHaTerminado = partidaActual.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == connectionIDJugador);
+
+            jugadorQueHaTerminado.HaTerminadoTimer = true;
+
+            //Comprobar si todos los jugadores de la partida han terminado
+            for(int i = 0; i < partidaActual.ListadoJugadores.Count; i++)
+            {
+                if (!partidaActual.ListadoJugadores[i].HaTerminadoTimer)
+                {
+                    //Si el timer de alguno NO ha terminado, entonces no todos han terminado
+                    todosHanTerminado = false;
+                }
+            }
+
+
+            if (todosHanTerminado)
+            {
+                //Vuelvo a poner sus "haTerminadoTimer" a false
+                for (int i = 0; i < partidaActual.ListadoJugadores.Count; i++)
+                {
+                    partidaActual.ListadoJugadores[i].HaTerminadoTimer = false;
+                }
+
+                //Cuando todos han terminado, se llama a avanzar turno
+                avanzarTurno(partidaActual);
+            }
 
         }
 
@@ -108,7 +150,7 @@ namespace ServerPinturillo
             partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
 
             //Cambio el jugador jugando
-            if (posicion < partida.ListadoJugadores.Count)
+            if (posicion < partida.ListadoJugadores.Count-1)
             {
                 partida.ConnectionIDJugadorActual = partida.ListadoJugadores[(posicion + 1)].ConnectionID;
 

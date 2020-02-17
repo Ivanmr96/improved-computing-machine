@@ -83,15 +83,20 @@ namespace Pinturillo
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 viewModel.Partida = obj;
-                // NotifyPropertyChanged("Partida");
+               viewModel.NotifyPropertyChanged("Partida");
 
                 viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
-                viewModel.LblTemporizador = "60";
-                //NotifyPropertyChanged("LblTemporizador");
-                
+                viewModel.TimeMax = 10;
+                viewModel.NotifyPropertyChanged("TimeMax");
+                viewModel.LblTemporizador = "10";
+                viewModel.NotifyPropertyChanged("LblTemporizador");
+
                 viewModel.DispatcherTimer.Start();
+
+                //Se limpia el canvas
+                inkCanvas.InkPresenter.StrokeContainer.Clear();
 
                 if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
                 //es nuestro turno
@@ -102,7 +107,7 @@ namespace Pinturillo
                     //NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar = obj.PalabraEnJuego;
-                    //NotifyPropertyChanged("PalabraAMostrar");
+                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
 
 
 
@@ -112,11 +117,14 @@ namespace Pinturillo
                     //No es nuestro turno
 
                     //Deshabilitar el canvas
-                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
                     //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
-                    viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-                                                           // NotifyPropertyChanged("PalabraAMostrar");
+                   // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+
+                    viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+
+                    viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                 }
 
             });
@@ -131,7 +139,7 @@ namespace Pinturillo
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 viewModel.Partida= obj;
-               // NotifyPropertyChanged("Partida");
+               viewModel.NotifyPropertyChanged("Partida");
 
                 viewModel.UsuarioPropio= obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
@@ -147,7 +155,7 @@ namespace Pinturillo
                     //NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar= obj.PalabraEnJuego;
-                    //NotifyPropertyChanged("PalabraAMostrar");
+                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
 
 
 
@@ -157,11 +165,14 @@ namespace Pinturillo
                     //No es nuestro turno
 
                     //Deshabilitar el canvas
-                   // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
-                  //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                    //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
-                    viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-                   // NotifyPropertyChanged("PalabraAMostrar");
+                    //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+
+                    viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
                 }
 
             });

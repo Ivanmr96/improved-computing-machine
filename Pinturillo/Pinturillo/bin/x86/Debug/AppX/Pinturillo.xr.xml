@@ -26,6 +26,7 @@
     <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="Nickname" />
+    <RootPropertyPathName Name="PalabraAMostrar" />
     <RootPropertyPathName Name="LblTemporizador" />
     <RootPropertyPathName Name="UsuarioPropio" />
     <RootPropertyPathName Name="Puntuacion" />

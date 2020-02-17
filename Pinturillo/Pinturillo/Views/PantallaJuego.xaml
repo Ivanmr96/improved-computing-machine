@@ -110,7 +110,7 @@
                     RelativePanel.AlignHorizontalCenterWithPanel="True"
                     FontSize="50"
                     Foreground="#effffb"
-                    Text="RATON"
+                    Text="{Binding PalabraAMostrar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     >
 
                 </TextBlock>
