@@ -84,6 +84,12 @@ namespace Pinturillo.ViewModels
                 {
                     //TODO 
                     //El contador llega a 0
+
+                    //Se muestra la palabra
+                    this._palabraAMostrar = _partida.PalabraEnJuego;
+                    NotifyPropertyChanged("PalabraAMostrar");
+                    
+
                     proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
                 }
             }
@@ -150,8 +156,9 @@ namespace Pinturillo.ViewModels
                 _mensaje.Mensaje = "El usuario " + _usuarioPropio.Nickname + " ha acertado la palabra!";
                 //invoke para indicar que ha acertado la palabra
 
+                
 
-                proxy.Invoke("addPuntosToUser", _usuarioPropio.ConnectionID, 10, _partida.NombreSala);
+                    proxy.Invoke("addPuntosToUser", _usuarioPropio.ConnectionID, _timeMax, _partida.NombreSala);
             }
             proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";

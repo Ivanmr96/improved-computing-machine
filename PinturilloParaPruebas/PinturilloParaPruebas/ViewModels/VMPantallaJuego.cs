@@ -83,7 +83,13 @@ namespace PinturilloParaPruebas.ViewModels
                 if (_timeMax == 0)
                 {
                     //TODO 
+
                     //El contador llega a 0
+
+                    this._palabraAMostrar = _partida.PalabraEnJuego;
+                    NotifyPropertyChanged("PalabraAMostrar");
+
+
                     proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
                     
                     
@@ -148,6 +154,8 @@ namespace PinturilloParaPruebas.ViewModels
             if (_mensaje.Mensaje.Contains(_partida.PalabraEnJuego))
             {
                 _mensaje.Mensaje = "El usuario " + _usuarioPropio.Nickname + " ha acertado la palabra!";
+
+                proxy.Invoke("addPuntosToUser", _usuarioPropio.ConnectionID, _timeMax, _partida.NombreSala);
             }
             proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";

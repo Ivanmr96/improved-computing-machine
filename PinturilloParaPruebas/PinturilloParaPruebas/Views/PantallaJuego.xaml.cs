@@ -48,15 +48,7 @@ namespace PinturilloParaPruebas
         {
             this.InitializeComponent();
             viewModel = (VMPantallaJuego)this.DataContext;
-            /*List<User> items = new List<User>();
-            items.Add(new User() { Name = "Angela", Age = 22 });
-            items.Add(new User() { Name = "Victor", Age = 20 });
-            items.Add(new User() { Name = "Ivan", Age = 23 });
-            listadoSalas.ItemsSource = items;*/
-
-
-            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
-            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+           
 
             inkCanvas.InkPresenter.InputDeviceTypes = viewModel.TipoEntradaInkCanvas;
 

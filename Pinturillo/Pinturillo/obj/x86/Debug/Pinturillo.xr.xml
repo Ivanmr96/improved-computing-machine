@@ -28,7 +28,6 @@
     <RootPropertyPathName Name="Nickname" />
     <RootPropertyPathName Name="PalabraAMostrar" />
     <RootPropertyPathName Name="LblTemporizador" />
-    <RootPropertyPathName Name="UsuarioPropio" />
     <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
     <RootPropertyPathName Name="enviarMensaje" />

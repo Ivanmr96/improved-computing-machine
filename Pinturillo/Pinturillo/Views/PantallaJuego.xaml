@@ -65,7 +65,7 @@
                                 
                                 Foreground="#272727"
                                 FontSize="10"
-                                    Text="{Binding UsuarioPropio.Puntuacion, Mode=TwoWay}"
+                                    Text="{Binding Puntuacion, Mode=TwoWay}"
                                 ></TextBlock>
 
                             </RelativePanel>
