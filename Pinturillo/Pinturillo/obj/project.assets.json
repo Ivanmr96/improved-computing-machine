@@ -10441,24 +10441,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vmperez\\.nuget\\packages\\": {},
+    "C:\\Users\\avazquez\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "projectUniqueName": "D:\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
       "projectName": "Pinturillo",
-      "projectPath": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
-      "packagesPath": "C:\\Users\\vmperez\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vmperez\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
+      "projectPath": "D:\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "packagesPath": "C:\\Users\\avazquez\\.nuget\\packages\\",
+      "outputPath": "D:\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\vmperez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\avazquez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

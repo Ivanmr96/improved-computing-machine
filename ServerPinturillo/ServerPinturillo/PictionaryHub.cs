@@ -61,6 +61,26 @@ namespace ServerPinturillo
         }
 
 
+        //Metodo para indicar que se comienza la partida
+
+        public void comenzarPartidaEnGrupo(clsPartida partida)
+        {
+            //Se pone el primer turno de la primera ronda
+            //el turno es el del primer jugador
+            if(partida.ListadoJugadores.Count > 0)
+            partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
+
+            partida.Turno = 1;
+            partida.RondaActual = 1;
+            partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+            partida.IsJugandose = true;
+
+            Clients.Group(partida.NombreSala).onPartidaComenzada(partida);
+
+
+        }
+
+
         //Para cambiar el turno
         public void avanzarTurno(clsPartida partida)
         {
@@ -123,6 +143,10 @@ namespace ServerPinturillo
             //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
             Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
         }
+
+
+        //Contar cuantos clientes de una misma partida han terminado (su contador ha llegado a 0)
+        //y una vez todos hayan terminado, llamar al metodo que llame al de cambiar turno
 
 
 

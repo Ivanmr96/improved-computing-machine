@@ -46,9 +46,17 @@ namespace PinturilloParaPruebas
         {
             this.InitializeComponent();
             viewModel = (VMPantallaJuego)this.DataContext;
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            /*List<User> items = new List<User>();
+            items.Add(new User() { Name = "Angela", Age = 22 });
+            items.Add(new User() { Name = "Victor", Age = 20 });
+            items.Add(new User() { Name = "Ivan", Age = 23 });
+            listadoSalas.ItemsSource = items;*/
 
-            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
+
+            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
+            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+
+            inkCanvas.InkPresenter.InputDeviceTypes = viewModel.TipoEntradaInkCanvas;
 
             InkDrawingAttributes att = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
             att.Color = Color.FromArgb(100, 0, 220, 100);
@@ -58,7 +66,6 @@ namespace PinturilloParaPruebas
             inkCanvas.InkPresenter.StrokeInput.StrokeStarted += StrokeInput_StrokeStarted;
             inkCanvas.InkPresenter.StrokeInput.StrokeEnded += StrokeInput_StrokeEnded;
             inkCanvas.InkPresenter.StrokesCollected += InkPresenter_StrokesCollected;
-            inkCanvas.InkPresenter.StrokesErased += InkPresenter_StrokesErased;
 
             builder = new InkStrokeBuilder();
             points = new List<Point>();
@@ -81,8 +88,55 @@ namespace PinturilloParaPruebas
             //await conn.Start();
 
             proxy.On<List<clsPunto>>("mandarStroke", onStrokeReceived);
+            proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
 
         }
+
+
+
+        //Cuando comienza la partida
+        private async void onPartidaComenzada(clsPartida obj)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                viewModel.Partida = obj;
+                // NotifyPropertyChanged("Partida");
+
+                viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+
+                //Iniciamos el timer
+                viewModel.DispatcherTimer.Start();
+
+                if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+                //es nuestro turno
+                {
+                    //Habilitar el canvas
+                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+                    //NotifyPropertyChanged("TipoEntradaInkCanvas");
+                    //palabra a mostrar será la palabra en juego
+                    viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+                    //NotifyPropertyChanged("PalabraAMostrar");
+
+
+
+                }
+                else
+                {
+                    //No es nuestro turno
+
+                    //Deshabilitar el canvas
+                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                    //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                    //palabra a mostrar será  ___ 
+                    viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                                                           // NotifyPropertyChanged("PalabraAMostrar");
+                }
+
+            });
+        }
+
+
 
         private async void onStrokeReceived(List<clsPunto> puntos)
         {
@@ -204,6 +258,7 @@ namespace PinturilloParaPruebas
 
                     //viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
+                    proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
                 }
             }
             base.OnNavigatedTo(e);

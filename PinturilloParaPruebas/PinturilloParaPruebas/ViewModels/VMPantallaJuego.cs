@@ -25,28 +25,34 @@ namespace PinturilloParaPruebas.ViewModels
         private clsPartida _partida;
         private string _lblTemporizador;
         private HubConnection conn;
+        Frame navigationFrame = Window.Current.Content as Frame;
         private IHubProxy proxy;
         private bool isUltimaPalabraAcertada;
-        Frame navigationFrame = Window.Current.Content as Frame;
+
+        private string _palabraAMostrar;
         #endregion
 
         public VMPantallaJuego()
         {
-            
+
             _partida = new clsPartida();
-            this._mensaje = new clsMensaje();
             _usuarioPropio = new clsJugador();
+            this._mensaje = new clsMensaje();
             _mensaje.JugadorQueLoEnvia = new clsJugador();
             this.GoBackCommand = new DelegateCommand(ExecuteGoBackCommand);
             this.SendMessageCommand = new DelegateCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
-            this.isUltimaPalabraAcertada = false;
+            this.IsUltimaPalabraAcertada = false;
+            _timeMax = 60;
             this._dispatcherTimer = new DispatcherTimer();
             this._dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             this._dispatcherTimer.Tick += Timer_Tik;
-            this._dispatcherTimer.Start();
+            //this._dispatcherTimer.Start();
             this.LblTemporizador = "60";
+            this._palabraAMostrar = "";
+            TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
 
             SignalR();
+            //proxy.Invoke("comenzarPartidaEnGrupo", _partida);
         }
 
 
@@ -89,9 +95,11 @@ namespace PinturilloParaPruebas.ViewModels
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
+          //  proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
             //proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
-
+          //  proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
         }
+
 
 
         #region"Propiedades públicas"
@@ -100,11 +108,12 @@ namespace PinturilloParaPruebas.ViewModels
         public DispatcherTimer DispatcherTimer { get => _dispatcherTimer; set => _dispatcherTimer = value; }
         public clsPartida Partida { get => _partida; set => _partida = value; }
         public string LblTemporizador { get => _lblTemporizador; set => _lblTemporizador = value; }
+        public string PalabraAMostrar { get => _palabraAMostrar; set => _palabraAMostrar = value; }
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
         public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
         public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
-
+        public CoreInputDeviceTypes TipoEntradaInkCanvas { get; set; }
         #endregion
 
 
@@ -120,27 +129,15 @@ namespace PinturilloParaPruebas.ViewModels
             if (resultado == ContentDialogResult.Primary)
             {
                 //this.Frame.Navigate(typeof(ListadoSalas));
-                navigationFrame.Navigate(typeof(ListadoSalas),_usuarioPropio.Nickname);
+                navigationFrame.Navigate(typeof(ListadoSalas), _usuarioPropio.Nickname);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
+                pararContador();
             }
         }
 
         private void ExecuteSendMessageCommand()
         {
-            //if(Mensaje.Mensaje.ToLower() == Partida.PalabraEnJuego.ToLower())
-            //{
-            //    //Notifica al servidor que ha acertado la palabra
-
-
-
-            //    Partida.ListadoMensajes.Add(Mensaje);
-            //}
-            //else
-            //{
-
-            //    proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
-            //}
-
+            proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
         }
@@ -171,16 +168,116 @@ namespace PinturilloParaPruebas.ViewModels
             });
         }
 
+
+
+
+        ////Cuando comienza la partida
+        //private async void onPartidaComenzada(clsPartida obj)
+        //{
+        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        //    {
+        //        viewModel.Partida = obj;
+        //        // NotifyPropertyChanged("Partida");
+
+        //        viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+
+        //        //Iniciamos el timer
+        //        viewModel.DispatcherTimer.Start();
+
+        //        if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+        //        //es nuestro turno
+        //        {
+        //            //Habilitar el canvas
+        //            viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+        //            //NotifyPropertyChanged("TipoEntradaInkCanvas");
+        //            //palabra a mostrar será la palabra en juego
+        //            viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+        //            //NotifyPropertyChanged("PalabraAMostrar");
+
+
+
+        //        }
+        //        else
+        //        {
+        //            //No es nuestro turno
+
+        //            //Deshabilitar el canvas
+        //            viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+        //            //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+        //            //palabra a mostrar será  ___ 
+        //            viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+        //                                                   // NotifyPropertyChanged("PalabraAMostrar");
+        //        }
+
+        //    });
+        //}
+
+
+
+
+
+        ////Cuando comienza la partida
+        //private async void onPartidaComenzada(clsPartida obj)
+        //{
+        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        //    {
+        //        this._partida = obj;
+        //        NotifyPropertyChanged("Partida");
+
+        //        this._usuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == _usuarioPropio.Nickname);
+
+        //        //Iniciamos el timer
+        //        this._dispatcherTimer.Start();
+
+        //        if (obj.ConnectionIDJugadorActual == _usuarioPropio.ConnectionID)
+        //        //es nuestro turno
+        //        {
+        //            //Habilitar el canvas
+        //            TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+        //            NotifyPropertyChanged("TipoEntradaInkCanvas");
+        //            //palabra a mostrar será la palabra en juego
+        //            this._palabraAMostrar = obj.PalabraEnJuego;
+        //            NotifyPropertyChanged("PalabraAMostrar");
+
+
+
+        //        }
+        //        else
+        //        {
+        //            //No es nuestro turno
+
+        //            //Deshabilitar el canvas
+        //            TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+        //            NotifyPropertyChanged("TipoEntradaInkCanvas");
+        //            //palabra a mostrar será  ___ 
+        //            this._palabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+        //            NotifyPropertyChanged("PalabraAMostrar");
+        //        }
+
+        //    });
+        //}
+
         //public async void OnaddMensajeToChat(clsMensaje mensaje)
         //{
         //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
         //    {
-
-        //            _partida.ListadoMensajes.Add(mensaje);
-        //            _partida.NotifyPropertyChanged("ListadoMensajes");
-                
+        //        _partida.ListadoMensajes.Add(mensaje);
+        //        _partida.NotifyPropertyChanged("ListadoMensajes");
 
         //    });
         //}
+
+        public void reiniciarContador()
+        {
+            pararContador();
+            this.LblTemporizador = "60";
+            NotifyPropertyChanged("LblTemporizador");
+            this._dispatcherTimer.Start();
+        }
+
+        public void pararContador()
+        {
+            this._dispatcherTimer.Stop();
+        }
     }
 }
