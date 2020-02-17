@@ -140,10 +140,10 @@ namespace ServerPinturillo
 
 
             ////Se ponen todos los "isUltimaPalabraAcertada" a false
-            //for (int i = 0; i < partida.ListadoJugadores.Count; i++)
-            //{
-            //    partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
-            //}
+            for (int i = 0; i < partida.ListadoJugadores.Count; i++)
+            {
+                partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
+            }
 
 
             //Obtengo la posicion en la lista de jugadores del jugador actual
