@@ -41,6 +41,7 @@ namespace Pinturillo
 
 
             this.InitializeComponent();
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
         }
 
     }

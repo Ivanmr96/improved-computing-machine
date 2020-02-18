@@ -39,10 +39,9 @@ namespace Pinturillo
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             vm.NombreUsuario = (String)e.Parameter;
-
+            //Frame.BackStack.Clear();
             base.OnNavigatedTo(e);
         }
-
 
     }
 }

@@ -32,10 +32,11 @@ namespace Pinturillo.ViewModels
         private string _palabraAMostrar;
         #endregion
         public static int TIME_MAX = 10;
+        public int tiempoEspera { get; set; }
 
         public VMPantallaJuego()
         {
-            
+            this.tiempoEspera = 10;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
             this._mensaje = new clsMensaje();
@@ -77,8 +78,6 @@ namespace Pinturillo.ViewModels
                 }
             } else
             {
-                this._dispatcherTimer.Stop();
-               
 
                 if (_timeMax == 0)
                 {
@@ -88,9 +87,12 @@ namespace Pinturillo.ViewModels
                     //Se muestra la palabra
                     this._palabraAMostrar = _partida.PalabraEnJuego;
                     NotifyPropertyChanged("PalabraAMostrar");
-                    
-
-                    proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
+                    tiempoEspera--;
+                    if (tiempoEspera == 0)
+                    {
+                        this._dispatcherTimer.Stop();
+                        proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
+                    }
                 }
             }
         }
@@ -145,7 +147,7 @@ namespace Pinturillo.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas),_usuarioPropio.Nickname);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
-                pararContador();
+                //pararContador();
             }
         }
 
@@ -259,15 +261,15 @@ namespace Pinturillo.ViewModels
             });
         }
 
-        public void reiniciarContador() {
-            pararContador();
-            this.LblTemporizador = "60";
-            NotifyPropertyChanged("LblTemporizador");
-            this._dispatcherTimer.Start();
-        }
+        //public void reiniciarContador() {
+        //    pararContador();
+        //    this.LblTemporizador = "60";
+        //    NotifyPropertyChanged("LblTemporizador");
+        //    this._dispatcherTimer.Start();
+        //}
 
-        public void pararContador() {
-            this._dispatcherTimer.Stop();
-        }
+        //public void pararContador() {
+        //    this._dispatcherTimer.Stop();
+        //}
     }
 }

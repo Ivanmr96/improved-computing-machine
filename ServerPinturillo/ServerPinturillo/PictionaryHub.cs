@@ -96,7 +96,7 @@ namespace ServerPinturillo
             //Marcar ese jugador como que su timer ha terminado
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
 
-            clsJugador jugadorQueHaTerminado = partidaActual.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == connectionIDJugador);
+            clsJugador jugadorQueHaTerminado = partidaActual.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == connectionIDJugador);
 
             jugadorQueHaTerminado.HaTerminadoTimer = true;
 
@@ -136,7 +136,7 @@ namespace ServerPinturillo
             //se debe cambiar la palabra en juego
 
             //Obtengo el jugador actual
-            clsJugador jugadorJugando = partida.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
+            clsJugador jugadorJugando = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
 
 
             ////Se ponen todos los "isUltimaPalabraAcertada" a false
@@ -202,7 +202,7 @@ namespace ServerPinturillo
         public void addPuntosToUser(string connectionIDUSer, int puntosToAdd,string nombreGrupo)
         {
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
-            clsJugador jugador = partidaActual.ListadoJugadores.First<clsJugador>(x => x.ConnectionID == connectionIDUSer);
+            clsJugador jugador = partidaActual.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == connectionIDUSer);
 
             jugador.Puntuacion += puntosToAdd;
             jugador.IsUltimaPalabraAcertada = true;
@@ -245,11 +245,9 @@ namespace ServerPinturillo
             clsJugador jugadorBuscado;
             if (partida != null)
             {
-                try {
-                    jugadorBuscado = partida.ListadoJugadores.First<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
-                } catch (Exception e) {
-                    jugadorBuscado = null;
-                }
+                
+                jugadorBuscado = partida.ListadoJugadores.FirstOrDefault<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
+
                 
                 if (jugadorBuscado == null)
                 {
@@ -276,13 +274,9 @@ namespace ServerPinturillo
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreSala);
             clsJugador jugador;
-            try
-            {
-                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-            }catch (Exception e)
-            {
-                jugador = null;
-            }
+
+                jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+
 
             if(jugador != null)
             {

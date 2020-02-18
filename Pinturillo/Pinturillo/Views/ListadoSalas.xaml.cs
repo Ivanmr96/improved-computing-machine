@@ -54,7 +54,7 @@ namespace Pinturillo
             {
                 viewModel.UsuarioPropio.Nickname = e.Parameter.ToString();
             }
-            
+            //Frame.BackStack.Clear();
             base.OnNavigatedTo(e);
             
         }

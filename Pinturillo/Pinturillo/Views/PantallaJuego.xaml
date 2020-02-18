@@ -33,6 +33,7 @@
             >
                 <ListView
                 Name="listadoSalas"
+                SelectionMode="None"
                 ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 >
                     <ListView.ItemTemplate>
@@ -128,27 +129,24 @@
                 </TextBlock>
 
 
-                <Rectangle
+                <Border
                     
-                    Fill="White"
+                    Background="White"
                     Margin="10,25,10,10"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     >
-
-                </Rectangle>
-                <InkCanvas x:Name="inkCanvas"
-                           Margin="10,25,10,10"
-                           Height="1000"
-                           Width="1000"
+                    <InkCanvas x:Name="inkCanvas"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                       
                            />
+                </Border>
+                
 
                 <InkToolbar x:Name="inkToolbar"
           VerticalAlignment="Top"
@@ -171,19 +169,20 @@
 
         <ListView
             Name="chatMensajes"
+            SelectionMode="None"
             Background="#effffb"
             Opacity="0.75"
             Windows10version1809:CornerRadius="30"
-                RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignLeftWith="inputMensajes"
+            RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWithPanel="True"
             RelativePanel.Above="inputMensajes"
-            Width="200"
             Margin="15"
                 ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
+                    <TextBlock TextWrapping="Wrap">
                                 <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
                                 <Run Text=": " />
                                 <Run Text="{Binding Mensaje}" />
@@ -194,6 +193,7 @@
 
         <TextBox
             Windows10version1809:CornerRadius="10,0,0,10"
+            MaxLength="5"
             Name="inputMensajes"
             RelativePanel.LeftOf="btnSend"
             Width="140"

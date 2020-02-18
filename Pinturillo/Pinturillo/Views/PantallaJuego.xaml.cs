@@ -87,14 +87,14 @@ namespace Pinturillo
                 viewModel.Partida = obj;
                viewModel.NotifyPropertyChanged("Partida");
 
-                viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+                viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
                 viewModel.TimeMax = TIME_MAX;
                 viewModel.NotifyPropertyChanged("TimeMax");
                 viewModel.LblTemporizador = TIME_MAX.ToString();
                 viewModel.NotifyPropertyChanged("LblTemporizador");
-
+                viewModel.tiempoEspera = 10;
                 viewModel.DispatcherTimer.Start();
 
                 //Se limpia el canvas
@@ -143,7 +143,7 @@ namespace Pinturillo
                 viewModel.Partida= obj;
                viewModel.NotifyPropertyChanged("Partida");
 
-                viewModel.UsuarioPropio= obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+                viewModel.UsuarioPropio= obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
                 viewModel.DispatcherTimer.Start();
@@ -292,7 +292,7 @@ namespace Pinturillo
         {
 
             var lastPage = Frame.BackStack.Last().SourcePageType;
-
+            //Frame.BackStack.Clear();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
             if (lastPage.FullName.Equals("Pinturillo.SalaEspera"))
             {

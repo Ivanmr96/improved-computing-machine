@@ -38,7 +38,8 @@ namespace Pinturillo
         {
 
             var lastPage = Frame.BackStack.Last().SourcePageType;
-
+            //Frame.BackStack.Clear();
+            //GC.Collect();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
             if (lastPage.FullName.Equals("Pinturillo.CrearSalaPage"))
             {

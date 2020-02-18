@@ -119,14 +119,9 @@ namespace Pinturillo.ViewModels
         {
             bool puedeComenzar = false;
             clsJugador jugador;
-            try
-            {
-                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
-            }
-            catch (Exception e)
-            {
-                jugador = null;
-            }
+
+                jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
+
             if (jugador != null){
                 if (jugador.IsLider && partida.ListadoJugadores.Count >= 2)
                 {
@@ -184,14 +179,9 @@ namespace Pinturillo.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsJugador jugador;
-                try
-                {
-                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                    jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
+
 
                 if (jugador != null)
                 {
@@ -232,14 +222,9 @@ namespace Pinturillo.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsJugador jugador;
-                try
-                {
-                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                    jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+
 
                 if (jugador != null)
                 {
