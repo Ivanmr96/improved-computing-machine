@@ -9,11 +9,13 @@
         private bool _haTerminadoTimer;
         private bool _isUltimaPalabraAcertada;
         private bool _isLider;
+
+        private bool _isMiTurno;
         #endregion
 
 
         #region"Constructor"
-        public clsJugador(string connectionID, int puntuacion, string nickname, bool haTerminadoTimer, bool isUltimaPalabraAcertada, bool isLider)
+        public clsJugador(string connectionID, int puntuacion, string nickname, bool haTerminadoTimer, bool isUltimaPalabraAcertada, bool isLider, bool isMyTurno)
         {
             ConnectionID = connectionID;
             Puntuacion = puntuacion;
@@ -21,11 +23,19 @@
             HaTerminadoTimer = haTerminadoTimer;
             IsUltimaPalabraAcertada = isUltimaPalabraAcertada;
             IsLider = isLider;
+            IsMiTurno = isMyTurno;
         }
+
+        public clsJugador()
+        {
+        }
+
+
         #endregion
 
 
         #region"Propiedades públicas"
+        public bool IsMiTurno { get => _isMiTurno; set => _isMiTurno = value; }
         public string ConnectionID { get => _connectionID; set => _connectionID = value; }
         public int Puntuacion { get => _puntuacion; set => _puntuacion = value; }
         public string Nickname { get => _nickname; set => _nickname = value; }

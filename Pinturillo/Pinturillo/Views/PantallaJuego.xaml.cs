@@ -110,7 +110,8 @@ namespace Pinturillo
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar = obj.PalabraEnJuego;
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");
-
+                    viewModel.IsMiTurno = true;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
                 }
@@ -125,7 +126,8 @@ namespace Pinturillo
                    // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
 
                     viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
-
+                    viewModel.IsMiTurno = false;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                 }
 
@@ -158,7 +160,8 @@ namespace Pinturillo
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar= obj.PalabraEnJuego;
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");
-
+                    viewModel.IsMiTurno = true;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
                 }
@@ -172,7 +175,8 @@ namespace Pinturillo
                     //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
                     //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-
+                    viewModel.IsMiTurno = false;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
                     viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");
                 }
@@ -310,6 +314,11 @@ namespace Pinturillo
 
                     //viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
+                    
+
+                    //Este invoke solo lo puede emitir el lider (que si no el servidor recibe 5 llamadas pa lo mismo)
+                    //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
+                    //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
                     proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
                 }
             }

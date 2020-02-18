@@ -6,12 +6,20 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:Pinturillo.ViewModels"
+    xmlns:local1="using:Pinturillo.Utils"
     mc:Ignorable="d"
    Background="#4f98ca">
 
     <Page.DataContext>
         <vm:VMPantallaJuego></vm:VMPantallaJuego>
     </Page.DataContext>
+
+    <Page.Resources>
+        <local1:LapizVisibilityConverter x:Key="LapizConverter"></local1:LapizVisibilityConverter>
+        <local1:TrueToFalseConverter x:Key="TrueToFalseConverter"></local1:TrueToFalseConverter>
+
+    </Page.Resources>
+    
     <RelativePanel>
         <Border x:ConnectionId='2' 
             Name="borderStackPanel"
@@ -47,9 +55,19 @@
                                     Foreground="#50d890"
                                         RelativePanel.AlignLeftWithPanel="True"
                                         RelativePanel.AlignTopWithPanel="True"
-                                >
+                                />
 
-                                </AppBarButton>
+
+                                <AppBarButton
+                                        Name="lapiz"
+                                        Visibility="{Binding IsMiTurno,Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    Converter={StaticResource LapizConverter}}"
+                                        Icon="Edit"
+                                        Foreground="#50d890"
+                                        RelativePanel.Below="icon"
+                                />
+
                                 <TextBlock  
                                 Foreground="#272727"
                                 FontSize="15"
@@ -149,6 +167,8 @@
                 
 
                 <InkToolbar x:ConnectionId='10' x:Name="inkToolbar"
+                             IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
+                        }"
           VerticalAlignment="Top"
                            RelativePanel.AlignRightWithPanel="True"
                                                                         
@@ -197,7 +217,8 @@
             Name="inputMensajes"
             RelativePanel.LeftOf="btnSend"
             Width="140"
-            
+            IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
+            ,Converter={StaticResource TrueToFalseConverter}}"
             Margin="0,0,0,15"
             RelativePanel.AlignBottomWithPanel="True"
             Text="{Binding Mensaje.Mensaje,Mode=TwoWay}"

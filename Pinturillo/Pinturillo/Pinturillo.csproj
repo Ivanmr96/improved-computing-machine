@@ -124,8 +124,10 @@
     <Compile Include="Models\clsMensaje.cs" />
     <Compile Include="Models\clsPartida.cs" />
     <Compile Include="Models\clsPunto.cs" />
+    <Compile Include="Utils\LapizVisibilityConverter.cs" />
     <Compile Include="Utils\PasswordToVisibilityConverter.cs" />
     <Compile Include="Utils\StringToIntConverter.cs" />
+    <Compile Include="Utils\TrueToFalseConverter.cs" />
     <Compile Include="ViewModels\VMListadoSalas.cs" />
     <Compile Include="ViewModels\VMPantallaJuego.cs" />
     <Compile Include="Views\CrearSalaPage.xaml.cs">

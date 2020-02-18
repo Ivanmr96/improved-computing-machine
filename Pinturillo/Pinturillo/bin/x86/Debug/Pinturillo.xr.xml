@@ -22,6 +22,7 @@
     <RootPropertyPathName Name="nick" />
     <RootPropertyPathName Name="GoBackCommand" />
     <RootPropertyPathName Name="SendMessageCommand" />
+    <RootPropertyPathName Name="IsMiTurno" />
     <RootPropertyPathName Name="Mensaje" />
     <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
@@ -144,6 +145,7 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="MaxLength" />
+      <RootProperty Name="IsEnabled" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="Name" />
@@ -204,6 +206,7 @@
       <RootProperty Name="Icon" />
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Foreground" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Pinturillo.ListadoSalas" />
@@ -229,11 +232,14 @@
     </RootType>
     <RootType FullName="Pinturillo.MainPage" />
     <RootType FullName="Pinturillo.ViewModels.VMPantallaJuego" />
+    <RootType FullName="Pinturillo.Utils.LapizVisibilityConverter" />
+    <RootType FullName="Pinturillo.Utils.TrueToFalseConverter" />
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
       <RootProperty Name="Text" />
       <RootProperty Name="FontWeight" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbar">
+      <RootProperty Name="IsEnabled" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="InitialControls" />
       <RootProperty Name="TargetInkCanvas" />

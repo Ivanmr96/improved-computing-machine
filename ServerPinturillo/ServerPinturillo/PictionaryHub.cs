@@ -50,7 +50,7 @@ namespace ServerPinturillo
         {
             //clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.ConnectionID == Context.ConnectionId);
 
-            clsJugador lider = new clsJugador(Context.ConnectionId, 0, nickLider, false, false, true);
+            clsJugador lider = new clsJugador(Context.ConnectionId, 0, nickLider, false, false, true, false);
 
             partida.ListadoJugadores.Add(lider);
             Groups.Add(Context.ConnectionId, partida.NombreSala);
@@ -67,22 +67,36 @@ namespace ServerPinturillo
         {
 
             partida = obtenerPartidaPorNombreSala(partida.NombreSala);
+            if(partida != null)
+            {
+                //Se pone el primer turno de la primera ronda
+                //el turno es el del primer jugador
+                if (partida.ListadoJugadores.Count > 0)
+                    partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
+                partida.Turno = 1;
+                partida.RondaActual = 1;
+                partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+                partida.IsJugandose = true;
 
-            //Se pone el primer turno de la primera ronda
-            //el turno es el del primer jugador
-            if(partida.ListadoJugadores.Count > 0)
-            partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
-            partida.Turno = 1;
-            partida.RondaActual = 1;
-            partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
-            partida.IsJugandose = true;
+
+                //Por si acaso se le pone a todos que NO es su turno
+                for (int i = 0; i < partida.ListadoJugadores.Count; i++)
+                {
+                    partida.ListadoJugadores[i].IsMiTurno = false;
+                }
 
 
+                //Se le pone que es su turno al jugador 
+                clsJugador jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
 
-           
-            //Aqui haría falta guardar esta partida en la lista de partidas
+                jugador.IsMiTurno = true;
 
-            Clients.Group(partida.NombreSala).onPartidaComenzada(partida);
+
+                //Aqui haría falta guardar esta partida en la lista de partidas
+
+                Clients.Group(partida.NombreSala).onPartidaComenzada(partida);
+
+            }
 
 
         }
@@ -143,8 +157,9 @@ namespace ServerPinturillo
             for (int i = 0; i < partida.ListadoJugadores.Count; i++)
             {
                 partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
+                //Por si acaso se le pone a todos que NO es su turno
+                partida.ListadoJugadores[i].IsMiTurno = false;
             }
-
 
             //Obtengo la posicion en la lista de jugadores del jugador actual
             int posicion = -1;
@@ -171,6 +186,13 @@ namespace ServerPinturillo
                 //Si ya han jugado todos los jugadores de la lista, se vuelve a empezar
                 partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
             }
+
+
+            //Se le pone que es su turno al jugador 
+            clsJugador jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
+
+            jugador.IsMiTurno = true;
+
 
 
             //Cambio el turno/ronda

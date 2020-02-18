@@ -8,12 +8,15 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:vm="using:PinturilloParaPruebas.ViewModels"
     mc:Ignorable="d"
+    xmlns:local1="using:PinturilloParaPruebas.Utils"
    Background="#4f98ca">
 
     <Page.DataContext>
         <vm:VMPantallaJuego></vm:VMPantallaJuego>
     </Page.DataContext>
-    
+    <Page.Resources>
+        <local1:LapizVisibilityConverter x:Key="LapizConverter"></local1:LapizVisibilityConverter>
+    </Page.Resources>
     <RelativePanel>
         <Border 
             Name="borderStackPanel"
@@ -48,9 +51,18 @@
                                     Foreground="#50d890"
                                         RelativePanel.AlignLeftWithPanel="True"
                                         RelativePanel.AlignTopWithPanel="True"
-                                >
+                                />
 
-                                </AppBarButton>
+                                <AppBarButton
+                                        Name="lapiz"
+                                        Visibility="{Binding IsMiTurno,Mode=TwoWay, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    Converter={StaticResource LapizConverter}}"
+                                        Icon="Edit"
+                                        Foreground="#50d890"
+                                        RelativePanel.Below="icon"
+                                />
+
                                 <TextBlock  
                                 Foreground="#272727"
                                 FontSize="15"

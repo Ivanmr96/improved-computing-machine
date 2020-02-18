@@ -119,7 +119,7 @@ namespace Pinturillo.ViewModels
         #region"Propiedades públicas"
         public DelegateCommand GoBackCommand { get; }
         public int TimeMax { get => _timeMax; set => _timeMax = value; }
-
+        public bool IsMiTurno { get; set; }
         public DelegateCommand SendMessageCommand { get; }
         public DispatcherTimer DispatcherTimer { get => _dispatcherTimer; set => _dispatcherTimer = value; }
         public clsPartida Partida { get => _partida; set => _partida = value; }
