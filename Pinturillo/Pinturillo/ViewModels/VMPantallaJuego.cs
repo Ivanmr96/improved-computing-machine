@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Views;
 using Microsoft.AspNet.SignalR.Client;
 using Pinturillo.Models;
+using Pinturillo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,10 +34,11 @@ namespace Pinturillo.ViewModels
         #endregion
         public static int TIME_MAX = 10;
         public int tiempoEspera { get; set; }
+        private int pos = 0;
 
         public VMPantallaJuego()
         {
-            this.tiempoEspera = 10;
+            this.tiempoEspera = 3;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
             this._mensaje = new clsMensaje();
@@ -53,6 +55,7 @@ namespace Pinturillo.ViewModels
             this._palabraAMostrar = "";
             TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
 
+
             SignalR();
             
            // proxy.Invoke("comenzarPartidaEnGrupo", _partida);
@@ -63,6 +66,19 @@ namespace Pinturillo.ViewModels
         {
             if (_timeMax > 0 )
             {
+
+                if(_timeMax % 10 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
+                {
+                    //se descubre un caracter
+                    if(pos < _partida.PosicionesADescubrir.Count)
+                    {
+                        this._palabraAMostrar = Util.obtenerPalabraFormateada(_palabraAMostrar, _partida.PalabraEnJuego, _partida.PosicionesADescubrir[pos]);
+                        pos++;
+                        NotifyPropertyChanged("PalabraAMostrar");
+                    }
+                   
+                }
+
 
                 if (_timeMax <= 10)
                 {
@@ -84,10 +100,24 @@ namespace Pinturillo.ViewModels
                     //TODO 
                     //El contador llega a 0
 
+
+                    //Bloquear el chat para todo el mundo en este tiempo
+                    //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
+                    //(porque esta bindeado con el converter de true to false
+
+                    this.IsMiTurno = true;
+                    NotifyPropertyChanged("IsMiTurno");
+                    //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
+
+                    //se reinicia esto
+                    pos = 0;
+
                     //Se muestra la palabra
                     this._palabraAMostrar = _partida.PalabraEnJuego;
                     NotifyPropertyChanged("PalabraAMostrar");
                     tiempoEspera--;
+
+                  
                     if (tiempoEspera == 0)
                     {
                         this._dispatcherTimer.Stop();

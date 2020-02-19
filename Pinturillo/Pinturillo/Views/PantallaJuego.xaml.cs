@@ -37,7 +37,7 @@ namespace Pinturillo
         private HubConnection conn;
         private IHubProxy proxy;
 
-        public static int TIME_MAX = 10;
+        public static int TIME_MAX = 30;
 
         VMPantallaJuego viewModel { get;set;
         }

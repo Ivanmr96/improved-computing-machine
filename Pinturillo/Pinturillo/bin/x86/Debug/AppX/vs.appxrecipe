@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-19T11:14:09.950</Modified>
+      <Modified>2020-02-19T12:09:05.650</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-02-19T11:14:09.251</Modified>
+      <Modified>2020-02-19T12:09:01.267</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\avazquez\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -170,27 +170,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.918</Modified>
+      <Modified>2020-02-19T11:52:44.491</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
       <PackagePath>Views\CrearSalaPage.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.918</Modified>
+      <Modified>2020-02-19T11:52:44.492</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
       <PackagePath>Views\ListadoSalas.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.919</Modified>
+      <Modified>2020-02-19T11:52:44.497</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.919</Modified>
+      <Modified>2020-02-19T11:52:44.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
       <PackagePath>Views\PantallaJuego.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.914</Modified>
+      <Modified>2020-02-19T11:52:44.487</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
       <PackagePath>Views\SalaEspera.xbf</PackagePath>
-      <Modified>2020-02-19T11:14:08.919</Modified>
+      <Modified>2020-02-19T11:52:44.499</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -198,11 +198,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-02-19T11:12:51.109</Modified>
+      <Modified>2020-02-19T11:52:45.620</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-02-19T11:14:09.945</Modified>
+      <Modified>2020-02-19T12:09:05.573</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

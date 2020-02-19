@@ -128,6 +128,7 @@
     <Compile Include="Utils\PasswordToVisibilityConverter.cs" />
     <Compile Include="Utils\StringToIntConverter.cs" />
     <Compile Include="Utils\TrueToFalseConverter.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="ViewModels\VMListadoSalas.cs" />
     <Compile Include="ViewModels\VMPantallaJuego.cs" />
     <Compile Include="Views\CrearSalaPage.xaml.cs">

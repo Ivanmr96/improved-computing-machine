@@ -27,6 +27,7 @@ namespace Pinturillo.Models
         private string _connectionIDJugadorActual;
         private List<int> _posicionesADescubrir;
 
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region"Constructor"
