@@ -120,6 +120,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connection\Connection.cs" />
+    <Compile Include="Controls\DialogContrasena.xaml.cs">
+      <DependentUpon>DialogContrasena.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\clsJugador.cs" />
     <Compile Include="Models\clsMensaje.cs" />
     <Compile Include="Models\clsPartida.cs" />
@@ -178,6 +181,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\DialogContrasena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CrearSalaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

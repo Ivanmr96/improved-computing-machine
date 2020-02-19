@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,14 +22,27 @@ namespace Pinturillo.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         Frame navigationFrame = Window.Current.Content as Frame;
+        private string contrasena;
+        //private ICommand enterCommand;
 
         #endregion
 
         #region"Propiedades públicas"
         public DelegateCommand JoinGroupCommand { get; }
+        public DelegateCommand EnterCommand { get; }
         public DelegateCommand CreateGroupCommand { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
+
+        public string Contrasena
+        {
+            get { return contrasena; }
+            set 
+            { 
+                contrasena = value;
+                EnterCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public ObservableCollection<clsPartida> partidasAMostrar
         {
@@ -65,6 +79,17 @@ namespace Pinturillo.ViewModels
         {
             navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
         }
+
+        private void ExecuteEnterContrasenaCommand()
+        {
+            //TODO Comprobar que la contraseña es correcta, si lo es, entrar en la sala, si no, mostrar un texto diciendo que es incorrecta
+        }
+
+        private bool CanExecuteEnterContrasenaCommand()
+        {
+            return !String.IsNullOrEmpty(contrasena);
+        }
+
         #endregion
 
         #region"Constructor"
@@ -75,6 +100,7 @@ namespace Pinturillo.ViewModels
             //Command
             this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand); //TODO borrar command
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
+            this.EnterCommand = new DelegateCommand(ExecuteEnterContrasenaCommand, CanExecuteEnterContrasenaCommand);
 
             SignalR();
             

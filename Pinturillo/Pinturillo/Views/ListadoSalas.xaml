@@ -8,6 +8,7 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:local1="using:Pinturillo.Utils"
     xmlns:vm="using:Pinturillo.ViewModels"
+    xmlns:controls="using:Pinturillo.Controls"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -19,7 +20,7 @@
     </Page.Resources>
     
     <RelativePanel
-        Background="#4f98ca"
+        Background="{StaticResource PrimaryColor}"
         
         >
         <TextBlock Text="Salas" 
@@ -58,8 +59,8 @@
             RelativePanel.RightOf="backArrow"
             Margin="30,30,160,30"
             Opacity="0.75"
-            Background="#effffb"
-                CornerRadius="30" 
+            Background="{StaticResource SecondaryColor}"
+            CornerRadius="30" 
             >
             <ListView
                 Tapped="ListadoSalas_Tapped"
@@ -219,6 +220,16 @@
                 >
             Crear sala
         </Button>
+
+        <controls:DialogContrasena 
+            Visibility="Collapsed"
+            Contrasena="{Binding Contrasena, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            EnterCommand="{Binding EnterCommand}"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            />
 
     </RelativePanel>
 

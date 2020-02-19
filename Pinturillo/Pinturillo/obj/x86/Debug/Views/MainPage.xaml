@@ -17,7 +17,7 @@
     <-->
 
 
-    <RelativePanel Background="#4F98CA">
+    <RelativePanel Background="{StaticResource PrimaryColor}">
         <Image Source="ms-appx:///Assets/mancha.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></Image>
 
         <Border CornerRadius="0,0,20,0" Background="#FF1B1919" Width="1000" Height="60" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">

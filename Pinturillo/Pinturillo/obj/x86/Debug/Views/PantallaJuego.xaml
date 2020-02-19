@@ -8,7 +8,7 @@
     xmlns:vm="using:Pinturillo.ViewModels"
     xmlns:local1="using:Pinturillo.Utils"
     mc:Ignorable="d"
-   Background="#4f98ca">
+   Background="{StaticResource PrimaryColor}">
 
     <Page.DataContext>
         <vm:VMPantallaJuego></vm:VMPantallaJuego>
@@ -36,7 +36,7 @@
             
                Opacity="0.75"
                 
-            Background="#effffb"
+            Background="{StaticResource SecondaryColor}"
             Name="stkpanelListados"
             >
                 <ListView x:ConnectionId='13'
@@ -190,12 +190,12 @@
         <ListView x:ConnectionId='4'
             Name="chatMensajes"
             SelectionMode="None"
-            Background="#effffb"
+            Background="{StaticResource SecondaryColor}"
             Opacity="0.75"
             Windows10version1809:CornerRadius="30"
             RelativePanel.AlignLeftWith="inputMensajes"
             RelativePanel.AlignRightWithPanel="True"
-            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignTopWith="borderStackPanel"
             RelativePanel.Above="inputMensajes"
             Margin="15"
                 ItemsSource="{Binding Partida.ListadoMensajes}"
@@ -222,10 +222,10 @@
             Margin="0,0,0,15"
             RelativePanel.AlignBottomWithPanel="True"
             Text="{Binding Mensaje.Mensaje,Mode=TwoWay}" 
-            
             >
 
         </TextBox>
+        
         <Button x:ConnectionId='6'
             Name="btnSend"
             RelativePanel.AlignRightWithPanel="True"

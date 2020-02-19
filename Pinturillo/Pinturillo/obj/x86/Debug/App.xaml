@@ -5,5 +5,13 @@
     xmlns:local="using:Pinturillo"
     xmlns:vm1="using:Pinturillo.ViewModels">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
 
