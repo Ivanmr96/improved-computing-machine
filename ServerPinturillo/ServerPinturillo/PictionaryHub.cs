@@ -76,6 +76,10 @@ namespace ServerPinturillo
                 partida.Turno = 1;
                 partida.RondaActual = 1;
                 partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+
+                //TODO rellenar el listado de posiciones a descubrir
+                partida.PosicionesADescubrir = Utilidad.rellenarPosicionesADescubrir(partida.PalabraEnJuego);
+
                 partida.IsJugandose = true;
 
 
@@ -174,12 +178,15 @@ namespace ServerPinturillo
             }
             //Asigno una nueva palabra
             partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+            //TODO rellenar el listado de posiciones a descubrir
+            partida.PosicionesADescubrir = Utilidad.rellenarPosicionesADescubrir(partida.PalabraEnJuego);
+
 
             //Cambio el jugador jugando
             if (posicion < partida.ListadoJugadores.Count-1)
             {
                 partida.ConnectionIDJugadorActual = partida.ListadoJugadores[(posicion + 1)].ConnectionID;
-
+               
             }
             else
             {
@@ -234,8 +241,7 @@ namespace ServerPinturillo
 
 
 
-
-
+    
 
 
 
