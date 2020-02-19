@@ -213,7 +213,7 @@
 
         <TextBox x:ConnectionId='5'
             Windows10version1809:CornerRadius="10,0,0,10"
-            MaxLength="5"
+            MaxLength="30"
             Name="inputMensajes"
             RelativePanel.LeftOf="btnSend"
             Width="140"
@@ -221,7 +221,8 @@
             ,Converter={StaticResource TrueToFalseConverter}}"
             Margin="0,0,0,15"
             RelativePanel.AlignBottomWithPanel="True"
-            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}"
+            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}" 
+            
             >
 
         </TextBox>

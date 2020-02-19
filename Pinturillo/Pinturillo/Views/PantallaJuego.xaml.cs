@@ -336,6 +336,7 @@ namespace Pinturillo
 
 
 
+
         //// Update ink stroke color for new strokes.
         //private void OnPenColorChanged(object sender, SelectionChangedEventArgs e)
         //{

@@ -54,6 +54,7 @@ namespace ServerPinturillo.Clases
 
         public clsPartida()
         {
+            ListadoMensajes = new ObservableCollection<clsMensaje>(new List<clsMensaje>());
             ListadoJugadores = new ObservableCollection<clsJugador>(new List<clsJugador>());
             PosicionesADescubrir = new List<int>();
         }
