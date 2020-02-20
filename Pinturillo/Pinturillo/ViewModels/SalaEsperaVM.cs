@@ -23,7 +23,7 @@ namespace Pinturillo.ViewModels
         private string usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
-        private bool puedesFuncionar;
+        private bool puedesFuncionar2;
         #endregion
 
         #region constructor
@@ -31,7 +31,7 @@ namespace Pinturillo.ViewModels
         public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
-            puedesFuncionar = true;
+            puedesFuncionar2 = true;
             partida = new clsPartida();
             this.salir = new DelegateCommand(salir_execute);
 
@@ -140,6 +140,7 @@ namespace Pinturillo.ViewModels
             proxy.Invoke("empezarPartida",partida.NombreSala);
             Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
             navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+            puedesFuncionar2 = false;
         }
 
         #endregion
@@ -167,12 +168,13 @@ namespace Pinturillo.ViewModels
             //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (puedesFuncionar)
+                if (puedesFuncionar2)
                 {
+                    this.puedesFuncionar2 = false;
                     partida.IsJugandose = true;
                     Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
                     navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
-                    puedesFuncionar = false;
+                    
                 }
                
             });
