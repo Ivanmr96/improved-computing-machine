@@ -23,6 +23,7 @@ namespace Pinturillo.ViewModels
         private IHubProxy proxy;
         Frame navigationFrame = Window.Current.Content as Frame;
         private string contrasena;
+        private bool puedesFuncionar;
         //private ICommand enterCommand;
 
         #endregion
@@ -95,6 +96,7 @@ namespace Pinturillo.ViewModels
         #region"Constructor"
         public VMListadoSalas()
         {
+            puedesFuncionar = true;
             this._usuarioPropio = new clsJugador();
             //TODO todas las cosas de SignalR
             //Command
@@ -131,12 +133,17 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-                if (partida != null)
-                {
-                    ListadoPartidas.Remove(partida);
-                    NotifyPropertyChanged("partidasAMostrar");
-                }
+                
+                    clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+                    if (partida != null)
+                    {
+                        ListadoPartidas.Remove(partida);
+                        NotifyPropertyChanged("partidasAMostrar");
+                    }
+              
+
+                
+                
             });
         }
 
@@ -144,29 +151,37 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsPartida partida;
-                try
-                {
-                    partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-                }catch (Exception e) {
-                    partida = null;
-                }
-                if (partida != null)
-                {
-                    clsJugador jugador;
+               
+                    clsPartida partida;
                     try
                     {
-                        jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                    }catch (Exception e) {
-                        jugador = null;
+                        partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
                     }
-                    if (jugador != null)
+                    catch (Exception e)
                     {
-                        partida.ListadoJugadores.Remove(jugador);
-                        partida.NotifyPropertyChanged("ListadoPartidas");
-                        NotifyPropertyChanged("partidasAMostrar");
+                        partida = null;
                     }
-                }
+                    if (partida != null)
+                    {
+                        clsJugador jugador;
+                        try
+                        {
+                            jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
+                        }
+                        catch (Exception e)
+                        {
+                            jugador = null;
+                        }
+                        if (jugador != null)
+                        {
+                            partida.ListadoJugadores.Remove(jugador);
+                            partida.NotifyPropertyChanged("ListadoPartidas");
+                            NotifyPropertyChanged("partidasAMostrar");
+                        }
+                    }
+                   
+                
+               
             });
         }
 
@@ -174,10 +189,14 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (puedesFuncionar)
+                {
+                    this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
+                    NotifyPropertyChanged("ListadoPartidas");
+                    NotifyPropertyChanged("partidasAMostrar");
+                    puedesFuncionar = false;
+                }
                
-                this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
-                NotifyPropertyChanged("ListadoPartidas");
-                NotifyPropertyChanged("partidasAMostrar");
             }
 
             );
@@ -200,21 +219,27 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+               
+                    clsPartida partida;
+                    try
+                    {
+                        partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
+                    }
+                    catch (Exception e)
+                    {
+                        partida = null;
+                    }
 
-                clsPartida partida;
-                try {
-                    partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
-                } catch (Exception e) {
-                    partida = null;
-                }
+                    if (partida != null)
+                    {
+                        partida.ListadoJugadores.Add(jugador);
+                        NotifyPropertyChanged("ListadoPartidas");
+                        NotifyPropertyChanged("partidasAMostrar");
 
-                if(partida != null)
-                {
-                    partida.ListadoJugadores.Add(jugador);
-                    NotifyPropertyChanged("ListadoPartidas");
-                    NotifyPropertyChanged("partidasAMostrar");
-
-                }
+                    }
+                   
+                
+               
             });
         }
 

@@ -17,6 +17,7 @@ namespace Pinturillo.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         Frame navigationFrame = Window.Current.Content as Frame;
+ 
 
         public MainPageVM() {
             SignalR();
@@ -24,8 +25,8 @@ namespace Pinturillo.ViewModels
 
         public async void SignalR()
         {
-            //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
-            conn = new HubConnection("http://localhost:11111/");
+            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            //conn = new HubConnection("http://localhost:11111/");
             proxy = conn.CreateHubProxy("PictionaryHub");
             Connection.Connection.conn = conn;
             Connection.Connection.proxy = proxy;

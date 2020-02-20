@@ -23,6 +23,7 @@ namespace Pinturillo.ViewModels
         private string usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
+        private bool puedesFuncionar;
         #endregion
 
         #region constructor
@@ -30,7 +31,7 @@ namespace Pinturillo.ViewModels
         public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
-
+            puedesFuncionar = true;
             partida = new clsPartida();
             this.salir = new DelegateCommand(salir_execute);
 
@@ -82,7 +83,6 @@ namespace Pinturillo.ViewModels
         private void enviarMensaje_execute()
         {
             //Mandar el mensaje al servidor
-
             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
             mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
@@ -167,9 +167,14 @@ namespace Pinturillo.ViewModels
             //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                partida.IsJugandose = true;
-                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                if (puedesFuncionar)
+                {
+                    partida.IsJugandose = true;
+                    Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                    navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                    puedesFuncionar = false;
+                }
+               
             });
         }
 
@@ -178,16 +183,19 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsJugador jugador;
+               
+                    clsJugador jugador;
 
                     jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
 
 
-                if (jugador != null)
-                {
-                    jugador.IsLider = true;
-                    comenzarPartida.RaiseCanExecuteChanged();
-                }
+                    if (jugador != null)
+                    {
+                        jugador.IsLider = true;
+                        comenzarPartida.RaiseCanExecuteChanged();
+                    }
+                
+               
             });
         }
 
@@ -195,25 +203,28 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+              
+                    if (partida != null)
+                    {
+                        mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
+                        NotifyPropertyChanged("Mensaje");
+                        /*partida.NombreSala = game.NombreSala;
+                        partida.ListadoMensajes = game.ListadoMensajes;
+                        partida.NotifyPropertyChanged("ListadoMensajes");
+                        partida.ListadoJugadores = game.ListadoJugadores;
+                        partida.NotifyPropertyChanged("ListadoJugadores");
+                        comenzarPartida.RaiseCanExecuteChanged();*/
+                        partida = game;
+                        NotifyPropertyChanged("Partida");
+                        partida.NotifyPropertyChanged("ListadoJugadores");
+                        partida.NotifyPropertyChanged("ListadoMensajes");
+                        comenzarPartida.RaiseCanExecuteChanged();
+                        //NotifyPropertyChanged("partidasAMostrar");
 
-                if (partida != null)
-                {
-                    mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
-                    NotifyPropertyChanged("Mensaje");
-                    /*partida.NombreSala = game.NombreSala;
-                    partida.ListadoMensajes = game.ListadoMensajes;
-                    partida.NotifyPropertyChanged("ListadoMensajes");
-                    partida.ListadoJugadores = game.ListadoJugadores;
-                    partida.NotifyPropertyChanged("ListadoJugadores");
-                    comenzarPartida.RaiseCanExecuteChanged();*/
-                    partida = game;
-                    NotifyPropertyChanged("Partida");
-                    partida.NotifyPropertyChanged("ListadoJugadores");
-                    partida.NotifyPropertyChanged("ListadoMensajes");
-                    comenzarPartida.RaiseCanExecuteChanged();
-                    //NotifyPropertyChanged("partidasAMostrar");
+                    }
+               
 
-                }
+               
             });
         }
 
@@ -221,17 +232,21 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                clsJugador jugador;
+
+               
+                    clsJugador jugador;
 
                     jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
 
 
-                if (jugador != null)
-                {
-                    partida.ListadoJugadores.Remove(jugador);
-                    partida.NotifyPropertyChanged("ListadoJugadores");
-                    comenzarPartida.RaiseCanExecuteChanged();
-                }
+                    if (jugador != null)
+                    {
+                        partida.ListadoJugadores.Remove(jugador);
+                        partida.NotifyPropertyChanged("ListadoJugadores");
+                        comenzarPartida.RaiseCanExecuteChanged();
+                    }
+                 
+               
             });
         }
 
@@ -239,8 +254,11 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                partida.ListadoMensajes.Add(mensaje);
-                partida.NotifyPropertyChanged("ListadoMensajes");
+               
+                    partida.ListadoMensajes.Add(mensaje);
+                    partida.NotifyPropertyChanged("ListadoMensajes");
+              
+                
 
             });
         }
