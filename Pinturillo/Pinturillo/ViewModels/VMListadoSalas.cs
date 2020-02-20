@@ -189,13 +189,14 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (puedesFuncionar)
-                {
-                    this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
-                    NotifyPropertyChanged("ListadoPartidas");
-                    NotifyPropertyChanged("partidasAMostrar");
-                    puedesFuncionar = false;
-                }
+                this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
+                NotifyPropertyChanged("ListadoPartidas");
+                NotifyPropertyChanged("partidasAMostrar");
+                //if (puedesFuncionar)
+                //{
+                    
+                //    puedesFuncionar = false;
+                //}
                
             }
 
