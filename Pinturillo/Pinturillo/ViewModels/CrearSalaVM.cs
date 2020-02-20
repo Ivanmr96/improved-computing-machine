@@ -123,22 +123,18 @@ namespace Pinturillo.ViewModels
             {
                 if (validarFormulario())
                 {
-                    if (puedesFuncionar)
-                    {
+                   
                         proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
-                        puedesFuncionar = false;
-                    }
+                   
                    
                     limpiarCampos();
                 }
             }
             else {
                 if (validarFormularioSoloNombreSala()) {
-                    if (puedesFuncionar)
-                    {
+                 
                         proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
-                        puedesFuncionar = false;
-                    }
+              
                     
                     limpiarCampos();
                 }
