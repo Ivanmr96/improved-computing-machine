@@ -239,12 +239,6 @@ namespace ServerPinturillo
             Clients.Group(nombreGrupo).puntosAdded(partidaActual);
         }
 
-
-
-    
-
-
-
         public void sendMensaje (clsMensaje mensaje, string nombreGrupo)
         {
 

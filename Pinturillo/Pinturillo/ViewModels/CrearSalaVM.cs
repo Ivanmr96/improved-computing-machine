@@ -54,7 +54,7 @@ namespace Pinturillo.ViewModels
         }
         public CrearSalaVM()
         {
-            puedesFuncionar = true;
+            PuedesFuncionar = true;
             _partida = new clsPartida();
             _visible = "Collapsed";
             _lblErrorNombreSala = "*";
@@ -94,10 +94,10 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (puedesFuncionar)
+                if (PuedesFuncionar)
                 {
                     navigationFrame.Navigate(typeof(SalaEspera), partida);
-                    puedesFuncionar = false;
+                    PuedesFuncionar = false;
                 }
             });
         }
@@ -116,6 +116,7 @@ namespace Pinturillo.ViewModels
 
         public bool CheckboxChecked { get => _checkboxChecked; set => _checkboxChecked = value; }
         public String LblErrorNumJugadores { get => _lblErrorNumJugadores; set => _lblErrorNumJugadores = value; }
+        public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
 
         private void CrearCommand_Executed()
         {           

@@ -34,6 +34,7 @@ namespace Pinturillo
             vm.limpiarCampos();
             vm.limpiarFormulario();
             this.Frame.Navigate(typeof(ListadoSalas), vm.NombreUsuario);
+            vm.PuedesFuncionar = false;
         }        
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -110,6 +110,7 @@ namespace Pinturillo.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas),usuarioPropio);
                 await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+                puedesFuncionar2 = false;
             }
         }
 

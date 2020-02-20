@@ -31,6 +31,17 @@ namespace Pinturillo
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        /// <summary>
+        /// Este metodo sera usado cuando salte alguna excepcion de cualquier tipo y desconectara al cliente del servidor.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Connection.Connection.conn.Stop();
 
         }
 
