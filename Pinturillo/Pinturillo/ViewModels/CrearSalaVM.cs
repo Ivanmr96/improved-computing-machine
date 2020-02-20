@@ -25,6 +25,7 @@ namespace Pinturillo.ViewModels
         Frame navigationFrame = Window.Current.Content as Frame;
         private String _visible;
         private bool _checkboxChecked;
+        private bool puedesFuncionar;
 
         private const int NUM_MAX_JUGADORES = 5;
 
@@ -53,6 +54,7 @@ namespace Pinturillo.ViewModels
         }
         public CrearSalaVM()
         {
+            puedesFuncionar = true;
             _partida = new clsPartida();
             _visible = "Collapsed";
             _lblErrorNombreSala = "*";
@@ -92,7 +94,11 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                navigationFrame.Navigate(typeof(SalaEspera), partida);
+                if (puedesFuncionar)
+                {
+                    navigationFrame.Navigate(typeof(SalaEspera), partida);
+                    puedesFuncionar = false;
+                }
             });
         }
 

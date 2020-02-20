@@ -9,14 +9,18 @@
     xmlns:vm="using:PinturilloParaPruebas.ViewModels"
     mc:Ignorable="d"
     xmlns:local1="using:PinturilloParaPruebas.Utils"
-   Background="#4f98ca">
+    Background="{StaticResource PrimaryColor}">
 
     <Page.DataContext>
         <vm:VMPantallaJuego></vm:VMPantallaJuego>
     </Page.DataContext>
+
     <Page.Resources>
         <local1:LapizVisibilityConverter x:Key="LapizConverter"></local1:LapizVisibilityConverter>
+        <local1:TrueToFalseConverter x:Key="TrueToFalseConverter"></local1:TrueToFalseConverter>
+
     </Page.Resources>
+
     <RelativePanel>
         <Border 
             Name="borderStackPanel"
@@ -33,11 +37,12 @@
             
                Opacity="0.75"
                 
-            Background="#effffb"
+            Background="{StaticResource SecondaryColor}"
             Name="stkpanelListados"
             >
                 <ListView
                 Name="listadoSalas"
+                SelectionMode="None"
                 ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                 >
                     <ListView.ItemTemplate>
@@ -52,6 +57,7 @@
                                         RelativePanel.AlignLeftWithPanel="True"
                                         RelativePanel.AlignTopWithPanel="True"
                                 />
+
 
                                 <AppBarButton
                                         Name="lapiz"
@@ -142,32 +148,37 @@
                 </TextBlock>
 
 
-                <Rectangle
+                <Border
                     
-                    Fill="White"
+                    Background="White"
                     Margin="10,25,10,10"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     >
-
-                </Rectangle>
-                <InkCanvas x:Name="inkCanvas"
-                           Margin="10,25,10,10"
-                           Height="1000"
-                           Width="1000"
+                    <InkCanvas x:Name="inkCanvas"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                       
                            />
+                </Border>
+
 
                 <InkToolbar x:Name="inkToolbar"
+                             IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
+                        }"
           VerticalAlignment="Top"
                            RelativePanel.AlignRightWithPanel="True"
-          TargetInkCanvas="{x:Bind inkCanvas}" />
+                           EraseAllClicked="InkToolbar_EraseAllClicked"
+                           InitialControls="PensOnly"
+                           
+          TargetInkCanvas="{x:Bind inkCanvas}" >
+
+                    <InkToolbarEraserButton ></InkToolbarEraserButton>
+                </InkToolbar>
 
 
             </RelativePanel>
@@ -179,19 +190,20 @@
 
         <ListView
             Name="chatMensajes"
-            Background="#effffb"
+            SelectionMode="None"
+            Background="{StaticResource SecondaryColor}"
             Opacity="0.75"
             Windows10version1809:CornerRadius="30"
-                RelativePanel.AlignRightWithPanel="True"
-            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignLeftWith="inputMensajes"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignTopWith="borderStackPanel"
             RelativePanel.Above="inputMensajes"
-            Width="200"
             Margin="15"
                 ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
+                    <TextBlock TextWrapping="Wrap">
                                 <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
                                 <Run Text=": " />
                                 <Run Text="{Binding Mensaje}" />
@@ -202,24 +214,27 @@
 
         <TextBox
             Windows10version1809:CornerRadius="10,0,0,10"
+            MaxLength="30"
             Name="inputMensajes"
             RelativePanel.LeftOf="btnSend"
             Width="140"
-            
+            IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
+            ,Converter={StaticResource TrueToFalseConverter}}"
             Margin="0,0,0,15"
             RelativePanel.AlignBottomWithPanel="True"
-            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}"
+            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}" 
             >
 
         </TextBox>
+
         <Button
             Name="btnSend"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignBottomWithPanel="True"
             Margin="0,10,15,15"
             Windows10version1809:CornerRadius="0,10,10,0"
-            Content="Enviar" 
-            Command="{Binding SendMessageCommand}"
+            Content="Enviar"
+            Command="{Binding SendMessageCommand}"            
             >
 
         </Button>

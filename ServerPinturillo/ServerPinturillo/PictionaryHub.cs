@@ -262,9 +262,11 @@ namespace ServerPinturillo
         public void empezarPartida(String nombreGrupo) {
 
             Clients.OthersInGroup(nombreGrupo).empezarPartida();
+   
+        }
 
-    
-
+        public void borrarCanvas(String nombreGrupo) {
+            Clients.OthersInGroup(nombreGrupo).borrarCanvas();
         }
 
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)

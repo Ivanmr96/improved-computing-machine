@@ -77,6 +77,7 @@ namespace Pinturillo
             proxy.On<List<clsPunto>>("mandarStroke", onStrokeReceived);
             proxy.On<clsPartida>("haCambiadoElTurno", onHaCambiadoElTurno);
             proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
+            proxy.On("borrarCanvas", borrarCanvas);
         }
 
         //Cuando cambia el turno
@@ -328,10 +329,16 @@ namespace Pinturillo
 
         private void InkToolbar_EraseAllClicked(InkToolbar sender, object args)
         {
-            //inkToolbar.Children.
+            proxy.Invoke("borrarCanvas", viewModel.Partida.NombreSala);
         }
 
-
+        private async void borrarCanvas()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                inkCanvas.InkPresenter.StrokeContainer.Clear();
+            });
+        }
 
 
 

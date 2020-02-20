@@ -127,6 +127,8 @@
     <Compile Include="Utils\LapizVisibilityConverter.cs" />
     <Compile Include="Utils\PasswordToVisibilityConverter.cs" />
     <Compile Include="Utils\StringToIntConverter.cs" />
+    <Compile Include="Utils\TrueToFalseConverter.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="ViewModels\clsVMBase.cs" />
     <Compile Include="ViewModels\CrearSalaVM.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
@@ -185,6 +187,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CrearSalaPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

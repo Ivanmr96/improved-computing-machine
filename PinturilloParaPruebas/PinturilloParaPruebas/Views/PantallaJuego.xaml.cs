@@ -33,12 +33,11 @@ namespace PinturilloParaPruebas
         InkStrokeBuilder builder;
         List<Point> points;
         IReadOnlyList<InkStroke> _added;
-        IReadOnlyList<InkStroke> _borrado;
         Line line;
         private HubConnection conn;
         private IHubProxy proxy;
 
-        public static int TIME_MAX = 10;
+        public static int TIME_MAX = 30;
 
         VMPantallaJuego viewModel
         {
@@ -48,7 +47,8 @@ namespace PinturilloParaPruebas
         {
             this.InitializeComponent();
             viewModel = (VMPantallaJuego)this.DataContext;
-           
+            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Pen;
+            //inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
 
             inkCanvas.InkPresenter.InputDeviceTypes = viewModel.TipoEntradaInkCanvas;
 
@@ -67,11 +67,6 @@ namespace PinturilloParaPruebas
             SignalR();
         }
 
-        private void InkPresenter_StrokesErased(InkPresenter sender, InkStrokesErasedEventArgs args)
-        {
-            _borrado = args.Strokes;
-        }
-
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -82,9 +77,9 @@ namespace PinturilloParaPruebas
             //await conn.Start();
 
             proxy.On<List<clsPunto>>("mandarStroke", onStrokeReceived);
-            proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
             proxy.On<clsPartida>("haCambiadoElTurno", onHaCambiadoElTurno);
-
+            proxy.On<clsPartida>("onPartidaComenzada", onPartidaComenzada);
+            proxy.On("borrarCanvas", borrarCanvas);
         }
 
         //Cuando cambia el turno
@@ -95,19 +90,18 @@ namespace PinturilloParaPruebas
                 viewModel.Partida = obj;
                 viewModel.NotifyPropertyChanged("Partida");
 
-                viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+                viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
                 viewModel.TimeMax = TIME_MAX;
                 viewModel.NotifyPropertyChanged("TimeMax");
                 viewModel.LblTemporizador = TIME_MAX.ToString();
                 viewModel.NotifyPropertyChanged("LblTemporizador");
-
+                viewModel.tiempoEspera = 10;
                 viewModel.DispatcherTimer.Start();
 
                 //Se limpia el canvas
                 inkCanvas.InkPresenter.StrokeContainer.Clear();
-
 
                 if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
                 //es nuestro turno
@@ -119,7 +113,8 @@ namespace PinturilloParaPruebas
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar = obj.PalabraEnJuego;
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");
-
+                    viewModel.IsMiTurno = true;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
                 }
@@ -131,14 +126,18 @@ namespace PinturilloParaPruebas
                     inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
                     //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
-                    //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                    // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
 
                     viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                    viewModel.IsMiTurno = false;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                 }
 
             });
         }
+
+
 
 
         //Cuando comienza la partida
@@ -149,7 +148,7 @@ namespace PinturilloParaPruebas
                 viewModel.Partida = obj;
                 viewModel.NotifyPropertyChanged("Partida");
 
-                viewModel.UsuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+                viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                 //Iniciamos el timer
                 viewModel.DispatcherTimer.Start();
@@ -164,7 +163,8 @@ namespace PinturilloParaPruebas
                     //palabra a mostrar será la palabra en juego
                     viewModel.PalabraAMostrar = obj.PalabraEnJuego;
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");
-
+                    viewModel.IsMiTurno = true;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
                 }
@@ -174,16 +174,20 @@ namespace PinturilloParaPruebas
 
                     //Deshabilitar el canvas
                     // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
                     //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
-                    // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-
+                    //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                    viewModel.IsMiTurno = false;
+                    viewModel.NotifyPropertyChanged("IsMiTurno");
                     viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
-                    viewModel.NotifyPropertyChanged("PalabraAMostrar");                              // NotifyPropertyChanged("PalabraAMostrar");
+                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
                 }
 
             });
         }
+
+
 
 
 
@@ -283,23 +287,29 @@ namespace PinturilloParaPruebas
                 points.Add(ultimo);
             }
         }
+        /*
+        public class User
+        {
+            public string Name { get; set; }
 
+            public int Age { get; set; }
+        }*/
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
             var lastPage = Frame.BackStack.Last().SourcePageType;
-            
+            //Frame.BackStack.Clear();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
             if (lastPage.FullName.Equals("PinturilloParaPruebas.SalaEspera"))
             {
                 if (e.Parameter != null)
                 {
-
                     Tuple<String, clsPartida> partidaConNick = (Tuple<String, clsPartida>)e.Parameter;
 
                     viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
                     viewModel.Partida = partidaConNick.Item2;
+                    viewModel.NotifyPropertyChanged("Partida");
 
                     //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
 
@@ -307,13 +317,31 @@ namespace PinturilloParaPruebas
 
                     //viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
+
+
+                    //Este invoke solo lo puede emitir el lider (que si no el servidor recibe 5 llamadas pa lo mismo)
+                    //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
+                    //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
                     proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
                 }
             }
             base.OnNavigatedTo(e);
 
         }
-        
+
+        private void InkToolbar_EraseAllClicked(InkToolbar sender, object args)
+        {
+            proxy.Invoke("borrarCanvas", viewModel.Partida.NombreSala);
+        }
+
+        private async void borrarCanvas()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                inkCanvas.InkPresenter.StrokeContainer.Clear();
+            });
+        }
+
 
 
 

@@ -84,12 +84,20 @@ namespace PinturilloParaPruebas.ViewModels
             //Mandar el mensaje al servidor
 
             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
+            mensaje.Mensaje = "";
+            NotifyPropertyChanged("Mensaje");
         }
 
         public DelegateCommand salir { get; set; }
 
         private async void salir_execute()
         {
+            //Indica al serivdor que sale.
+
+            //await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+
+            //para probar
+            //this.navigationService.NavigateTo(ViewModelLocator.ListadoSalas);
 
             ContentDialog confirmadoCorrectamente = new ContentDialog();
             confirmadoCorrectamente.Title = "Confirmación";
@@ -111,14 +119,9 @@ namespace PinturilloParaPruebas.ViewModels
         {
             bool puedeComenzar = false;
             clsJugador jugador;
-            try
-            {
-                jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
-            }
-            catch (Exception e)
-            {
-                jugador = null;
-            }
+
+            jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
+
             if (jugador != null)
             {
                 if (jugador.IsLider && partida.ListadoJugadores.Count >= 2)
@@ -157,32 +160,29 @@ namespace PinturilloParaPruebas.ViewModels
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
             proxy.On("empezarPartida", OnempezarPartidaAsync);
             proxy.On("nombrarComoLider", OnnombrarComoLider);
+
         }
 
         private async void OnempezarPartidaAsync()
         {
+            //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 partida.IsJugandose = true;
                 Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
                 navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
-               
             });
         }
+
         //se nombra como lider al jugador actual
         private async void OnnombrarComoLider()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsJugador jugador;
-                try
-                {
-                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuarioPropio);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
+
 
                 if (jugador != null)
                 {
@@ -223,14 +223,9 @@ namespace PinturilloParaPruebas.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsJugador jugador;
-                try
-                {
-                    jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+
 
                 if (jugador != null)
                 {
@@ -250,6 +245,5 @@ namespace PinturilloParaPruebas.ViewModels
 
             });
         }
-
     }
 }

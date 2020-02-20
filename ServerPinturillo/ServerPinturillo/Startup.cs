@@ -21,7 +21,7 @@ namespace ServerPinturillo
 
             //Para que se desconecte rapido
             
-            GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(6);
+            GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromSeconds(60);
         }
     }
 }
