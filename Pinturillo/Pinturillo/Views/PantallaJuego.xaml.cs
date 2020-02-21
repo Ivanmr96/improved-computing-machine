@@ -325,12 +325,18 @@ namespace Pinturillo
 
                     //viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
-                    
+
 
                     //Este invoke solo lo puede emitir el lider (que si no el servidor recibe 5 llamadas pa lo mismo)
                     //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
                     //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
-                    proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
+
+                    if (viewModel.UsuarioPropio.ConnectionID == viewModel.Partida.ListadoJugadores[0].ConnectionID)
+                        //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
+                    {
+                        proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
+                    }
+                        
                 }
             }
             base.OnNavigatedTo(e);
