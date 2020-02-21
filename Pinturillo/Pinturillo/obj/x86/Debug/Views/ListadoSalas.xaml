@@ -222,7 +222,7 @@
         </Button>
 
         <controls:DialogContrasena 
-            Visibility="Visible"
+            Visibility="{Binding DialogContrasenaVisibility, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverterXBIND }}"
             ContrasenaIncorrecta="{Binding ContrasenaIncorrecta, Mode=TwoWay}"
             Contrasena="{Binding Contrasena, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             EnterCommand="{Binding EnterCommand}"

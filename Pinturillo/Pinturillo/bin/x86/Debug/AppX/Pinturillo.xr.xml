@@ -14,6 +14,7 @@
     <RootPropertyPathName Name="Password" />
     <RootPropertyPathName Name="LblErrorNombreSala" />
     <RootPropertyPathName Name="NombreSala" />
+    <RootPropertyPathName Name="DialogContrasenaVisibility" />
     <RootPropertyPathName Name="ContrasenaIncorrecta" />
     <RootPropertyPathName Name="Contrasena" />
     <RootPropertyPathName Name="EnterCommand" />

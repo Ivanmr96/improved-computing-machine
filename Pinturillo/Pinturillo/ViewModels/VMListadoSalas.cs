@@ -34,6 +34,8 @@ namespace Pinturillo.ViewModels
         public DelegateCommand CreateGroupCommand { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
+        public clsPartida partidaSeleccionada { get; set; }
+        public bool DialogContrasenaVisibility { get; set; }
 
         public string Contrasena
         {
@@ -91,7 +93,21 @@ namespace Pinturillo.ViewModels
         {
             //TODO Comprobar que la contraseña es correcta, si lo es, entrar en la sala, si no, mostrar un texto diciendo que es incorrecta
             
-            ContrasenaIncorrecta = contrasena != "foo";
+            if(contrasena == partidaSeleccionada.Password)
+            {
+                ContrasenaIncorrecta = false;
+
+                proxy.Invoke("addJugadorToSala", partidaSeleccionada.NombreSala, _usuarioPropio);
+                navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+
+                DialogContrasenaVisibility = false;
+
+                NotifyPropertyChanged("DialogContrasenaVisibility");
+            }
+            else
+                ContrasenaIncorrecta = true;
+
+
 
             NotifyPropertyChanged("ContrasenaIncorrecta");
         }
@@ -207,9 +223,12 @@ namespace Pinturillo.ViewModels
 
         public void ListadoSalas_Tapped(clsPartida partida)
         {
+            partidaSeleccionada = partida;
+            DialogContrasenaVisibility = true;
+            NotifyPropertyChanged("DialogContrasenaVisibility");
 
-            proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+            //proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
+            //navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
         }
 
 
