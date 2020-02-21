@@ -23,6 +23,7 @@ namespace PinturilloParaPruebas.ViewModels
         private string usuarioPropio;
         private HubConnection conn;
         private IHubProxy proxy;
+        private bool puedesFuncionar2;
         #endregion
 
         #region constructor
@@ -30,7 +31,7 @@ namespace PinturilloParaPruebas.ViewModels
         public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
-
+            puedesFuncionar2 = true;
             partida = new clsPartida();
             this.salir = new DelegateCommand(salir_execute);
 
@@ -77,12 +78,11 @@ namespace PinturilloParaPruebas.ViewModels
 
         public DelegateCommand enviarMensaje { get; set; }
 
-        private bool enviarMensaje_canExecute() => mensaje != null || mensaje.Mensaje != "";
+        private bool enviarMensaje_canExecute() => mensaje.Mensaje != null && mensaje.Mensaje != "";
 
         private void enviarMensaje_execute()
         {
             //Mandar el mensaje al servidor
-
             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);
             mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
@@ -110,6 +110,7 @@ namespace PinturilloParaPruebas.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas), usuarioPropio);
                 await proxy.Invoke("jugadorHaSalido", usuarioPropio, partida.NombreSala);
+                puedesFuncionar2 = false;
             }
         }
 
@@ -141,6 +142,7 @@ namespace PinturilloParaPruebas.ViewModels
             proxy.Invoke("empezarPartida", partida.NombreSala);
             Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
             navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+            puedesFuncionar2 = false;
         }
 
         #endregion
@@ -168,9 +170,15 @@ namespace PinturilloParaPruebas.ViewModels
             //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                partida.IsJugandose = true;
-                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                if (puedesFuncionar2)
+                {
+                    this.puedesFuncionar2 = false;
+                    partida.IsJugandose = true;
+                    Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                    navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+
+                }
+
             });
         }
 
@@ -179,6 +187,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 clsJugador jugador;
 
                 jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuarioPropio);
@@ -189,6 +198,8 @@ namespace PinturilloParaPruebas.ViewModels
                     jugador.IsLider = true;
                     comenzarPartida.RaiseCanExecuteChanged();
                 }
+
+
             });
         }
 
@@ -215,6 +226,9 @@ namespace PinturilloParaPruebas.ViewModels
                     //NotifyPropertyChanged("partidasAMostrar");
 
                 }
+
+
+
             });
         }
 
@@ -222,6 +236,8 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
+
                 clsJugador jugador;
 
                 jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
@@ -233,6 +249,8 @@ namespace PinturilloParaPruebas.ViewModels
                     partida.NotifyPropertyChanged("ListadoJugadores");
                     comenzarPartida.RaiseCanExecuteChanged();
                 }
+
+
             });
         }
 
@@ -240,10 +258,18 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 partida.ListadoMensajes.Add(mensaje);
                 partida.NotifyPropertyChanged("ListadoMensajes");
 
+
+
             });
+        }
+
+        public void textoCambiado()
+        {
+            enviarMensaje.RaiseCanExecuteChanged();
         }
     }
 }

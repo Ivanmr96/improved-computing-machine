@@ -13,7 +13,8 @@
     <Page.DataContext>
         <vm:SalaEsperaVM></vm:SalaEsperaVM>
     </Page.DataContext>
-    
+
+
     <RelativePanel
         Background="#4f98ca">
 
@@ -25,6 +26,7 @@
             >
 
             <ListView
+            SelectionMode="None"
             Name="listaJugadores"
             Windows10version1809:CornerRadius="30"
             Background="#effffb"
@@ -34,14 +36,14 @@
             RelativePanel.AlignRightWith="stkBotones"
             RelativePanel.AlignTopWithPanel="True"
             RelativePanel.AlignLeftWithPanel="True"
-            ItemsSource="{Binding Partida.ListadoJugadores}">
+            ItemsSource="{Binding Partida.ListadoJugadores, UpdateSourceTrigger=PropertyChanged}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock 
-                            Foreground="#4f98ca"
+                            Foreground="Black"
                             FontSize="25">
-                            <Run Text="{Binding Nickname}" />
+                            <Run Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -90,7 +92,7 @@
             Windows10version1809:CornerRadius="0,0,0,28"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch" 
+            HorizontalAlignment="Stretch"
             >
                     Salir
                 </Button>
@@ -101,7 +103,8 @@
             Windows10version1809:CornerRadius="0,0,28,0"
             FontSize="18"
             Margin="0"
-            HorizontalAlignment="Stretch" Command="{Binding comenzarPartida}"
+            HorizontalAlignment="Stretch"
+                    Command="{Binding comenzarPartida}"
             >
                     Comenzar
                 </Button>
@@ -122,18 +125,19 @@
                 <ListView
                     Margin="25"
                     ItemsSource="{Binding Partida.ListadoMensajes}"
+                    SelectionMode="None"
                     >
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
-                                <Run Text=": " />
-                                <Run Text="{Binding Mensaje}" />
+                                <Run FontWeight="Bold" Foreground="Black" Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run Text=": " Foreground="Black" />
+                                <Run Text="{Binding Mensaje}" Foreground="Black"/>
                             </TextBlock>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    
+
                 </ListView>
 
             </Border>
@@ -157,7 +161,9 @@
                 RelativePanel.AlignBottomWithPanel="True"
                 Name="txtBoxMensaje"
                 Margin="30,0,0,30"
-                Text="{Binding Mensaje.Mensaje, Mode=TwoWay}"
+                Foreground="Black"
+                Text="{Binding Mensaje.Mensaje, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                TextChanged="{x:Bind viewModel.textoCambiado}"
                     />
 
                 <Button
@@ -167,7 +173,7 @@
                     Command="{Binding enviarMensaje}"
                 RelativePanel.AlignTopWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"
-                Margin="0,0,35,0"
+                Margin="0,0,35,0" TabIndex="0"
                 >
                     Enviar
 

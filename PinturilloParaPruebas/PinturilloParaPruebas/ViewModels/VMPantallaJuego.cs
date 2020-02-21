@@ -29,15 +29,16 @@ namespace PinturilloParaPruebas.ViewModels
         Frame navigationFrame = Window.Current.Content as Frame;
         private IHubProxy proxy;
         private bool isUltimaPalabraAcertada;
-
         private string _palabraAMostrar;
         #endregion
         public static int TIME_MAX = 10;
         public int tiempoEspera { get; set; }
         private int pos = 0;
+        private bool puedesFuncionar;
 
         public VMPantallaJuego()
         {
+            PuedesFuncionar = true;
             this.tiempoEspera = 3;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
@@ -137,7 +138,6 @@ namespace PinturilloParaPruebas.ViewModels
             //proxy = conn.CreateHubProxy("PictionaryHub");
             //await conn.Start();
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
-
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsPartida>("puntosAdded", OnPuntosAdded);
 
@@ -158,9 +158,20 @@ namespace PinturilloParaPruebas.ViewModels
         public string PalabraAMostrar { get => _palabraAMostrar; set => _palabraAMostrar = value; }
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
-        public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
+        public clsMensaje Mensaje
+        {
+            get
+            {
+                return _mensaje;
+            }
+            set
+            {
+                _mensaje = value;
+            }
+        }
         public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
         public CoreInputDeviceTypes TipoEntradaInkCanvas { get; set; }
+        public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
         #endregion
 
 
@@ -178,6 +189,7 @@ namespace PinturilloParaPruebas.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas), _usuarioPropio.Nickname);
                 await proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
+
                 //pararContador();
             }
         }
@@ -202,7 +214,7 @@ namespace PinturilloParaPruebas.ViewModels
         }
 
 
-        private bool CanExecuteSendMessageCommand() => _mensaje != null || _mensaje.Mensaje != "";
+        private bool CanExecuteSendMessageCommand() => _mensaje.Mensaje != null && _mensaje.Mensaje != "";
         #endregion
 
 
@@ -212,8 +224,16 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 this._partida.ListadoJugadores = obj.ListadoJugadores;
                 this._partida.NotifyPropertyChanged("ListadoJugadores");
+
+                //if (PuedesFuncionar)
+                //{
+
+                //    PuedesFuncionar = false;
+                //}
+
             });
         }
 
@@ -221,6 +241,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 clsJugador jugador;
                 try
                 {
@@ -236,6 +257,13 @@ namespace PinturilloParaPruebas.ViewModels
                     _partida.ListadoJugadores.Remove(jugador);
                     _partida.NotifyPropertyChanged("ListadoJugadores");
                 }
+
+                //if (PuedesFuncionar)
+                //{
+
+                //    PuedesFuncionar = false;
+                //}
+
             });
         }
 
@@ -290,6 +318,11 @@ namespace PinturilloParaPruebas.ViewModels
                 _partida.NotifyPropertyChanged("ListadoMensajes");
 
             });
+        }
+
+        public void textoCambiado()
+        {
+            SendMessageCommand.RaiseCanExecuteChanged();
         }
 
         //public void reiniciarContador() {

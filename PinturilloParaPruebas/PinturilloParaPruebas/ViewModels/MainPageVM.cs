@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,28 @@ namespace PinturilloParaPruebas.ViewModels
     {
         private String _nick;
         private DelegateCommand _entrarAlJuegoCommand;
+        private HubConnection conn;
+        private IHubProxy proxy;
         Frame navigationFrame = Window.Current.Content as Frame;
+
 
         public MainPageVM()
         {
+            SignalR();
+        }
+
+        public async void SignalR()
+        {
+            conn = new HubConnection("https://pictionary-di.azurewebsites.net");
+            //conn = new HubConnection("http://localhost:11111/");
+            proxy = conn.CreateHubProxy("PictionaryHub");
+            Connection.Connection.conn = conn;
+            Connection.Connection.proxy = proxy;
+
+            await conn.Start();
+
+
+
         }
 
         public String nick
@@ -44,7 +63,7 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void EntrarAlJuego_Executed()
         {
-            navigationFrame.Navigate(typeof(ListadoSalas),nick);
+            navigationFrame.Navigate(typeof(ListadoSalas), nick);
         }
 
         private bool EntrarAlJuego_CanExecuted()

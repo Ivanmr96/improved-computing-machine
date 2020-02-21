@@ -31,7 +31,6 @@ namespace PinturilloParaPruebas
         public ListadoSalas()
         {
             this.InitializeComponent();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             viewModel = (VMListadoSalas)this.DataContext;
 
             //List<User> items = new List<User>();
@@ -42,7 +41,7 @@ namespace PinturilloParaPruebas
         }
 
 
-        private void BackArrow_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void BackArrow_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
@@ -55,9 +54,9 @@ namespace PinturilloParaPruebas
             {
                 viewModel.UsuarioPropio.Nickname = e.Parameter.ToString();
             }
-            
+            //Frame.BackStack.Clear();
             base.OnNavigatedTo(e);
-            
+
         }
 
         private void ListadoSalas_Tapped(object sender, TappedRoutedEventArgs e)
@@ -66,8 +65,5 @@ namespace PinturilloParaPruebas
 
             viewModel.ListadoSalas_Tapped(partida);
         }
-
-
-
     }
 }

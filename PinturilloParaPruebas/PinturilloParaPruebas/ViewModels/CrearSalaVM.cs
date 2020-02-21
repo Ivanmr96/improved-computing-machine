@@ -26,6 +26,7 @@ namespace PinturilloParaPruebas.ViewModels
         private String _visible;
         private bool _checkboxChecked;
         private bool puedesFuncionar;
+
         private const int NUM_MAX_JUGADORES = 5;
 
         public List<int> NumJugadores
@@ -56,7 +57,7 @@ namespace PinturilloParaPruebas.ViewModels
         }
         public CrearSalaVM()
         {
-            puedesFuncionar = true;
+            PuedesFuncionar = true;
             _partida = new clsPartida();
             _visible = "Collapsed";
             _lblErrorNombreSala = "*";
@@ -96,9 +97,10 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (puedesFuncionar) { 
+                if (PuedesFuncionar)
+                {
                     navigationFrame.Navigate(typeof(SalaEspera), partida);
-                    puedesFuncionar = false;
+                    PuedesFuncionar = false;
                 }
             });
         }
@@ -117,6 +119,7 @@ namespace PinturilloParaPruebas.ViewModels
 
         public bool CheckboxChecked { get => _checkboxChecked; set => _checkboxChecked = value; }
         public String LblErrorNumJugadores { get => _lblErrorNumJugadores; set => _lblErrorNumJugadores = value; }
+        public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
 
         private void CrearCommand_Executed()
         {
@@ -124,7 +127,10 @@ namespace PinturilloParaPruebas.ViewModels
             {
                 if (validarFormulario())
                 {
+
                     proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+
+
                     limpiarCampos();
                 }
             }
@@ -132,7 +138,10 @@ namespace PinturilloParaPruebas.ViewModels
             {
                 if (validarFormularioSoloNombreSala())
                 {
+
                     proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+
+
                     limpiarCampos();
                 }
             }
@@ -263,5 +272,6 @@ namespace PinturilloParaPruebas.ViewModels
                 _checkboxChecked = false;
             }
         }
+
     }
 }

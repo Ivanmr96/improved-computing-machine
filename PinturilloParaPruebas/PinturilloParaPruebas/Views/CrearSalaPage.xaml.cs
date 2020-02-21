@@ -26,24 +26,23 @@ namespace PinturilloParaPruebas
         CrearSalaVM vm { get; set; }
         public CrearSalaPage()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
             vm = (CrearSalaVM)DataContext;
-
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.limpiarCampos();
             vm.limpiarFormulario();
             this.Frame.Navigate(typeof(ListadoSalas), vm.NombreUsuario);
+            vm.PuedesFuncionar = false;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             vm.NombreUsuario = (String)e.Parameter;
-
+            //Frame.BackStack.Clear();
             base.OnNavigatedTo(e);
         }
-
 
     }
 }

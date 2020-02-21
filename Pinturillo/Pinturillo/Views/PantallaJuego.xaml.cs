@@ -107,7 +107,7 @@ namespace Pinturillo
                     {
                         //Habilitar el canvas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        inkCanvas.InkPresenter.StrokeInput =   
+                        
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
                         //NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será la palabra en juego

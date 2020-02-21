@@ -8,6 +8,7 @@
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:local1="using:PinturilloParaPruebas.Utils"
     mc:Ignorable="d"
+    xmlns:controls="using:PinturilloParaPruebas.Controls"
     xmlns:vm="using:PinturilloParaPruebas.ViewModels"
     >
     <Page.DataContext>
@@ -17,13 +18,13 @@
     <Page.Resources>
         <local1:PasswordToVisibilityConverter x:Key="PasswordConverter" ></local1:PasswordToVisibilityConverter>
     </Page.Resources>
-    
+
     <RelativePanel
-        Background="#4f98ca"
+        Background="{StaticResource PrimaryColor}"
         
         >
-        <TextBlock Text="Salas" 
-                   Foreground="#effffb"
+        <TextBlock Text="Salas"
+                   Foreground="Black"
                    Name="txtSalas"
                    FontSize="50"
                    Margin="50,20,0,0"
@@ -41,32 +42,25 @@
             >
             
         </Button>-->
-        <Path Stretch="Fill" 
-              RightTapped="BackArrow_RightTapped"
-              Name="backArrow"
-              RelativePanel.AlignVerticalCenterWith="txtSalas"
-              RelativePanel.AlignLeftWithPanel="True"
-              Fill="#effffb" 
-              Margin="50,20,0,0"
-          Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"  
-              Width="40" Height="40"
-          RenderTransformOrigin=".5,.5" UseLayoutRounding="False" 
-              HorizontalAlignment="Stretch" 
-              VerticalAlignment="Stretch">
-            <Path.RenderTransform>
-                <RotateTransform Angle="180" />
-            </Path.RenderTransform>
-        </Path>
+
+
+        <Button Name="backArrow"  RelativePanel.AlignVerticalCenterWith="txtSalas"
+              RelativePanel.AlignLeftWithPanel="True" 
+        Background="#FF46B0CF" Margin="50,20,0,0" Click="BackArrow_Click">
+            <StackPanel>
+                <Image Source="Assets/photo.png" Height="62"/>
+            </StackPanel>
+        </Button>
 
         <Border
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="txtSalas"
-           RelativePanel.RightOf="backArrow"
             RelativePanel.LeftOf="crearBtn"
+            RelativePanel.RightOf="backArrow"
             Margin="30,30,160,30"
             Opacity="0.75"
-            Background="#effffb"
-                CornerRadius="30" 
+            Background="{StaticResource SecondaryColor}"
+            CornerRadius="30" 
             >
             <ListView
                 Tapped="ListadoSalas_Tapped"
@@ -129,14 +123,14 @@
 
                             </StackPanel>
 
-                           
+
 
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Border>
-        
+
 
         <!--<RelativePanel
             RelativePanel.Below="txtSalas"
@@ -148,7 +142,8 @@
 
             
 
-            --><!--<Border 
+            -->
+        <!--<Border 
             Name="borderStackPanel"
             RelativePanel.AlignTopWithPanel="True"
             RelativePanel.AlignLeftWithPanel="True"
@@ -207,7 +202,8 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
-            </Border>--><!--
+            </Border>-->
+        <!--
 
 
 
@@ -221,12 +217,21 @@
                 RelativePanel.AlignRightWithPanel="True"
                 Command="{Binding CreateGroupCommand}"
                 Margin="20,40,20,30"
-                Foreground="#effffb"
-         
+                Foreground="Black"
+            
                 >
             Crear sala
         </Button>
 
-    </RelativePanel>
+        <controls:DialogContrasena 
+            Visibility="Collapsed"
+            Contrasena="{Binding Contrasena, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            EnterCommand="{Binding EnterCommand}"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            />
 
+    </RelativePanel>
 </Page>

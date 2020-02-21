@@ -87,6 +87,7 @@ namespace PinturilloParaPruebas
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 viewModel.Partida = obj;
                 viewModel.NotifyPropertyChanged("Partida");
 
@@ -108,6 +109,7 @@ namespace PinturilloParaPruebas
                 {
                     //Habilitar el canvas
                     // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+
                     inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
                     //NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será la palabra en juego
@@ -123,7 +125,6 @@ namespace PinturilloParaPruebas
                     //No es nuestro turno
 
                     //Deshabilitar el canvas
-                    
                     inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
                     //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                     //palabra a mostrar será  ___ 
@@ -134,6 +135,7 @@ namespace PinturilloParaPruebas
                     viewModel.NotifyPropertyChanged("IsMiTurno");
                     viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                 }
+
 
             });
         }
@@ -146,56 +148,60 @@ namespace PinturilloParaPruebas
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                viewModel.Partida = obj;
-                viewModel.NotifyPropertyChanged("Partida");
 
-                viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
-
-                //Iniciamos el timer
-                viewModel.DispatcherTimer.Start();
-
-                if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
-                //es nuestro turno
+                if (viewModel.PuedesFuncionar)
                 {
-                    //Habilitar el canvas
-                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
-                    //NotifyPropertyChanged("TipoEntradaInkCanvas");
-                    //palabra a mostrar será la palabra en juego
-                    viewModel.PalabraAMostrar = obj.PalabraEnJuego;
-                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                    viewModel.IsMiTurno = true;
-                    viewModel.NotifyPropertyChanged("IsMiTurno");
+                    viewModel.Partida = obj;
+                    viewModel.NotifyPropertyChanged("Partida");
+
+                    viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+
+                    //Iniciamos el timer
+                    viewModel.DispatcherTimer.Start();
+
+                    if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+                    //es nuestro turno
+                    {
+                        //Habilitar el canvas
+                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+                        //NotifyPropertyChanged("TipoEntradaInkCanvas");
+                        //palabra a mostrar será la palabra en juego
+                        viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                        viewModel.IsMiTurno = true;
+                        viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
+                    }
+                    else
+                    {
+                        //No es nuestro turno
+
+                        //Deshabilitar el canvas
+                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                        //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                        //palabra a mostrar será  ___ 
+                        //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                        viewModel.IsMiTurno = false;
+                        viewModel.NotifyPropertyChanged("IsMiTurno");
+                        viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                    }
+                    viewModel.PuedesFuncionar = false;
+                    viewModel.NotifyPropertyChanged("PuedesFuncionar");
                 }
-                else
-                {
-                    //No es nuestro turno
 
-                    //Deshabilitar el canvas
-                    // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
-                    inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
-                    //  NotifyPropertyChanged("TipoEntradaInkCanvas");
-                    //palabra a mostrar será  ___ 
-                    //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-                    viewModel.IsMiTurno = false;
-                    viewModel.NotifyPropertyChanged("IsMiTurno");
-                    viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
-                    viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                }
 
             });
         }
-
-
-
-
 
         private async void onStrokeReceived(List<clsPunto> puntos)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 List<InkPoint> inkpoints = new List<InkPoint>();
 
                 foreach (clsPunto p in puntos)
@@ -208,10 +214,12 @@ namespace PinturilloParaPruebas
 
                 // Copia los atributos de dibujado (color y eso) del canvas original
                 InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
+                ida.Color = puntos[0].Color;
                 stroke.DrawingAttributes = ida;
-                stroke.DrawingAttributes.Color = puntos[0].Color;
 
                 inkCanvas.InkPresenter.StrokeContainer.AddStroke(stroke);
+
+
 
             });
         }
@@ -273,7 +281,7 @@ namespace PinturilloParaPruebas
 
                 foreach (Point p in points)
                 {
-                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color));
+                    punticos.Add(new clsPunto(p.X, p.Y, ida.Color));
                 }
 
                 if (conn.State == ConnectionState.Connected)
@@ -303,7 +311,7 @@ namespace PinturilloParaPruebas
             var lastPage = Frame.BackStack.Last().SourcePageType;
             //Frame.BackStack.Clear();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
-            if (lastPage.FullName.Equals("PinturilloParaPruebas.SalaEspera"))
+            if (lastPage.FullName.Equals("Pinturillo.SalaEspera"))
             {
                 if (e.Parameter != null)
                 {
@@ -374,7 +382,6 @@ namespace PinturilloParaPruebas
         //        inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
         //    }
         //}
-
 
     }
 }

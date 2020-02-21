@@ -29,28 +29,19 @@ namespace PinturilloParaPruebas
         private SalaEsperaVM viewModel { get; }
         public SalaEspera()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
             viewModel = (SalaEsperaVM)DataContext;
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            btnEnviarMensaje.Focus(FocusState.Keyboard);
         }
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.Frame.Navigate(typeof(ListadoSalas));
-        //}
-
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    this.Frame.Navigate(typeof(PantallaJuego));
-        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
             var lastPage = Frame.BackStack.Last().SourcePageType;
-
+            //Frame.BackStack.Clear();
+            //GC.Collect();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
-            if (lastPage.FullName.Equals("PinturilloParaPruebas.CrearSalaPage"))
+            if (lastPage.FullName.Equals("Pinturillo.CrearSalaPage"))
             {
                 if (e.Parameter != null)
                 {
@@ -63,17 +54,17 @@ namespace PinturilloParaPruebas
                     viewModel.UsuarioPropio = jugadorLider.Nickname;
                     viewModel.Mensaje.JugadorQueLoEnvia = jugadorLider;
                 }
-            }else
+            }
+            else
             {
-                if(e.Parameter != null)
+                if (e.Parameter != null)
                 {
                     viewModel.UsuarioPropio = (string)e.Parameter;
-                   
+
                 }
             }
             base.OnNavigatedTo(e);
 
         }
-
     }
 }

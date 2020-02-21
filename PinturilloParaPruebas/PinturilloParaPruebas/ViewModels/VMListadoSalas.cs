@@ -21,14 +21,28 @@ namespace PinturilloParaPruebas.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
         Frame navigationFrame = Window.Current.Content as Frame;
+        private string contrasena;
+        private bool puedesFuncionar;
+        //private ICommand enterCommand;
 
         #endregion
 
         #region"Propiedades públicas"
         public DelegateCommand JoinGroupCommand { get; }
+        public DelegateCommand EnterCommand { get; }
         public DelegateCommand CreateGroupCommand { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
+
+        public string Contrasena
+        {
+            get { return contrasena; }
+            set
+            {
+                contrasena = value;
+                EnterCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public ObservableCollection<clsPartida> partidasAMostrar
         {
@@ -65,16 +79,29 @@ namespace PinturilloParaPruebas.ViewModels
         {
             navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
         }
+
+        private void ExecuteEnterContrasenaCommand()
+        {
+            //TODO Comprobar que la contraseña es correcta, si lo es, entrar en la sala, si no, mostrar un texto diciendo que es incorrecta
+        }
+
+        private bool CanExecuteEnterContrasenaCommand()
+        {
+            return !String.IsNullOrEmpty(contrasena);
+        }
+
         #endregion
 
         #region"Constructor"
         public VMListadoSalas()
         {
+            puedesFuncionar = true;
             this._usuarioPropio = new clsJugador();
             //TODO todas las cosas de SignalR
             //Command
             this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand); //TODO borrar command
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
+            this.EnterCommand = new DelegateCommand(ExecuteEnterContrasenaCommand, CanExecuteEnterContrasenaCommand);
 
             SignalR();
 
@@ -84,10 +111,10 @@ namespace PinturilloParaPruebas.ViewModels
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
-            conn = new HubConnection("http://localhost:11111/");
-            proxy = conn.CreateHubProxy("PictionaryHub");
-            Connection.Connection.conn = conn;
-            Connection.Connection.proxy = proxy;
+            //conn = new HubConnection("http://localhost:11111/");
+            //proxy = conn.CreateHubProxy("PictionaryHub");
+            conn = Connection.Connection.conn;
+            proxy = Connection.Connection.proxy;
 
             await conn.Start();
 
@@ -105,12 +132,17 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
                 if (partida != null)
                 {
                     ListadoPartidas.Remove(partida);
                     NotifyPropertyChanged("partidasAMostrar");
                 }
+
+
+
+
             });
         }
 
@@ -118,26 +150,17 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+
                 clsPartida partida;
-                try
-                {
-                    partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-                }
-                catch (Exception e)
-                {
-                    partida = null;
-                }
+
+                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
+
                 if (partida != null)
                 {
                     clsJugador jugador;
-                    try
-                    {
-                        jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                    }
-                    catch (Exception e)
-                    {
-                        jugador = null;
-                    }
+
+                    jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+
                     if (jugador != null)
                     {
                         partida.ListadoJugadores.Remove(jugador);
@@ -145,6 +168,9 @@ namespace PinturilloParaPruebas.ViewModels
                         NotifyPropertyChanged("partidasAMostrar");
                     }
                 }
+
+
+
             });
         }
 
@@ -152,10 +178,15 @@ namespace PinturilloParaPruebas.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-
                 this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
                 NotifyPropertyChanged("ListadoPartidas");
                 NotifyPropertyChanged("partidasAMostrar");
+                //if (puedesFuncionar)
+                //{
+
+                //    puedesFuncionar = false;
+                //}
+
             }
 
             );
@@ -167,7 +198,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
 
             proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            navigationFrame.Navigate(typeof(SalaEspera), _usuarioPropio.Nickname);
+            navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
         }
 
 
@@ -180,14 +211,9 @@ namespace PinturilloParaPruebas.ViewModels
             {
 
                 clsPartida partida;
-                try
-                {
-                    partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
-                }
-                catch (Exception e)
-                {
-                    partida = null;
-                }
+
+                partida = this.ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == game.NombreSala);
+
 
                 if (partida != null)
                 {
@@ -196,6 +222,9 @@ namespace PinturilloParaPruebas.ViewModels
                     NotifyPropertyChanged("partidasAMostrar");
 
                 }
+
+
+
             });
         }
 
