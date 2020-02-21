@@ -23,8 +23,8 @@
         Background="{StaticResource PrimaryColor}"
         
         >
-        <TextBlock x:ConnectionId='2' Text="Salas" 
-                   Foreground="#effffb"
+        <TextBlock x:ConnectionId='2' Text="Salas"
+                   Foreground="Black"
                    Name="txtSalas"
                    FontSize="50"
                    Margin="50,20,0,0"
@@ -215,8 +215,8 @@
                 RelativePanel.AlignRightWithPanel="True"
                 Command="{Binding CreateGroupCommand}"
                 Margin="20,40,20,30"
-                Foreground="#effffb"
-         
+                Foreground="Black"
+            
                 >
             Crear sala
         </Button>

@@ -40,7 +40,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock 
-                            Foreground="#4f98ca"
+                            Foreground="Black"
                             FontSize="25">
                             <Run Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
                         </TextBlock>
@@ -130,9 +130,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Run FontWeight="Bold" Text="{Binding JugadorQueLoEnvia.Nickname}" />
-                                <Run Text=": " />
-                                <Run Text="{Binding Mensaje}" />
+                                <Run FontWeight="Bold" Foreground="Black" Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run Text=": " Foreground="Black" />
+                                <Run Text="{Binding Mensaje}" Foreground="Black"/>
                             </TextBlock>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -160,7 +160,9 @@
                 RelativePanel.AlignBottomWithPanel="True"
                 Name="txtBoxMensaje"
                 Margin="30,0,0,30"
-                Text="{Binding Mensaje.Mensaje, Mode=TwoWay}"
+                Foreground="Black"
+                Text="{Binding Mensaje.Mensaje, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                TextChanged="{x:Bind viewModel.textoCambiado}"
                     />
 
                 <Button

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pinturillo.Models
 {
-    public class clsMensaje
+    public class clsMensaje : clsVMBase
     {
         #region"Atributos privados"
         private string _mensaje;
@@ -29,8 +30,10 @@ namespace Pinturillo.Models
         #endregion
 
         #region"Propiedades públicas"
-        public string Mensaje { get => _mensaje; set => _mensaje = value; }
+        public string Mensaje { get => _mensaje;
+            set => _mensaje = value; }
         public clsJugador JugadorQueLoEnvia { get => _jugadorQueLoEnvia; set => _jugadorQueLoEnvia = value; }
+
         #endregion
 
     }

@@ -69,7 +69,7 @@
                                 />
 
                                 <TextBlock  
-                                Foreground="#272727"
+                                Foreground="Black"
                                 FontSize="15"
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
@@ -105,7 +105,7 @@
             >
             <RelativePanel>
                 <Border
-                    Margin="15"
+                    Margin="15,10,15,15"
                     CornerRadius="100"
                     Padding="15"
                    
@@ -113,7 +113,7 @@
                     Opacity="1"
                     >
                     <TextBlock
-                        FontSize="50"
+                        FontSize="30"
                         Text="{Binding LblTemporizador, Mode=TwoWay}"
                         Foreground="#272727"
                         >
@@ -125,7 +125,7 @@
                 <TextBlock
                     Name="palabra"
                     RelativePanel.AlignTopWithPanel="True"
-                    Margin="15"
+                    Margin="15,0,15,0"
                     RelativePanel.AlignHorizontalCenterWithPanel="True"
                     FontSize="50"
                     Foreground="#effffb"
@@ -197,15 +197,15 @@
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignTopWith="borderStackPanel"
             RelativePanel.Above="inputMensajes"
-            Margin="15"
+            Margin="0,15,15,15"
                 ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock TextWrapping="Wrap">
-                                <Run Text="{Binding JugadorQueLoEnvia.Nickname}" />
-                                <Run Text=": " />
-                                <Run Text="{Binding Mensaje}" />
+                                <Run FontWeight="Bold" Foreground="Black" Text="{Binding JugadorQueLoEnvia.Nickname}" />
+                                <Run Text=": " Foreground="Black" />
+                                <Run Text="{Binding Mensaje}" Foreground="Black"/>
                     </TextBlock>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -219,9 +219,10 @@
             Width="140"
             IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
             ,Converter={StaticResource TrueToFalseConverter}}"
-            Margin="0,0,0,15"
+            Margin="0,0,0,25"
             RelativePanel.AlignBottomWithPanel="True"
-            Text="{Binding Mensaje.Mensaje,Mode=TwoWay}" 
+            Text="{Binding Mensaje.Mensaje,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+            TextChanged="{x:Bind viewModel.textoCambiado}"
             >
 
         </TextBox>
@@ -230,7 +231,7 @@
             Name="btnSend"
             RelativePanel.AlignRightWithPanel="True"
             RelativePanel.AlignBottomWithPanel="True"
-            Margin="0,10,15,15"
+            Margin="0,10,15,25"
             Windows10version1809:CornerRadius="0,10,10,0"
             Content="Enviar"
             Command="{Binding SendMessageCommand}"            

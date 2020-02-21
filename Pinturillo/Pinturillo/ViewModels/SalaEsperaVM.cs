@@ -78,7 +78,7 @@ namespace Pinturillo.ViewModels
 
         public DelegateCommand enviarMensaje { get; set; }
 
-        private bool enviarMensaje_canExecute() => mensaje != null || mensaje.Mensaje != "";
+        private bool enviarMensaje_canExecute() => mensaje.Mensaje != null && mensaje.Mensaje != "";
 
         private void enviarMensaje_execute()
         {
@@ -264,6 +264,11 @@ namespace Pinturillo.ViewModels
                 
 
             });
+        }
+
+        public void textoCambiado()
+        {
+            enviarMensaje.RaiseCanExecuteChanged();
         }
     }
 }

@@ -141,9 +141,11 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="MaxLength" />
       <RootProperty Name="IsEnabled" />
+      <RootEvent Name="TextChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Command" />
@@ -195,6 +197,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="Name" />
+      <RootProperty Name="BorderBrush" />
       <RootProperty Name="Margin" />
       <RootProperty Name="FontWeight" />
       <RootProperty Name="FontSize" />
@@ -218,7 +221,9 @@
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="SelectedItem" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="BorderBrush" />
       <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="PlaceholderForeground" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
@@ -260,8 +265,9 @@
     <RootType FullName="Pinturillo.Utils.LapizVisibilityConverter" />
     <RootType FullName="Pinturillo.Utils.TrueToFalseConverter" />
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
-      <RootProperty Name="Text" />
       <RootProperty Name="FontWeight" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Text" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbar">
       <RootProperty Name="IsEnabled" />

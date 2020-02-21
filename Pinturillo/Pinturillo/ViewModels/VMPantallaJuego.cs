@@ -157,7 +157,16 @@ namespace Pinturillo.ViewModels
         public string PalabraAMostrar { get => _palabraAMostrar; set => _palabraAMostrar = value; }
         public ObservableCollection<clsMensaje> ListadoMensajesChat { get => _listadoMensajesChat; set => _listadoMensajesChat = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
-        public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
+        public clsMensaje Mensaje
+        {
+            get {
+                return _mensaje;                
+            }
+            set
+            {
+                _mensaje = value;
+            }
+        }
         public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
         public CoreInputDeviceTypes TipoEntradaInkCanvas { get; set; }
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
@@ -203,7 +212,7 @@ namespace Pinturillo.ViewModels
         }
 
 
-        private bool CanExecuteSendMessageCommand() => _mensaje != null || _mensaje.Mensaje != "";
+        private bool CanExecuteSendMessageCommand() => _mensaje.Mensaje != null && _mensaje.Mensaje != "";
         #endregion
 
 
@@ -307,6 +316,10 @@ namespace Pinturillo.ViewModels
                 _partida.NotifyPropertyChanged("ListadoMensajes");
 
             });
+        }
+
+        public void textoCambiado() {
+            SendMessageCommand.RaiseCanExecuteChanged();
         }
 
         //public void reiniciarContador() {

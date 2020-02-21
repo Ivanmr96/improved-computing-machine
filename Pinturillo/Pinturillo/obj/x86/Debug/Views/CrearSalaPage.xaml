@@ -43,11 +43,11 @@
                                Text="{Binding LblErrorNombreSala,Mode=OneWay}"
                                Margin="8,30,0,0" Foreground="Red"></TextBlock>
 
-                    <CheckBox x:ConnectionId='6' Name="checkbox"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                    <CheckBox x:ConnectionId='6' Name="checkbox" BorderBrush="Black"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
                     <PasswordBox x:ConnectionId='7' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                     Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
-                    <ComboBox x:ConnectionId='8' Name="combobox" ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" PlaceholderText="Nº Maximo de jugadores">
+                    <ComboBox x:ConnectionId='8' Name="combobox" ItemsSource="{Binding NumJugadores}" SelectedItem="{Binding Partida.NumeroMaximoJugadores, Mode=TwoWay}" Margin="0,20,0,0" RelativePanel.Below="passwordbox" RelativePanel.AlignLeftWith="passwordbox" BorderBrush="Black" PlaceholderText="Nº Maximo de jugadores" PlaceholderForeground="Black">
                         
                     </ComboBox>
                     <TextBlock x:ConnectionId='9' Name="txtErrorContrasena"
