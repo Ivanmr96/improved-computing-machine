@@ -153,25 +153,15 @@ namespace Pinturillo.ViewModels
             {
                
                     clsPartida partida;
-                    try
-                    {
-                        partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-                    }
-                    catch (Exception e)
-                    {
-                        partida = null;
-                    }
+
+                    partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
+
                     if (partida != null)
                     {
                         clsJugador jugador;
-                        try
-                        {
-                            jugador = partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                        }
-                        catch (Exception e)
-                        {
-                            jugador = null;
-                        }
+
+                        jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+
                         if (jugador != null)
                         {
                             partida.ListadoJugadores.Remove(jugador);
@@ -222,14 +212,9 @@ namespace Pinturillo.ViewModels
             {
                
                     clsPartida partida;
-                    try
-                    {
-                        partida = this.ListadoPartidas.First<clsPartida>(x => x.NombreSala == game.NombreSala);
-                    }
-                    catch (Exception e)
-                    {
-                        partida = null;
-                    }
+
+                    partida = this.ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == game.NombreSala);
+
 
                     if (partida != null)
                     {

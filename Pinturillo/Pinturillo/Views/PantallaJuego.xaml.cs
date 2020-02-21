@@ -107,6 +107,7 @@ namespace Pinturillo
                     {
                         //Habilitar el canvas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                        inkCanvas.InkPresenter.StrokeInput =   
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
                         //NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será la palabra en juego
@@ -194,10 +195,6 @@ namespace Pinturillo
             });
         }
 
-
-
-
-
         private async void onStrokeReceived(List<clsPunto> puntos)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -215,6 +212,7 @@ namespace Pinturillo
 
                     // Copia los atributos de dibujado (color y eso) del canvas original
                     InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
+                    ida.Color = puntos[0].Color;
                     stroke.DrawingAttributes = ida;
 
                     inkCanvas.InkPresenter.StrokeContainer.AddStroke(stroke);
@@ -281,7 +279,7 @@ namespace Pinturillo
 
                 foreach (Point p in points)
                 {
-                    punticos.Add(new clsPunto(p.X, p.Y));
+                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color));
                 }
 
                 if (conn.State == ConnectionState.Connected)
