@@ -45,6 +45,12 @@ namespace Pinturillo.ViewModels
             }
         }
 
+        public bool ContrasenaIncorrecta 
+        { 
+            get; 
+            set; 
+        }
+
         public ObservableCollection<clsPartida> partidasAMostrar
         {
             get
@@ -84,6 +90,10 @@ namespace Pinturillo.ViewModels
         private void ExecuteEnterContrasenaCommand()
         {
             //TODO Comprobar que la contraseña es correcta, si lo es, entrar en la sala, si no, mostrar un texto diciendo que es incorrecta
+            
+            ContrasenaIncorrecta = contrasena != "foo";
+
+            NotifyPropertyChanged("ContrasenaIncorrecta");
         }
 
         private bool CanExecuteEnterContrasenaCommand()

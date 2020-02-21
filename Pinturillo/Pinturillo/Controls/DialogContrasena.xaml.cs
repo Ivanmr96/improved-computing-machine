@@ -47,6 +47,16 @@ namespace Pinturillo.Controls
             DependencyProperty.Register("EnterCommand", typeof(ICommand), typeof(DialogContrasena), new PropertyMetadata(default(ICommand)));
 
 
+        public bool ContrasenaIncorrecta
+        {
+            get { return (bool)GetValue(ContrasenaIncorrectaProperty); }
+            set { SetValue(ContrasenaIncorrectaProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ContrasenaIncorrecta.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContrasenaIncorrectaProperty =
+            DependencyProperty.Register("ContrasenaIncorrecta", typeof(bool), typeof(DialogContrasena), new PropertyMetadata(default(bool)));
+
 
     }
 }

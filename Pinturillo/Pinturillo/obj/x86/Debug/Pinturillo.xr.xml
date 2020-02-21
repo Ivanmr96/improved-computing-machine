@@ -14,6 +14,7 @@
     <RootPropertyPathName Name="Password" />
     <RootPropertyPathName Name="LblErrorNombreSala" />
     <RootPropertyPathName Name="NombreSala" />
+    <RootPropertyPathName Name="ContrasenaIncorrecta" />
     <RootPropertyPathName Name="Contrasena" />
     <RootPropertyPathName Name="EnterCommand" />
     <RootPropertyPathName Name="CreateGroupCommand" />
@@ -127,13 +128,14 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Text" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="Inlines" />
-      <RootProperty Name="HorizontalAlignment" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
       <RootProperty Name="Name" />
-      <RootProperty Name="Text" />
+      <RootProperty Name="Password" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Width" />
       <RootProperty Name="FontSize" />
@@ -141,11 +143,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
       <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="CornerRadius" />
-      <RootProperty Name="MaxLength" />
-      <RootProperty Name="IsEnabled" />
-      <RootEvent Name="TextChanged" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Command" />
@@ -166,16 +164,19 @@
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
       <RootProperty Name="Mode" />
+      <RootProperty Name="Converter" />
       <RootProperty Name="UpdateSourceTrigger" />
     </RootType>
     <RootType FullName="Pinturillo.Controls.DialogContrasena">
       <RootProperty Name="Visibility" />
+      <RootProperty Name="ContrasenaIncorrecta" />
       <RootProperty Name="Contrasena" />
       <RootProperty Name="EnterCommand" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />
     </RootType>
+    <RootType FullName="Pinturillo.Utils.BoolToVisibilityConverterXBIND" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Background" />
       <RootProperty Name="Resources" />
@@ -195,6 +196,22 @@
       <RootProperty Name="UpdateSourceTrigger" />
       <RootProperty Name="Converter" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="MaxLength" />
+      <RootProperty Name="IsEnabled" />
+      <RootEvent Name="TextChanged" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="Name" />
       <RootProperty Name="BorderBrush" />
@@ -204,17 +221,6 @@
       <RootProperty Name="Content" />
       <RootEvent Name="Checked" />
       <RootEvent Name="Unchecked" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="Password" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="PlaceholderText" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
       <RootProperty Name="Name" />
