@@ -72,7 +72,7 @@ namespace ServerPinturillo
                 //Se pone el primer turno de la primera ronda
                 //el turno es el del primer jugador
                 if (partida.ListadoJugadores.Count > 0)
-                    partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
+                partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
                 partida.Turno = 1;
                 partida.RondaActual = 1;
                 partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();

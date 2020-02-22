@@ -241,14 +241,8 @@ namespace Pinturillo.ViewModels
             {
 
                 clsJugador jugador;
-                try
-                {
-                    jugador = _partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                    jugador = _partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
 
                 if (jugador != null)
                 {

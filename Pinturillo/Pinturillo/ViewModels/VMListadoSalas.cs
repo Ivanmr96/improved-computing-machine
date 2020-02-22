@@ -29,7 +29,7 @@ namespace Pinturillo.ViewModels
         #endregion
 
         #region"Propiedades públicas"
-        public DelegateCommand JoinGroupCommand { get; }
+        //public DelegateCommand JoinGroupCommand { get; }
         public DelegateCommand EnterCommand { get; }
         public DelegateCommand CreateGroupCommand { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
@@ -60,11 +60,10 @@ namespace Pinturillo.ViewModels
             {
                 ObservableCollection<clsPartida> partidas = new ObservableCollection<clsPartida>();
                 if (ListadoPartidas != null)
-                partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
-                       where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
-                       || p.IsJugandose == false
-                       select p);
-
+                    partidas = new ObservableCollection<clsPartida>(from p in ListadoPartidas
+                                                                    where p.ListadoJugadores.Count < p.NumeroMaximoJugadores
+                                                                    && p.IsJugandose == false
+                                                                    select p);
                 return partidas;
                        
             } 
@@ -73,20 +72,21 @@ namespace Pinturillo.ViewModels
 
 
         #region"Command"
-        private void ExecuteJoinGroupCommand()
-        {
-            //TODO
-        }
+        //private void ExecuteJoinGroupCommand()
+        //{
+        //    //TODO
+        //}
 
-        private bool CanExecuteJoinGroupCommand()
-        {
-            //TODO
-            return false;
-        }
+        //private bool CanExecuteJoinGroupCommand()
+        //{
+        //    //TODO
+        //    return false;
+        //}
 
         private void ExecuteCreateGroupCommand()
         {
             navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
+            puedesFuncionar = false;
         }
 
         private void ExecuteEnterContrasenaCommand()
@@ -126,10 +126,10 @@ namespace Pinturillo.ViewModels
             this._usuarioPropio = new clsJugador();
             //TODO todas las cosas de SignalR
             //Command
-            this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand); //TODO borrar command
+            /*this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand);*/ //TODO borrar command
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
             this.EnterCommand = new DelegateCommand(ExecuteEnterContrasenaCommand, CanExecuteEnterContrasenaCommand);
-
+            this.puedesFuncionar = true;
             SignalR();
             
         
@@ -205,18 +205,13 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
-                NotifyPropertyChanged("ListadoPartidas");
-                NotifyPropertyChanged("partidasAMostrar");
-                //if (puedesFuncionar)
-                //{
-                    
-                //    puedesFuncionar = false;
-                //}
-               
-            }
-
-            );
+                if (puedesFuncionar)
+                {                
+                    this._listadoPartidas = new ObservableCollection<clsPartida>(listado);
+                    NotifyPropertyChanged("ListadoPartidas");
+                    NotifyPropertyChanged("partidasAMostrar");
+                }               
+            });
         }
 
 
@@ -224,16 +219,17 @@ namespace Pinturillo.ViewModels
         public void ListadoSalas_Tapped(clsPartida partida)
         {
             partidaSeleccionada = partida;
-            DialogContrasenaVisibility = true;
-            NotifyPropertyChanged("DialogContrasenaVisibility");
+            if (!String.IsNullOrEmpty(partidaSeleccionada.Password)) { 
+                DialogContrasenaVisibility = true;
+                NotifyPropertyChanged("DialogContrasenaVisibility");
+            }else
+            {
+                proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
+                navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+            }
+            puedesFuncionar = true;
 
-            //proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-            //navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
         }
-
-
-
-
 
         public async void jugadorAdded( clsJugador jugador, clsPartida game)
         {
@@ -251,15 +247,9 @@ namespace Pinturillo.ViewModels
                         NotifyPropertyChanged("ListadoPartidas");
                         NotifyPropertyChanged("partidasAMostrar");
 
-                    }
-                   
-                
-               
+                    }             
             });
         }
-
-
         #endregion
-
     }
 }

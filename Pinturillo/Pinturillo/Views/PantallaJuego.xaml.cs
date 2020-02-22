@@ -315,15 +315,15 @@ namespace Pinturillo
                 {
                     Tuple<String,clsPartida> partidaConNick = (Tuple<String, clsPartida>)e.Parameter;
 
-                    viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
+                    //viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
                     viewModel.Partida = partidaConNick.Item2;
                     viewModel.NotifyPropertyChanged("Partida");
 
-                    //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+                    clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == partidaConNick.Item1);
 
                     //viewModel.Partida.ListadoJugadores.
 
-                    //viewModel.UsuarioPropio = jugadorLider;
+                    viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
 
 
@@ -331,7 +331,7 @@ namespace Pinturillo
                     //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
                     //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
 
-                    if (viewModel.UsuarioPropio.ConnectionID == viewModel.Partida.ListadoJugadores[0].ConnectionID)
+                    if (viewModel.UsuarioPropio.IsLider)
                         //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
                     {
                         proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
