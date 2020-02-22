@@ -7,7 +7,7 @@
 
     Para obtener más información acerca de los archivos de manifiesto del paquete, vea http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="21dd45e7-4d68-4768-823b-bbe6c6a2d856" Publisher="CN=Victor" Version="1.0.0.0" ProcessorArchitecture="x86" />
+  <Identity Name="21dd45e7-4d68-4768-823b-bbe6c6a2d856" Publisher="CN=prueba" Version="1.0.0.0" ProcessorArchitecture="x86" />
   <mp:PhoneIdentity PhoneProductId="21dd45e7-4d68-4768-823b-bbe6c6a2d856" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Pinturillo</DisplayName>
@@ -46,8 +46,8 @@
     <build:Item Name="TargetFrameworkMoniker" Value=".NETCore,Version=v5.0" />
     <build:Item Name="VisualStudio" Version="16.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2019" />
-    <build:Item Name="OperatingSystem" Version="10.0.18362.530 (WinBuild.160101.0800)" />
-    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="16.0.29311.281" />
+    <build:Item Name="OperatingSystem" Version="10.0.18362.656 (WinBuild.160101.0800)" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="16.0.29728.190" />
     <build:Item Name="ProjectGUID" Value="{B3811DC8-C0E7-478B-81F4-524C2D1878DA}" />
     <build:Item Name="OptimizingToolset" Value="None" />
     <build:Item Name="TargetRuntime" Value="Managed" />

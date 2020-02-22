@@ -31,6 +31,8 @@
     <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
     <RootPropertyPathName Name="Nickname" />
+    <RootPropertyPathName Name="NumeroRondasGlobales" />
+    <RootPropertyPathName Name="RondaActual" />
     <RootPropertyPathName Name="PalabraAMostrar" />
     <RootPropertyPathName Name="LblTemporizador" />
     <RootPropertyPathName Name="Puntuacion" />

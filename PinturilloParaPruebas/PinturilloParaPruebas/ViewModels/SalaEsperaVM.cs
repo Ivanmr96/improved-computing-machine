@@ -137,12 +137,15 @@ namespace PinturilloParaPruebas.ViewModels
         public void comenzarPartida_execute()
         {
             //Indica al servidor que la partida va a comenzar.
-
-            partida.IsJugandose = true;
-            proxy.Invoke("empezarPartida", partida.NombreSala);
-            Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-            navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
-            puedesFuncionar2 = false;
+            if (puedesFuncionar2)
+            {
+                partida.IsJugandose = true;
+                proxy.Invoke("empezarPartida", partida.NombreSala);
+                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                puedesFuncionar2 = false;
+            }
+          
         }
 
         #endregion
@@ -197,6 +200,10 @@ namespace PinturilloParaPruebas.ViewModels
                 {
                     jugador.IsLider = true;
                     comenzarPartida.RaiseCanExecuteChanged();
+
+                    //Hay que indicarle al servidor cuál es el nuevo lider
+                    proxy.Invoke("habemusNuevoLider", jugador.Nickname, partida.NombreSala);
+
                 }
 
 

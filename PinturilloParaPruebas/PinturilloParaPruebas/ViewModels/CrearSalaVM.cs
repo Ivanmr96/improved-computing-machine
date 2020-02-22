@@ -59,6 +59,7 @@ namespace PinturilloParaPruebas.ViewModels
         {
             PuedesFuncionar = true;
             _partida = new clsPartida();
+
             _visible = "Collapsed";
             _lblErrorNombreSala = "*";
 

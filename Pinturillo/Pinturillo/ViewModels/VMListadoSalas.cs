@@ -85,8 +85,12 @@ namespace Pinturillo.ViewModels
 
         private void ExecuteCreateGroupCommand()
         {
-            navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
-            puedesFuncionar = false;
+            if (puedesFuncionar)
+            {
+                navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
+                puedesFuncionar = false;
+            }
+           
         }
 
         private void ExecuteEnterContrasenaCommand()
@@ -159,8 +163,16 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                
-                    clsPartida partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+                clsPartida partida;
+                try
+                {
+                    partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
+                }
+                catch (Exception e)
+                {
+                    partida = null;
+                }
+                    
                     if (partida != null)
                     {
                         ListadoPartidas.Remove(partida);

@@ -316,7 +316,8 @@ namespace ServerPinturillo
                     Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
                     if (jugador.IsLider)
                     {
-                        llamarConvertirEnLider(nombreSala);    //luego (si era el lider) se pone de lider al primero de la lista
+                        llamarConvertirEnLider(nombreSala);    
+                        //luego (si era el lider) se pone de lider al primero de la lista
                     }
 
                 }
@@ -343,6 +344,26 @@ namespace ServerPinturillo
 
 
         }
+
+        //A este método se le llama cuando hay un nuevo líder, para guardar el dato
+        //en el listado de partidas del servidor
+        public void habemusNuevoLider(string nickUsuario, string nombreGrupo)
+        {
+            clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
+
+            //Se ponen todos los "isLider" a false (en realidad creo que no haría falta ya que
+            //el anterior líder habría salido ya de la lista de jugadores
+            for (int i = 0; i < partida.ListadoJugadores.Count; i++)
+            {
+                partida.ListadoJugadores[i].IsLider = false;
+            }
+
+            //Se pone el nuevo lider
+            clsJugador jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == nickUsuario);
+            jugador.IsLider = true;
+        }
+
+
 
         //Si algo falla esto es lo que hay que quitar
         //TODO falta asignarle el connection id a cada usuario  //añadido

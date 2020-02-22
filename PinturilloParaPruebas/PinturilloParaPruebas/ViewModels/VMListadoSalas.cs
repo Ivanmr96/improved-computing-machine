@@ -77,7 +77,11 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void ExecuteCreateGroupCommand()
         {
-            navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
+            if (puedesFuncionar)
+            {
+                navigationFrame.Navigate(typeof(CrearSalaPage), this._usuarioPropio.Nickname);
+                puedesFuncionar = false;
+            }
         }
 
         private void ExecuteEnterContrasenaCommand()

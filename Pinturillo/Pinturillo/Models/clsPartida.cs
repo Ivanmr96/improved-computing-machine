@@ -59,6 +59,9 @@ namespace Pinturillo.Models
             ListadoMensajes = new ObservableCollection<clsMensaje>(new List<clsMensaje>());
             ListadoJugadores = new ObservableCollection<clsJugador>(new List<clsJugador>());
             PosicionesADescubrir = new List<int>();
+            NumeroRondasGlobales = 3;
+            RondaActual = 0;
+            Turno = 0;
         }
 
 
