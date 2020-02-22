@@ -151,48 +151,51 @@ namespace PinturilloParaPruebas
 
                 if (viewModel.PuedesFuncionar)
                 {
-                    viewModel.Partida = obj;
-                    viewModel.NotifyPropertyChanged("Partida");
-
-                    viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
-
-                    //Iniciamos el timer
-                    viewModel.DispatcherTimer.Start();
-
-                    if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
-                    //es nuestro turno
+                    if (viewModel.UsuarioPropio != null)
                     {
-                        //Habilitar el canvas
-                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
-                        //NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será la palabra en juego
-                        viewModel.PalabraAMostrar = obj.PalabraEnJuego;
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                        viewModel.IsMiTurno = true;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
+                        viewModel.Partida = obj;
+                        viewModel.NotifyPropertyChanged("Partida");
+
+                        viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+
+                        //Iniciamos el timer
+                        viewModel.DispatcherTimer.Start();
+
+                        if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+                        //es nuestro turno
+                        {
+                            //Habilitar el canvas
+                            // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+                            //NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será la palabra en juego
+                            viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                            viewModel.IsMiTurno = true;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
+                        }
+                        else
+                        {
+                            //No es nuestro turno
+
+                            //Deshabilitar el canvas
+                            // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                            //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será  ___ 
+                            //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                            viewModel.IsMiTurno = false;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
+                            viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                        }
+                        viewModel.PuedesFuncionar = false;
+                        viewModel.NotifyPropertyChanged("PuedesFuncionar");
                     }
-                    else
-                    {
-                        //No es nuestro turno
 
-                        //Deshabilitar el canvas
-                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
-                        //  NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será  ___ 
-                        //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-                        viewModel.IsMiTurno = false;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
-                        viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                    }
-                    viewModel.PuedesFuncionar = false;
-                    viewModel.NotifyPropertyChanged("PuedesFuncionar");
                 }
-
 
             });
         }
@@ -311,21 +314,21 @@ namespace PinturilloParaPruebas
             var lastPage = Frame.BackStack.Last().SourcePageType;
             //Frame.BackStack.Clear();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
-            if (lastPage.FullName.Equals("Pinturillo.SalaEspera"))
+            if (lastPage.FullName.Contains("SalaEspera"))
             {
                 if (e.Parameter != null)
                 {
                     Tuple<String, clsPartida> partidaConNick = (Tuple<String, clsPartida>)e.Parameter;
 
-                    viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
+                    //viewModel.UsuarioPropio.Nickname = partidaConNick.Item1;
                     viewModel.Partida = partidaConNick.Item2;
                     viewModel.NotifyPropertyChanged("Partida");
 
-                    //clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.First<clsJugador>(x => x.IsLider);
+                    clsJugador jugadorLider = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == partidaConNick.Item1);
 
                     //viewModel.Partida.ListadoJugadores.
 
-                    //viewModel.UsuarioPropio = jugadorLider;
+                    viewModel.UsuarioPropio = jugadorLider;
                     viewModel.Mensaje.JugadorQueLoEnvia = viewModel.UsuarioPropio;
 
 
@@ -333,12 +336,12 @@ namespace PinturilloParaPruebas
                     //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
                     //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
 
-
-                    if (viewModel.UsuarioPropio.ConnectionID == viewModel.Partida.ListadoJugadores[0].ConnectionID)
+                    if (viewModel.UsuarioPropio.IsLider)
                     //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
                     {
                         proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
                     }
+
                 }
             }
             base.OnNavigatedTo(e);

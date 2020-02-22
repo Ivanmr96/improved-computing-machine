@@ -147,83 +147,88 @@ namespace ServerPinturillo
         //Para cambiar el turno
         public void avanzarTurno(clsPartida partida)
         {
-            //El cliente que termine su turno, llama a este método
-            //este método avisa a los clientes de que el turno ha cambiado
-            //si el cliente detecta que el id del nuevo jugador es el propio
-            //hace cosas (habilita su canvas), los demas canvas de inhabilitan
-            //se debe cambiar la palabra en juego
 
-            //Obtengo el jugador actual
-            clsJugador jugadorJugando = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
-
-
-            ////Se ponen todos los "isUltimaPalabraAcertada" a false
-            for (int i = 0; i < partida.ListadoJugadores.Count; i++)
+            if(partida.RondaActual <= partida.NumeroRondasGlobales)
             {
-                partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
-                //Por si acaso se le pone a todos que NO es su turno
-                partida.ListadoJugadores[i].IsMiTurno = false;
-            }
+                //El cliente que termine su turno, llama a este método
+                //este método avisa a los clientes de que el turno ha cambiado
+                //si el cliente detecta que el id del nuevo jugador es el propio
+                //hace cosas (habilita su canvas), los demas canvas de inhabilitan
+                //se debe cambiar la palabra en juego
 
-            //Obtengo la posicion en la lista de jugadores del jugador actual
-            int posicion = -1;
+                //Obtengo el jugador actual
+                clsJugador jugadorJugando = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
 
-            for (int i = 0; i < partida.ListadoJugadores.Count || posicion == -1; i++)
-            {
-                if (partida.ListadoJugadores[i].ConnectionID == jugadorJugando.ConnectionID)
+
+                ////Se ponen todos los "isUltimaPalabraAcertada" a false
+                for (int i = 0; i < partida.ListadoJugadores.Count; i++)
                 {
-                    posicion = i;
+                    partida.ListadoJugadores[i].IsUltimaPalabraAcertada = false;
+                    //Por si acaso se le pone a todos que NO es su turno
+                    partida.ListadoJugadores[i].IsMiTurno = false;
                 }
 
-            }
-            //Asigno una nueva palabra
-            partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
-            //TODO rellenar el listado de posiciones a descubrir
-            partida.PosicionesADescubrir = Utilidad.rellenarPosicionesADescubrir(partida.PalabraEnJuego);
+                //Obtengo la posicion en la lista de jugadores del jugador actual
+                int posicion = -1;
 
-
-            //Cambio el jugador jugando
-            if (posicion < partida.ListadoJugadores.Count-1)
-            {
-                partida.ConnectionIDJugadorActual = partida.ListadoJugadores[(posicion + 1)].ConnectionID;
-               
-            }
-            else
-            {
-                //Si ya han jugado todos los jugadores de la lista, se vuelve a empezar
-                partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
-            }
-
-
-            //Se le pone que es su turno al jugador 
-            clsJugador jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
-
-            jugador.IsMiTurno = true;
-
-
-
-            //Cambio el turno/ronda
-            if (partida.Turno <= partida.ListadoJugadores.Count)
-            {
-                partida.Turno++;
-
-            }
-            else
-            {
-                partida.Turno = 0;
-                if (partida.RondaActual < partida.NumeroRondasGlobales)
+                for (int i = 0; i < partida.ListadoJugadores.Count || posicion == -1; i++)
                 {
-                    partida.RondaActual++;
+                    if (partida.ListadoJugadores[i].ConnectionID == jugadorJugando.ConnectionID)
+                    {
+                        posicion = i;
+                    }
+
+                }
+                //Asigno una nueva palabra
+                partida.PalabraEnJuego = Utilidad.obtenerPalabraAleatoria();
+                //TODO rellenar el listado de posiciones a descubrir
+                partida.PosicionesADescubrir = Utilidad.rellenarPosicionesADescubrir(partida.PalabraEnJuego);
+
+
+                //Cambio el jugador jugando
+                if (posicion < partida.ListadoJugadores.Count - 1)
+                {
+                    partida.ConnectionIDJugadorActual = partida.ListadoJugadores[(posicion + 1)].ConnectionID;
+
                 }
                 else
                 {
-                    //Terminaria la partida y se harian cosas
+                    //Si ya han jugado todos los jugadores de la lista, se vuelve a empezar
+                    partida.ConnectionIDJugadorActual = partida.ListadoJugadores[0].ConnectionID;
                 }
 
-            }
 
-            //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
-            Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
+                //Se le pone que es su turno al jugador 
+                clsJugador jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == partida.ConnectionIDJugadorActual);
+
+                jugador.IsMiTurno = true;
+
+
+
+                //Cambio el turno/ronda
+                if (partida.Turno <= partida.ListadoJugadores.Count)
+                {
+                    partida.Turno++;
+
+                }
+                else
+                {
+                    partida.Turno = 0;
+                    if (partida.RondaActual < partida.NumeroRondasGlobales)
+                    {
+                        partida.RondaActual++;
+                    }
+                    else
+                    {
+                        //Terminaria la partida y se harian cosas
+                    }
+
+                }
+
+                //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
+                Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
+            }
+           
         }
 
 
@@ -237,6 +242,25 @@ namespace ServerPinturillo
             jugador.IsUltimaPalabraAcertada = true;
 
             Clients.Group(nombreGrupo).puntosAdded(partidaActual);
+
+
+            //Si todos los jugadores ya han acertado la palabra, se pasa el turno
+            int acertantes = 0;
+
+            //Comprobar si todos los jugadores de la partida han acertado ya
+            for (int i = 0; i < partidaActual.ListadoJugadores.Count; i++)
+            {
+                if (!partidaActual.ListadoJugadores[i].IsUltimaPalabraAcertada)
+                {
+                    acertantes++;
+                }
+            }
+
+            if (acertantes == (partidaActual.ListadoJugadores.Count -1))    //deben haber acertado todos menos uno (el que pinta)
+            {
+                avanzarTurno(partidaActual);
+            }
+
         }
 
         public void sendMensaje (clsMensaje mensaje, string nombreGrupo)

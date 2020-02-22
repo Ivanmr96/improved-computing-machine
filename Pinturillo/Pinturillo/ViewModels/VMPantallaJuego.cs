@@ -212,7 +212,15 @@ namespace Pinturillo.ViewModels
         }
 
 
-        private bool CanExecuteSendMessageCommand() => _mensaje.Mensaje != null && _mensaje.Mensaje != "";
+        private bool CanExecuteSendMessageCommand()
+        {
+            bool canExecute = false;
+
+            if( (_mensaje.Mensaje != null && _mensaje.Mensaje != "" && IsMiTurno == false) ){
+                canExecute = true;
+            }
+            return canExecute;
+        }
         #endregion
 
 

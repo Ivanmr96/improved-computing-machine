@@ -137,16 +137,16 @@ namespace Pinturillo.ViewModels
         {
             //Indica al servidor que la partida va a comenzar.
 
-            if (puedesFuncionar2)
-            {
-                partida.IsJugandose = true;
-                proxy.Invoke("empezarPartida", partida.NombreSala);
-                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
-                puedesFuncionar2 = false;
-            }
+            //if (puedesFuncionar2)
+            //{
+               
+            //}
 
-           
+            partida.IsJugandose = true;
+            proxy.Invoke("empezarPartida", partida.NombreSala);
+            Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+            navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+            puedesFuncionar2 = false;
         }
 
         #endregion
@@ -174,15 +174,15 @@ namespace Pinturillo.ViewModels
             //Ir a la pantalla de juego
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (puedesFuncionar2)
-                {
-                    this.puedesFuncionar2 = false;
-                    partida.IsJugandose = true;
-                    Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                    navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                //if (puedesFuncionar2)
+                //{
+  
                     
-                }
-               
+                //}
+                this.puedesFuncionar2 = false;
+                partida.IsJugandose = true;
+                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
             });
         }
 

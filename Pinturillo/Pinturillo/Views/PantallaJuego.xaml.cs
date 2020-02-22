@@ -149,46 +149,50 @@ namespace Pinturillo
 
                 if (viewModel.PuedesFuncionar)
                 {
-                    viewModel.Partida = obj;
-                    viewModel.NotifyPropertyChanged("Partida");
-
-                    viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
-
-                    //Iniciamos el timer
-                    viewModel.DispatcherTimer.Start();
-
-                    if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
-                    //es nuestro turno
+                    if(viewModel.UsuarioPropio != null)
                     {
-                        //Habilitar el canvas
-                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
-                        //NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será la palabra en juego
-                        viewModel.PalabraAMostrar = obj.PalabraEnJuego;
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                        viewModel.IsMiTurno = true;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
+                        viewModel.Partida = obj;
+                        viewModel.NotifyPropertyChanged("Partida");
+
+                        viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+
+                        //Iniciamos el timer
+                        viewModel.DispatcherTimer.Start();
+
+                        if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+                        //es nuestro turno
+                        {
+                            //Habilitar el canvas
+                            // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+                            //NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será la palabra en juego
+                            viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                            viewModel.IsMiTurno = true;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
 
 
+                        }
+                        else
+                        {
+                            //No es nuestro turno
+
+                            //Deshabilitar el canvas
+                            // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                            //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será  ___ 
+                            //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+                            viewModel.IsMiTurno = false;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
+                            viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                        }
+                        viewModel.PuedesFuncionar = false;
+                        viewModel.NotifyPropertyChanged("PuedesFuncionar");
                     }
-                    else
-                    {
-                        //No es nuestro turno
-
-                        //Deshabilitar el canvas
-                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
-                        //  NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será  ___ 
-                        //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-                        viewModel.IsMiTurno = false;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
-                        viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                    }
-                    viewModel.PuedesFuncionar = false;
-                    viewModel.NotifyPropertyChanged("PuedesFuncionar");
+                   
                 }
 
               

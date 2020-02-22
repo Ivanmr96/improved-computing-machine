@@ -214,7 +214,16 @@ namespace PinturilloParaPruebas.ViewModels
         }
 
 
-        private bool CanExecuteSendMessageCommand() => _mensaje.Mensaje != null && _mensaje.Mensaje != "";
+        private bool CanExecuteSendMessageCommand()
+        {
+            bool canExecute = false;
+
+            if ((_mensaje.Mensaje != null && _mensaje.Mensaje != "" && IsMiTurno == false))
+            {
+                canExecute = true;
+            }
+            return canExecute;
+        }
         #endregion
 
 
@@ -243,14 +252,8 @@ namespace PinturilloParaPruebas.ViewModels
             {
 
                 clsJugador jugador;
-                try
-                {
-                    jugador = _partida.ListadoJugadores.First<clsJugador>(j => j.Nickname == usuario);
-                }
-                catch (Exception e)
-                {
-                    jugador = null;
-                }
+
+                jugador = _partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
 
                 if (jugador != null)
                 {

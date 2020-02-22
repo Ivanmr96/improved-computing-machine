@@ -41,7 +41,7 @@ namespace PinturilloParaPruebas
             //Frame.BackStack.Clear();
             //GC.Collect();
             //if (e.SourcePageType.FullName.Equals("Pinturillo.CrearSalaPage"))
-            if (lastPage.FullName.Equals("Pinturillo.CrearSalaPage"))
+            if (lastPage.FullName.Contains("CrearSalaPage"))
             {
                 if (e.Parameter != null)
                 {
