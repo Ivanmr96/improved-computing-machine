@@ -86,6 +86,8 @@ namespace Pinturillo
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                
+                if(obj.ListadoJugadores != null && viewModel.UsuarioPropio.Nickname != null)
+                {
                     viewModel.Partida = obj;
                     viewModel.NotifyPropertyChanged("Partida");
 
@@ -107,7 +109,7 @@ namespace Pinturillo
                     {
                         //Habilitar el canvas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        
+
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
                         //NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será la palabra en juego
@@ -133,6 +135,9 @@ namespace Pinturillo
                         viewModel.NotifyPropertyChanged("IsMiTurno");
                         viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                     }
+                }
+
+                    
 
 
             });
@@ -149,7 +154,7 @@ namespace Pinturillo
 
                 if (viewModel.PuedesFuncionar)
                 {
-                    if(viewModel.UsuarioPropio != null)
+                    if(obj.ListadoJugadores!= null && viewModel.UsuarioPropio.Nickname != null)
                     {
                         viewModel.Partida = obj;
                         viewModel.NotifyPropertyChanged("Partida");
@@ -335,7 +340,7 @@ namespace Pinturillo
                     //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
                     //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
 
-                    if (viewModel.UsuarioPropio.IsLider)
+                    if (viewModel.UsuarioPropio.IsLider && viewModel.PuedesFuncionar)
                         //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
                     {
                         proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
