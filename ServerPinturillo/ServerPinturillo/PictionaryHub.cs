@@ -323,7 +323,7 @@ namespace ServerPinturillo
             clsPartida partida = obtenerPartidaPorNombreSala(nombreSala);
             clsJugador jugador;
 
-                jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
+            jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
 
 
             if(jugador != null)

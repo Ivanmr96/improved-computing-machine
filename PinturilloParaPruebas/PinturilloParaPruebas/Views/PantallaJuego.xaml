@@ -194,10 +194,10 @@
           VerticalAlignment="Top"
                            RelativePanel.AlignRightWithPanel="True"
                            EraseAllClicked="InkToolbar_EraseAllClicked"
-                           InitialControls="PensOnly"
+                           InitialControls="None"
                            
           TargetInkCanvas="{x:Bind inkCanvas}" >
-
+                    <InkToolbarBallpointPenButton Name="ballpointpen"></InkToolbarBallpointPenButton>
                     <InkToolbarEraserButton ></InkToolbarEraserButton>
                 </InkToolbar>
 

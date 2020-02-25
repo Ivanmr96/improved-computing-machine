@@ -27,8 +27,8 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.Below="backArrow"
             RelativePanel.Above="backArrow"
-            Width="150"
-            Margin="10,10,0,10"
+            Width="200"
+            Margin="10,10,0,25"
             BorderBrush="Red"   
                 CornerRadius="30" 
                 >
@@ -50,41 +50,42 @@
                         >
                                 <AppBarButton
                                         Name="icon"
-                                       IsEnabled="{Binding IsUltimaPalabraAcertada}"
-                                Icon="Accept"
-                                    Foreground="#50d890"
-                                        RelativePanel.AlignLeftWithPanel="True"
+                                        IsEnabled="{Binding IsUltimaPalabraAcertada}"
+                                        Icon="Accept"
+                                        Foreground="#50d890"
                                         RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="puntuacion"
                                 />
 
 
                                 <AppBarButton
                                         Name="lapiz"
                                         Visibility="{Binding IsMiTurno,Mode=TwoWay, 
-                                    UpdateSourceTrigger=PropertyChanged, 
-                                    Converter={StaticResource LapizConverter}}"
+                                        UpdateSourceTrigger=PropertyChanged, 
+                                        Converter={StaticResource LapizConverter}}"
                                         Icon="Edit"
                                         Foreground="#50d890"
-                                        RelativePanel.Below="icon"
+                                        RelativePanel.AlignTopWithPanel="True"
+                                        RelativePanel.RightOf="txtNombre"
+                                        ManipulationMode="None"
                                 />
 
                                 <TextBlock  
-                                Foreground="Black"
-                                FontSize="15"
+                                        Foreground="Black"
+                                        FontSize="25"
                                         Name="txtNombre"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
-                                Margin="0,10,5,0" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
+                                        Margin="0,10,5,0" 
+                                        Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
-                                        RelativePanel.Below="txtNombre"
-                                    RelativePanel.AlignBottomWithPanel="True"
-                                    RelativePanel.AlignLeftWithPanel="True"
-                                        
-                                
-                                Foreground="#272727"
-                                FontSize="10"
-                                    Text="{Binding Puntuacion, Mode=TwoWay}"
+                                        RelativePanel.AlignLeftWithPanel="True"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True"
+                                        Name="puntuacion"                                
+                                        Foreground="#272727"
+                                        FontSize="25"
+                                        Text="{Binding Puntuacion, Mode=TwoWay}"
                                 ></TextBlock>
 
                             </RelativePanel>
@@ -193,10 +194,10 @@
           VerticalAlignment="Top"
                            RelativePanel.AlignRightWithPanel="True"
                            EraseAllClicked="InkToolbar_EraseAllClicked"
-                           InitialControls="PensOnly"
+                           InitialControls="None"
                            
           TargetInkCanvas="{x:Bind inkCanvas}" >
-                    
+                    <InkToolbarBallpointPenButton Name="ballpointpen"></InkToolbarBallpointPenButton>
                     <InkToolbarEraserButton ></InkToolbarEraserButton>
                 </InkToolbar>
 

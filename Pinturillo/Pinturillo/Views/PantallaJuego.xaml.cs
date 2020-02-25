@@ -51,7 +51,7 @@ namespace Pinturillo
             inkCanvas.InkPresenter.InputDeviceTypes = viewModel.TipoEntradaInkCanvas;
 
             InkDrawingAttributes att = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
-            att.Color = Color.FromArgb(100, 0, 220, 100);
+            att.Color = Windows.UI.Colors.Black;
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(att);
 
             inkCanvas.InkPresenter.StrokeInput.StrokeContinued += StrokeInput_StrokeContinued;
@@ -126,6 +126,12 @@ namespace Pinturillo
 
                         //Deshabilitar el canvas
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                        //InkDrawingAttributes att = new InkDrawingAttributes();
+                        //att.Color = Windows.UI.Colors.Black;
+                        //inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(att);
+                        ballpointpen.SelectedBrushIndex = 0;
+                        inkToolbar.ActiveTool = null;
+
                         //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será  ___ 
                         // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal

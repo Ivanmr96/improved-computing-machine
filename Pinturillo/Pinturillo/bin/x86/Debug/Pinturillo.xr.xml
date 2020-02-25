@@ -266,6 +266,7 @@
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="ManipulationMode" />
     </RootType>
     <RootType FullName="Pinturillo.ListadoSalas" />
     <RootType FullName="Pinturillo.ViewModels.MainPageVM" />
@@ -285,6 +286,9 @@
       <RootProperty Name="TargetInkCanvas" />
       <RootProperty Name="Children" />
       <RootEvent Name="EraseAllClicked" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton">
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarEraserButton" />
     <RootType FullName="Windows.UI.Xaml.Controls.InkCanvas" />

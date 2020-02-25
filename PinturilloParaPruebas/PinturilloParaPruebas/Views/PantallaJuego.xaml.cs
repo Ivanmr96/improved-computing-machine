@@ -113,6 +113,7 @@ namespace PinturilloParaPruebas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
 
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+
                         //NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será la palabra en juego
                         viewModel.PalabraAMostrar = obj.PalabraEnJuego;
@@ -128,6 +129,8 @@ namespace PinturilloParaPruebas
 
                         //Deshabilitar el canvas
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                        ballpointpen.SelectedBrushIndex = 0;
+                        inkToolbar.ActiveTool = null;
                         //  NotifyPropertyChanged("TipoEntradaInkCanvas");
                         //palabra a mostrar será  ___ 
                         // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal

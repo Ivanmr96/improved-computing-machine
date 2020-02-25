@@ -10442,18 +10442,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Angela\\.nuget\\packages\\": {},
+    "C:\\Users\\Victor\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "projectUniqueName": "C:\\Users\\Victor\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
       "projectName": "Pinturillo",
-      "projectPath": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
-      "packagesPath": "C:\\Users\\Angela\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\GIT\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
+      "projectPath": "C:\\Users\\Victor\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\Pinturillo.csproj",
+      "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Victor\\Documents\\GitHub\\improved-computing-machine\\Pinturillo\\Pinturillo\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -10461,7 +10461,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Angela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
