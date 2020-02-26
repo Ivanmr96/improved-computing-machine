@@ -109,8 +109,6 @@ namespace ServerPinturillo
 
         public void yaHeNavegado(string nombreGrupo)
         {
-            bool todosHanNavegado = true;
-
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
             partidaActual.JugadoresQueHanNavegado += 1;
             

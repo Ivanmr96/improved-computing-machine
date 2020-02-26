@@ -171,7 +171,7 @@ namespace Pinturillo.ViewModels
         public CoreInputDeviceTypes TipoEntradaInkCanvas { get; set; }
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
         #endregion
-
+        
 
         #region"Command"
         private async void ExecuteGoBackCommand()
