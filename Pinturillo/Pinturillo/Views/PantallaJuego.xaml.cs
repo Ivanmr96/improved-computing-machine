@@ -39,7 +39,7 @@ namespace Pinturillo
 
         public static int TIME_MAX = 30;
 
-        VMPantallaJuego viewModel { get;set;
+        VMPantallaJuego viewModel { get;
         }
         public PantallaJuego()
         {
@@ -346,14 +346,19 @@ namespace Pinturillo
                     //Pero no sé como hacer que solo se invoke una vez ya que aun no está puesto el connectionID del jugador actual en la partida xD
                     //De momento lo he apañao en el servidor poniendo que si es null la partida no haga nada 
 
-                    if (viewModel.UsuarioPropio.IsLider && viewModel.PuedesFuncionar)
-                        //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
-                    {
-                        proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
-                    }
+                    //if (viewModel.UsuarioPropio.IsLider && viewModel.PuedesFuncionar)
+                    //    //Esto es un apaño, tengo que cambiarlo para que haga el invoke "el primero que no sea null" (por si el usuario 0 se habia salido o algo asi)
+                    //{
+                    //    proxy.Invoke("comenzarPartidaEnGrupo", viewModel.Partida);
+                    //}
                         
                 }
             }
+
+
+            //Notificar al servidor que ya he navegado
+            proxy.Invoke("yaHeNavegado", viewModel.Partida.NombreSala);
+
             base.OnNavigatedTo(e);
 
         }

@@ -176,13 +176,12 @@ namespace Pinturillo.ViewModels
             {
                 //if (puedesFuncionar2)
                 //{
-  
-                    
+                    this.puedesFuncionar2 = false;
+                    partida.IsJugandose = true;
+                    Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
+                    navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
                 //}
-                this.puedesFuncionar2 = false;
-                partida.IsJugandose = true;
-                Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
-                navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
+                
             });
         }
 

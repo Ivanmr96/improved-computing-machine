@@ -106,6 +106,26 @@ namespace ServerPinturillo
         }
 
 
+
+        public void yaHeNavegado(string nombreGrupo)
+        {
+            bool todosHanNavegado = true;
+
+            clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
+            partidaActual.JugadoresQueHanNavegado += 1;
+            
+            if(partidaActual.JugadoresQueHanNavegado == partidaActual.ListadoJugadores.Count)
+            {
+                //Todos han navegado
+                comenzarPartidaEnGrupo(partidaActual);
+
+            }
+
+
+        }
+
+
+
         //Metodo que se llama cuando un contador de un cliente llega a 0
         public void miContadorHaLlegadoACero(string connectionIDJugador, string nombreGrupo)
         {
@@ -280,7 +300,7 @@ namespace ServerPinturillo
         public void empezarPartida(String nombreGrupo) {
 
             Clients.OthersInGroup(nombreGrupo).empezarPartida();
-   
+
         }
 
         public void borrarCanvas(String nombreGrupo) {

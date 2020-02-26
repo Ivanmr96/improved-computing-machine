@@ -38,7 +38,7 @@ namespace Pinturillo.ViewModels
 
         public VMPantallaJuego()
         {
-            PuedesFuncionar = true;
+            puedesFuncionar = true;
             this.tiempoEspera = 3;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
@@ -187,7 +187,7 @@ namespace Pinturillo.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas),_usuarioPropio.Nickname);
                 proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
-
+                puedesFuncionar = false;
                 //pararContador();
             }
         }
