@@ -268,7 +268,7 @@ namespace ServerPinturillo
             //Comprobar si todos los jugadores de la partida han acertado ya
             for (int i = 0; i < partidaActual.ListadoJugadores.Count; i++)
             {
-                if (!partidaActual.ListadoJugadores[i].IsUltimaPalabraAcertada)
+                if (partidaActual.ListadoJugadores[i].IsUltimaPalabraAcertada)
                 {
                     acertantes++;
                 }
