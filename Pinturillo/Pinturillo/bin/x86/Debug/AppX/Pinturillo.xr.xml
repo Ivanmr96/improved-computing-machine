@@ -24,6 +24,8 @@
     <RootPropertyPathName Name="Count" />
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
+    <RootPropertyPathName Name="Visible" />
+    <RootPropertyPathName Name="tiempoEspera" />
     <RootPropertyPathName Name="GoBackCommand" />
     <RootPropertyPathName Name="SendMessageCommand" />
     <RootPropertyPathName Name="IsMiTurno" />
@@ -34,8 +36,6 @@
     <RootPropertyPathName Name="NumeroRondasGlobales" />
     <RootPropertyPathName Name="RondaActual" />
     <RootPropertyPathName Name="PalabraAMostrar" />
-    <RootPropertyPathName Name="Visible" />
-    <RootPropertyPathName Name="tiempoEspera" />
     <RootPropertyPathName Name="LblTemporizador" />
     <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
@@ -105,7 +105,6 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Padding" />
-      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Background" />

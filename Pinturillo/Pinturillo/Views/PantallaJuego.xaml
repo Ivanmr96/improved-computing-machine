@@ -17,18 +17,17 @@
     <Page.Resources>
         <local1:LapizVisibilityConverter x:Key="LapizConverter"></local1:LapizVisibilityConverter>
         <local1:TrueToFalseConverter x:Key="TrueToFalseConverter"></local1:TrueToFalseConverter>
-
     </Page.Resources>
     
     <RelativePanel>
-       
         <Border 
+            
             Name="borderStackPanel"
             RelativePanel.AlignBottomWithPanel="True"
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.Below="backArrow"
             RelativePanel.Above="backArrow"
-            Width="200"
+            Width="275"
             Margin="10,10,0,25"
             BorderBrush="Red"   
                 CornerRadius="30" 
@@ -125,26 +124,7 @@
                     </TextBlock>
 
                 </Border>
-                <Border
-                    Visibility="{Binding Visible,Mode=TwoWay}"
-                    Margin="150,10,15,15"
-                    CornerRadius="100"
-                    Padding="15"
-                   
-                    Background="#effffb"
-                    Opacity="1"
-                    >
-                    <TextBlock 
-                        
-                        Text="{Binding tiempoEspera,Mode=TwoWay}" 
-                        Foreground="Red"
-                        FontSize="30" 
-                        RelativePanel.AlignHorizontalCenterWithPanel="True"
-                        RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
 
-
-                </Border>
-                
                 <TextBlock
                     Name="palabra"
                     RelativePanel.AlignTopWithPanel="True"
@@ -227,7 +207,7 @@
             </RelativePanel>
 
         </Border>
-
+        
 
 
 
@@ -260,7 +240,7 @@
             MaxLength="30"
             Name="inputMensajes"
             RelativePanel.LeftOf="btnSend"
-            Width="140"
+            Width="190"
             IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
             ,Converter={StaticResource TrueToFalseConverter}}"
             Margin="0,0,0,25"
@@ -290,5 +270,14 @@
                 <Image Source="Assets/photo.png" Height="62"/>
             </StackPanel>
         </Button>
+        
+        <TextBlock      
+            Visibility="{Binding Visible,Mode=TwoWay}"
+            Text="{Binding tiempoEspera,Mode=TwoWay}"
+            Name="tiempoEsperaAnimation"
+            Foreground="Black"
+            FontSize="200" 
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
     </RelativePanel>
 </Page>

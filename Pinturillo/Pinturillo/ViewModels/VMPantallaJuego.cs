@@ -36,7 +36,7 @@ namespace Pinturillo.ViewModels
         private String visible;
         public bool hanAcertadoTodos { get; set; }
         #endregion
-        public static int TIME_MAX = 90;
+        public static int TIME_MAX = 10;
         public static int TIME_WAIT = 5;
         public int tiempoEspera { get; set; }
         
@@ -93,13 +93,13 @@ namespace Pinturillo.ViewModels
                 if (_timeMax <= 10)
                 {
                     _timeMax--;
-                    LblTemporizador = string.Format("0{1}", _timeMax / 60, _timeMax % 60);
+                    LblTemporizador = "0" + TimeMax.ToString();
                     NotifyPropertyChanged("LblTemporizador");
                 }
                 else
                 {
                     _timeMax--;
-                    LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
+                    LblTemporizador = _timeMax.ToString();
                     NotifyPropertyChanged("LblTemporizador");
                 }
             } 

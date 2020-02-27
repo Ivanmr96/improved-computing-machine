@@ -62,7 +62,6 @@ namespace Pinturillo
 
             builder = new InkStrokeBuilder();
             points = new List<Point>();
-
             SignalR();
         }
 
