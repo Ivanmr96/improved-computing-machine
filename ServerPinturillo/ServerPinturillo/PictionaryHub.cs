@@ -162,6 +162,14 @@ namespace ServerPinturillo
         }
 
 
+
+
+
+
+
+
+
+
         //Para cambiar el turno
         public void avanzarTurno(clsPartida partida)
         {
@@ -276,7 +284,9 @@ namespace ServerPinturillo
 
             if (acertantes == (partidaActual.ListadoJugadores.Count -1))    //deben haber acertado todos menos uno (el que pinta)
             {
-                avanzarTurno(partidaActual);
+                //avanzarTurno(partidaActual);
+                //Todos han acertado ya
+                Clients.Group(nombreGrupo).todosHanAcertado();
             }
 
         }

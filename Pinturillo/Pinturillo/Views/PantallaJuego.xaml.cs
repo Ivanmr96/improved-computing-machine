@@ -30,14 +30,15 @@ namespace Pinturillo
     public sealed partial class PantallaJuego : Page
     {
 
+        public static int TIME_MAX = 10;
+        public static int TIME_WAIT = 3;
+
         InkStrokeBuilder builder;
         List<Point> points;
         IReadOnlyList<InkStroke> _added;
         Line line;
         private HubConnection conn;
         private IHubProxy proxy;
-
-        public static int TIME_MAX = 30;
 
         VMPantallaJuego viewModel { get;
         }
@@ -92,13 +93,13 @@ namespace Pinturillo
                     viewModel.NotifyPropertyChanged("Partida");
 
                     viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
-
+                    viewModel.hanAcertadoTodos = false;
                     //Iniciamos el timer
                     viewModel.TimeMax = TIME_MAX;
                     viewModel.NotifyPropertyChanged("TimeMax");
                     viewModel.LblTemporizador = TIME_MAX.ToString();
                     viewModel.NotifyPropertyChanged("LblTemporizador");
-                    viewModel.tiempoEspera = 10;
+                    viewModel.tiempoEspera = TIME_WAIT;
                     viewModel.DispatcherTimer.Start();
 
                     //Se limpia el canvas
@@ -167,7 +168,7 @@ namespace Pinturillo
                     {
                         viewModel.Partida = obj;
                         viewModel.NotifyPropertyChanged("Partida");
-
+                        viewModel.hanAcertadoTodos = false;
                         viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
 
                         //Iniciamos el timer

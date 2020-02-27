@@ -34,17 +34,20 @@ namespace Pinturillo.ViewModels
         private bool puedesFuncionar;
         private int tiempoAMostrar;
         private String visible;
+        public bool hanAcertadoTodos { get; set};
         #endregion
         public static int TIME_MAX = 10;
+        public static int TIME_WAIT = 3;
         public int tiempoEspera { get; set; }
         
 
         public VMPantallaJuego()
         {
+            hanAcertadoTodos = false;
             visible = "Collapsed";
             puedesFuncionar = true;
             this.tiempoAMostrar = 0;
-            this.tiempoEspera = 3;
+            this.tiempoEspera = TIME_WAIT;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
             this._mensaje = new clsMensaje();
@@ -99,38 +102,69 @@ namespace Pinturillo.ViewModels
                     LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
                     NotifyPropertyChanged("LblTemporizador");
                 }
-            } else
+            } 
+            //else
+            //{
+
+            //    if (_timeMax == 0 || hanAcertadoTodos)
+            //    {
+            //        //TODO 
+            //        //El contador llega a 0
+
+
+            //        //Bloquear el chat para todo el mundo en este tiempo
+            //        //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
+            //        //(porque esta bindeado con el converter de true to false
+            //        visible = "Visible";
+            //        NotifyPropertyChanged("Visible");
+            //        this.IsMiTurno = true;
+            //        NotifyPropertyChanged("IsMiTurno");
+            //        //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
+
+            //        //se reinicia esto
+            //        pos = 0;
+
+            //        //Se muestra la palabra
+            //        this._palabraAMostrar = _partida.PalabraEnJuego;
+            //        NotifyPropertyChanged("PalabraAMostrar");
+            //        tiempoEspera--;
+            //        NotifyPropertyChanged("tiempoEspera");
+
+            //        if (tiempoEspera == 0)
+            //        {                      
+            //            this._dispatcherTimer.Stop();
+            //            proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
+            //        }
+            //    }
+            //}
+            if (_timeMax == 0 || hanAcertadoTodos)
             {
+                //TODO 
+                //El contador llega a 0
 
-                if (_timeMax == 0)
+
+                //Bloquear el chat para todo el mundo en este tiempo
+                //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
+                //(porque esta bindeado con el converter de true to false
+                visible = "Visible";
+                NotifyPropertyChanged("Visible");
+                this.IsMiTurno = true;
+                NotifyPropertyChanged("IsMiTurno");
+                //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
+
+                //se reinicia esto
+                pos = 0;
+
+                //Se muestra la palabra
+                this._palabraAMostrar = _partida.PalabraEnJuego;
+                NotifyPropertyChanged("PalabraAMostrar");
+                tiempoEspera--;
+                NotifyPropertyChanged("tiempoEspera");
+
+                if (tiempoEspera == 0)
                 {
-                    //TODO 
-                    //El contador llega a 0
-
-
-                    //Bloquear el chat para todo el mundo en este tiempo
-                    //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
-                    //(porque esta bindeado con el converter de true to false
-                    visible = "Visible";
-                    NotifyPropertyChanged("Visible");
-                    this.IsMiTurno = true;
-                    NotifyPropertyChanged("IsMiTurno");
-                    //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
-
-                    //se reinicia esto
-                    pos = 0;
-
-                    //Se muestra la palabra
-                    this._palabraAMostrar = _partida.PalabraEnJuego;
-                    NotifyPropertyChanged("PalabraAMostrar");
-                    tiempoEspera--;
-                    NotifyPropertyChanged("tiempoEspera");
-
-                    if (tiempoEspera == 0)
-                    {                      
-                        this._dispatcherTimer.Stop();
-                        proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
-                    }
+                    this._dispatcherTimer.Stop();
+                    proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
                 }
             }
         }
@@ -146,7 +180,19 @@ namespace Pinturillo.ViewModels
             proxy.On<string, string>("jugadorDeletedSala", OnjugadorDeleted);
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsPartida>("puntosAdded", OnPuntosAdded);
+            proxy.On("todosHanAcertado", OnTodosHanAcertado);
 
+        }
+
+
+
+        private async void OnTodosHanAcertado()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                this.hanAcertadoTodos = true;
+                NotifyPropertyChanged("hanAcertadoTodos");
+            });
         }
 
 
