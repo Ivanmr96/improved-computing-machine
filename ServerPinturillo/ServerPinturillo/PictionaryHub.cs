@@ -166,7 +166,7 @@ namespace ServerPinturillo
         public void avanzarTurno(clsPartida partida)
         {
             clsPartida partidaObtenida = obtenerPartidaPorNombreSala(partida.NombreSala);
-            if(partidaObtenida.RondaActual <= partida.NumeroRondasGlobales)
+            if(partidaObtenida.RondaActual < partida.NumeroRondasGlobales)
             {
                 //El cliente que termine su turno, llama a este método
                 //este método avisa a los clientes de que el turno ha cambiado
@@ -224,14 +224,14 @@ namespace ServerPinturillo
 
 
                 //Cambio el turno/ronda
-                if (partida.Turno <= partida.ListadoJugadores.Count)
+                if (partida.Turno < partida.ListadoJugadores.Count)
                 {
                     partida.Turno++;
 
                 }
                 else
                 {
-                    partida.Turno = 0;
+                    partida.Turno = 1;
                     if (partida.RondaActual < partida.NumeroRondasGlobales)
                     {
                         partida.RondaActual++;

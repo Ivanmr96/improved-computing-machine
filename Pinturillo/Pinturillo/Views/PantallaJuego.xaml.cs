@@ -136,16 +136,19 @@ namespace Pinturillo
                         //palabra a mostrar será  ___ 
                         // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
 
-                        viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                        String[] arrayPalabras = obj.PalabraEnJuego.Split(' ');
+                        String palabraResuelta = "";
+                        foreach (var palabra in arrayPalabras)
+                        {
+                            palabraResuelta += new String('*', palabra.Length);
+                            palabraResuelta += " ";
+                        }
+                        viewModel.PalabraAMostrar = palabraResuelta;
                         viewModel.IsMiTurno = false;
                         viewModel.NotifyPropertyChanged("IsMiTurno");
                         viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                     }
                 }
-
-                    
-
-
             });
         }
 
@@ -197,7 +200,14 @@ namespace Pinturillo
                             //viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
                             viewModel.IsMiTurno = false;
                             viewModel.NotifyPropertyChanged("IsMiTurno");
-                            viewModel.PalabraAMostrar = new string('*', obj.PalabraEnJuego.Length);
+                            String[] arrayPalabras = obj.PalabraEnJuego.Split(' ');
+                            String palabraResuelta = "";
+                            foreach (var palabra in arrayPalabras)
+                            {
+                                palabraResuelta += new String('*',palabra.Length);
+                                palabraResuelta += " ";
+                            }
+                            viewModel.PalabraAMostrar = palabraResuelta;
                             viewModel.NotifyPropertyChanged("PalabraAMostrar");
                         }
                         viewModel.PuedesFuncionar = false;
