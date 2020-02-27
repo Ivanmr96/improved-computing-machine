@@ -17,11 +17,15 @@ namespace Pinturillo.ViewModels
 {
     public class VMPantallaJuego : clsVMBase
     {
+
+        public static int TIME_MAX = 90;
+        public static int TIME_WAIT = 5;
+
         #region"Atributos privados"
         private ObservableCollection<clsMensaje> _listadoMensajesChat;
         private clsJugador _usuarioPropio;
         private clsMensaje _mensaje;
-        private int _timeMax = 60;
+        private int _timeMax = TIME_MAX;
         private DispatcherTimer _dispatcherTimer;
         private clsPartida _partida;
         private string _lblTemporizador;
@@ -34,10 +38,9 @@ namespace Pinturillo.ViewModels
         private bool puedesFuncionar;
         private int tiempoAMostrar;
         private String visible;
-        public bool hanAcertadoTodos { get; set};
+        public bool hanAcertadoTodos { get; set; }
         #endregion
-        public static int TIME_MAX = 10;
-        public static int TIME_WAIT = 3;
+
         public int tiempoEspera { get; set; }
         
 
@@ -46,7 +49,6 @@ namespace Pinturillo.ViewModels
             hanAcertadoTodos = false;
             visible = "Collapsed";
             puedesFuncionar = true;
-            this.tiempoAMostrar = 0;
             this.tiempoEspera = TIME_WAIT;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
@@ -99,7 +101,8 @@ namespace Pinturillo.ViewModels
                 else
                 {
                     _timeMax--;
-                    LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
+                    //LblTemporizador = string.Format("{1}", _timeMax / 60, _timeMax % 60);
+                    LblTemporizador =  _timeMax.ToString();
                     NotifyPropertyChanged("LblTemporizador");
                 }
             } 
@@ -142,6 +145,10 @@ namespace Pinturillo.ViewModels
                 //TODO 
                 //El contador llega a 0
 
+                if(hanAcertadoTodos && (_timeMax > 0))
+                {
+                    _timeMax = 0;
+                }
 
                 //Bloquear el chat para todo el mundo en este tiempo
                 //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat

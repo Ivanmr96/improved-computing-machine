@@ -10,15 +10,15 @@ namespace ServerPinturillo
 
 
 
-        private static String[] listadoPalabras = { "Ratón y mouse", "Teclado y otra cosa" };
+        //private static String[] listadoPalabras = { "Ratón y mouse", "Teclado y otra cosa" };
 
-        //private static String[] listadoPalabras = {"Ratón", "Teclado", "Monitor", "Profesor", "Movil", "Océano", "Mar", "Playa", "Persona", "Igual",
-        //"Saludar", "Hucha","Libro", "Vaso", "Plátano", "Ventana", "Pañuelo", "Gato", "Perro", "Loro", "Dignidad",
-        //"Mochila", "Muralla", "Android", "Cámara", "Brazo", "Hilo", "Twitter", "Instagram","Barco","Estrella",
-        //"Youtube", "Música", "Escaleras", "Platos", "Cocina", "Ojo", "Cine", "Butaca","Cohete","Selva",
-        //"Viaje","Jazz","Caballo","Tortuga","Elefante","Mapache","Mono","Pulpo","Cine","Mar","Globo",
-        //"Rectángulo","Círculo","Ordenador","Pizarra","Darth Vader","Ironman","Capitán América","Hulk",
-        //"Superman","Batman","Thor","Spiderman","Thanos","Flash","Cebolla"};
+        private static String[] listadoPalabras = {"Ratón", "Teclado", "Monitor", "Profesor", "Movil", "Océano", "Mar", "Playa", "Persona", "Igual",
+        "Saludar", "Hucha","Libro", "Vaso", "Plátano", "Ventana", "Pañuelo", "Gato", "Perro", "Loro", "Dignidad",
+        "Mochila", "Muralla", "Android", "Cámara", "Brazo", "Hilo", "Twitter", "Instagram","Barco","Estrella",
+        "Youtube", "Música", "Escaleras", "Platos", "Cocina", "Ojo", "Cine", "Butaca","Cohete","Selva",
+        "Viaje","Jazz","Caballo","Tortuga","Elefante","Mapache","Mono","Pulpo","Cine","Mar","Globo",
+        "Rectángulo","Círculo","Ordenador","Pizarra","Darth Vader","Iron man","Capitán América","Hulk",
+        "Superman","Batman","Thor","Spiderman","Thanos","Flash","Cebolla"};
 
         public static String obtenerPalabraAleatoria()
         {

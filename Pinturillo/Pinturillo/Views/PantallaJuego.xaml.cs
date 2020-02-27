@@ -30,8 +30,8 @@ namespace Pinturillo
     public sealed partial class PantallaJuego : Page
     {
 
-        public static int TIME_MAX = 10;
-        public static int TIME_WAIT = 3;
+        public static int TIME_MAX = 90;
+        public static int TIME_WAIT = 5;
 
         InkStrokeBuilder builder;
         List<Point> points;
