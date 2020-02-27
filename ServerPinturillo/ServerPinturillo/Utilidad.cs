@@ -7,10 +7,13 @@ namespace ServerPinturillo
 {
     public class Utilidad
     {
-        private static String[] listadoPalabras = {"Ratón", "Teclado", "Monitor", "Profesor", "Movil", "Océano", "Mar", "Playa", "Persona", "CRUD", "FernandoApruebanos", 
-                                                    "Xamarin", "Hucha","Libro", "Vaso", "Plátano", "Ventana", "Pañuelo", "Gato", "Perro", "Loro", "Dignidad", 
-                                                     "Mochila", "Iván Cállate", "Android", "Cámara", "Brazo", "Hilo", "Twitter", "Instagram", 
-                                                    "Youtube", "Música", "Escaleras", "Platos", "Cocina", "Ojo", "Cine", "Butaca"};
+        private static String[] listadoPalabras = {"Ratón", "Teclado", "Monitor", "Profesor", "Movil", "Océano", "Mar", "Playa", "Persona", "Igual",
+                                                   "Saludar", "Hucha","Libro", "Vaso", "Plátano", "Ventana", "Pañuelo", "Gato", "Perro", "Loro", "Dignidad",
+                                                   "Mochila", "Muralla", "Android", "Cámara", "Brazo", "Hilo", "Twitter", "Instagram","Barco","Estrella",
+                                                   "Youtube", "Música", "Escaleras", "Platos", "Cocina", "Ojo", "Cine", "Butaca","Cohete","Selva",
+                                                   "Viaje","Jazz","Caballo","Tortuga","Elefante","Mapache","Mono","Pulpo","Cine","Mar","Globo",
+                                                   "Rectángulo","Círculo","Ordenador","Pizarra","Darth Vader","Ironman","Capitán América","Hulk",
+                                                   "Superman","Batman","Thor","Spiderman","Thanos","Flash","Cebolla"};
 
         public static String obtenerPalabraAleatoria()
         {

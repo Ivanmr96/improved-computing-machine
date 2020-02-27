@@ -30,15 +30,20 @@ namespace Pinturillo.ViewModels
         private IHubProxy proxy;
         private bool isUltimaPalabraAcertada;
         private string _palabraAMostrar;
+        private int pos = 0;
+        private bool puedesFuncionar;
+        private int tiempoAMostrar;
+        private String visible;
         #endregion
         public static int TIME_MAX = 10;
         public int tiempoEspera { get; set; }
-        private int pos = 0;
-        private bool puedesFuncionar;
+        
 
         public VMPantallaJuego()
         {
+            visible = "Collapsed";
             puedesFuncionar = true;
+            this.tiempoAMostrar = 0;
             this.tiempoEspera = 3;
             _partida = new clsPartida();
             _usuarioPropio = new clsJugador();
@@ -67,8 +72,9 @@ namespace Pinturillo.ViewModels
         {
             if (_timeMax > 0 )
             {
-
-                if(_timeMax % 10 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
+                visible = "Collapsed";
+                NotifyPropertyChanged("Visible");
+                if (_timeMax % 10 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
                 {
                     //se descubre un caracter
                     if(pos < _partida.PosicionesADescubrir.Count)
@@ -105,7 +111,8 @@ namespace Pinturillo.ViewModels
                     //Bloquear el chat para todo el mundo en este tiempo
                     //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
                     //(porque esta bindeado con el converter de true to false
-
+                    visible = "Visible";
+                    NotifyPropertyChanged("Visible");
                     this.IsMiTurno = true;
                     NotifyPropertyChanged("IsMiTurno");
                     //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
@@ -117,10 +124,10 @@ namespace Pinturillo.ViewModels
                     this._palabraAMostrar = _partida.PalabraEnJuego;
                     NotifyPropertyChanged("PalabraAMostrar");
                     tiempoEspera--;
+                    NotifyPropertyChanged("tiempoEspera");
 
-                  
                     if (tiempoEspera == 0)
-                    {
+                    {                      
                         this._dispatcherTimer.Stop();
                         proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
                     }
@@ -170,8 +177,10 @@ namespace Pinturillo.ViewModels
         public bool IsUltimaPalabraAcertada { get => isUltimaPalabraAcertada; set => isUltimaPalabraAcertada = value; }
         public CoreInputDeviceTypes TipoEntradaInkCanvas { get; set; }
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
+        public int TiempoAMostrar { get => tiempoAMostrar; set => tiempoAMostrar = value; }
+        public string Visible { get => visible; set => visible = value; }
         #endregion
-        
+
 
         #region"Command"
         private async void ExecuteGoBackCommand()

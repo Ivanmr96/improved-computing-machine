@@ -165,8 +165,8 @@ namespace ServerPinturillo
         //Para cambiar el turno
         public void avanzarTurno(clsPartida partida)
         {
-
-            if(partida.RondaActual <= partida.NumeroRondasGlobales)
+            clsPartida partidaObtenida = obtenerPartidaPorNombreSala(partida.NombreSala);
+            if(partidaObtenida.RondaActual <= partida.NumeroRondasGlobales)
             {
                 //El cliente que termine su turno, llama a este método
                 //este método avisa a los clientes de que el turno ha cambiado

@@ -189,7 +189,7 @@ namespace PinturilloParaPruebas.ViewModels
                 //this.Frame.Navigate(typeof(ListadoSalas));
                 navigationFrame.Navigate(typeof(ListadoSalas), _usuarioPropio.Nickname);
                 proxy.Invoke("jugadorHaSalido", _usuarioPropio.Nickname, _partida.NombreSala);
-
+                puedesFuncionar = false;
                 //pararContador();
             }
         }

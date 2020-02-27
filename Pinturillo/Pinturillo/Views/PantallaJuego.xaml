@@ -21,6 +21,7 @@
     </Page.Resources>
     
     <RelativePanel>
+       
         <Border 
             Name="borderStackPanel"
             RelativePanel.AlignBottomWithPanel="True"
@@ -124,7 +125,26 @@
                     </TextBlock>
 
                 </Border>
+                <Border
+                    Visibility="{Binding Visible,Mode=TwoWay}"
+                    Margin="150,10,15,15"
+                    CornerRadius="100"
+                    Padding="15"
+                   
+                    Background="#effffb"
+                    Opacity="1"
+                    >
+                    <TextBlock 
+                        
+                        Text="{Binding tiempoEspera,Mode=TwoWay}" 
+                        Foreground="Red"
+                        FontSize="30" 
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
 
+
+                </Border>
+                
                 <TextBlock
                     Name="palabra"
                     RelativePanel.AlignTopWithPanel="True"
