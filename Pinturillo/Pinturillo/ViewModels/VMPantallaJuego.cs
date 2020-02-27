@@ -34,10 +34,10 @@ namespace Pinturillo.ViewModels
         private bool puedesFuncionar;
         private int tiempoAMostrar;
         private String visible;
-        public bool hanAcertadoTodos { get; set};
+        public bool hanAcertadoTodos { get; set; }
         #endregion
-        public static int TIME_MAX = 10;
-        public static int TIME_WAIT = 3;
+        public static int TIME_MAX = 90;
+        public static int TIME_WAIT = 5;
         public int tiempoEspera { get; set; }
         
 
