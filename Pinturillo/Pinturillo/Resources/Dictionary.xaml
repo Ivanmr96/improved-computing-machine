@@ -9,5 +9,6 @@
     <SolidColorBrush x:Key="SecondaryColor" Color="#effffb" />
     
     <converter:BoolToVisibilityConverterXBIND x:Key="BoolToVisibilityConverterXBIND" />
+    <converter:InverseBoolToVisibilityConverterXBIND x:Key="InverseBoolToVisibilityConverterXBIND" />
 
 </ResourceDictionary>

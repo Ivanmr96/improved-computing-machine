@@ -110,16 +110,18 @@ namespace ServerPinturillo
         public void yaHeNavegado(string nombreGrupo)
         {
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
-            partidaActual.JugadoresQueHanNavegado += 1;
-            
-            if(partidaActual.JugadoresQueHanNavegado == partidaActual.ListadoJugadores.Count)
+
+            if(partidaActual != null)
             {
-                //Todos han navegado
-                comenzarPartidaEnGrupo(partidaActual);
+                partidaActual.JugadoresQueHanNavegado += 1;
 
+                if (partidaActual.JugadoresQueHanNavegado == partidaActual.ListadoJugadores.Count)
+                {
+                    //Todos han navegado
+                    comenzarPartidaEnGrupo(partidaActual);
+
+                }
             }
-
-
         }
 
 
@@ -247,6 +249,7 @@ namespace ServerPinturillo
                     else
                     {
                         //Terminaria la partida y se harian cosas
+                        Clients.Group(partida.NombreSala).HaTerminadoLaPartida();
                     }
 
                 }

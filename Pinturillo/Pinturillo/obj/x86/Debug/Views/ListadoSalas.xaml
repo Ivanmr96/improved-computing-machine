@@ -231,7 +231,6 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             />
-
     </RelativePanel>
 
 </Page>

@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-    <PackageCertificateThumbprint>D09415060DF3052F76B170F402BC14C6F27634C1</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>AFA0EC63D411F78AF38B6D2C6120E77EC8441F70</PackageCertificateThumbprint>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
@@ -132,11 +132,15 @@
     <Compile Include="Controls\DialogContrasena.xaml.cs">
       <DependentUpon>DialogContrasena.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DialogFinalPartida.xaml.cs">
+      <DependentUpon>DialogFinalPartida.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\clsJugador.cs" />
     <Compile Include="Models\clsMensaje.cs" />
     <Compile Include="Models\clsPartida.cs" />
     <Compile Include="Models\clsPunto.cs" />
     <Compile Include="Utils\BoolToVisibilityConverterXBIND.cs" />
+    <Compile Include="Utils\InverseBoolToVisibilityConverterXBIND.cs" />
     <Compile Include="Utils\LapizVisibilityConverter.cs" />
     <Compile Include="Utils\PasswordToVisibilityConverter.cs" />
     <Compile Include="Utils\StringToIntConverter.cs" />
@@ -192,6 +196,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Controls\DialogContrasena.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DialogFinalPartida.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

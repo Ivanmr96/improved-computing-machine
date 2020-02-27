@@ -4,6 +4,8 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Puntuacion" />
+    <RootPropertyPathName Name="Nickname" />
     <RootPropertyPathName Name="crearPartida" />
     <RootPropertyPathName Name="LblErrorNumJugadores" />
     <RootPropertyPathName Name="LblErrorContrasena" />
@@ -24,20 +26,19 @@
     <RootPropertyPathName Name="Count" />
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="nick" />
+    <RootPropertyPathName Name="IsJugandose" />
+    <RootPropertyPathName Name="GoBackCommand" />
     <RootPropertyPathName Name="Visible" />
     <RootPropertyPathName Name="tiempoEspera" />
-    <RootPropertyPathName Name="GoBackCommand" />
     <RootPropertyPathName Name="SendMessageCommand" />
     <RootPropertyPathName Name="IsMiTurno" />
     <RootPropertyPathName Name="Mensaje" />
     <RootPropertyPathName Name="ListadoMensajes" />
     <RootPropertyPathName Name="JugadorQueLoEnvia" />
-    <RootPropertyPathName Name="Nickname" />
     <RootPropertyPathName Name="NumeroRondasGlobales" />
     <RootPropertyPathName Name="RondaActual" />
     <RootPropertyPathName Name="PalabraAMostrar" />
     <RootPropertyPathName Name="LblTemporizador" />
-    <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="IsUltimaPalabraAcertada" />
     <RootPropertyPathName Name="enviarMensaje" />
     <RootPropertyPathName Name="comenzarPartida" />
@@ -65,28 +66,28 @@
       <RootMethod Name="SetAlignVerticalCenterWithPanel" />
       <RootMethod Name="GetAlignLeftWithPanel" />
       <RootMethod Name="SetAlignLeftWithPanel" />
-      <RootMethod Name="GetAlignVerticalCenterWith" />
-      <RootMethod Name="SetAlignVerticalCenterWith" />
-      <RootMethod Name="GetRightOf" />
-      <RootMethod Name="SetRightOf" />
+      <RootMethod Name="GetAlignRightWithPanel" />
+      <RootMethod Name="SetAlignRightWithPanel" />
       <RootMethod Name="GetAlignTopWithPanel" />
       <RootMethod Name="SetAlignTopWithPanel" />
-      <RootMethod Name="GetAlignLeftWith" />
-      <RootMethod Name="SetAlignLeftWith" />
       <RootMethod Name="GetBelow" />
       <RootMethod Name="SetBelow" />
+      <RootMethod Name="GetAbove" />
+      <RootMethod Name="SetAbove" />
+      <RootMethod Name="GetAlignBottomWithPanel" />
+      <RootMethod Name="SetAlignBottomWithPanel" />
+      <RootMethod Name="GetRightOf" />
+      <RootMethod Name="SetRightOf" />
+      <RootMethod Name="GetAlignVerticalCenterWith" />
+      <RootMethod Name="SetAlignVerticalCenterWith" />
+      <RootMethod Name="GetAlignLeftWith" />
+      <RootMethod Name="SetAlignLeftWith" />
       <RootMethod Name="GetAlignHorizontalCenterWith" />
       <RootMethod Name="SetAlignHorizontalCenterWith" />
       <RootMethod Name="GetLeftOf" />
       <RootMethod Name="SetLeftOf" />
-      <RootMethod Name="GetAlignRightWithPanel" />
-      <RootMethod Name="SetAlignRightWithPanel" />
-      <RootMethod Name="GetAlignBottomWithPanel" />
-      <RootMethod Name="SetAlignBottomWithPanel" />
       <RootMethod Name="GetAlignBottomWith" />
       <RootMethod Name="SetAlignBottomWith" />
-      <RootMethod Name="GetAbove" />
-      <RootMethod Name="SetAbove" />
       <RootMethod Name="GetAlignTopWith" />
       <RootMethod Name="SetAlignTopWith" />
       <RootMethod Name="GetAlignRightWith" />
@@ -111,6 +112,7 @@
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="RowDefinitions" />
       <RootProperty Name="Children" />
+      <RootProperty Name="Name" />
       <RootProperty Name="Margin" />
       <RootMethod Name="GetColumn" />
       <RootMethod Name="SetColumn" />
@@ -162,8 +164,10 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Name" />
       <RootProperty Name="Background" />
-      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MaxWidth" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="CornerRadius" />
       <RootProperty Name="TabIndex" />
       <RootEvent Name="Click" />
     </RootType>
@@ -178,10 +182,44 @@
       <RootProperty Name="Contrasena" />
       <RootProperty Name="EnterCommand" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Name" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="SelectionMode" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Opacity" />
+      <RootProperty Name="CornerRadius" />
+      <RootEvent Name="Tapped" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="HorizontalContentAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="Converter" />
+    </RootType>
+    <RootType FullName="Pinturillo.Controls.DialogFinalPartida">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="CommandSalir" />
+      <RootProperty Name="ListadoJugadores" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
       <RootProperty Name="Color" />
     </RootType>
     <RootType FullName="Pinturillo.Utils.BoolToVisibilityConverterXBIND" />
+    <RootType FullName="Pinturillo.Utils.InverseBoolToVisibilityConverterXBIND" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Background" />
       <RootProperty Name="Resources" />
@@ -195,11 +233,6 @@
       <RootProperty Name="Source" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Height" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="Mode" />
-      <RootProperty Name="UpdateSourceTrigger" />
-      <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Name" />
@@ -247,20 +280,6 @@
     <RootType FullName="Pinturillo.CrearSalaPage" />
     <RootType FullName="Pinturillo.ViewModels.VMListadoSalas" />
     <RootType FullName="Pinturillo.Utils.PasswordToVisibilityConverter" />
-    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="Name" />
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="SelectionMode" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="Opacity" />
-      <RootProperty Name="CornerRadius" />
-      <RootProperty Name="Margin" />
-      <RootEvent Name="Tapped" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.DataTemplate">
-      <RootProperty Name="Template" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
       <RootProperty Name="Name" />
       <RootProperty Name="Margin" />

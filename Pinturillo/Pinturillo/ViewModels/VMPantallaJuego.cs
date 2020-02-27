@@ -181,10 +181,18 @@ namespace Pinturillo.ViewModels
             proxy.On<clsMensaje>("addMensajeToChat", OnaddMensajeToChat);
             proxy.On<clsPartida>("puntosAdded", OnPuntosAdded);
             proxy.On("todosHanAcertado", OnTodosHanAcertado);
+            proxy.On("HaTerminadoLaPartida", OnHaTerminadoLaPartida);
 
         }
 
-
+        private async void OnHaTerminadoLaPartida()
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _partida.IsJugandose = false;
+                _partida.NotifyPropertyChanged("IsJugandose");
+            });
+        }
 
         private async void OnTodosHanAcertado()
         {
@@ -194,10 +202,6 @@ namespace Pinturillo.ViewModels
                 NotifyPropertyChanged("hanAcertadoTodos");
             });
         }
-
-
-
-
 
         #region"Propiedades públicas"
         public DelegateCommand GoBackCommand { get; }
@@ -277,8 +281,6 @@ namespace Pinturillo.ViewModels
             return canExecute;
         }
         #endregion
-
-
 
 
         public async void OnPuntosAdded(clsPartida obj)

@@ -189,9 +189,10 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-               
-                    clsPartida partida;
+                clsPartida partida;
 
+                if(ListadoPartidas != null)
+                {
                     partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
 
                     if (partida != null)
@@ -207,9 +208,7 @@ namespace Pinturillo.ViewModels
                             NotifyPropertyChanged("partidasAMostrar");
                         }
                     }
-                   
-                
-               
+                }
             });
         }
 
