@@ -71,7 +71,9 @@ namespace Pinturillo.Models
         public bool IsJugandose { get => _isJugandose; set => _isJugandose = value; }
         public clsMensaje Mensaje { get => _mensaje; set => _mensaje = value; }
         public ObservableCollection<clsMensaje> ListadoMensajes { get => _listadoMensajes; set => _listadoMensajes = value; }
-        public string NombreSala { get => _nombreSala; set => _nombreSala = value; }
+        public string NombreSala { 
+            get => _nombreSala; 
+            set => _nombreSala = value; }
         public string Password { get => _password; set => _password = value; }
         public ObservableCollection<clsJugador> ListadoJugadores { get => _listadoJugadores; set => _listadoJugadores = value; }
         public string PalabraEnJuego { get => _palabraEnJuego; set => _palabraEnJuego = value; }

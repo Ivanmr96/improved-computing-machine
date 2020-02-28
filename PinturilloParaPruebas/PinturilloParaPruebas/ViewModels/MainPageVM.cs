@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -16,11 +17,15 @@ namespace PinturilloParaPruebas.ViewModels
         private DelegateCommand _entrarAlJuegoCommand;
         private HubConnection conn;
         private IHubProxy proxy;
+
+        public string visibilidadMensajeError { get; set; }
         Frame navigationFrame = Window.Current.Content as Frame;
 
 
         public MainPageVM()
         {
+
+            visibilidadMensajeError = "Collapsed";
             SignalR();
         }
 
@@ -34,7 +39,30 @@ namespace PinturilloParaPruebas.ViewModels
 
             await conn.Start();
 
+            proxy.On<bool>("nickComprobado", OnNickComprobado);
 
+
+
+        }
+
+        private async void OnNickComprobado(bool isNickUnico)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (isNickUnico)
+                {
+                    //Debe viajar hacia delante
+                    visibilidadMensajeError = "Collapsed";
+                    NotifyPropertyChanged("visibilidadMensajeError");
+                    navigationFrame.Navigate(typeof(ListadoSalas), nick);
+                }
+                else
+                {
+                    //Debe mostrar mensaje de error
+                    visibilidadMensajeError = "Visible";
+                    NotifyPropertyChanged("visibilidadMensajeError");
+                }
+            });
 
         }
 
@@ -63,7 +91,9 @@ namespace PinturilloParaPruebas.ViewModels
 
         private void EntrarAlJuego_Executed()
         {
-            navigationFrame.Navigate(typeof(ListadoSalas), nick);
+            //Aquí deberá hacer un invoke al servidor 
+            proxy.Invoke("comprobarNickUnico", _nick);
+            //navigationFrame.Navigate(typeof(ListadoSalas),nick);
         }
 
         private bool EntrarAlJuego_CanExecuted()

@@ -19,15 +19,17 @@ namespace ServerPinturillo
             item2 -> el connectionID del usuario
             Esto es porque si no no se puede saber si un usuario que no está en ninguna partida existe
             */
-        private List<Tuple<string, string>> listadoNickConConnectionID;
+        private SingletonNicksConConnectionID listadoNickConConnectionID;
 
 
-        public PictionaryHub(SingletonSalas salas)
+        public PictionaryHub(SingletonSalas salas, SingletonNicksConConnectionID singletonNicks)
         {
             this.listadoSalas = salas;
-            this.listadoNickConConnectionID = new List<Tuple<string, string>>();
-            
+            this.listadoNickConConnectionID = singletonNicks;
         }
+
+        
+
 
         /*
          -crear partida
@@ -433,10 +435,11 @@ namespace ServerPinturillo
         {
             
             bool isNickUnico = true;
-            for (int i = 0; i < listadoNickConConnectionID.Count && isNickUnico; i++)
+            for (int i = 0; i < this.listadoNickConConnectionID.ListadoNickConConnectionID.Count && isNickUnico; i++)
             {
-                if (listadoNickConConnectionID[i].Item1 == nick)
+                if (this.listadoNickConConnectionID.ListadoNickConConnectionID[i].Item1 == nick)
                 {
+                  
                     //Ya existe ese nick
                     isNickUnico = false;
 
@@ -447,7 +450,7 @@ namespace ServerPinturillo
             if (isNickUnico)
             {
                 //Se guarda en el listado de nicks con el connection ID
-                this.listadoNickConConnectionID.Add(new Tuple<string, string>(nick, Context.ConnectionId));
+                this.listadoNickConConnectionID.ListadoNickConConnectionID.Add(new Tuple<string, string>(nick, Context.ConnectionId));
             }
 
             //Llamo al método en el cliente caller
@@ -455,6 +458,25 @@ namespace ServerPinturillo
 
         }
 
+        //Comprobar si el nombre de la sala es único
+        public void comprobarNombreSalaUnico(string nombreSala)
+        {
+
+            bool isNombreSalaUnico = true;
+            for (int i = 0; i < this.listadoSalas.ListadoPartidas.Count 
+                && isNombreSalaUnico; i++)
+            {
+                if (this.listadoSalas.ListadoPartidas[i].NombreSala == nombreSala)
+                {
+                    //Ya existe ese nombre de sala
+                    isNombreSalaUnico = false;
+                }
+
+            }
+            //Llamo al método en el cliente caller
+            Clients.Caller.nombreSalaComprobado(isNombreSalaUnico);  //Le mando el boolean porque en el cliente si es false mostrará mensaje y si es true irá hacia delante
+
+        }
 
 
 
@@ -496,12 +518,12 @@ namespace ServerPinturillo
             }
 
             encontrado = false;
-            for(int i = 0; i< this.listadoNickConConnectionID.Count && !encontrado; i ++)
+            for(int i = 0; i< this.listadoNickConConnectionID.ListadoNickConConnectionID.Count && !encontrado; i ++)
             {
-                if(Context.ConnectionId == this.listadoNickConConnectionID[i].Item2)
+                if(Context.ConnectionId == this.listadoNickConConnectionID.ListadoNickConConnectionID[i].Item2)
                 {
                     encontrado = true;
-                    this.listadoNickConConnectionID.RemoveAt(i);    //Se elimina del listado de nicks
+                    this.listadoNickConConnectionID.ListadoNickConConnectionID.RemoveAt(i);    //Se elimina del listado de nicks
                 }
             }
             

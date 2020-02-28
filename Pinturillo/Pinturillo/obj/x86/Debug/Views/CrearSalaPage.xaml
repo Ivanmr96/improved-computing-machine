@@ -34,14 +34,20 @@
         <Border x:ConnectionId='3' Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <RelativePanel  Background="#EFFFFB">
                 <TextBox x:ConnectionId='4' 
-                    Text="{Binding Partida.NombreSala, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Name="txtboxNombreSala" Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
+                    Text="{Binding Partida.NombreSala, 
+                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Name="txtboxNombreSala" 
+                    Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="270" Height="40" BorderBrush="Black" FontSize="20"  PlaceholderText="Escribe el nombre de sala"></TextBox>
 
-                    <TextBlock x:ConnectionId='5' Name="txtErrorNombreSala"
+                    <TextBlock x:ConnectionId='5' 
+                     TextWrapping="Wrap"
+                        
+                        Name="txtErrorNombreSala"
                                RelativePanel.RightOf="txtboxNombreSala" 
                                RelativePanel.AlignVerticalCenterWith="txtboxNombreSala" 
                                Text="{Binding LblErrorNombreSala,Mode=OneWay}"
-                               Margin="8,30,0,0" Foreground="Red"></TextBlock>
+                               Margin="8,30,0,0" 
+                        Foreground="Red"></TextBlock>
 
                     <CheckBox x:ConnectionId='6' Name="checkbox" BorderBrush="Black"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
                     <PasswordBox x:ConnectionId='7' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
@@ -64,7 +70,10 @@
         </Border>
         <Button
             Command="{Binding crearPartida}"
-            Content="Crear" RelativePanel.Below="border" CornerRadius="20" FontSize="40" Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
+            Content="Crear" 
+            RelativePanel.Below="border" 
+            CornerRadius="20" FontSize="40" 
+            Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
     
         
     </RelativePanel>

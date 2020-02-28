@@ -88,7 +88,32 @@ namespace Pinturillo.ViewModels
 
 
             proxy.On<clsPartida>("salaCreada", salaCreada);
+            proxy.On<bool>("nombreSalaComprobado", OnNombreSalaComprobado);
             //proxy.Invoke("sendSalas");
+        }
+
+        private async void OnNombreSalaComprobado(bool isNombreSalaUnico)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (isNombreSalaUnico)
+                {
+                    _lblErrorNombreSala = "";
+                  
+                    proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    limpiarCampos();
+                }
+                else
+                {
+                    _lblErrorNombreSala = "* Ese nombre ya existe, prueba otro.";
+                    
+                    
+                }
+                NotifyPropertyChanged("LblErrorNombreSala");
+             
+               
+            });
+               
         }
 
         private async void salaCreada(clsPartida partida)
@@ -120,25 +145,31 @@ namespace Pinturillo.ViewModels
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
 
         private void CrearCommand_Executed()
-        {           
+        {
+            
+            NotifyPropertyChanged("Partida");
+            _partida.NotifyPropertyChanged("NombreSala");
+            _partida.NotifyPropertyChanged("NumeroMaximoJugadores");
+            _partida.NotifyPropertyChanged("Password");
+            NotifyPropertyChanged("Partida");
             if (_checkboxChecked)
             {
                 if (validarFormulario())
                 {
-                   
-                        proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
-                   
-                   
-                    limpiarCampos();
+                    
+                    proxy.Invoke("comprobarNombreSalaUnico", _partida.NombreSala);
+                        //proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    //limpiarCampos();
                 }
             }
             else {
+                
                 if (validarFormularioSoloNombreSala()) {
-                 
-                        proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
-              
+
                     
-                    limpiarCampos();
+                    proxy.Invoke("comprobarNombreSalaUnico", _partida.NombreSala);
+                    //proxy.Invoke("añadirPartida", _partida, _nombreUsuario);
+                    //limpiarCampos();
                 }
             }
 
@@ -151,6 +182,7 @@ namespace Pinturillo.ViewModels
             _partida.NotifyPropertyChanged("NombreSala");
             _partida.NotifyPropertyChanged("Password");
             _partida.NotifyPropertyChanged("NumeroMaximoJugadores");
+            
             _visible = "Collapsed";
         }
 

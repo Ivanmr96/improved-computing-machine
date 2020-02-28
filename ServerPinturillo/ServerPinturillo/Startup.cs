@@ -15,7 +15,8 @@ namespace ServerPinturillo
         {
             // Para obtener más información sobre cómo configurar la aplicación, visite https://go.microsoft.com/fwlink/?LinkID=316888
 
-            GlobalHost.DependencyResolver.Register(typeof(PictionaryHub), () => new PictionaryHub(SingletonSalas.Instance));
+            GlobalHost.DependencyResolver.
+                Register(typeof(PictionaryHub), () => new PictionaryHub(SingletonSalas.Instance, SingletonNicksConConnectionID.Instance));
 
             app.MapSignalR();
 
