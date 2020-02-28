@@ -283,7 +283,9 @@
             RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
 
         <controls:DialogFinalPartida
-            Visibility="{Binding Partida.IsJugandose, Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
+            Visibility="{Binding Partida.IsJugandose,
+            Mode=TwoWay,
+            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
             CommandSalir="{Binding GoBackCommand}"
             ListadoJugadores="{Binding Partida.ListadoJugadores}"
             RelativePanel.AlignTopWithPanel="True"

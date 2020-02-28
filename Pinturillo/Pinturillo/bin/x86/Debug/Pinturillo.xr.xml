@@ -25,6 +25,7 @@
     <RootPropertyPathName Name="ListadoJugadores" />
     <RootPropertyPathName Name="Count" />
     <RootPropertyPathName Name="EntrarCommand" />
+    <RootPropertyPathName Name="visibilidadMensajeError" />
     <RootPropertyPathName Name="nick" />
     <RootPropertyPathName Name="IsJugandose" />
     <RootPropertyPathName Name="GoBackCommand" />

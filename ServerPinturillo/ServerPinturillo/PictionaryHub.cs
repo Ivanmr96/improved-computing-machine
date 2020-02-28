@@ -13,10 +13,20 @@ namespace ServerPinturillo
 
         //Listado de salas que hay en el juego
         private SingletonSalas listadoSalas;
-       
+
+        /*Debemos guardar una lista de tuplas que contendrá
+            item1 -> el nick del usuario
+            item2 -> el connectionID del usuario
+            Esto es porque si no no se puede saber si un usuario que no está en ninguna partida existe
+            */
+        private List<Tuple<string, string>> listadoNickConConnectionID;
+
+
         public PictionaryHub(SingletonSalas salas)
         {
             this.listadoSalas = salas;
+            this.listadoNickConConnectionID = new List<Tuple<string, string>>();
+            
         }
 
         /*
@@ -246,18 +256,17 @@ namespace ServerPinturillo
                     {
                         partida.RondaActual++;
                     }
-                    else
-                    {
-                        //Terminaria la partida y se harian cosas
-                        Clients.Group(partida.NombreSala).HaTerminadoLaPartida();
-                    }
-
                 }
 
                 //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
                 Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
             }
-           
+            else
+            {
+                //Terminaria la partida y se harian cosas
+                Clients.Group(partida.NombreSala).HaTerminadoLaPartida();
+            }
+
         }
 
 
@@ -419,6 +428,36 @@ namespace ServerPinturillo
         }
 
 
+        //Comprobar si el nick es único
+        public void comprobarNickUnico(string nick)
+        {
+            
+            bool isNickUnico = true;
+            for (int i = 0; i < listadoNickConConnectionID.Count && isNickUnico; i++)
+            {
+                if (listadoNickConConnectionID[i].Item1 == nick)
+                {
+                    //Ya existe ese nick
+                    isNickUnico = false;
+
+                }
+                
+            }
+
+            if (isNickUnico)
+            {
+                //Se guarda en el listado de nicks con el connection ID
+                this.listadoNickConConnectionID.Add(new Tuple<string, string>(nick, Context.ConnectionId));
+            }
+
+            //Llamo al método en el cliente caller
+            Clients.Caller.nickComprobado(isNickUnico);  //Le mando el boolean porque en el cliente si es false mostrará mensaje y si es true irá hacia delante
+
+        }
+
+
+
+
 
         //Si algo falla esto es lo que hay que quitar
         //TODO falta asignarle el connection id a cada usuario  //añadido
@@ -455,6 +494,18 @@ namespace ServerPinturillo
                 //Resto de lógica de cuando un usuario de grupo sale
                 //TODO
             }
+
+            encontrado = false;
+            for(int i = 0; i< this.listadoNickConConnectionID.Count && !encontrado; i ++)
+            {
+                if(Context.ConnectionId == this.listadoNickConConnectionID[i].Item2)
+                {
+                    encontrado = true;
+                    this.listadoNickConConnectionID.RemoveAt(i);    //Se elimina del listado de nicks
+                }
+            }
+            
+
 
             return base.OnDisconnected(stopCalled);
         }

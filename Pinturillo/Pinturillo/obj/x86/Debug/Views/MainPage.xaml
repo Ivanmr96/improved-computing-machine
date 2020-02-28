@@ -16,7 +16,6 @@
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
     <-->
 
-
     <RelativePanel Background="{StaticResource PrimaryColor}">
         <Image Source="ms-appx:///Assets/mancha.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></Image>
 
@@ -37,7 +36,27 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock x:ConnectionId='2'  Name="txtblockNick" FontWeight="Medium"  Foreground="Black" VerticalAlignment="Center" Margin="20" FontSize="30" Grid.Column="0" Grid.Row="0" Text="Nick:"></TextBlock>
-                <TextBox x:ConnectionId='3'  Name="txtboxNick" BorderBrush="Black" Foreground="Black" Width="240" FontSize="20" Height="40" Margin="-10,7,0,0" PlaceholderText="Escribe tu nick" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding nick, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox x:ConnectionId='3'  Name="txtboxNick" 
+                          BorderBrush="Black" 
+                          Foreground="Black" 
+                          Width="240" FontSize="20" 
+                          Height="40" Margin="-10,7,0,0" 
+                          PlaceholderText="Escribe tu nick" 
+                          Grid.Column="1" Grid.Row="0" 
+                          VerticalAlignment="Center" 
+                          Text="{Binding nick, Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock
+                    Grid.Column="1" Grid.Row="0" 
+                    Text="*Nick en uso, prueba otro."
+                    VerticalAlignment="Bottom" 
+                    Foreground="Red"
+                    Margin="15,7,0,0" 
+                    Visibility="{Binding visibilidadMensajeError, 
+                    Mode=TwoWay}"
+                    >
+                    
+                </TextBlock>
 
                 <Button Command="{Binding EntrarCommand}" Height="50" Width="200" BorderThickness="1.5" BorderBrush="Black" Grid.ColumnSpan="2" Grid.Row="1" Foreground="Black" HorizontalAlignment="Center"  Content="¡Empecemos!" FontSize="20"></Button>
 
