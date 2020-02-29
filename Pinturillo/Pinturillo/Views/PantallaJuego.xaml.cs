@@ -229,7 +229,8 @@ namespace Pinturillo
 
                     foreach (clsPunto p in puntos)
                     {
-                        inkpoints.Add(new InkPoint(new Point(p.X, p.Y), 0.5f));
+                        inkpoints.Add(new InkPoint(new Point(p.X, p.Y), p.Pressure));
+                            
                     }
 
                     // Crea el stroke a partir de los inkpoints
@@ -238,6 +239,7 @@ namespace Pinturillo
                     // Copia los atributos de dibujado (color y eso) del canvas original
                     InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
                     ida.Color = puntos[0].Color;
+                    
                     stroke.DrawingAttributes = ida;
 
                     inkCanvas.InkPresenter.StrokeContainer.AddStroke(stroke);
@@ -259,6 +261,8 @@ namespace Pinturillo
 
         private void StrokeInput_StrokeStarted(InkStrokeInput sender, PointerEventArgs args)
         {
+           
+
             //builder.BeginStroke(args.CurrentPoint);
 
             //line = new Line();
@@ -287,7 +291,7 @@ namespace Pinturillo
 
                 foreach (Point p in points)
                 {
-                    inkpoints.Add(new InkPoint(p, 0.5f));
+                    inkpoints.Add(new InkPoint(p, args.CurrentPoint.Properties.Pressure));
                 }
 
                 // Crea el stroke a partir de los inkpoints
@@ -295,6 +299,7 @@ namespace Pinturillo
 
                 // Copia los atributos de dibujado (color y eso) del canvas original
                 InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
+                
                 stroke.DrawingAttributes = ida;
 
                 // Le añadae el stroke creado al canvas de copia
@@ -304,7 +309,7 @@ namespace Pinturillo
 
                 foreach (Point p in points)
                 {
-                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color));
+                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color, args.CurrentPoint.Properties.Pressure));
                 }
 
                 if (conn.State == ConnectionState.Connected)

@@ -12,15 +12,18 @@ namespace Pinturillo
         private double x;
         private double y;
         private Color color;
-        public clsPunto(double x, double y,Color color)
+        private float pressure; //grosor
+        public clsPunto(double x, double y,Color color, float pressure)
         {
             this.x = x;
             this.y = y;
             this.Color = color;
+            this.pressure = pressure;
         }
 
         public double X { get => x; set => x = value; }
         public double Y { get => y; set => y = value; }
         public Color Color { get => color; set => color = value; }
+        public float Pressure { get => pressure; set => pressure = value; }
     }
 }
