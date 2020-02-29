@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>9231AEEE13E893C9D80FD7EFB4C64621C920EC9E8A52D180D095CDDD4428EFCA</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>EF0B3A116A7715540A32E100CF4ABA34EC834AF25EB1D0A23B8DF16F4B3A7261</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>21dd45e7-4d68-4768-823b-bbe6c6a2d856_1.0.0.0_x86__y6jh98h1bnjxj</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>21dd45e7-4d68-4768-823b-bbe6c6a2d856_y6jh98h1bnjxj!App</RegisteredUserModeAppID>
     <RegisteredPackageID>21dd45e7-4d68-4768-823b-bbe6c6a2d856</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:40:38.205</Modified>
+      <Modified>2020-02-29T19:50:08.763</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-02-29T19:40:37.332</Modified>
+      <Modified>2020-02-29T19:50:06.775</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -118,6 +118,31 @@
       <PackagePath>Assets\2.png</PackagePath>
       <Modified>2020-02-29T19:18:52.914</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.369</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.412</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.473</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.560</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.832</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\mancha.png">
       <PackagePath>Assets\mancha.png</PackagePath>
       <Modified>2020-02-29T19:18:52.935</Modified>
@@ -126,6 +151,181 @@
       <PackagePath>Assets\photo.png</PackagePath>
       <Modified>2020-02-29T19:18:52.936</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.740</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.759</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.775</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.797</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.833</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.163</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-125.png">
+      <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.225</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-150.png">
+      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.309</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.980</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.861</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.886</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:56.911</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.039</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.033</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.110</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.062</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.076</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.846</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-125.png">
+      <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.863</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-150.png">
+      <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.883</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.928</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.944</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.959</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:58.020</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.972</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.985</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:59.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.scale-125.png">
+      <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:59.014</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.scale-150.png">
+      <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:59.030</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:59.047</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:59.075</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.071</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.102</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.133</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-02-29T19:49:57.328</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2020-02-29T19:18:52.920</Modified>
@@ -133,32 +333,27 @@
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.938</Modified>
+      <Modified>2020-02-29T19:49:58.453</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.939</Modified>
+      <Modified>2020-02-29T19:49:56.947</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.940</Modified>
+      <Modified>2020-02-29T19:49:57.903</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.940</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.png">
-      <PackagePath>Assets\StoreLogo.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.940</Modified>
+      <Modified>2020-02-29T19:49:58.047</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T19:18:52.943</Modified>
+      <Modified>2020-02-29T19:49:57.186</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -210,11 +405,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-02-29T19:21:53.339</Modified>
+      <Modified>2020-02-29T19:50:07.560</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-02-29T19:40:38.201</Modified>
+      <Modified>2020-02-29T19:50:08.752</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

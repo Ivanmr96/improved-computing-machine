@@ -9,5 +9,13 @@
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <Source>D:\Downloads\pencil.png</Source>
+    <SmallTileSource>D:\Downloads\pencil.png</SmallTileSource>
+    <MediumTileSource>D:\Downloads\pencil.png</MediumTileSource>
+    <WideTileSource>D:\Downloads\pencil.png</WideTileSource>
+    <LargeTileSource>D:\Downloads\pencil.png</LargeTileSource>
+    <AppIconSource>D:\Downloads\pencil.png</AppIconSource>
+    <SplashScreenSource>D:\Downloads\pencil.png</SplashScreenSource>
+    <PackageLogoSource>D:\Downloads\pencil.png</PackageLogoSource>
   </PropertyGroup>
 </Project>
