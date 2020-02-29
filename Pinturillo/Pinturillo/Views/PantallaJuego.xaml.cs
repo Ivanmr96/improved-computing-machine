@@ -392,6 +392,14 @@ namespace Pinturillo
             });
         }
 
+        private void InkToolbarEraserButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            //Cuando pulsas el botón de borrar, se borra todo
+            inkCanvas.InkPresenter.StrokeContainer.Clear();
+            proxy.Invoke("borrarCanvas", viewModel.Partida.NombreSala);
+
+        }
+
 
 
 

@@ -33,14 +33,14 @@
             BorderBrush="Red"   
                 CornerRadius="30" 
                 >
-            <StackPanel x:ConnectionId='15'
+            <StackPanel x:ConnectionId='16'
             
                Opacity="0.75"
                 
             Background="{StaticResource SecondaryColor}"
             Name="stkpanelListados"
             >
-                <ListView x:ConnectionId='16'
+                <ListView x:ConnectionId='17'
                 Name="listadoSalas"
                 SelectionMode="None"
                 ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -182,7 +182,7 @@
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     >
-                    <InkCanvas x:ConnectionId='14' x:Name="inkCanvas"
+                    <InkCanvas x:ConnectionId='15' x:Name="inkCanvas"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -202,7 +202,10 @@
                            
                                                >
                     <InkToolbarBallpointPenButton x:ConnectionId='13' Name="ballpointpen"></InkToolbarBallpointPenButton>
-                    <InkToolbarEraserButton ></InkToolbarEraserButton>
+                    <InkToolbarEraserButton x:ConnectionId='14' 
+                                                              
+                        
+                        ></InkToolbarEraserButton>
                 </InkToolbar>
 
 

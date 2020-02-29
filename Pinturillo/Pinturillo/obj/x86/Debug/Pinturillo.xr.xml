@@ -312,7 +312,9 @@
     <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton">
       <RootProperty Name="Name" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarEraserButton" />
+    <RootType FullName="Windows.UI.Xaml.Controls.InkToolbarEraserButton">
+      <RootEvent Name="Tapped" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.InkCanvas" />
     <RootType FullName="Pinturillo.PantallaJuego" />
     <RootType FullName="Pinturillo.ViewModels.SalaEsperaVM" />

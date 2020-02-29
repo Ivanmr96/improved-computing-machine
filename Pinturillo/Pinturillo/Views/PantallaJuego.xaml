@@ -202,7 +202,10 @@
                            
           TargetInkCanvas="{x:Bind inkCanvas}" >
                     <InkToolbarBallpointPenButton Name="ballpointpen"></InkToolbarBallpointPenButton>
-                    <InkToolbarEraserButton ></InkToolbarEraserButton>
+                    <InkToolbarEraserButton 
+                        Tapped="InkToolbarEraserButton_Tapped"
+                        
+                        ></InkToolbarEraserButton>
                 </InkToolbar>
 
 
