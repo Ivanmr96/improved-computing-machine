@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-02-29T17:30:32.100</Modified>
+      <Modified>2020-02-29T19:22:34.746</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe">
       <PackagePath>entrypoint\Pinturillo.exe</PackagePath>
-      <Modified>2020-02-29T17:30:30.489</Modified>
+      <Modified>2020-02-29T19:21:52.443</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Angela\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -116,93 +116,93 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\2.png">
       <PackagePath>Assets\2.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.732</Modified>
+      <Modified>2020-02-29T19:18:52.914</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\mancha.png">
       <PackagePath>Assets\mancha.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.735</Modified>
+      <Modified>2020-02-29T19:18:52.935</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\photo.png">
       <PackagePath>Assets\photo.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.737</Modified>
+      <Modified>2020-02-29T19:18:52.936</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2020-01-27T16:46:04.734</Modified>
+      <Modified>2020-02-29T19:18:52.920</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.740</Modified>
+      <Modified>2020-02-29T19:18:52.938</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.745</Modified>
+      <Modified>2020-02-29T19:18:52.939</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.746</Modified>
+      <Modified>2020-02-29T19:18:52.940</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.747</Modified>
+      <Modified>2020-02-29T19:18:52.940</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.748</Modified>
+      <Modified>2020-02-29T19:18:52.940</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-01-27T16:46:04.749</Modified>
+      <Modified>2020-02-29T19:18:52.943</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2020-01-27T16:46:04.923</Modified>
+      <Modified>2020-02-29T19:18:53.802</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml">
       <PackagePath>Pinturillo.xr.xml</PackagePath>
-      <Modified>2020-02-28T13:54:58.008</Modified>
+      <Modified>2020-02-29T19:18:53.677</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogContrasena.xbf">
       <PackagePath>Controls\DialogContrasena.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogFinalPartida.xbf">
       <PackagePath>Controls\DialogFinalPartida.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Resources\Dictionary.xbf">
       <PackagePath>Resources\Dictionary.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\CrearSalaPage.xbf">
       <PackagePath>Views\CrearSalaPage.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.914</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\ListadoSalas.xbf">
       <PackagePath>Views\ListadoSalas.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.839</Modified>
+      <Modified>2020-02-29T19:22:33.914</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\MainPage.xbf">
       <PackagePath>Views\MainPage.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.840</Modified>
+      <Modified>2020-02-29T19:22:33.915</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\PantallaJuego.xbf">
       <PackagePath>Views\PantallaJuego.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.835</Modified>
+      <Modified>2020-02-29T19:22:33.910</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Views\SalaEspera.xbf">
       <PackagePath>Views\SalaEspera.xbf</PackagePath>
-      <Modified>2020-02-29T17:29:14.840</Modified>
+      <Modified>2020-02-29T19:22:33.915</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -210,11 +210,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-02-28T14:02:37.371</Modified>
+      <Modified>2020-02-29T19:21:53.339</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe">
       <PackagePath>Pinturillo.exe</PackagePath>
-      <Modified>2020-02-29T17:30:32.090</Modified>
+      <Modified>2020-02-29T19:22:34.741</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

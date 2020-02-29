@@ -229,7 +229,7 @@ namespace Pinturillo
 
                     foreach (clsPunto p in puntos)
                     {
-                        inkpoints.Add(new InkPoint(new Point(p.X, p.Y), p.Pressure));
+                        inkpoints.Add(new InkPoint(new Point(p.X, p.Y),0.5f));
                             
                     }
 
@@ -239,6 +239,7 @@ namespace Pinturillo
                     // Copia los atributos de dibujado (color y eso) del canvas original
                     InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
                     ida.Color = puntos[0].Color;
+                ida.Size = puntos[0].Size;
                     
                     stroke.DrawingAttributes = ida;
 
@@ -291,7 +292,7 @@ namespace Pinturillo
 
                 foreach (Point p in points)
                 {
-                    inkpoints.Add(new InkPoint(p, args.CurrentPoint.Properties.Pressure));
+                    inkpoints.Add(new InkPoint(p, 0.5f));
                 }
 
                 // Crea el stroke a partir de los inkpoints
@@ -309,7 +310,7 @@ namespace Pinturillo
 
                 foreach (Point p in points)
                 {
-                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color, args.CurrentPoint.Properties.Pressure));
+                    punticos.Add(new clsPunto(p.X, p.Y,ida.Color, ida.Size));
                 }
 
                 if (conn.State == ConnectionState.Connected)
