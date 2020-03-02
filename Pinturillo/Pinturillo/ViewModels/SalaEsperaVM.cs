@@ -218,6 +218,10 @@ namespace Pinturillo.ViewModels
               
                     if (partida != null)
                     {
+
+
+                    if(this.partida.NombreSala == game.NombreSala)
+                    {
                         mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;
                         NotifyPropertyChanged("Mensaje");
                         /*partida.NombreSala = game.NombreSala;
@@ -232,8 +236,11 @@ namespace Pinturillo.ViewModels
                         partida.NotifyPropertyChanged("ListadoMensajes");
                         comenzarPartida.RaiseCanExecuteChanged();
                         //NotifyPropertyChanged("partidasAMostrar");
-
                     }
+
+
+
+                }
                
 
                

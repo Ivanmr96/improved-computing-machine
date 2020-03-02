@@ -335,20 +335,24 @@ namespace ServerPinturillo
             clsJugador jugadorBuscado;
             if (partida != null)
             {
-                
-                jugadorBuscado = partida.ListadoJugadores.FirstOrDefault<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
 
-                
+               jugadorBuscado = partida.ListadoJugadores
+               .FirstOrDefault<clsJugador>(p => p.ConnectionID == jugador.ConnectionID);
+
                 if (jugadorBuscado == null)
                 {
                     if (partida.ListadoJugadores.Count < partida.NumeroMaximoJugadores)
                     {
-
+                       
                         jugador.ConnectionID = Context.ConnectionId;
                         Groups.Add(Context.ConnectionId, partida.NombreSala);
                         partida.ListadoJugadores.Add(jugador);
 
-                        Clients.All.jugadorAdded(jugador, partida);
+                        //Clients.All.jugadorAdded(jugador, partida);
+                        //Clients.Group(nombreGrupo).jugadorAdded(jugador, partida);
+                        Clients.Caller().jugadorAdded(jugador, partida);
+                        Clients.AllExcept(Context.ConnectionId).jugadorAdded(jugador, partida);
+                        //Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
                     }
                 }
             }

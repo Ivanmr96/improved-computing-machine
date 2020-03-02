@@ -142,6 +142,13 @@ namespace Pinturillo.ViewModels
                 //TODO 
                 //El contador llega a 0
 
+                if (hanAcertadoTodos)
+                {
+                    this._timeMax = 0;
+                    LblTemporizador = _timeMax.ToString();
+                    NotifyPropertyChanged("LblTemporizador");
+                }
+
 
                 //Bloquear el chat para todo el mundo en este tiempo
                 //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
