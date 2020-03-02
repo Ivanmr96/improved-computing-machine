@@ -219,7 +219,7 @@ namespace Pinturillo.ViewModels
                     if (partida != null)
                     {
 
-
+                    //El problema es que aquí no tienes el nombre de la partida
                     if(this.partida.NombreSala == game.NombreSala)
                     {
                         mensaje.JugadorQueLoEnvia.Nickname = usuarioPropio;

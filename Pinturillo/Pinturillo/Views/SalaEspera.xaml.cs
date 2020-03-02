@@ -58,8 +58,12 @@ namespace Pinturillo
             {
                 if(e.Parameter != null)
                 {
-                    viewModel.UsuarioPropio = (string)e.Parameter;
-                   
+                    //TODO aqui hace falta pillar el nombre de la partida que has tappeado
+
+                    //Tupla item 1 nick, item 2 nombre partida
+
+                    viewModel.UsuarioPropio = ((Tuple<string,string>)e.Parameter).Item1;
+                    viewModel.Partida.NombreSala = ((Tuple<string, string>)e.Parameter).Item2;
                 }
             }
             base.OnNavigatedTo(e);

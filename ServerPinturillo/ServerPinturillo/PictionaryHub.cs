@@ -350,7 +350,7 @@ namespace ServerPinturillo
 
                         //Clients.All.jugadorAdded(jugador, partida);
                         //Clients.Group(nombreGrupo).jugadorAdded(jugador, partida);
-                        Clients.Caller().jugadorAdded(jugador, partida);
+                        Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
                         Clients.AllExcept(Context.ConnectionId).jugadorAdded(jugador, partida);
                         //Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
                     }

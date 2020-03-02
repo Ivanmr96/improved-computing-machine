@@ -236,7 +236,13 @@ namespace Pinturillo.ViewModels
             }else
             {
                 proxy.Invoke("addJugadorToSala", partida.NombreSala, _usuarioPropio);
-                navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+
+                //Aqui necesito enviarle dos parametros, el usuario propio nickname y el nombre de la sala seleccionada
+                Tuple<string, string> nickYNombrePartida = 
+                    new Tuple<string, string>(this._usuarioPropio.Nickname, partida.NombreSala);
+
+                // navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+                navigationFrame.Navigate(typeof(SalaEspera), nickYNombrePartida);
             }
             puedesFuncionar = true;
 
