@@ -6,6 +6,7 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="Puntuacion" />
     <RootPropertyPathName Name="Nickname" />
+    <RootPropertyPathName Name="PosicionFinal" />
     <RootPropertyPathName Name="crearPartida" />
     <RootPropertyPathName Name="LblErrorNumJugadores" />
     <RootPropertyPathName Name="LblErrorContrasena" />

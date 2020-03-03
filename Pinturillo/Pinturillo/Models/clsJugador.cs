@@ -1,6 +1,8 @@
-﻿namespace Pinturillo.Models
+﻿using System.ComponentModel;
+
+namespace Pinturillo.Models
 {
-    public class clsJugador
+    public class clsJugador : INotifyPropertyChanged
     {
         #region"Atributos privados"
         private string _connectionID;
@@ -11,6 +13,8 @@
         private bool _isLider;
 
         private bool _isMiTurno;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
 
@@ -42,6 +46,13 @@
         public bool HaTerminadoTimer { get => _haTerminadoTimer; set => _haTerminadoTimer = value; }
         public bool IsUltimaPalabraAcertada { get => _isUltimaPalabraAcertada; set => _isUltimaPalabraAcertada = value; }
         public bool IsLider { get => _isLider; set => _isLider = value; }
+
+        public int PosicionFinal { get; set; }
         #endregion
+
+        public void NotifyPropertyChanged(string param)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(param));
+        }
     }
 }

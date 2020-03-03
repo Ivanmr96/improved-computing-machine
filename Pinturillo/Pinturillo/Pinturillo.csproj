@@ -136,6 +136,7 @@
       <DependentUpon>DialogFinalPartida.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\clsJugador.cs" />
+    <Compile Include="Models\clsJugadorConPosicionFinal.cs" />
     <Compile Include="Models\clsMensaje.cs" />
     <Compile Include="Models\clsPartida.cs" />
     <Compile Include="Models\clsPunto.cs" />

@@ -197,8 +197,24 @@ namespace Pinturillo.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 _partida.IsJugandose = false;
+                ordenarListadoJugadoresPorPuntuacion();
                 _partida.NotifyPropertyChanged("IsJugandose");
             });
+        }
+
+        private void ordenarListadoJugadoresPorPuntuacion()
+        {
+            _partida.ListadoJugadores = new ObservableCollection<clsJugador>((from jugador in _partida.ListadoJugadores
+                                                                                              orderby jugador.Puntuacion descending
+                                                                                              select jugador).ToList<clsJugador>());
+
+            for (int i = 0; i < _partida.ListadoJugadores.Count; i++)
+            {
+                _partida.ListadoJugadores[i].PosicionFinal = i + 1;
+                _partida.ListadoJugadores[i].NotifyPropertyChanged("PosicionFinal");
+            }
+
+            _partida.NotifyPropertyChanged("ListadoJugadores");
         }
 
         private async void OnTodosHanAcertado()

@@ -792,7 +792,6 @@ C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\P
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758516200000000.json
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogFinalPartida.xbf
-C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.g.i.cs
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.g.cs
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.xaml

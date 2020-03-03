@@ -102,7 +102,7 @@
                                 <TextBlock 
                                     HorizontalAlignment="Center"
                                     RelativePanel.AlignLeftWithPanel="True"
-                                Text="1"
+                                Text="{Binding PosicionFinal, Mode=TwoWay}"
                                 Name="txtBlockPosicion"
                                     Grid.Column="0"
                                 Foreground="Black"
