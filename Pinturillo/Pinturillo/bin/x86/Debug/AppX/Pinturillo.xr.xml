@@ -190,6 +190,8 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="ItemContainerStyle" />
       <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="SelectionMode" />
       <RootProperty Name="Background" />
       <RootProperty Name="Opacity" />
@@ -255,10 +257,13 @@
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">
       <RootProperty Name="Name" />
       <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Background" />
       <RootProperty Name="Margin" />
       <RootProperty Name="FontWeight" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Content" />
+      <RootProperty Name="RequestedTheme" />
       <RootEvent Name="Checked" />
       <RootEvent Name="Unchecked" />
     </RootType>
@@ -282,6 +287,9 @@
     <RootType FullName="Pinturillo.CrearSalaPage" />
     <RootType FullName="Pinturillo.ViewModels.VMListadoSalas" />
     <RootType FullName="Pinturillo.Utils.PasswordToVisibilityConverter" />
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
       <RootProperty Name="Name" />
       <RootProperty Name="Margin" />

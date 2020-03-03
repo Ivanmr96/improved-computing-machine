@@ -24,7 +24,7 @@
         
         >
         <TextBlock x:ConnectionId='2' Text="Salas"
-                   Foreground="Black"
+                   Foreground="White"
                    Name="txtSalas"
                    FontSize="50"
                    Margin="50,20,0,0"
@@ -63,11 +63,18 @@
             CornerRadius="30" 
             >
             <ListView x:ConnectionId='5'
+                HorizontalContentAlignment="Stretch"
                                             
                 Name="listadoSalas"
+                HorizontalAlignment="Stretch"
                 ItemsSource="{Binding partidasAMostrar}"
                         
                 >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <RelativePanel
@@ -75,19 +82,20 @@
                         >
 
                             <AppBarButton
-                                        Name="icon"
-                                        Margin="0,10,5,0"
+                                Name="icon"
+                                Margin="0,2,5,0"
                                 Icon="Permissions"
                                 IsEnabled="{Binding Password, Mode=OneWay, Converter={StaticResource PasswordConverter}}"
-                                        RelativePanel.AlignLeftWithPanel="True"
-                                        RelativePanel.AlignTopWithPanel="True"
-                                        Foreground="#272727"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignTopWithPanel="True"
+                                Foreground="#272727"
                                 >
 
                             </AppBarButton>
                             <TextBlock  
                                 Foreground="#272727"
-                                FontSize="20"
+                                FontSize="22"
+                                FontWeight="Bold"
                                         Name="txtSala"
                                         RelativePanel.AlignTopWithPanel="True"
                                         RelativePanel.RightOf="icon"
@@ -96,28 +104,37 @@
 
 
                             <StackPanel
+                                
                                 Orientation="Horizontal"
                                 RelativePanel.RightOf="txtSala"
-                                        RelativePanel.AlignBottomWith="txtSala"
+                                RelativePanel.AlignBottomWith="txtSala"
+                                RelativePanel.AlignRightWithPanel="True"
                                 >
                                 <TextBlock
+                                    Margin="100,10,10,0"
+                                    Foreground="#272727"
+                                    FontSize="18">
+                                    Jugadores: 
+                                </TextBlock>
+                                <TextBlock
                                         
-                                Margin="100,10,5,0"
+                                Margin="0,10,5,0"
+
                                 Foreground="#272727"
-                                FontSize="10"
+                                FontSize="18"
                                     Text="{Binding ListadoJugadores.Count}"
                                 ></TextBlock>
                                 <TextBlock
                                         
                                 Margin="0,10,5,0"
                                 Foreground="#272727"
-                                FontSize="10"
+                                FontSize="18"
                                 >/</TextBlock>
                                 <TextBlock
                                         
                                 Margin="0,10,5,0"
                                 Foreground="#272727"
-                                FontSize="10"
+                                FontSize="18"
                                     Text="{Binding NumeroMaximoJugadores}"
                                 ></TextBlock>
 
@@ -215,7 +232,6 @@
                 RelativePanel.AlignRightWithPanel="True"
                 Command="{Binding CreateGroupCommand}"
                 Margin="20,40,20,30"
-                Foreground="Black"
             
                 >
             Crear sala

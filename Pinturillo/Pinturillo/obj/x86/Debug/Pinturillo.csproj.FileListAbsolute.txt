@@ -904,3 +904,4 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\ProjectArchitectures.txt
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758516200000000.json
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache
+C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache

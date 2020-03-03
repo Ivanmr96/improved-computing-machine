@@ -29,7 +29,7 @@
             </StackPanel>
         </Button>
         <Image Source="Assets/2.png" RelativePanel.AlignVerticalCenterWith="border" RelativePanel.RightOf="border" Margin="-144,-7,111,-7"/>
-        <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver"  Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
+        <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver" Foreground="White" Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
 
         <Border x:ConnectionId='3' Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <RelativePanel  Background="#EFFFFB">
@@ -49,7 +49,20 @@
                                Margin="8,30,0,0" 
                         Foreground="Red"></TextBlock>
 
-                    <CheckBox x:ConnectionId='6' Name="checkbox" BorderBrush="Black"                                                                                 Margin="0,20,0,0" FontWeight="Medium" FontSize="15" Content="Hacer sala privada" RelativePanel.AlignLeftWith="txtboxNombreSala" RelativePanel.Below="txtboxNombreSala"></CheckBox>
+                    <CheckBox x:ConnectionId='6' 
+                        Name="checkbox" 
+                        BorderBrush="Red" 
+                        Foreground="Red" 
+                        Background="#EFFFFB"
+                                                               
+                                                                 
+                        Margin="0,20,0,0" 
+                        FontWeight="Medium" 
+                        FontSize="15" 
+                        Content="Hacer sala privada" 
+                        RelativePanel.AlignLeftWith="txtboxNombreSala" 
+                        RelativePanel.Below="txtboxNombreSala" RequestedTheme="Light"></CheckBox>
+                    
                     <PasswordBox x:ConnectionId='7' Visibility="{Binding visible,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                     Password="{Binding Partida.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Name="passwordbox" Margin="0,20,0,0" PlaceholderText="Contraseña" RelativePanel.Below="checkbox" RelativePanel.AlignLeftWith="checkbox" Width="270" Height="40" BorderBrush="Black" FontSize="20"></PasswordBox>
