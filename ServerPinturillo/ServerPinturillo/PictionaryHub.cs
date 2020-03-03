@@ -350,8 +350,8 @@ namespace ServerPinturillo
 
                         //Clients.All.jugadorAdded(jugador, partida);
                         //Clients.Group(nombreGrupo).jugadorAdded(jugador, partida);
-                        Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
-                        Clients.AllExcept(Context.ConnectionId).jugadorAdded(jugador, partida);
+                        //Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
+                            Clients.All().jugadorAdded(jugador, partida);
                         //Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
                     }
                 }
@@ -374,8 +374,15 @@ namespace ServerPinturillo
 
             if(jugador != null)
             {
+                if(jugador.IsMiTurno == true)
+                {
+                    avanzarTurno(partida);  //avanza el turno justo antes de hacer un remove
+                }
+                //Elimina al jugador del array de jugadores de la partida
                 partida.ListadoJugadores.Remove(jugador);
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
+               
+
                 if (partida.ListadoJugadores.Count == 0)
                 {
                     listadoSalas.ListadoPartidas.Remove(partida);
@@ -383,6 +390,10 @@ namespace ServerPinturillo
                 }
                 else
                 {
+                    //TODO aqui podriamos mandarle la partida completa y en el cliente
+                    //hacer lo mismo que en jugadorAdded (si la partida.NombreSala == a la mia,
+                    //reasignala
+
                     Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
                     if (jugador.IsLider)
                     {
@@ -503,9 +514,7 @@ namespace ServerPinturillo
                         jugadorQueSeDesconecta = listadoSalas.ListadoPartidas[i].ListadoJugadores[j];
                         nombreGrupo = listadoSalas.ListadoPartidas[i].NombreSala;
                         encontrado = true;
-
                     }
-
                     }
 
                 }

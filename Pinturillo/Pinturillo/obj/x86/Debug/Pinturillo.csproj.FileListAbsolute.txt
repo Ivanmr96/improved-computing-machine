@@ -796,6 +796,7 @@ C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\P
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.g.cs
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.xaml
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogFinalPartida.xbf
+C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Assets\photo.png
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\App.xbf
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogContrasena.xbf
@@ -809,6 +810,11 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.xr.xml
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.exe
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.pdb
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppxManifest.xml
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.build.appxrecipe
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\CommonServiceLocator.dll
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Microsoft.AspNet.SignalR.Client.dll
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Microsoft.AspNet.SignalR.Client.pdb
@@ -832,6 +838,7 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\System.Text.Encodings.Web.dll
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\System.Text.Json.dll
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Microsoft.UI.Xaml.Markup.winmd
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\App.g.i.cs
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\App.g.cs
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogContrasena.g.i.cs
@@ -872,11 +879,6 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\GalaSoft.MvvmLight.Platform.pri.xml
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.exe
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.pdb
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\resources.pri
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\AppxManifest.xml
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\AppxManifest.xml
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Core\Pinturillo.exe
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Pinturillo.build.appxrecipe
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\ResourceHandlingTask.state
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Microsoft.AspNet.SignalR.Client\en-US\Microsoft.AspNet.SignalR.Client.Resources.resw
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Microsoft.Extensions.DependencyInjection.Abstractions\en-US\Microsoft.Extensions.DependencyInjection.Abstractions.Resources.resw
@@ -903,5 +905,3 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\resources.en-us.resfiles.intermediate
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\ProjectArchitectures.txt
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758516200000000.json
-D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache
-C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Pinturillo.csprojAssemblyReference.cache

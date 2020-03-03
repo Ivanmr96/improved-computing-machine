@@ -1,1 +1,1 @@
-C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\Pinturillo.csproj;x86
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\Pinturillo.csproj;x86

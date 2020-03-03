@@ -251,10 +251,7 @@ namespace Pinturillo.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-
-               
                     clsJugador jugador;
-
                     jugador = partida.ListadoJugadores.FirstOrDefault<clsJugador>(j => j.Nickname == usuario);
 
 
