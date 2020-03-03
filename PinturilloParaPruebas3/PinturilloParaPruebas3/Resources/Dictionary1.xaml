@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:PinturilloParaPruebas3.Utils"
+    xmlns:local="using:PinturilloParaPruebas3.Resources">
+
+    <SolidColorBrush x:Key="Semitransparent" Color="#CC000000" />
+    <SolidColorBrush x:Key="PrimaryColor" Color="#4F98CA" />
+    <SolidColorBrush x:Key="SecondaryColor" Color="#effffb" />
+
+    <converter:BoolToVisibilityConverterXBIND x:Key="BoolToVisibilityConverterXBIND" />
+    <converter:InverseBoolToVisibilityConverterXBIND x:Key="InverseBoolToVisibilityConverterXBIND" />
+
+</ResourceDictionary>
