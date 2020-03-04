@@ -36,7 +36,9 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock  Name="txtblockNick" FontWeight="Medium"  Foreground="Black" VerticalAlignment="Center" Margin="20" FontSize="30" Grid.Column="0" Grid.Row="0" Text="Nick:"></TextBlock>
-                <TextBox  Name="txtboxNick" 
+                <TextBox  
+                          MaxLength="15"
+                          Name="txtboxNick" 
                           BorderBrush="Black" 
                           Foreground="Black" 
                           Width="240" FontSize="20" 

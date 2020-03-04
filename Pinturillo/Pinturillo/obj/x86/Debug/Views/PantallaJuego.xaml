@@ -73,7 +73,7 @@
                                         ManipulationMode="None"
                                 />
 
-                                <TextBlock  
+                                <TextBlock TextWrapping="Wrap" 
                                         Foreground="Black"
                                         FontSize="25"
                                         Name="txtNombre"
@@ -227,8 +227,13 @@
             RelativePanel.AlignTopWith="borderStackPanel"
             RelativePanel.Above="inputMensajes"
             Margin="0,15,15,15"
-                ItemsSource="{Binding Partida.ListadoMensajes}"
+            ItemsSource="{Binding Partida.ListadoMensajes}"
                 >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock TextWrapping="Wrap">

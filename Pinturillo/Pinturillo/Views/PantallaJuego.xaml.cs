@@ -90,7 +90,7 @@ namespace Pinturillo
                 {
                     viewModel.Partida = obj;
                     viewModel.NotifyPropertyChanged("Partida");
-
+                    viewModel.HaAcertado = false;
                     viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
                     viewModel.hanAcertadoTodos = false;
                     //Iniciamos el timer
@@ -109,7 +109,7 @@ namespace Pinturillo
                     {
                         //Habilitar el canvas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        if (viewModel.TimeMax >= 88)
+                        if (viewModel.TimeMax > 88)
                         {
                             txtTurno.Visibility = Visibility.Visible;
                             viewModel.TurnoJugador = "ES TU TURNO";

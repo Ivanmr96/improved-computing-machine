@@ -207,6 +207,7 @@
       <RootProperty Name="Background" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="CornerRadius" />
+      <RootProperty Name="ItemsPanel" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem" />
@@ -258,10 +259,10 @@
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="MaxLength" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="CornerRadius" />
-      <RootProperty Name="MaxLength" />
       <RootProperty Name="IsEnabled" />
       <RootEvent Name="TextChanged" />
     </RootType>
@@ -314,6 +315,12 @@
     <RootType FullName="Pinturillo.ViewModels.VMPantallaJuego" />
     <RootType FullName="Pinturillo.Utils.LapizVisibilityConverter" />
     <RootType FullName="Pinturillo.Utils.TrueToFalseConverter" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsStackPanel">
+      <RootProperty Name="ItemsUpdatingScrollMode" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
       <RootProperty Name="FontWeight" />
       <RootProperty Name="Foreground" />

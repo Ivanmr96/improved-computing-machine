@@ -35,15 +35,18 @@ namespace Pinturillo.ViewModels
         private int tiempoAMostrar;
         private String visible;
         private String turnoJugador;
-        public bool hanAcertadoTodos { get; set; }
+        private bool haAcertado;
+        
         #endregion
         public static int TIME_MAX = 90;
         public static int TIME_WAIT = 5;
         public int tiempoEspera { get; set; }
-        
+        public bool hanAcertadoTodos { get; set; }
+
 
         public VMPantallaJuego()
         {
+            HaAcertado = false;
             turnoJugador = " ";
             hanAcertadoTodos = false;
             visible = "Collapsed";
@@ -77,7 +80,7 @@ namespace Pinturillo.ViewModels
         {
             if (_timeMax > 0 )
             {
-                if (_timeMax < 88) {
+                if (_timeMax <= 88) {
                     turnoJugador = " ";
                     NotifyPropertyChanged("TurnoJugador");
                 }
@@ -109,40 +112,6 @@ namespace Pinturillo.ViewModels
                     NotifyPropertyChanged("LblTemporizador");
                 }
             } 
-            //else
-            //{
-
-            //    if (_timeMax == 0 || hanAcertadoTodos)
-            //    {
-            //        //TODO 
-            //        //El contador llega a 0
-
-
-            //        //Bloquear el chat para todo el mundo en este tiempo
-            //        //Ponemos el IsMiTurno a TRUE para que automáticamente se bloquee el input del chat
-            //        //(porque esta bindeado con el converter de true to false
-            //        visible = "Visible";
-            //        NotifyPropertyChanged("Visible");
-            //        this.IsMiTurno = true;
-            //        NotifyPropertyChanged("IsMiTurno");
-            //        //Con esto lo que pasa es que se va a habilitar el inktool bar para todos pero bueno no podrán chatear así que diwa
-
-            //        //se reinicia esto
-            //        pos = 0;
-
-            //        //Se muestra la palabra
-            //        this._palabraAMostrar = _partida.PalabraEnJuego;
-            //        NotifyPropertyChanged("PalabraAMostrar");
-            //        tiempoEspera--;
-            //        NotifyPropertyChanged("tiempoEspera");
-
-            //        if (tiempoEspera == 0)
-            //        {                      
-            //            this._dispatcherTimer.Stop();
-            //            proxy.Invoke("miContadorHaLlegadoACero", _usuarioPropio.ConnectionID, _partida.NombreSala);
-            //        }
-            //    }
-            //}
             if (_timeMax == 0 || hanAcertadoTodos)
             {
                 //TODO 
@@ -259,6 +228,7 @@ namespace Pinturillo.ViewModels
         public int TiempoAMostrar { get => tiempoAMostrar; set => tiempoAMostrar = value; }
         public string Visible { get => visible; set => visible = value; }
         public string TurnoJugador { get => turnoJugador; set => turnoJugador = value; }
+        public bool HaAcertado { get => haAcertado; set => haAcertado = value; }
         #endregion
 
 
@@ -283,14 +253,13 @@ namespace Pinturillo.ViewModels
 
         private void ExecuteSendMessageCommand()
         {
-            if(_mensaje.Mensaje.Contains(_partida.PalabraEnJuego))
+            if(_mensaje.Mensaje.Contains(_partida.PalabraEnJuego) && !haAcertado)
             {
+                haAcertado = true;
                 _mensaje.Mensaje = "El usuario " + _usuarioPropio.Nickname + " ha acertado la palabra!";
                 //invoke para indicar que ha acertado la palabra
 
-                
-
-                    proxy.Invoke("addPuntosToUser", _usuarioPropio.ConnectionID, _timeMax, _partida.NombreSala);
+                proxy.Invoke("addPuntosToUser", _usuarioPropio.ConnectionID, _timeMax, _partida.NombreSala);
             }
             proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";
@@ -320,12 +289,6 @@ namespace Pinturillo.ViewModels
 
                 this._partida.ListadoJugadores = obj.ListadoJugadores;
                 this._partida.NotifyPropertyChanged("ListadoJugadores");
-
-                //if (PuedesFuncionar)
-                //{
-                    
-                //    PuedesFuncionar = false;
-                //}
                
             });
         }
@@ -345,57 +308,9 @@ namespace Pinturillo.ViewModels
                     _partida.NotifyPropertyChanged("ListadoJugadores");
                 }
 
-                //if (PuedesFuncionar)
-                //{
-                   
-                //    PuedesFuncionar = false;
-                //}
                
             });
         }
-
-
-
-        ////Cuando comienza la partida
-        //private async void onPartidaComenzada(clsPartida obj)
-        //{
-        //    await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-        //    {
-        //        this._partida = obj;
-        //        NotifyPropertyChanged("Partida");
-
-        //        this._usuarioPropio = obj.ListadoJugadores.First<clsJugador>(x => x.Nickname == _usuarioPropio.Nickname);
-
-        //        //Iniciamos el timer
-        //        this._dispatcherTimer.Start();
-
-        //        if (obj.ConnectionIDJugadorActual == _usuarioPropio.ConnectionID)
-        //        //es nuestro turno
-        //        {
-        //            //Habilitar el canvas
-        //            TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-        //            NotifyPropertyChanged("TipoEntradaInkCanvas");
-        //            //palabra a mostrar será la palabra en juego
-        //            this._palabraAMostrar = obj.PalabraEnJuego;
-        //            NotifyPropertyChanged("PalabraAMostrar");
-
-
-
-        //        }
-        //        else
-        //        {
-        //            //No es nuestro turno
-
-        //            //Deshabilitar el canvas
-        //            TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
-        //            NotifyPropertyChanged("TipoEntradaInkCanvas");
-        //            //palabra a mostrar será  ___ 
-        //            this._palabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-        //            NotifyPropertyChanged("PalabraAMostrar");
-        //        }
-
-        //    });
-        //}
 
         public async void OnaddMensajeToChat(clsMensaje mensaje)
         {
@@ -411,15 +326,5 @@ namespace Pinturillo.ViewModels
             SendMessageCommand.RaiseCanExecuteChanged();
         }
 
-        //public void reiniciarContador() {
-        //    pararContador();
-        //    this.LblTemporizador = "60";
-        //    NotifyPropertyChanged("LblTemporizador");
-        //    this._dispatcherTimer.Start();
-        //}
-
-        //public void pararContador() {
-        //    this._dispatcherTimer.Stop();
-        //}
     }
 }

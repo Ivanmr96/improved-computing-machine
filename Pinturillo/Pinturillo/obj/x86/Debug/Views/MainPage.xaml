@@ -36,7 +36,9 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock x:ConnectionId='2'  Name="txtblockNick" FontWeight="Medium"  Foreground="Black" VerticalAlignment="Center" Margin="20" FontSize="30" Grid.Column="0" Grid.Row="0" Text="Nick:"></TextBlock>
-                <TextBox x:ConnectionId='3'  Name="txtboxNick" 
+                <TextBox x:ConnectionId='3'  
+                          MaxLength="15"
+                          Name="txtboxNick" 
                           BorderBrush="Black" 
                           Foreground="Black" 
                           Width="240" FontSize="20" 
