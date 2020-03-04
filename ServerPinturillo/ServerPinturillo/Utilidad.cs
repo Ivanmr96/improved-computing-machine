@@ -18,7 +18,12 @@ namespace ServerPinturillo
         "Youtube", "Música", "Escaleras", "Platos", "Cocina", "Ojo", "Cine", "Butaca","Cohete","Selva",
         "Viaje","Jazz","Caballo","Tortuga","Elefante","Mapache","Mono","Pulpo","Cine","Mar","Globo",
         "Rectángulo","Círculo","Ordenador","Pizarra","Darth Vader","Ironman","Capitán América","Hulk",
-        "Superman","Batman","Thor","Spiderman","Thanos","Flash","Cebolla"};
+        "Superman","Batman","Thor","Spiderman","Thanos","Flash","Cebolla", "Tarjeta", "Pegatina", "Cristal",
+        "Mopa", "Lápiz", "Saltamontes", "Hormiga", "Proyector", "Pimiento", "Autobus", "Coche", "Vaca", "Burro",
+        "Cacatúa", "Luna", "Amor", "Corazón", "Melón", "Sandía", "Kiwi", "Foto", "Camiseta", "Pantalones",
+        "Atenea", "Zeus", "Lavadora", "Lavavajillas", "Fregadero", "Sofá", "Padre", "Dios", "Madre", "Botella",
+        "Tomate", "Columna", "Fila", "Nevera", "Taza", "Cuenco", "Arroz", "Lechuga", "Aire acondicionado", 
+        "Calentador", "Cuadro", "Televisión", "Portugal", "España", "Francia", "Silla", "Sevilla"};
 
         public static String obtenerPalabraAleatoria()
         {

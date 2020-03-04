@@ -373,10 +373,10 @@ namespace ServerPinturillo
 
             if(jugador != null)
             {
-                //if(jugador.IsMiTurno == true)
-                //{
-                //    avanzarTurno(partida);  //avanza el turno justo antes de hacer un remove
-                //}
+                if (jugador.IsMiTurno == true)
+                {
+                    avanzarTurno(partida);
+                }
                 //Elimina al jugador del array de jugadores de la partida
                 partida.ListadoJugadores.Remove(jugador);
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
@@ -399,6 +399,8 @@ namespace ServerPinturillo
                         llamarConvertirEnLider(nombreSala);    
                         //luego (si era el lider) se pone de lider al primero de la lista
                     }
+
+
 
                 }
             }
