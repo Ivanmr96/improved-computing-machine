@@ -23,6 +23,9 @@
         Background="{StaticResource PrimaryColor}"
         
         >
+
+        <Image Source="ms-appx:///Assets/mancha.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></Image>
+
         <TextBlock Text="Salas"
                    Foreground="White"
                    Name="txtSalas"

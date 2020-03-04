@@ -12,9 +12,6 @@
     <Page.DataContext>
         <vm:MainPageVM></vm:MainPageVM>
     </Page.DataContext>
-    <!--->
-    ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
-    <-->
 
     <RelativePanel Background="{StaticResource PrimaryColor}">
         <Image Source="ms-appx:///Assets/mancha.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></Image>
