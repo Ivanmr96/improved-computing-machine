@@ -30,8 +30,8 @@ namespace Pinturillo
     public sealed partial class PantallaJuego : Page
     {
 
-        public static int TIME_MAX = 10;
-        public static int TIME_WAIT = 3;
+        public static int TIME_MAX = 90;
+        public static int TIME_WAIT = 5;
 
         InkStrokeBuilder builder;
         List<Point> points;
@@ -109,6 +109,12 @@ namespace Pinturillo
                     {
                         //Habilitar el canvas
                         // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                        if (viewModel.TimeMax >= 88)
+                        {
+                            txtTurno.Visibility = Visibility.Visible;
+                            viewModel.TurnoJugador = "ES TU TURNO";
+                            viewModel.NotifyPropertyChanged("TurnoJugador");
+                        }
 
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
                         //NotifyPropertyChanged("TipoEntradaInkCanvas");
@@ -123,6 +129,13 @@ namespace Pinturillo
                     else
                     {
                         //No es nuestro turno
+                        if (viewModel.TimeMax >= 88)
+                        {
+                            txtTurno.Visibility = Visibility.Visible;
+                            clsJugador jugador = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == viewModel.Partida.ConnectionIDJugadorActual);
+                            viewModel.TurnoJugador = "ES EL TURNO DE " + jugador.Nickname;
+                            viewModel.NotifyPropertyChanged("TurnoJugador");
+                        }
 
                         //Deshabilitar el canvas
                         inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
@@ -176,6 +189,13 @@ namespace Pinturillo
                         if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
                         //es nuestro turno
                         {
+                            if (viewModel.TimeMax >= 88)
+                            {
+                                txtTurno.Visibility = Visibility.Visible;
+                                viewModel.TurnoJugador = "ES TU TURNO";
+                                viewModel.NotifyPropertyChanged("TurnoJugador");
+                            }
+
                             //Habilitar el canvas
                             // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
                             inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
@@ -191,7 +211,13 @@ namespace Pinturillo
                         else
                         {
                             //No es nuestro turno
-
+                            if (viewModel.TimeMax >= 88)
+                            {
+                                txtTurno.Visibility = Visibility.Visible;
+                                clsJugador jugador = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == viewModel.Partida.ConnectionIDJugadorActual);
+                                viewModel.TurnoJugador = "ES EL TURNO DE " + jugador.Nickname;
+                                viewModel.NotifyPropertyChanged("TurnoJugador");
+                            }
                             //Deshabilitar el canvas
                             // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.None;
                             inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;

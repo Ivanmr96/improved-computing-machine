@@ -34,15 +34,17 @@ namespace Pinturillo.ViewModels
         private bool puedesFuncionar;
         private int tiempoAMostrar;
         private String visible;
+        private String turnoJugador;
         public bool hanAcertadoTodos { get; set; }
         #endregion
-        public static int TIME_MAX = 10;
+        public static int TIME_MAX = 90;
         public static int TIME_WAIT = 5;
         public int tiempoEspera { get; set; }
         
 
         public VMPantallaJuego()
         {
+            turnoJugador = " ";
             hanAcertadoTodos = false;
             visible = "Collapsed";
             puedesFuncionar = true;
@@ -75,6 +77,10 @@ namespace Pinturillo.ViewModels
         {
             if (_timeMax > 0 )
             {
+                if (_timeMax < 88) {
+                    turnoJugador = " ";
+                    NotifyPropertyChanged("TurnoJugador");
+                }
                 visible = "Collapsed";
                 NotifyPropertyChanged("Visible");
                 if (_timeMax % 10 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
@@ -252,6 +258,7 @@ namespace Pinturillo.ViewModels
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
         public int TiempoAMostrar { get => tiempoAMostrar; set => tiempoAMostrar = value; }
         public string Visible { get => visible; set => visible = value; }
+        public string TurnoJugador { get => turnoJugador; set => turnoJugador = value; }
         #endregion
 
 

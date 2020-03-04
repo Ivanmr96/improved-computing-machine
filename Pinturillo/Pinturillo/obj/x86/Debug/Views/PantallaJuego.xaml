@@ -33,14 +33,14 @@
             BorderBrush="Red"   
                 CornerRadius="30" 
                 >
-            <StackPanel x:ConnectionId='16'
+            <StackPanel x:ConnectionId='17'
             
                Opacity="0.75"
                 
             Background="{StaticResource SecondaryColor}"
             Name="stkpanelListados"
             >
-                <ListView x:ConnectionId='17'
+                <ListView x:ConnectionId='18'
                 Name="listadoSalas"
                 SelectionMode="None"
                 ItemsSource="{Binding Partida.ListadoJugadores, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -61,7 +61,7 @@
 
 
                                 <AppBarButton
-                                        Name="lapiz"
+                                        Name="lapiz" 
                                         Visibility="{Binding IsMiTurno,Mode=TwoWay, 
                                         UpdateSourceTrigger=PropertyChanged, 
                                         Converter={StaticResource LapizConverter}}"
@@ -126,7 +126,7 @@
 
                 </Border>
 
-                <TextBlock x:ConnectionId='10'
+                <TextBlock x:ConnectionId='11'
                     Name="palabra"
                     RelativePanel.AlignTopWithPanel="True"
                     Margin="15,0,15,0"
@@ -172,7 +172,7 @@
                
 
 
-                <Border x:ConnectionId='11'
+                <Border x:ConnectionId='12'
                     CornerRadius="35"
                     Name="canvasBorder"
                     Background="White"
@@ -182,7 +182,7 @@
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     >
-                    <InkCanvas x:ConnectionId='15' x:Name="inkCanvas"
+                    <InkCanvas x:ConnectionId='16' x:Name="inkCanvas"
                     RelativePanel.Below="palabra"
                     RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -192,7 +192,7 @@
                 </Border>
                 
 
-                <InkToolbar x:ConnectionId='12' x:Name="inkToolbar"
+                <InkToolbar x:ConnectionId='13' x:Name="inkToolbar"
                              IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
                         }"
           VerticalAlignment="Top"
@@ -201,8 +201,8 @@
                            InitialControls="None"
                            
                                                >
-                    <InkToolbarBallpointPenButton x:ConnectionId='13' Name="ballpointpen"></InkToolbarBallpointPenButton>
-                    <InkToolbarEraserButton x:ConnectionId='14' 
+                    <InkToolbarBallpointPenButton x:ConnectionId='14' Name="ballpointpen"></InkToolbarBallpointPenButton>
+                    <InkToolbarEraserButton x:ConnectionId='15' 
                                                               
                         
                         ></InkToolbarEraserButton>
@@ -285,10 +285,19 @@
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
 
+        <TextBlock x:ConnectionId='9'      
+            Text="{Binding TurnoJugador,Mode=TwoWay}"
+            Name="txtTurno"
+            Foreground="Black"
+            FontSize="50" 
+            RelativePanel.Above="tiempoEsperaAnimation"
+            RelativePanel.AlignVerticalCenterWithPanel="True"
+            RelativePanel.AlignHorizontalCenterWithPanel="True">
+        </TextBlock>
+
+
         <controls:DialogFinalPartida
-            Visibility="{Binding Partida.IsJugandose,
-            Mode=TwoWay,
-            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
+            Visibility="Collapsed"
             CommandSalir="{Binding GoBackCommand}"
             ListadoJugadores="{Binding Partida.ListadoJugadores}"
             RelativePanel.AlignTopWithPanel="True"
@@ -297,5 +306,9 @@
             RelativePanel.AlignRightWithPanel="True"/>
 
     </RelativePanel>
+    <!--Visibility="{Binding Partida.IsJugandose,
+            Mode=TwoWay,
+            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"-->
+
 </Page>
 

@@ -61,7 +61,7 @@
 
 
                                 <AppBarButton
-                                        Name="lapiz"
+                                        Name="lapiz" 
                                         Visibility="{Binding IsMiTurno,Mode=TwoWay, 
                                         UpdateSourceTrigger=PropertyChanged, 
                                         Converter={StaticResource LapizConverter}}"
@@ -285,10 +285,19 @@
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
 
+        <TextBlock      
+            Text="{Binding TurnoJugador,Mode=TwoWay}"
+            Name="txtTurno"
+            Foreground="Black"
+            FontSize="50" 
+            RelativePanel.Above="tiempoEsperaAnimation"
+            RelativePanel.AlignVerticalCenterWithPanel="True"
+            RelativePanel.AlignHorizontalCenterWithPanel="True">
+        </TextBlock>
+
+
         <controls:DialogFinalPartida
-            Visibility="{Binding Partida.IsJugandose,
-            Mode=TwoWay,
-            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
+            Visibility="Collapsed"
             CommandSalir="{Binding GoBackCommand}"
             ListadoJugadores="{Binding Partida.ListadoJugadores}"
             RelativePanel.AlignTopWithPanel="True"
@@ -297,4 +306,8 @@
             RelativePanel.AlignRightWithPanel="True"/>
 
     </RelativePanel>
+    <!--Visibility="{Binding Partida.IsJugandose,
+            Mode=TwoWay,
+            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"-->
+
 </Page>

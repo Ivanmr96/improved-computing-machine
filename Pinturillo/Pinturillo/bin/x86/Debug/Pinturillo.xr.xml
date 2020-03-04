@@ -28,8 +28,8 @@
     <RootPropertyPathName Name="EntrarCommand" />
     <RootPropertyPathName Name="visibilidadMensajeError" />
     <RootPropertyPathName Name="nick" />
-    <RootPropertyPathName Name="IsJugandose" />
     <RootPropertyPathName Name="GoBackCommand" />
+    <RootPropertyPathName Name="TurnoJugador" />
     <RootPropertyPathName Name="Visible" />
     <RootPropertyPathName Name="tiempoEspera" />
     <RootPropertyPathName Name="SendMessageCommand" />
