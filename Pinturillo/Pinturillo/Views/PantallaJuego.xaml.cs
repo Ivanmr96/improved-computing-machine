@@ -85,81 +85,83 @@ namespace Pinturillo
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-               
-                if(obj.ListadoJugadores != null && viewModel.UsuarioPropio.Nickname != null)
+                if (viewModel.PuedesFuncionar)
                 {
-                    viewModel.Partida = obj;
-                    viewModel.NotifyPropertyChanged("Partida");
-                    viewModel.HaAcertado = false;
-                    viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
-                    viewModel.hanAcertadoTodos = false;
-                    //Iniciamos el timer
-                    viewModel.TimeMax = TIME_MAX;
-                    viewModel.NotifyPropertyChanged("TimeMax");
-                    viewModel.LblTemporizador = TIME_MAX.ToString();
-                    viewModel.NotifyPropertyChanged("LblTemporizador");
-                    viewModel.tiempoEspera = TIME_WAIT;
-                    viewModel.DispatcherTimer.Start();
-
-                    //Se limpia el canvas
-                    inkCanvas.InkPresenter.StrokeContainer.Clear();
-
-                    if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
-                    //es nuestro turno
+                    if (obj.ListadoJugadores != null && viewModel.UsuarioPropio.Nickname != null)
                     {
-                        //Habilitar el canvas
-                        // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
-                        if (viewModel.TimeMax > 88)
+                        viewModel.Partida = obj;
+                        viewModel.NotifyPropertyChanged("Partida");
+                        viewModel.HaAcertado = false;
+                        viewModel.UsuarioPropio = obj.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.Nickname == viewModel.UsuarioPropio.Nickname);
+                        viewModel.hanAcertadoTodos = false;
+                        //Iniciamos el timer
+                        viewModel.TimeMax = TIME_MAX;
+                        viewModel.NotifyPropertyChanged("TimeMax");
+                        viewModel.LblTemporizador = TIME_MAX.ToString();
+                        viewModel.NotifyPropertyChanged("LblTemporizador");
+                        viewModel.tiempoEspera = TIME_WAIT;
+                        viewModel.DispatcherTimer.Start();
+
+                        //Se limpia el canvas
+                        inkCanvas.InkPresenter.StrokeContainer.Clear();
+
+                        if (obj.ConnectionIDJugadorActual == viewModel.UsuarioPropio.ConnectionID)
+                        //es nuestro turno
                         {
-                            txtTurno.Visibility = Visibility.Visible;
-                            viewModel.TurnoJugador = "ES TU TURNO";
-                            viewModel.NotifyPropertyChanged("TurnoJugador");
+                            //Habilitar el canvas
+                            // viewModel.TipoEntradaInkCanvas = CoreInputDeviceTypes.Mouse;
+                            if (viewModel.TimeMax > 88)
+                            {
+                                txtTurno.Visibility = Visibility.Visible;
+                                viewModel.TurnoJugador = "ES TU TURNO";
+                                viewModel.NotifyPropertyChanged("TurnoJugador");
+                            }
+
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
+                            //NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será la palabra en juego
+                            viewModel.PalabraAMostrar = obj.PalabraEnJuego;
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");
+                            viewModel.IsMiTurno = true;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
+
+
                         }
-
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse;
-                        //NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será la palabra en juego
-                        viewModel.PalabraAMostrar = obj.PalabraEnJuego;
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");
-                        viewModel.IsMiTurno = true;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
-
-
-                    }
-                    else
-                    {
-                        //No es nuestro turno
-                        if (viewModel.TimeMax >= 88)
+                        else
                         {
-                            txtTurno.Visibility = Visibility.Visible;
-                            clsJugador jugador = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == viewModel.Partida.ConnectionIDJugadorActual);
-                            viewModel.TurnoJugador = "ES EL TURNO DE " + jugador.Nickname;
-                            viewModel.NotifyPropertyChanged("TurnoJugador");
+                            //No es nuestro turno
+                            if (viewModel.TimeMax >= 88)
+                            {
+                                txtTurno.Visibility = Visibility.Visible;
+                                clsJugador jugador = viewModel.Partida.ListadoJugadores.FirstOrDefault<clsJugador>(x => x.ConnectionID == viewModel.Partida.ConnectionIDJugadorActual);
+                                viewModel.TurnoJugador = "ES EL TURNO DE " + jugador.Nickname;
+                                viewModel.NotifyPropertyChanged("TurnoJugador");
+                            }
+
+                            //Deshabilitar el canvas
+                            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
+                            //InkDrawingAttributes att = new InkDrawingAttributes();
+                            //att.Color = Windows.UI.Colors.Black;
+                            //inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(att);
+                            ballpointpen.SelectedBrushIndex = 0;
+                            inkToolbar.ActiveTool = null;
+
+                            //  NotifyPropertyChanged("TipoEntradaInkCanvas");
+                            //palabra a mostrar será  ___ 
+                            // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
+
+                            String[] arrayPalabras = obj.PalabraEnJuego.Split(' ');
+                            String palabraResuelta = "";
+                            foreach (var palabra in arrayPalabras)
+                            {
+                                palabraResuelta += new String('*', palabra.Length);
+                                palabraResuelta += " ";
+                            }
+                            viewModel.PalabraAMostrar = palabraResuelta;
+                            viewModel.IsMiTurno = false;
+                            viewModel.NotifyPropertyChanged("IsMiTurno");
+                            viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                         }
-
-                        //Deshabilitar el canvas
-                        inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.None;
-                        //InkDrawingAttributes att = new InkDrawingAttributes();
-                        //att.Color = Windows.UI.Colors.Black;
-                        //inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(att);
-                        ballpointpen.SelectedBrushIndex = 0;
-                        inkToolbar.ActiveTool = null;
-
-                        //  NotifyPropertyChanged("TipoEntradaInkCanvas");
-                        //palabra a mostrar será  ___ 
-                        // viewModel.PalabraAMostrar = "*******"; //esto ponerlo con tantos * como letras tenga y tal
-
-                        String[] arrayPalabras = obj.PalabraEnJuego.Split(' ');
-                        String palabraResuelta = "";
-                        foreach (var palabra in arrayPalabras)
-                        {
-                            palabraResuelta += new String('*', palabra.Length);
-                            palabraResuelta += " ";
-                        }
-                        viewModel.PalabraAMostrar = palabraResuelta;
-                        viewModel.IsMiTurno = false;
-                        viewModel.NotifyPropertyChanged("IsMiTurno");
-                        viewModel.NotifyPropertyChanged("PalabraAMostrar");                         // NotifyPropertyChanged("PalabraAMostrar");
                     }
                 }
             });
@@ -236,8 +238,8 @@ namespace Pinturillo
                             viewModel.PalabraAMostrar = palabraResuelta;
                             viewModel.NotifyPropertyChanged("PalabraAMostrar");
                         }
-                        viewModel.PuedesFuncionar = false;
-                        viewModel.NotifyPropertyChanged("PuedesFuncionar");
+                        //viewModel.PuedesFuncionar = false;
+                        //viewModel.NotifyPropertyChanged("PuedesFuncionar");
                     }
                    
                 }
@@ -265,7 +267,7 @@ namespace Pinturillo
                     // Copia los atributos de dibujado (color y eso) del canvas original
                     InkDrawingAttributes ida = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
                     ida.Color = puntos[0].Color;
-                ida.Size = puntos[0].Size;
+                    ida.Size = puntos[0].Size;
                     
                     stroke.DrawingAttributes = ida;
 
@@ -425,37 +427,6 @@ namespace Pinturillo
             proxy.Invoke("borrarCanvas", viewModel.Partida.NombreSala);
 
         }
-
-
-
-
-
-        //// Update ink stroke color for new strokes.
-        //private void OnPenColorChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (inkCanvas != null)
-        //    {
-        //        InkDrawingAttributes drawingAttributes =
-        //            inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
-
-        //        string value = ((ComboBoxItem)PenColor.SelectedItem).Content.ToString();
-
-        //        switch (value)
-        //        {
-        //            case "Black":
-        //                drawingAttributes.Color = Windows.UI.Colors.Black;
-        //                break;
-        //            case "Red":
-        //                drawingAttributes.Color = Windows.UI.Colors.Red;
-        //                break;
-        //            default:
-        //                drawingAttributes.Color = Windows.UI.Colors.Black;
-        //                break;
-        //        };
-
-        //        inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
-        //    }
-        //}
 
     }
 }

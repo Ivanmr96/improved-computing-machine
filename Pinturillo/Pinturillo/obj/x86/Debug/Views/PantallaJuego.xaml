@@ -301,8 +301,10 @@
         </TextBlock>
 
 
-        <controls:DialogFinalPartida
-            Visibility="Collapsed"
+        <controls:DialogFinalPartida            
+            Visibility="{Binding Partida.IsJugandose,
+            Mode=TwoWay,
+            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
             CommandSalir="{Binding GoBackCommand}"
             ListadoJugadores="{Binding Partida.ListadoJugadores}"
             RelativePanel.AlignTopWithPanel="True"
@@ -311,9 +313,7 @@
             RelativePanel.AlignRightWithPanel="True"/>
 
     </RelativePanel>
-    <!--Visibility="{Binding Partida.IsJugandose,
-            Mode=TwoWay,
-            Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"-->
+    
 
 </Page>
 

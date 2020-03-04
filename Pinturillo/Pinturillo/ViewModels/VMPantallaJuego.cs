@@ -136,7 +136,6 @@ namespace Pinturillo.ViewModels
 
                 //se reinicia esto
                 pos = 0;
-
                 //Se muestra la palabra
                 this._palabraAMostrar = _partida.PalabraEnJuego;
                 NotifyPropertyChanged("PalabraAMostrar");
@@ -174,6 +173,7 @@ namespace Pinturillo.ViewModels
                 _partida.IsJugandose = false;
                 ordenarListadoJugadoresPorPuntuacion();
                 _partida.NotifyPropertyChanged("IsJugandose");
+                puedesFuncionar = false;
             });
         }
 
