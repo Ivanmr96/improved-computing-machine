@@ -254,6 +254,7 @@
             IsEnabled="{Binding IsMiTurno, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged
             ,Converter={StaticResource TrueToFalseConverter}}"
             Margin="0,0,0,25"
+            KeyDown="inputMensajes_KeyDown"
             RelativePanel.AlignBottomWithPanel="True"
             Text="{Binding Mensaje.Mensaje,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
             TextChanged="{x:Bind viewModel.textoCambiado}"

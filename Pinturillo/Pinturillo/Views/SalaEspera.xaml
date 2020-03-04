@@ -126,7 +126,11 @@
                     ItemsSource="{Binding Partida.ListadoMensajes}"
                     SelectionMode="None"
                     >
-
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -152,6 +156,7 @@
 
                 <TextBox
                 PlaceholderText="Escribe un mensaje"
+                    KeyDown="txtBoxMensaje_KeyDown"
                 Windows10version1809:CornerRadius="15,0,0,15"
                 FontSize="18"
                 RelativePanel.LeftOf="btnEnviarMensaje"

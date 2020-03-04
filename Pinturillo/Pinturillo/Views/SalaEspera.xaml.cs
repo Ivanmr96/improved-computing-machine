@@ -69,5 +69,17 @@ namespace Pinturillo
             base.OnNavigatedTo(e);
 
         }
+
+        private void txtBoxMensaje_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                if (viewModel.enviarMensaje_canExecute())
+                {
+                    viewModel.enviarMensaje_execute();
+                }
+
+            }
+        }
     }
 }

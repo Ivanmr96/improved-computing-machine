@@ -265,6 +265,7 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="IsEnabled" />
+      <RootEvent Name="KeyDown" />
       <RootEvent Name="TextChanged" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.CheckBox">

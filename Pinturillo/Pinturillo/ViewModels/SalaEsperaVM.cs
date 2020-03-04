@@ -78,9 +78,9 @@ namespace Pinturillo.ViewModels
 
         public DelegateCommand enviarMensaje { get; set; }
 
-        private bool enviarMensaje_canExecute() => mensaje.Mensaje != null && mensaje.Mensaje != "";
+        public bool enviarMensaje_canExecute() => mensaje.Mensaje != null && mensaje.Mensaje != "";
 
-        private void enviarMensaje_execute()
+        public void enviarMensaje_execute()
         {
             //Mandar el mensaje al servidor
             proxy.Invoke("sendMensaje", mensaje, partida.NombreSala);

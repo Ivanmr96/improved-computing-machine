@@ -252,7 +252,7 @@ namespace Pinturillo.ViewModels
             }
         }
 
-        private void ExecuteSendMessageCommand()
+        public void ExecuteSendMessageCommand()
         {
             if (RemoveDiacritics(_mensaje.Mensaje.ToLower())
                 .Contains(RemoveDiacritics(_partida.PalabraEnJuego.ToLower())) && !haAcertado)
@@ -272,7 +272,7 @@ namespace Pinturillo.ViewModels
         }
 
 
-        private bool CanExecuteSendMessageCommand()
+        public bool CanExecuteSendMessageCommand()
         {
             bool canExecute = false;
 
