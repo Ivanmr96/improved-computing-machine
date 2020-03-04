@@ -144,6 +144,7 @@ namespace Pinturillo.ViewModels
             if (puedesFuncionar2)
             {
                 partida.IsJugandose = true;
+                partida.ListadoMensajes = new System.Collections.ObjectModel.ObservableCollection<clsMensaje>();
                 proxy.Invoke("empezarPartida", partida.NombreSala);
                 Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
                 navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
@@ -180,6 +181,7 @@ namespace Pinturillo.ViewModels
                 {
                     this.puedesFuncionar2 = false;
                     partida.IsJugandose = true;
+                    partida.ListadoMensajes = new System.Collections.ObjectModel.ObservableCollection<clsMensaje>();
                     Tuple<String, clsPartida> partidaConNick = new Tuple<string, clsPartida>(usuarioPropio, partida);
                     navigationFrame.Navigate(typeof(PantallaJuego), partidaConNick);
                 }

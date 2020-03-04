@@ -180,6 +180,8 @@ namespace Pinturillo
                 {
                     if(obj.ListadoJugadores!= null && viewModel.UsuarioPropio.Nickname != null)
                     {
+                        obj.ListadoMensajes = new System.Collections.ObjectModel.ObservableCollection<clsMensaje>();
+
                         viewModel.Partida = obj;
                         viewModel.NotifyPropertyChanged("Partida");
                         viewModel.hanAcertadoTodos = false;

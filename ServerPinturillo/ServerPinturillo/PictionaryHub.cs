@@ -130,6 +130,7 @@ namespace ServerPinturillo
                 if (partidaActual.JugadoresQueHanNavegado == partidaActual.ListadoJugadores.Count)
                 {
                     //Todos han navegado
+                    partidaActual.ListadoMensajes = new System.Collections.ObjectModel.ObservableCollection<clsMensaje>();
                     comenzarPartidaEnGrupo(partidaActual);
 
                 }
@@ -188,7 +189,7 @@ namespace ServerPinturillo
         public void avanzarTurno(clsPartida partida)
         {
             clsPartida partidaObtenida = obtenerPartidaPorNombreSala(partida.NombreSala);
-            if(partidaObtenida.RondaActual < partida.NumeroRondasGlobales)
+            if(partidaObtenida.RondaActual <= partida.NumeroRondasGlobales)
             {
                 //El cliente que termine su turno, llama a este método
                 //este método avisa a los clientes de que el turno ha cambiado
@@ -258,17 +259,16 @@ namespace ServerPinturillo
                     {
                         partida.RondaActual++;
                     }
+                    else
+                    {
+                        //Terminaria la partida y se harian cosas
+                        Clients.Group(partida.NombreSala).HaTerminadoLaPartida();
+                    }
                 }
 
                 //Llamo al metodo haCambiadoElTurno de los clientes, y en ese metodo se debera comprobar si le toca al propio usuario
                 Clients.Group(partida.NombreSala).haCambiadoElTurno(partida);
             }
-            else
-            {
-                //Terminaria la partida y se harian cosas
-                Clients.Group(partida.NombreSala).HaTerminadoLaPartida();
-            }
-
         }
 
 
@@ -320,7 +320,6 @@ namespace ServerPinturillo
         }
 
         public void empezarPartida(String nombreGrupo) {
-
             Clients.OthersInGroup(nombreGrupo).empezarPartida();
 
         }
