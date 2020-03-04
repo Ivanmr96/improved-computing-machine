@@ -6,6 +6,7 @@ using Pinturillo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -253,7 +254,8 @@ namespace Pinturillo.ViewModels
 
         private void ExecuteSendMessageCommand()
         {
-            if(_mensaje.Mensaje.Contains(_partida.PalabraEnJuego) && !haAcertado)
+            if (RemoveDiacritics(_mensaje.Mensaje.ToLower())
+                .Contains(RemoveDiacritics(_partida.PalabraEnJuego.ToLower())) && !haAcertado)
             {
                 haAcertado = true;
                 _mensaje.Mensaje = "El usuario " + _usuarioPropio.Nickname + " ha acertado la palabra!";
@@ -264,7 +266,7 @@ namespace Pinturillo.ViewModels
             proxy.Invoke("sendMensaje", Mensaje, _partida.NombreSala);
             _mensaje.Mensaje = "";
             NotifyPropertyChanged("Mensaje");
-            
+
 
 
         }
@@ -320,6 +322,25 @@ namespace Pinturillo.ViewModels
                 _partida.NotifyPropertyChanged("ListadoMensajes");
 
             });
+        }
+
+
+
+        private string RemoveDiacritics(string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
         public void textoCambiado() {
