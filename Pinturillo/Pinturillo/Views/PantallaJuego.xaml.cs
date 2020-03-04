@@ -154,7 +154,7 @@ namespace Pinturillo
                             String palabraResuelta = "";
                             foreach (var palabra in arrayPalabras)
                             {
-                                palabraResuelta += new String('*', palabra.Length);
+                                palabraResuelta += new String('-', palabra.Length);
                                 palabraResuelta += " ";
                             }
                             viewModel.PalabraAMostrar = palabraResuelta;

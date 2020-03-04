@@ -22,16 +22,27 @@
     ILLO ACORDARSE DE COGER LAS FOTOS DE ASSETS
     <-->
     <RelativePanel Background="#4f98ca">
-        <Button Name="btnVolver" RelativePanel.AlignLeftWithPanel="True" Click="Button_Click"
-        Background="#FF46B0CF">
+        <Button
+            Style="{StaticResource CustomButtonStyle}"
+            
+            Margin="50,20,0,0" 
+            Name="btnVolver" 
+            RelativePanel.AlignLeftWithPanel="True"
+            Click="Button_Click"
+        Background="Transparent">
             <StackPanel>
-                <Image Source="Assets/photo.png" Height="62"/>
+                <Image Source="ms-appx:///Assets/return.png" Height="62"/>
             </StackPanel>
         </Button>
         <Image Source="Assets/2.png" RelativePanel.AlignVerticalCenterWith="border" RelativePanel.RightOf="border" Margin="-144,-7,111,-7"/>
-        <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWith="btnVolver" Foreground="White" Text="Creacion Sala" FontSize="40" Margin="150,00,0,0"></TextBlock>
+        <TextBlock 
+            Margin="0,20,0,0"
+            RelativePanel.AlignHorizontalCenterWithPanel="True" 
+            RelativePanel.AlignTopWithPanel="True"
+            Foreground="White" Text="Creacion Sala" 
+            FontSize="40"></TextBlock>
 
-        <Border Background="#FFF3F3F3" Name="border" Margin="0,0,100,0" BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+        <Border Background="#FFF3F3F3" Name="border"  BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="300" Width="600" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <RelativePanel  Background="#EFFFFB">
                 <TextBox 
                     Text="{Binding Partida.NombreSala, 
@@ -86,7 +97,7 @@
             Content="Crear" 
             RelativePanel.Below="border" 
             CornerRadius="20" FontSize="40" 
-            Margin="0,40,100,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
+            Margin="0,40,0,0" RelativePanel.AlignHorizontalCenterWith="border"></Button>
     
         
     </RelativePanel>

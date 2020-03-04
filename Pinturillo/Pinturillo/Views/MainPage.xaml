@@ -19,11 +19,19 @@
     <RelativePanel Background="{StaticResource PrimaryColor}">
         <Image Source="ms-appx:///Assets/mancha.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></Image>
 
-        <Border CornerRadius="0,0,20,0" Background="#FF1B1919" Width="1000" Height="60" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-            <TextBlock HorizontalAlignment="Center" FontSize="40" Foreground="White" Text="Pinturillo"></TextBlock>
-        </Border>
+        <Image
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            Margin="100"
+            Source="ms-appx:///Assets/logo.png">
+            
+        </Image>
 
-        <Border BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="200" Width="400" Background="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+        <Border
+            Margin="0,350,0,0"
+            BorderBrush="Black" BorderThickness="4" CornerRadius="10" Height="200" Width="400" Background="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
             <Grid Background="#EFFFFB">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -60,7 +68,18 @@
                     
                 </TextBlock>
 
-                <Button Command="{Binding EntrarCommand}" Height="50" Width="200" BorderThickness="1.5" BorderBrush="Black" Grid.ColumnSpan="2" Grid.Row="1" Foreground="Black" HorizontalAlignment="Center"  Content="¡Empecemos!" FontSize="20"></Button>
+                <Button Style="{StaticResource CustomButtonStyle}" 
+                    Command="{Binding EntrarCommand}"
+                    Height="50"
+                    Width="200"
+                    BorderThickness="1.5"
+                    BorderBrush="Black" 
+                    Grid.ColumnSpan="2" 
+                    Grid.Row="1" 
+                    Foreground="Black" 
+                    HorizontalAlignment="Center" 
+                    Content="¡Empecemos!" 
+                    FontSize="20"></Button>
 
                 </Grid>
         </Border>

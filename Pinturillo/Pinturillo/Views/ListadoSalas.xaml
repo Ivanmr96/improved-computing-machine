@@ -43,12 +43,14 @@
             
         </Button>-->
 
-        
-        <Button Name="backArrow"  RelativePanel.AlignVerticalCenterWith="txtSalas"
+
+        <Button Name="backArrow" RelativePanel.AlignVerticalCenterWith="txtSalas"
+                Style="{StaticResource CustomButtonStyle}"
               RelativePanel.AlignLeftWithPanel="True" 
-        Background="#FF46B0CF" Margin="50,20,0,0" Click="BackArrow_Click">
-            <StackPanel>
-                <Image Source="Assets/photo.png" Height="62"/>
+                Background="Transparent"
+      Margin="50,20,0,0" Click="BackArrow_Click">
+            <StackPanel >
+                <Image Margin="0,0,0,10" Source="ms-appx:///Assets/return.png" Height="62"/>
             </StackPanel>
         </Button>
         
@@ -226,6 +228,7 @@
 
 
         <Button
+            Style="{StaticResource CustomButtonStyle}" 
             Name="crearBtn"
                 FontSize="25"
                 Windows10version1809:CornerRadius="15"
