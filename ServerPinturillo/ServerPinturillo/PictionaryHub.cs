@@ -350,8 +350,8 @@ namespace ServerPinturillo
 
                         //Clients.All.jugadorAdded(jugador, partida);
                         //Clients.Group(nombreGrupo).jugadorAdded(jugador, partida);
-                        //Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
-                            Clients.All().jugadorAdded(jugador, partida);
+                        Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
+                            Clients.AllExcept(jugador.ConnectionID).jugadorAdded(jugador, partida);
                         //Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
                     }
                 }
@@ -374,10 +374,10 @@ namespace ServerPinturillo
 
             if(jugador != null)
             {
-                if(jugador.IsMiTurno == true)
-                {
-                    avanzarTurno(partida);  //avanza el turno justo antes de hacer un remove
-                }
+                //if(jugador.IsMiTurno == true)
+                //{
+                //    avanzarTurno(partida);  //avanza el turno justo antes de hacer un remove
+                //}
                 //Elimina al jugador del array de jugadores de la partida
                 partida.ListadoJugadores.Remove(jugador);
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
