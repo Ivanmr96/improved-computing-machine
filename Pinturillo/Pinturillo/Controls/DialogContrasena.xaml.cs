@@ -58,5 +58,17 @@ namespace Pinturillo.Controls
             DependencyProperty.Register("ContrasenaIncorrecta", typeof(bool), typeof(DialogContrasena), new PropertyMetadata(default(bool)));
 
 
+
+        public ICommand comandoCerrar
+        {
+            get { return (ICommand)GetValue(comandoCerrarProperty); }
+            set { SetValue(comandoCerrarProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for comandoCerrar.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty comandoCerrarProperty =
+            DependencyProperty.Register("comandoCerrar", typeof(ICommand), typeof(DialogContrasena), new PropertyMetadata(default(ICommand)));
+
+
     }
 }

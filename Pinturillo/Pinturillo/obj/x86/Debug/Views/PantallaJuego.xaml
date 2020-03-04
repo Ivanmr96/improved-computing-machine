@@ -60,12 +60,12 @@
                                 />
 
 
-                                <AppBarButton
+                                <FontIcon
                                         Name="lapiz" 
                                         Visibility="{Binding IsMiTurno,Mode=TwoWay, 
                                         UpdateSourceTrigger=PropertyChanged, 
                                         Converter={StaticResource LapizConverter}}"
-                                        Icon="Edit"
+                                        Glyph="&#xE70F;"
                                         Foreground="#50d890"
                                         Margin="0,10,5,0" 
                                         RelativePanel.AlignTopWithPanel="True"

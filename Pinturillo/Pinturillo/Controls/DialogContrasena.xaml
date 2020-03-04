@@ -8,10 +8,13 @@
     mc:Ignorable="d">
 
     <RelativePanel
+        Name="RelativePanel"
         Background="{StaticResource Semitransparent}"
         >
 
-        <Border BorderBrush="Black" 
+        <Border 
+                Name="border"
+                BorderBrush="Black" 
                 BorderThickness="4" 
                 CornerRadius="10" 
                 Height="250" 
@@ -84,6 +87,14 @@
                     />
             </Grid>
         </Border>
-
+        <Button  RelativePanel.AlignTopWith="border" 
+                 RelativePanel.AlignRightWith="border"
+                 Margin="0,5,5,0"
+                 Command="{x:Bind comandoCerrar}">
+        <FontIcon Glyph="&#xE711;"                 
+                  FontSize="35" 
+                  Foreground="Black"
+                  ></FontIcon>
+        </Button>
     </RelativePanel>
 </UserControl>

@@ -21,6 +21,7 @@
     <RootPropertyPathName Name="ContrasenaIncorrecta" />
     <RootPropertyPathName Name="Contrasena" />
     <RootPropertyPathName Name="EnterCommand" />
+    <RootPropertyPathName Name="ComandoCerrar" />
     <RootPropertyPathName Name="CreateGroupCommand" />
     <RootPropertyPathName Name="partidasAMostrar" />
     <RootPropertyPathName Name="ListadoJugadores" />
@@ -59,13 +60,17 @@
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
+      <RootProperty Name="Name" />
       <RootProperty Name="Background" />
       <RootProperty Name="Children" />
-      <RootProperty Name="Name" />
       <RootMethod Name="GetAlignHorizontalCenterWithPanel" />
       <RootMethod Name="SetAlignHorizontalCenterWithPanel" />
       <RootMethod Name="GetAlignVerticalCenterWithPanel" />
       <RootMethod Name="SetAlignVerticalCenterWithPanel" />
+      <RootMethod Name="GetAlignTopWith" />
+      <RootMethod Name="SetAlignTopWith" />
+      <RootMethod Name="GetAlignRightWith" />
+      <RootMethod Name="SetAlignRightWith" />
       <RootMethod Name="GetAlignLeftWithPanel" />
       <RootMethod Name="SetAlignLeftWithPanel" />
       <RootMethod Name="GetAlignRightWithPanel" />
@@ -90,13 +95,10 @@
       <RootMethod Name="SetLeftOf" />
       <RootMethod Name="GetAlignBottomWith" />
       <RootMethod Name="SetAlignBottomWith" />
-      <RootMethod Name="GetAlignTopWith" />
-      <RootMethod Name="SetAlignTopWith" />
-      <RootMethod Name="GetAlignRightWith" />
-      <RootMethod Name="SetAlignRightWith" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Name" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="CornerRadius" />
@@ -104,10 +106,42 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Background" />
       <RootProperty Name="Child" />
-      <RootProperty Name="Name" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Padding" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="CornerRadius" />
+      <RootProperty Name="TabIndex" />
+      <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="Converter" />
+      <RootProperty Name="UpdateSourceTrigger" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.FontIcon">
+      <RootProperty Name="Glyph" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="ManipulationMode" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Background" />
@@ -154,35 +188,12 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Visibility" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Command" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Content" />
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="Name" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="MinWidth" />
-      <RootProperty Name="MaxWidth" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="CornerRadius" />
-      <RootProperty Name="TabIndex" />
-      <RootEvent Name="Click" />
-    </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension">
-      <RootProperty Name="Mode" />
-      <RootProperty Name="Converter" />
-      <RootProperty Name="UpdateSourceTrigger" />
-    </RootType>
     <RootType FullName="Pinturillo.Controls.DialogContrasena">
       <RootProperty Name="Visibility" />
       <RootProperty Name="ContrasenaIncorrecta" />
       <RootProperty Name="Contrasena" />
       <RootProperty Name="EnterCommand" />
+      <RootProperty Name="comandoCerrar" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Name" />
@@ -296,8 +307,6 @@
       <RootProperty Name="Icon" />
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Foreground" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="ManipulationMode" />
     </RootType>
     <RootType FullName="Pinturillo.ListadoSalas" />
     <RootType FullName="Pinturillo.ViewModels.MainPageVM" />

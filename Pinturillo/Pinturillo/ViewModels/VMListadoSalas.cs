@@ -32,6 +32,7 @@ namespace Pinturillo.ViewModels
         //public DelegateCommand JoinGroupCommand { get; }
         public DelegateCommand EnterCommand { get; }
         public DelegateCommand CreateGroupCommand { get; }
+        public DelegateCommand ComandoCerrar { get; }
         public ObservableCollection<clsPartida> ListadoPartidas { get => _listadoPartidas; set => _listadoPartidas = value; }
         public clsJugador UsuarioPropio { get => _usuarioPropio; set => _usuarioPropio = value; }
         public clsPartida partidaSeleccionada { get; set; }
@@ -102,7 +103,11 @@ namespace Pinturillo.ViewModels
                 ContrasenaIncorrecta = false;
 
                 proxy.Invoke("addJugadorToSala", partidaSeleccionada.NombreSala, _usuarioPropio);
-                navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+                Tuple<string, string> nickYNombrePartida =
+                    new Tuple<string, string>(this._usuarioPropio.Nickname, partidaSeleccionada.NombreSala);
+
+                // navigationFrame.Navigate(typeof(SalaEspera), this._usuarioPropio.Nickname);
+                navigationFrame.Navigate(typeof(SalaEspera), nickYNombrePartida);
 
                 DialogContrasenaVisibility = false;
 
@@ -133,10 +138,19 @@ namespace Pinturillo.ViewModels
             /*this.JoinGroupCommand = new DelegateCommand(ExecuteJoinGroupCommand, CanExecuteJoinGroupCommand);*/ //TODO borrar command
             this.CreateGroupCommand = new DelegateCommand(ExecuteCreateGroupCommand);
             this.EnterCommand = new DelegateCommand(ExecuteEnterContrasenaCommand, CanExecuteEnterContrasenaCommand);
+            this.ComandoCerrar = new DelegateCommand(ExecuteComandoCerrar);
             this.puedesFuncionar = true;
             SignalR();
             
         
+        }
+
+        private void ExecuteComandoCerrar()
+        {
+            DialogContrasenaVisibility = false;
+            contrasena = null;
+            NotifyPropertyChanged("Contrasena");
+            NotifyPropertyChanged("DialogContrasenaVisibility");
         }
 
         public async void SignalR()
@@ -164,20 +178,15 @@ namespace Pinturillo.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsPartida partida;
-                try
-                {
-                    partida = ListadoPartidas.First<clsPartida>(x => x.NombreSala == nombreSala);
-                }
-                catch (Exception e)
-                {
-                    partida = null;
-                }
+
+                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
+
                     
-                    if (partida != null)
-                    {
-                        ListadoPartidas.Remove(partida);
-                        NotifyPropertyChanged("partidasAMostrar");
-                    }
+                if (partida != null)
+                {
+                    ListadoPartidas.Remove(partida);
+                    NotifyPropertyChanged("partidasAMostrar");
+                }
               
 
                 
