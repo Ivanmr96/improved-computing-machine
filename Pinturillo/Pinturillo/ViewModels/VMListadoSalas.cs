@@ -221,13 +221,13 @@ namespace Pinturillo.ViewModels
             {
                 clsPartida partida;
 
-                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);¡
+                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
 
                 if (partida != null)
                 {
                     ListadoPartidas.Remove(partida);
                     NotifyPropertyChanged("partidasAMostrar");
-                }¡
+                }
             });
         }
 
