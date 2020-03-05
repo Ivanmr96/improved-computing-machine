@@ -41,13 +41,25 @@ namespace Pinturillo
         }
 
 
+        /// <summary>
+        /// Evento asociado al click del botón de volver atrás.
+        /// 
+        /// Navega hacia la primera pantalla.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackArrow_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
 
 
-
+        /// <summary>
+        /// Se ejecuta cuando se ha navegado a esta pantalla.
+        /// 
+        /// Guarda el nombre de usuario recibido desde la anterior pantalla.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
@@ -59,6 +71,13 @@ namespace Pinturillo
             
         }
 
+        /// <summary>
+        /// Evento ascoiado al click en algún elemento de la lista de salas.
+        /// 
+        /// Se establece como seleccionada la sala que se haya pulsado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListadoSalas_Tapped(object sender, TappedRoutedEventArgs e)
         {
             clsPartida partida = (clsPartida)((FrameworkElement)e.OriginalSource).DataContext;

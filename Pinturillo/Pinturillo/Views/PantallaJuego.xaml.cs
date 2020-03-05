@@ -42,6 +42,15 @@ namespace Pinturillo
 
         VMPantallaJuego viewModel { get;
         }
+
+        /// <summary>
+        /// Cuando se crea la pantalla:
+        /// Se establece la configuración para el canvas, indicando el tipo de entrada para el canvas (ratón y táctil)
+        /// Y registrando los métodos que se ejecutarán cuando:
+        ///     - Cuando se empiece a pintar
+        ///     - Cuando se continue pintando
+        ///     - Cuando se termine de pintar
+        /// </summary>
         public PantallaJuego()
         {
             this.InitializeComponent();
@@ -65,6 +74,13 @@ namespace Pinturillo
             SignalR();
         }
 
+        /// <summary>
+        /// Registra los métodos de callback que se ejecutaran cuando el servidor indique:
+        /// - Que se ha recibido un trazo para pintar en el canvas
+        /// - Que ha cambiado el turno
+        /// - Que la partida ha comenzando
+        /// - Que el canvas ha sido limpiado
+        /// </summary>
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -80,7 +96,15 @@ namespace Pinturillo
             proxy.On("borrarCanvas", borrarCanvas);
         }
 
-        //Cuando cambia el turno
+        /// <summary>
+        /// Se ejecutará cuando el servidor indique se ha cambiado el turno.
+        /// 
+        /// Se reiniciará el temporizador
+        /// Se limpiará el canvas, y si es el turno de este cliente se habilitará para que se pueda pintar en el, si no, se deshabilitará.
+        /// 
+        /// Se establecerá la nueva palabra a acertar, mostrándola oculta con guiones en la interfaz.
+        /// </summary>
+        /// <param name="obj">La partida que se está jugando</param>
         private async void onHaCambiadoElTurno(clsPartida obj)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -168,9 +192,16 @@ namespace Pinturillo
         }
 
 
-
-
-        //Cuando comienza la partida
+        /// <summary>
+        /// Se ejecutará cuando el servidor indique que la partido ha comenzado.
+        /// 
+        /// Se inicia el temporizador para el primer turno.
+        /// 
+        /// Si es el turno del cliente, se habilita el canvas, si no, se deshabilita.
+        /// 
+        /// Se establecerá la nueva palabra a acertar, mostrándola oculta con guiones en la interfaz.
+        /// </summary>
+        /// <param name="obj">La partida que acaba de comenzar</param>
         private async void onPartidaComenzada(clsPartida obj)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -250,6 +281,12 @@ namespace Pinturillo
             });
         }
 
+        /// <summary>
+        /// Se ejecutará cuando se haya recibido una nueva traza pintada en el canvas.
+        /// 
+        /// Se cogerá el listado de puntos recibidos y se pintarán en el canvas para representar la traza pintada por otro usuario.
+        /// </summary>
+        /// <param name="puntos"></param>
         private async void onStrokeReceived(List<clsPunto> puntos)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -280,11 +317,17 @@ namespace Pinturillo
             });
         }
 
+
         private void InkPresenter_StrokesCollected(InkPresenter sender, InkStrokesCollectedEventArgs args)
         {
             _added = args.Strokes;
         }
 
+        /// <summary>
+        /// Cuando termine de pintar el usuario, vacía el listado de puntos para que esté listo para la siguiente traza que se pinte.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void StrokeInput_StrokeEnded(InkStrokeInput sender, PointerEventArgs args)
         {
             points = new List<Point>();
@@ -306,6 +349,11 @@ namespace Pinturillo
             //line.StrokeThickness = 4; 
         }
 
+        /// <summary>
+        /// Cuando el usuario realice una traza pintada, se convertira dicha traza en puntos y se mandarán al servidor para que el restro de jugadores la reciban y la procesen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void StrokeInput_StrokeContinued(InkStrokeInput sender, PointerEventArgs args)
         {
             // Coge el punto por el que ha pasado el cursor pulsado
@@ -356,14 +404,16 @@ namespace Pinturillo
                 points.Add(ultimo);
             }
         }
-        /*
-        public class User
-        {
-            public string Name { get; set; }
 
-            public int Age { get; set; }
-        }*/
 
+        /// <summary>
+        /// Se ejecuta cuando se ha navegado a esta pantalla.
+        /// 
+        /// Obtiene de la anterior pantalla tanto la partida como el nombre de usuario, necesarios para poder preparar esta pantalla para el inicio de la partida.
+        /// 
+        /// Al acabar, indica al servidor que ya ha navegado.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -409,11 +459,21 @@ namespace Pinturillo
 
         }
 
+        /// <summary>
+        /// Evento asociado al click del botón de "borrar todas las entradas".
+        /// 
+        /// Indica al servidor que el canvas ha sido borrado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void InkToolbar_EraseAllClicked(InkToolbar sender, object args)
         {
             proxy.Invoke("borrarCanvas", viewModel.Partida.NombreSala);
         }
 
+        /// <summary>
+        /// Limpia el canvas, borrando todas las trazas.
+        /// </summary>
         private async void borrarCanvas()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -422,6 +482,13 @@ namespace Pinturillo
             });
         }
 
+        /// <summary>
+        /// Evento asociado al click del botón del borrador.
+        /// 
+        /// limpia el canvas e indica al servidor de que el canvas ha sido borrado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InkToolbarEraserButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             //Cuando pulsas el botón de borrar, se borra todo
@@ -430,6 +497,13 @@ namespace Pinturillo
 
         }
 
+        /// <summary>
+        /// Evento que se ejecuta cuando el usuario pulsa el boton Enter.
+        /// 
+        /// Si el comando de mandar mensaje se puede ejecutar, se manda el mensaje escrito.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void inputMensajes_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)

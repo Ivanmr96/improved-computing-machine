@@ -47,6 +47,13 @@ namespace Pinturillo
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
         }
 
+        /// <summary>
+        /// Evento que se ejecuta cuando el usuario pulse el boton Enter cuando el foco esté en el textbox del nickname.
+        /// 
+        /// Si el comando de entrar al juego está habilitado, entra al juego, si no, no hace nada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtboxNick_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
@@ -58,12 +65,19 @@ namespace Pinturillo
 
             }
         }
-
+        
         private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             
         }
 
+        /// <summary>
+        /// Evento asociado al click en el icono de información.
+        /// 
+        /// Muestra un diálogo con la información de los créditos de la aplicación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
             viewModel.VisibilidadDialog = true;

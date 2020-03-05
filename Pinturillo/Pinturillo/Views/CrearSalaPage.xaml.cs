@@ -28,8 +28,16 @@ namespace Pinturillo
         {
             this.InitializeComponent();
             vm = (CrearSalaVM)DataContext;
-        }       
-            private void Button_Click(object sender, RoutedEventArgs e)
+        }
+        
+        /// <summary>
+        /// Evento asociado al click del botón de volver atrás.
+        /// 
+        /// Navega al listado de salas y limpia los campos del formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.limpiarCampos();
             vm.limpiarFormulario();
@@ -37,6 +45,12 @@ namespace Pinturillo
             vm.PuedesFuncionar = false;
         }        
 
+        /// <summary>
+        /// Se ejecutará cuando se haya navegado a esta pantalla.
+        /// 
+        /// Asigna el nombre de usuario recibido desde la anterior pantalla
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             vm.NombreUsuario = (String)e.Parameter;

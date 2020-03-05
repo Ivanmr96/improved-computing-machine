@@ -34,6 +34,16 @@ namespace Pinturillo
             btnEnviarMensaje.Focus(FocusState.Keyboard);
         }
 
+        /// <summary>
+        /// Se ejecuta cuando se haya navegado a esta página.
+        /// 
+        /// Si la anterior página fue la de crear la sala.
+        /// 
+        /// Obtiene la partida recibida de la anterior pantalla, establece al jugador como el lider (ya que es el creador)
+        /// 
+        /// Si no, significa que viene de la pantalla del listado de salas, por lo que obtiene tanto el nombre de usuario como el nombre de la sala.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
@@ -70,6 +80,13 @@ namespace Pinturillo
 
         }
 
+        /// <summary>
+        /// Evento asociado a la pulsación de la tecla Enter.
+        /// 
+        /// Si el comando enviarMensaje se puede ejecutar, se manda el mensaje escrito en el campo de texto para el chat.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBoxMensaje_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
