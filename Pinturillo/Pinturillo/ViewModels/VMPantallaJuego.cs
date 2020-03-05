@@ -81,6 +81,16 @@ namespace Pinturillo.ViewModels
         }
 
 
+        /// <summary>
+        /// Se ejecuta en cada instante del temporizador, la duración
+        /// del instante depende del tiempo indicado en el constructor del Timer.
+        /// Muestra y oculta el texto de ayuda para que el usuario vea de quién es el turno,
+        /// pues la visibilidad de esta información depende del tiempo.
+        /// Asímismo también va mostrando caracteres de la palabra en juego y avisa al
+        /// servidor cuando el contador llega a 0.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tik(object sender, object e)
         {
             if (_timeMax > 0 )
@@ -102,8 +112,6 @@ namespace Pinturillo.ViewModels
                     }
                    
                 }
-
-
                 if (_timeMax <= 10)
                 {
                     _timeMax--;
