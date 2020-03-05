@@ -925,3 +925,8 @@ D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\resources.en-us.resfiles.intermediate
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\ProjectArchitectures.txt
 D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758516200000000.json
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.g.i.cs
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.g.cs
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xaml
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xbf
+D:\Documents\GIT\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogAboutInfo.xbf

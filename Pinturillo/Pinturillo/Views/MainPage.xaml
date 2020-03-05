@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:vm ="using:Pinturillo.ViewModels"
+    xmlns:control="using:Pinturillo.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
@@ -81,5 +82,34 @@
 
                 </Grid>
         </Border>
+
+
+        <Image
+            Source="ms-appx:///Assets/aboutus.png"
+            Width="100"
+            RelativePanel.AlignRightWithPanel="True"
+            Margin="15"
+            DoubleTapped="Image_DoubleTapped"
+            Tapped="Image_Tapped"
+            >
+            
+        </Image>
+        
+        <control:DialogAboutInfo
+            Visibility="{Binding VisibilidadDialog, 
+            Mode=TwoWay, 
+            Converter={StaticResource 
+            BoolToVisibilityConverterXBIND}}"
+            
+            RelativePanel.AlignBottomWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignTopWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            SalirCommand="{Binding SalirCommand }"
+            >
+            
+        </control:DialogAboutInfo>
+        
+        
     </RelativePanel>
 </Page>

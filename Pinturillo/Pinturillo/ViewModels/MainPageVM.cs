@@ -18,14 +18,30 @@ namespace Pinturillo.ViewModels
         private HubConnection conn;
         private IHubProxy proxy;
     
+
+
+
+
+        public bool VisibilidadDialog { get; set; }
         public string visibilidadMensajeError { get; set; }
         Frame navigationFrame = Window.Current.Content as Frame;
- 
+
+        public DelegateCommand SalirCommand{get;set;}
+
+
+
 
         public MainPageVM() {
             
             visibilidadMensajeError = "Collapsed";
+            SalirCommand = new DelegateCommand(SalirCommandExecute);
             SignalR();
+        }
+
+        private void SalirCommandExecute()
+        {
+            this.VisibilidadDialog = false;
+            NotifyPropertyChanged("VisibilidadDialog");
         }
 
         public async void SignalR()

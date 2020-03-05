@@ -58,5 +58,16 @@ namespace Pinturillo
 
             }
         }
+
+        private void Image_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            
+        }
+
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            viewModel.VisibilidadDialog = true;
+            viewModel.NotifyPropertyChanged("VisibilidadDialog");
+        }
     }
 }

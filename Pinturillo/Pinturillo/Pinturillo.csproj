@@ -129,6 +129,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connection\Connection.cs" />
+    <Compile Include="Controls\DialogAboutInfo.xaml.cs">
+      <DependentUpon>DialogAboutInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DialogContrasena.xaml.cs">
       <DependentUpon>DialogContrasena.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\2.png" />
+    <Content Include="Assets\aboutus.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -188,6 +192,7 @@
     <Content Include="Assets\photo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\question.png" />
     <Content Include="Assets\reply.png" />
     <Content Include="Assets\return.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
@@ -238,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\DialogAboutInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DialogContrasena.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
