@@ -306,7 +306,7 @@
 
 
         <controls:DialogFinalPartida            
-            Visibility="Collapsed"
+            Visibility="{Binding Partida.IsJugandose, Mode=TwoWay, Converter={StaticResource InverseBoolToVisibilityConverterXBIND}}"
             CommandSalir="{Binding GoBackCommand}"
             ListadoJugadores="{Binding Partida.ListadoJugadores}"
             RelativePanel.AlignTopWithPanel="True"
