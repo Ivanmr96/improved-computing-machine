@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pinturillo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Pinturillo
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private MainPageVM viewModel { get; }
         public MainPage()
         {
             //var view = DisplayInformation.GetForCurrentView();
@@ -41,8 +43,20 @@ namespace Pinturillo
 
 
             this.InitializeComponent();
+            viewModel = (MainPageVM)DataContext;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
         }
 
+        private void txtboxNick_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                if (viewModel.EntrarAlJuego_CanExecuted())
+                {
+                    viewModel.EntrarAlJuego_Executed();
+                }
+
+            }
+        }
     }
 }

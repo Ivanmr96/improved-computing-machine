@@ -28,24 +28,19 @@ namespace ServerPinturillo
             this.listadoNickConConnectionID = singletonNicks;
         }
 
-        
-
-
-        /*
-         -crear partida
-         -enviar listado de salas
-         -enviar lista de mensajes 
-         -enviar el mensaje añadido
-         -notificar que se ha unido una persona a la partida 
-         -notificar que la partida ha empezado para que comiencen a contar el timer
-         -enviar partida (solo se enviaría al usuario que crea la partido)
-         -
-         */
-
+        /// <summary>
+        /// Método que será llamado cuando un cliente esté pintando y se lo enviará
+        /// a los demás clientes del grupo
+        /// </summary>
+        /// <param name="puntos"> el listado de puntos que ha pintado el cliente</param>
+        /// <param name="nombreGrupo">el nombre del grupo donde está el cliente que pinta</param>
         public void strokeDraw(List<clsPunto> puntos,string nombreGrupo) {
             Clients.OthersInGroup(nombreGrupo).mandarStroke(puntos);
         }
 
+        /// <summary>
+        /// Le envía el listado de salas del servidor al cliente que lo llama.
+        /// </summary>
         public void sendSalas()
         {
             //List<clsPartida> listadoSalas = new List<clsPartida>();
@@ -58,6 +53,16 @@ namespace ServerPinturillo
             Clients.Caller.recibirSalas(listadoSalas.ListadoPartidas);
         }
 
+        /// <summary>
+        /// A este método lo llamará el cliente que cree una partida, y
+        /// así se añadirá al listado de partidas del servidor y se 
+        /// añadirá el usuario creador como líder de la partida.
+        /// Se añadirá el nuevo grupo y los clientes recibirán las partidas
+        /// para que vean la nueva partida reflejada en su listado de salas.
+        /// El que llama también recibirá la partida creada.
+        /// </summary>
+        /// <param name="partida">partida creada</param>
+        /// <param name="nickLider">nick del líder (quien ha creado la partida)</param>
         public void añadirPartida(clsPartida partida, String nickLider)
         {
             //clsJugador jugador = partida.ListadoJugadores.First<clsJugador>(j => j.ConnectionID == Context.ConnectionId);
@@ -73,9 +78,13 @@ namespace ServerPinturillo
         }
 
 
-        //Metodo para indicar que se comienza la partida
-
-        public void comenzarPartidaEnGrupo(clsPartida partida)  //TODO que aqui reciba el nombre de sala y ya
+        /// <summary>
+        /// Metodo para indicar que se comienza la partida
+        /// Se establecen propiedades como el turno, la ronda, la palabra en juego, IsJugandose.
+        /// Llama al OnPartidaComenzada de los clientes del grupo.
+        /// </summary>
+        /// <param name="partida">partida que comienza</param>
+        public void comenzarPartidaEnGrupo(clsPartida partida)  
         {
 
             partida = obtenerPartidaPorNombreSala(partida.NombreSala);
@@ -118,7 +127,12 @@ namespace ServerPinturillo
         }
 
 
-
+        /// <summary>
+        /// Método que será llamado por un cliente cuando ya haya navegado de una pantalla concreta
+        /// a otra, para evitar que el servidor dé los datos de las partidas antes de que todos
+        /// los integrantes del grupo hayan viajado.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre del grupo</param>
         public void yaHeNavegado(string nombreGrupo)
         {
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
@@ -139,7 +153,13 @@ namespace ServerPinturillo
 
 
 
-        //Metodo que se llama cuando un contador de un cliente llega a 0
+        /// <summary>
+        /// Método que será llamado por un cliente cuando un contador de un cliente llega a 0, 
+        /// para evitar que el servidor dé los datos del siguiente turno antes de que todos
+        /// los integrantes del grupo hayan terminado.
+        /// </summary>
+        /// <param name="connectionIDJugador"></param>
+        /// <param name="nombreGrupo"></param>
         public void miContadorHaLlegadoACero(string connectionIDJugador, string nombreGrupo)
         {
             bool todosHanTerminado = true;
@@ -160,8 +180,6 @@ namespace ServerPinturillo
                     todosHanTerminado = false;
                 }
             }
-
-
             if (todosHanTerminado)
             {
                 //Vuelvo a poner sus "haTerminadoTimer" a false
@@ -177,15 +195,12 @@ namespace ServerPinturillo
         }
 
 
-
-
-
-
-
-
-
-
-        //Para cambiar el turno
+        /// <summary>
+        /// Método que avanza un turno en una partida, cambiando todas las propiedades
+        /// pertinentes como el turno actual, la ronda y el jugador actual.
+        /// Se llamará al método OnHaCambiadoElTurno de todos los clientes del grupo.
+        /// </summary>
+        /// <param name="partida">partida en juego en la que se pasará el turno</param>
         public void avanzarTurno(clsPartida partida)
         {
             clsPartida partidaObtenida = obtenerPartidaPorNombreSala(partida.NombreSala);
@@ -272,7 +287,15 @@ namespace ServerPinturillo
         }
 
 
-        //el cliente llama a este método cuando acierte la palabra
+        /// <summary>
+        /// El cliente llama a este método cuando acierte la palabra y haya que sumar
+        /// puntos a un usuario.
+        /// El método pasa el turno si todos los usuarios (menos el que pintaba)
+        /// de una partida han acertado.
+        /// </summary>
+        /// <param name="connectionIDUSer">connection ID del usuario al que han de sumarse los puntos</param>
+        /// <param name="puntosToAdd">cantidad de puntos a sumar</param>
+        /// <param name="nombreGrupo">nombre del grupo al que pertenece el usuario</param>
         public void addPuntosToUser(string connectionIDUSer, int puntosToAdd,string nombreGrupo)
         {
             clsPartida partidaActual = obtenerPartidaPorNombreSala(nombreGrupo);
@@ -282,11 +305,8 @@ namespace ServerPinturillo
             jugador.IsUltimaPalabraAcertada = true;
 
             Clients.Group(nombreGrupo).puntosAdded(partidaActual);
-
-
             //Si todos los jugadores ya han acertado la palabra, se pasa el turno
             int acertantes = 0;
-
             //Comprobar si todos los jugadores de la partida han acertado ya
             for (int i = 0; i < partidaActual.ListadoJugadores.Count; i++)
             {
@@ -305,9 +325,14 @@ namespace ServerPinturillo
 
         }
 
+        /// <summary>
+        /// Añade un mensaje al listado de mensajes de una partida.
+        /// Llama al método addMensajeToChat de todos los clientes del grupo.
+        /// </summary>
+        /// <param name="mensaje">mensaje a añadir</param>
+        /// <param name="nombreGrupo">nombre del grupo donde hay que añadir el mensaje</param>
         public void sendMensaje (clsMensaje mensaje, string nombreGrupo)
         {
-
             clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
 
             if(partida != null)
@@ -319,15 +344,31 @@ namespace ServerPinturillo
             
         }
 
+        /// <summary>
+        /// Avisa a los otros miembros del grupo de que empieza la partida.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre del grupo</param>
         public void empezarPartida(String nombreGrupo) {
             Clients.OthersInGroup(nombreGrupo).empezarPartida();
 
         }
 
+        /// <summary>
+        /// Método que es llamado cuando un cliente que pinta
+        /// borra su canvas. Llama al método borrarCanvas de los demás
+        /// clientes del grupo.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre del grupo al que pertenece el cliente que llama</param>
         public void borrarCanvas(String nombreGrupo) {
             Clients.OthersInGroup(nombreGrupo).borrarCanvas();
         }
 
+        /// <summary>
+        /// Método que es llamado cuando un jugador se une a una sala creada.
+        /// Se llama al método jugadorAdded de los clientes.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre de la sala a la que se une</param>
+        /// <param name="jugador">jugador que se une</param>
         public void addJugadorToSala(string nombreGrupo, clsJugador jugador)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
@@ -347,22 +388,33 @@ namespace ServerPinturillo
                         Groups.Add(Context.ConnectionId, partida.NombreSala);
                         partida.ListadoJugadores.Add(jugador);
 
-                        //Clients.All.jugadorAdded(jugador, partida);
-                        //Clients.Group(nombreGrupo).jugadorAdded(jugador, partida);
+                        
                         Clients.Client(jugador.ConnectionID).jugadorAdded(jugador, partida);
                             Clients.AllExcept(jugador.ConnectionID).jugadorAdded(jugador, partida);
-                        //Clients.All.recibirSalas(listadoSalas.ListadoPartidas);
+                        
                     }
                 }
             }
             
         }
 
+        /// <summary>
+        /// Método que devuelve una partida dado el nombre de la misma.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre de la partida a obtener</param>
+        /// <returns>partida cuyo nombre se corresponde con el nombre dado</returns>
         private clsPartida obtenerPartidaPorNombreSala(String nombreGrupo)
         {
             return listadoSalas.ListadoPartidas.Find(x => x.NombreSala == nombreGrupo);
         }
 
+        /// <summary>
+        /// Método que se llamará cuando un cliente haya salido de una partida.
+        /// El método se encargará de evaluar si es necesario pasar el turno si el jugador
+        /// estaba jugando y era su turno. También se borra al usuario del grupo y de la partida.
+        /// </summary>
+        /// <param name="usuario">nick de usuario del cliente que ha salido</param>
+        /// <param name="nombreSala">nombre del grupo del cual ha salido</param>
         public void jugadorHaSalido(string usuario, string nombreSala)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreSala);
@@ -389,9 +441,6 @@ namespace ServerPinturillo
                 }
                 else
                 {
-                    //TODO aqui podriamos mandarle la partida completa y en el cliente
-                    //hacer lo mismo que en jugadorAdded (si la partida.NombreSala == a la mia,
-                    //reasignala
 
                     Clients.All.jugadorDeletedSala(jugador.Nickname, nombreSala);
                     if (jugador.IsLider)
@@ -399,17 +448,18 @@ namespace ServerPinturillo
                         llamarConvertirEnLider(nombreSala);    
                         //luego (si era el lider) se pone de lider al primero de la lista
                     }
-
-
-
                 }
             }
 
         }
 
-        //Metodo que llama al metodo de un cliente en concreto y lo pone como lider
-        //A este metodo se le llamara cuando salga de la partida o se desconecte un
-        //jugador que sea el actual lider del grupo.
+
+        /// <summary>
+        //  Metodo que llama al metodo de un cliente en concreto y lo pone como lider
+        //  A este metodo se le llamara cuando salga de la partida o se desconecte un
+        //  jugador que sea el actual lider del grupo.
+        /// </summary>
+        /// <param name="nombreGrupo">nombre del grupo del cliente que llama</param>
         public void llamarConvertirEnLider(string nombreGrupo)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
@@ -427,8 +477,13 @@ namespace ServerPinturillo
 
         }
 
-        //A este método se le llama cuando hay un nuevo líder, para guardar el dato
-        //en el listado de partidas del servidor
+
+        /// <summary>
+        //  A este método se le llama cuando hay un nuevo líder, para guardar el dato
+        //  en el listado de partidas del servidor
+        /// </summary>
+        /// <param name="nickUsuario">nick del nuevo lider</param>
+        /// <param name="nombreGrupo">nombre del grupo al que pertenece el cliente que llama</param>
         public void habemusNuevoLider(string nickUsuario, string nombreGrupo)
         {
             clsPartida partida = obtenerPartidaPorNombreSala(nombreGrupo);
@@ -446,7 +501,13 @@ namespace ServerPinturillo
         }
 
 
-        //Comprobar si el nick es único
+
+        /// <summary>
+        /// Comprueba si un nick dado ya existe entre los usuarios conectados.
+        /// Si existe lo añade al listado de nicks de usuarios conectados junto con su connectionID.
+        /// Llama al método nickComprobado del cliente que llama.
+        /// </summary>
+        /// <param name="nick">nick a comprobar</param>
         public void comprobarNickUnico(string nick)
         {
             
@@ -474,7 +535,11 @@ namespace ServerPinturillo
 
         }
 
-        //Comprobar si el nombre de la sala es único
+        /// <summary>
+        /// Comprueba si el nombre de la sala dado ya existe.
+        /// Llama al método nombreSalaComprobado del cliente que llama.
+        /// </summary>
+        /// <param name="nombreSala">nombre de la sala a comprobar</param>
         public void comprobarNombreSalaUnico(string nombreSala)
         {
 
@@ -494,11 +559,12 @@ namespace ServerPinturillo
 
         }
 
-
-
-
-        //Si algo falla esto es lo que hay que quitar
-        //TODO falta asignarle el connection id a cada usuario  //añadido
+        /// <summary>
+        /// Callback sobreescrito que se llama cuando un cliente se desconecta.
+        /// Este método llama a jugador ha salido si el cliente desconectado pertenecía a un grupo.
+        /// </summary>
+        /// <param name="stopCalled">indica si la desconexión fue forzosa o no</param>
+        /// <returns></returns>
         public override Task OnDisconnected(bool stopCalled)
         {
             //Obtener el ID de conexion del usuario que ha salido
@@ -525,11 +591,6 @@ namespace ServerPinturillo
             {
                 jugadorHaSalido(jugadorQueSeDesconecta.Nickname, nombreGrupo);
             }
-            else //no esta en ningun grupo
-            {
-                //Resto de lógica de cuando un usuario de grupo sale
-                //TODO
-            }
 
             encontrado = false;
             for(int i = 0; i< this.listadoNickConConnectionID.ListadoNickConConnectionID.Count && !encontrado; i ++)
@@ -541,8 +602,6 @@ namespace ServerPinturillo
                 }
             }
             
-
-
             return base.OnDisconnected(stopCalled);
         }
     }

@@ -87,14 +87,14 @@ namespace Pinturillo.ViewModels
             }
         }
 
-        private void EntrarAlJuego_Executed()
+        public void EntrarAlJuego_Executed()
         {
             //Aquí deberá hacer un invoke al servidor 
             proxy.Invoke("comprobarNickUnico", _nick);
             //navigationFrame.Navigate(typeof(ListadoSalas),nick);
         }
 
-        private bool EntrarAlJuego_CanExecuted()
+        public bool EntrarAlJuego_CanExecuted()
         {
             bool puedeEntrar = false;
 

@@ -46,6 +46,7 @@
                           Name="txtboxNick" 
                           BorderBrush="Black" 
                           Foreground="Black" 
+                            KeyDown="txtboxNick_KeyDown"
                           Width="240" FontSize="20" 
                           Height="40" Margin="-10,7,0,0" 
                           PlaceholderText="Escribe tu nick" 
