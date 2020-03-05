@@ -26,6 +26,7 @@ namespace ServerPinturillo.Clases
         private string _connectionIDJugadorActual;
         private List<int> _posicionesADescubrir;
         private int _jugadoresQueHanNavegado;
+   
 
         #endregion
 
@@ -59,6 +60,7 @@ namespace ServerPinturillo.Clases
             ListadoJugadores = new ObservableCollection<clsJugador>(new List<clsJugador>());
             PosicionesADescubrir = new List<int>();
             JugadoresQueHanNavegado = 0;
+
         }
 
 
@@ -80,7 +82,7 @@ namespace ServerPinturillo.Clases
         public List<int> PosicionesADescubrir { get => _posicionesADescubrir; set => _posicionesADescubrir = value; }
 
         public int JugadoresQueHanNavegado { get => _jugadoresQueHanNavegado; set => _jugadoresQueHanNavegado = value; }
-
+ 
         #endregion
     }
 }

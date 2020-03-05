@@ -11,6 +11,7 @@
         private bool _isLider;
 
         private bool _isMiTurno;
+        private bool _isDesconectado;
         #endregion
 
 
@@ -24,6 +25,8 @@
             IsUltimaPalabraAcertada = isUltimaPalabraAcertada;
             IsLider = isLider;
             IsMiTurno = isMyTurno;
+            IsDesconectado = false;
+
         }
 
         public clsJugador()
@@ -42,6 +45,7 @@
         public bool HaTerminadoTimer { get => _haTerminadoTimer; set => _haTerminadoTimer = value; }
         public bool IsUltimaPalabraAcertada { get => _isUltimaPalabraAcertada; set => _isUltimaPalabraAcertada = value; }
         public bool IsLider { get => _isLider; set => _isLider = value; }
+        public bool IsDesconectado { get => _isDesconectado; set => _isDesconectado = value; }
         #endregion
     }
 }

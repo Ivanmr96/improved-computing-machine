@@ -26,6 +26,7 @@ namespace ServerPinturillo
         {
             this.listadoSalas = salas;
             this.listadoNickConConnectionID = singletonNicks;
+
         }
 
         /// <summary>
@@ -265,6 +266,11 @@ namespace ServerPinturillo
                 if (partida.Turno < partida.ListadoJugadores.Count)
                 {
                     partida.Turno++;
+                    if (jugadorJugando.IsDesconectado)
+                    {
+                        partida.Turno--;
+                        jugadorJugando.IsDesconectado = false;
+                    }
 
                 }
                 else
@@ -427,13 +433,14 @@ namespace ServerPinturillo
             {
                 if (jugador.IsMiTurno == true)
                 {
+                    // isJugadorDesconectado = true;
+                    jugador.IsDesconectado = true;
                     avanzarTurno(partida);
                 }
                 //Elimina al jugador del array de jugadores de la partida
                 partida.ListadoJugadores.Remove(jugador);
                 Groups.Remove(Context.ConnectionId, partida.NombreSala);
                
-
                 if (partida.ListadoJugadores.Count == 0)
                 {
                     listadoSalas.ListadoPartidas.Remove(partida);
