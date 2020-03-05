@@ -84,6 +84,11 @@ namespace Pinturillo.ViewModels
         //    return false;
         //}
 
+        /// <summary>
+        /// Se realiza cuando se ejecuta el comando de crear sala
+        /// 
+        /// Navega a la pantalla de creación de sala
+        /// </summary>
         private void ExecuteCreateGroupCommand()
         {
             if (puedesFuncionar)
@@ -94,6 +99,13 @@ namespace Pinturillo.ViewModels
            
         }
 
+        /// <summary>
+        /// Se realiza cuando se ejecuta el comando de comprobar contraseña.
+        /// 
+        /// Si la contraseña es correcta, se nacegará a la sala seleccionada.
+        /// 
+        /// Si no, se indicará que la contraseña introducida es incorrecta.
+        /// </summary>
         private void ExecuteEnterContrasenaCommand()
         {
             //TODO Comprobar que la contraseña es correcta, si lo es, entrar en la sala, si no, mostrar un texto diciendo que es incorrecta
@@ -121,6 +133,10 @@ namespace Pinturillo.ViewModels
             NotifyPropertyChanged("ContrasenaIncorrecta");
         }
 
+        /// <summary>
+        /// El comando de comprobar contraseña estará habilitado cuando haya algo escrito en el campo de la contraseña
+        /// </summary>
+        /// <returns></returns>
         private bool CanExecuteEnterContrasenaCommand()
         {
             return !String.IsNullOrEmpty(contrasena);
@@ -128,6 +144,11 @@ namespace Pinturillo.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// Se ejecuta cuando entra en la pantalla por primera vez
+        /// 
+        /// Establece los comandos y la configuración de la conexión con el servidor signalR
+        /// </summary>
         #region"Constructor"
         public VMListadoSalas()
         {
@@ -145,6 +166,11 @@ namespace Pinturillo.ViewModels
         
         }
 
+        /// <summary>
+        /// Se realiza cuando se ejecuta el comando de cerrar el diálogo de la contraseña.
+        /// 
+        /// Cierra el diálogo de la contraseña
+        /// </summary>
         private void ExecuteComandoCerrar()
         {
             DialogContrasenaVisibility = false;
@@ -153,6 +179,16 @@ namespace Pinturillo.ViewModels
             NotifyPropertyChanged("DialogContrasenaVisibility");
         }
 
+        /// <summary>
+        /// Realiza los registros de los métodos callback que el servidor signalR llamará.
+        /// 
+        /// - Cuando reciba las salas
+        /// - Cuando se haya eliminado una partida vacía
+        /// - Cuando algún jugador se haya unido a alguna partida
+        /// - Cuando algún jugador se haya ido de alguna partida.
+        /// 
+        /// Pide el listado de salas.
+        /// </summary>
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -173,27 +209,35 @@ namespace Pinturillo.ViewModels
             
         }
 
+        /// <summary>
+        /// Cuando el servidor indique que hay una partida vacía, se llamará a este método.
+        /// 
+        /// Borra la partida del listado
+        /// </summary>
+        /// <param name="nombreSala">El nombre de la sala que se ha quedado vacía</param>
         private async void eliminarPartidaVacia(string nombreSala)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 clsPartida partida;
 
-                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);
+                partida = ListadoPartidas.FirstOrDefault<clsPartida>(x => x.NombreSala == nombreSala);¡
 
-                    
                 if (partida != null)
                 {
                     ListadoPartidas.Remove(partida);
                     NotifyPropertyChanged("partidasAMostrar");
-                }
-              
-
-                
-                
+                }¡
             });
         }
 
+        /// <summary>
+        /// Cuando un jugador se haya ido de alguna partida.
+        /// 
+        /// Se borrará del listado de jugadores de la sala dada el jugador con el nombre dado.
+        /// </summary>
+        /// <param name="usuario">Nombre del jugador que se ha ido de una partida</param>
+        /// <param name="nombreSala">Nombre de la sala de la que se ha ido el jugador</param>
         public async void jugadorDeleted(string usuario, string nombreSala)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -221,6 +265,12 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Cuando el servidor mande el listado de salas.
+        /// 
+        /// Se establece el listado de salas con el nuevo listado recibido.
+        /// </summary>
+        /// <param name="listado">El listado con las salas dado por el servidor.</param>
         private async void pedirListaAsync(List<clsPartida> listado)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -234,8 +284,14 @@ namespace Pinturillo.ViewModels
             });
         }
 
-
-
+        /// <summary>
+        /// Cuando se haya pulsado en alguna de las salas.
+        /// 
+        /// Si la sala no tiene contraseña, el jugador se une a la sala, navegando hacia la sala de espera.
+        /// 
+        /// Si la sala tiene contraseña, se muestra el diálogo de la contraseña.
+        /// </summary>
+        /// <param name="partida"></param>
         public void ListadoSalas_Tapped(clsPartida partida)
         {
             partidaSeleccionada = partida;
@@ -257,6 +313,13 @@ namespace Pinturillo.ViewModels
 
         }
 
+        /// <summary>
+        /// Cuando el servidor indique que un jugador se ha unido a alguna sala.
+        /// 
+        /// Se añade el jugador a la sala
+        /// </summary>
+        /// <param name="jugador">El jugador que se ha unido a una sala</param>
+        /// <param name="game">La sala a la que se ha unido el jugador</param>
         public async void jugadorAdded( clsJugador jugador, clsPartida game)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

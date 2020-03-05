@@ -28,6 +28,11 @@ namespace Pinturillo.ViewModels
 
         #region constructor
 
+        /// <summary>
+        /// Se ejecuta cuando se cargue la pantalla por primera vez.
+        /// 
+        /// Realiza configuraciones con la conexión signalR, así como establece los comandos.
+        /// </summary>
         public SalaEsperaVM()
         {
             // Aquí obtendría la partida enviada desde la otra ventana
@@ -78,8 +83,15 @@ namespace Pinturillo.ViewModels
 
         public DelegateCommand enviarMensaje { get; set; }
 
+        /// <summary>
+        /// Podrá ejecuta el comando de enviar mensaje cuando el mensaje no esté vacío ni sea null.
+        /// </summary>
+        /// <returns></returns>
         public bool enviarMensaje_canExecute() => mensaje.Mensaje != null && mensaje.Mensaje != "";
 
+        /// <summary>
+        /// Ejecuta el comando de enviar mensaje, manda el mensaje al servidor y limpia el campo de texto del mensaje
+        /// </summary>
         public void enviarMensaje_execute()
         {
             //Mandar el mensaje al servidor
@@ -90,6 +102,13 @@ namespace Pinturillo.ViewModels
 
         public DelegateCommand salir { get; set; }
 
+        /// <summary>
+        /// Se realiza cuando se ejecute el comando de salir.
+        /// 
+        /// Se muestra un diálogo de confirmación para salir.
+        /// 
+        /// Si el usuario acepta salir, se navega al listado de salas, si no, se cierra el diálogo.
+        /// </summary>
         private async void salir_execute()
         {
             //Indica al serivdor que sale.
@@ -116,6 +135,10 @@ namespace Pinturillo.ViewModels
 
         public DelegateCommand comenzarPartida { get; set; }
 
+        /// <summary>
+        /// El botón de comenzar partida estará habilitado solo para el jugador que sea lider de la partida
+        /// </summary>
+        /// <returns></returns>
         public bool comenzarPartida_canExecute()
         {
             bool puedeComenzar = false;
@@ -133,6 +156,11 @@ namespace Pinturillo.ViewModels
             return puedeComenzar;
         }
 
+        /// <summary>
+        /// Se realiza cuando se ejecute el comando de comenzar partida.
+        /// 
+        /// Limpia el listado de mensajes de la partida, indica al servidor que la partida ha comenzado y navega a la pantalla del juego.
+        /// </summary>
         public void comenzarPartida_execute()
         {
             //Indica al servidor que la partida va a comenzar.
@@ -154,7 +182,16 @@ namespace Pinturillo.ViewModels
 
         #endregion
 
-
+        /// <summary>
+        /// Realiza las configuraciones de la conexion con singalR para esta pantalla.
+        /// 
+        /// Registra los métodos de callback con el servidor signalR:
+        ///     - Cuando se haya escrito un mensaje nuevo en el chat
+        ///     - Cuando se haya unido un jugador a la partida
+        ///     - Cuando se haya ido un jugador
+        ///     - Cuando la partida haya comenzado
+        ///     - Cuando se haya nombrado un nuevo lider para la partida
+        /// </summary>
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -172,6 +209,9 @@ namespace Pinturillo.ViewModels
 
         }
 
+        /// <summary>
+        /// Cuando se empiece la partida, se marcará como jugándose, se limpiará el listado de mensajes y se navegará a la pantalla del juego
+        /// </summary>
         private async void OnempezarPartidaAsync()
         {
             //Ir a la pantalla de juego
@@ -189,7 +229,11 @@ namespace Pinturillo.ViewModels
             });
         }
 
-        //se nombra como lider al jugador actual
+        /// <summary>
+        /// Se ejecuta cuando el servidor indica que este cliente es el nuevo jugador lider de la partida.
+        /// 
+        /// Se establece como lider y e indica al servidor que es el nuevo lider.
+        /// </summary>
         private async void OnnombrarComoLider()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -213,14 +257,17 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Cuando un jugador se haya unido a la partida, lo añade al listado de jugadores.
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <param name="game"></param>
         private async void jugadorAdded(clsJugador jugador, clsPartida game)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-              
                     if (partida != null)
                     {
-
                     //El problema es que aquí no tienes el nombre de la partida
                     if(this.partida.NombreSala == game.NombreSala)
                     {
@@ -239,16 +286,15 @@ namespace Pinturillo.ViewModels
                         comenzarPartida.RaiseCanExecuteChanged();
                         //NotifyPropertyChanged("partidasAMostrar");
                     }
-
-
-
                 }
-               
-
-               
             });
         }
 
+        /// <summary>
+        /// Cuando se haya ido un jugador de la partida, lo borra del listado de jugadores.
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="nombreSala"></param>
         public async void OnjugadorDeleted(string usuario, string nombreSala)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -268,6 +314,10 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Cuando se haya escrito un nuevo mensaje en el chat, lo añade al listado de mensajes.
+        /// </summary>
+        /// <param name="mensaje"></param>
         public async void  OnaddMensajeToChat (clsMensaje mensaje)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

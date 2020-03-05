@@ -44,7 +44,11 @@ namespace Pinturillo.ViewModels
         public int tiempoEspera { get; set; }
         public bool hanAcertadoTodos { get; set; }
 
-
+        /// <summary>
+        /// Se ejecuta cuando se cree la pantalla de juego.
+        /// 
+        /// Realiza las configuraciones para la interfaz de usuario y para la partida, así como establecer los comandos y la configuración de signalR
+        /// </summary>
         public VMPantallaJuego()
         {
             HaAcertado = false;
@@ -151,6 +155,16 @@ namespace Pinturillo.ViewModels
             }
         }
 
+        /// <summary>
+        /// Establece la configuración de signalR para esta pantalla.
+        /// 
+        /// Registra los métodos callback para:
+        ///     - Cuando un jugador se haya ido
+        ///     - Un mensaje se haya enviado
+        ///     - Se hayan añadido puntos a algun jugador
+        ///     - Cuando todos hayan acertado la palabra
+        ///     - Cuando la partida haya terminado
+        /// </summary>
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -167,6 +181,11 @@ namespace Pinturillo.ViewModels
 
         }
 
+        /// <summary>
+        /// Se ejecuta cuando el servidor indique que la partida ha terminado.
+        /// 
+        /// Se marca la partida como que no está jugándose, se ordena el listado de jugadores por puntuación y se muestra el diálogo con la puntuación final de la partida.
+        /// </summary>
         private async void OnHaTerminadoLaPartida()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -178,6 +197,9 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Ordena el listado de jugadores por puntuación de forma descendente.
+        /// </summary>
         private void ordenarListadoJugadoresPorPuntuacion()
         {
             _partida.ListadoJugadores = new ObservableCollection<clsJugador>((from jugador in _partida.ListadoJugadores
@@ -193,6 +215,9 @@ namespace Pinturillo.ViewModels
             _partida.NotifyPropertyChanged("ListadoJugadores");
         }
 
+        /// <summary>
+        /// Se ejecuta cuando el servidor indique que todos los jugadores han acertado la palabra.
+        /// </summary>
         private async void OnTodosHanAcertado()
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -283,7 +308,12 @@ namespace Pinturillo.ViewModels
         }
         #endregion
 
-
+        /// <summary>
+        /// Se ejecuta cuando el servidor indique se le han añadido puntos a un jugador.
+        /// 
+        /// Se actualiza el listado de jugadores para tener las nuevas puntuaciones
+        /// </summary>
+        /// <param name="obj">La partida con los puntos del jugador añadidos</param>
         public async void OnPuntosAdded(clsPartida obj)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -295,6 +325,13 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Se ejecuta cuando el servidor indique que se ha ido un jugador.
+        /// 
+        /// Se borra al jugador de la lista
+        /// </summary>
+        /// <param name="usuario">Usuario que se ha ido</param>
+        /// <param name="nombreSala">Nombre de la sala de la cual se ha ido el usuario</param>
         public async void OnjugadorDeleted(string usuario, string nombreSala)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -314,6 +351,10 @@ namespace Pinturillo.ViewModels
             });
         }
 
+        /// <summary>
+        /// Se ejecuta cuando el servidor indique que hay un mensaje nuevo en el chat
+        /// </summary>
+        /// <param name="mensaje">El mensaje nuevo</param>
         public async void OnaddMensajeToChat(clsMensaje mensaje)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -325,7 +366,11 @@ namespace Pinturillo.ViewModels
         }
 
 
-
+        /// <summary>
+        /// Elimina las tildes de una cadena dada
+        /// </summary>
+        /// <param name="text">La cadena a la que se le desea eliminar las tildes</param>
+        /// <returns>La cadena con las tildes eliminadas</returns>
         private string RemoveDiacritics(string text)
         {
             var normalizedString = text.Normalize(NormalizationForm.FormD);
@@ -343,6 +388,11 @@ namespace Pinturillo.ViewModels
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
+        /// <summary>
+        /// Indica que el texto de enviar mensaje ha cambiado.
+        /// 
+        /// Se comprueba de nuevo si el comando de enviar mensaje puede estar habilitado o no
+        /// </summary>
         public void textoCambiado() {
             SendMessageCommand.RaiseCanExecuteChanged();
         }

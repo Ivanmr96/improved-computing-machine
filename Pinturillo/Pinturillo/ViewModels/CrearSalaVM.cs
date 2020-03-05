@@ -52,6 +52,10 @@ namespace Pinturillo.ViewModels
                 _visible = value;
             }
         }
+
+        /// <summary>
+        /// Establece el estado de la pantalla de creación de sala.
+        /// </summary>
         public CrearSalaVM()
         {
             PuedesFuncionar = true;
@@ -79,6 +83,11 @@ namespace Pinturillo.ViewModels
             }
         }
 
+        /// <summary>
+        /// Establece la configuración de la conexión con signalR.
+        /// 
+        /// Establece los métodos de callback que se ejecutarán cuando haya una sala creada y cunado se haya comprobado que el nombre de la sala existe.
+        /// </summary>
         public async void SignalR()
         {
             //conn = new HubConnection("https://pictionary-di.azurewebsites.net");
@@ -92,6 +101,13 @@ namespace Pinturillo.ViewModels
             //proxy.Invoke("sendSalas");
         }
 
+        /// <summary>
+        /// Se ejecutará cuando el servidor indique al cliente que se ha comprobado el nombre de la sala.
+        /// 
+        /// Si el nombre es válido (único), se pedirá al servidor que añada la partida y se limpiará el formulario.
+        /// Si no es válido, mostrará un mensaje de error.
+        /// </summary>
+        /// <param name="isNombreSalaUnico">Indica si el nombre de la sala es único o no.</param>
         private async void OnNombreSalaComprobado(bool isNombreSalaUnico)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -115,7 +131,13 @@ namespace Pinturillo.ViewModels
             });
                
         }
-
+        
+        /// <summary>
+        /// Indica que la sala ha sido creada correctamente.
+        /// 
+        /// Navegará hacia la sala de espera de la sala.
+        /// </summary>
+        /// <param name="partida">La partida que se ha creado</param>
         private async void salaCreada(clsPartida partida)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -144,6 +166,11 @@ namespace Pinturillo.ViewModels
         public String LblErrorNumJugadores { get => _lblErrorNumJugadores; set => _lblErrorNumJugadores = value; }
         public bool PuedesFuncionar { get => puedesFuncionar; set => puedesFuncionar = value; }
 
+        /// <summary>
+        /// Se realiza cuando se ejecute el comando de crear partida.
+        /// 
+        /// Se validará el formulario de la pantalla, si es correcto se comprobará el nombre de la sala (que posteriormente hará que se cree la partida asi es válido el nombre).
+        /// </summary>
         private void CrearCommand_Executed()
         {
             
@@ -177,6 +204,9 @@ namespace Pinturillo.ViewModels
             //var hola = "hola";
         }
 
+        /// <summary>
+        /// Limpia los campos del formulario de la creación de sala
+        /// </summary>
         public void limpiarCampos() {
             _partida = new clsPartida();
             _partida.NotifyPropertyChanged("NombreSala");
@@ -186,7 +216,10 @@ namespace Pinturillo.ViewModels
             _visible = "Collapsed";
         }
 
-        //Metodo para validar el formulario si el checkbox no esta marcado
+        /// <summary>
+        /// Valida el formulario de creación de sala sin contraseña
+        /// </summary>
+        /// <returns>true si es válido, false si no lo es</returns>
         private bool validarFormularioSoloNombreSala()
         {
             bool valido = true;
@@ -221,7 +254,10 @@ namespace Pinturillo.ViewModels
             return true;
         }
 
-        //Metodo para validar el formulario si el checkbox esta marcado
+        /// <summary>
+        /// Valida el formulario de la creación de sala cuando tiene contraseña
+        /// </summary>
+        /// <returns>true si es válido, false si no lo es</returns>
         public bool validarFormulario() {
 
             bool valido = true;
@@ -264,6 +300,9 @@ namespace Pinturillo.ViewModels
 
         }
 
+        /// <summary>
+        /// Limpia el formulario
+        /// </summary>
         public void limpiarFormulario() {
             _lblErrorNombreSala = "*";
             NotifyPropertyChanged("LblErrorNombreSala");
@@ -275,6 +314,13 @@ namespace Pinturillo.ViewModels
             NotifyPropertyChanged("visible");
         }
 
+        /// <summary>
+        /// Se ejecutará cuando el checkbox de la contraseña se habilite o deshabilite.
+        /// 
+        /// Se mostrará el campo de la contraseña si está habilitado o se ocultará si no lo está.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void CheckBox_Changed(object sender, RoutedEventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
