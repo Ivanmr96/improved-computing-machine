@@ -935,3 +935,8 @@ C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\P
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xaml
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xbf
 C:\Users\moren\Desktop\github\pinturillo\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogAboutInfo.xbf
+D:\github\improved-computing-machine\Pinturillo\Pinturillo\bin\x86\Debug\Controls\DialogAboutInfo.xbf
+D:\github\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.g.i.cs
+D:\github\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.g.cs
+D:\github\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xaml
+D:\github\improved-computing-machine\Pinturillo\Pinturillo\obj\x86\Debug\Controls\DialogAboutInfo.xbf

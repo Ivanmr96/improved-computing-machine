@@ -95,13 +95,18 @@ namespace Pinturillo.ViewModels
         {
             if (_timeMax > 0 )
             {
-                if (_timeMax <= 88) {
+                if (_timeMax <= TIME_MAX - 2) {
                     turnoJugador = " ";
                     NotifyPropertyChanged("TurnoJugador");
                 }
                 visible = "Collapsed";
                 NotifyPropertyChanged("Visible");
-                if (_timeMax % 10 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
+
+                //int intervaloEntreLetraDescubierta = (15 * _partida.PalabraEnJuego.Length) / 7;
+
+                //if((TIME_MAX - _timeMax) % intervaloEntreLetraDescubierta == 0)
+
+                if (_timeMax % 20 == 0) //si es divisible entre 10 (o sea es 60, 50, 40, 30, 20, 10)
                 {
                     //se descubre un caracter
                     if(pos < _partida.PosicionesADescubrir.Count)
